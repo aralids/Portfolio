@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dilara Sarach: Portfolio</title>
         <style>
-            .alnatura {
+            :root {
                 --main-bg-color: #FFFEF4;
                 --main-color: #76344D;
                 --main-accent-color: #B5CE34;
@@ -55,13 +55,18 @@
                 margin-left: -1px;
             }
 
-            #cell-1-1 {
+            .purple-cell {
+                background-color: var(--main-color);
+            }
+
+            .orange-cell {
                 background-color: var(--secondary-accent-color);
             }
 
-            #cell-2-2 {
-                background-color: var(--secondary-accent-color);
+            .dead {
+                background-color: var(--main-accent-color);
             }
+            
             
         </style>
     </head>
@@ -69,44 +74,38 @@
     <body>
     <section class="cell-grid">
         <div>
-            <button id="cell-0-0" class="cell row-0 col-0 alnatura" onclick="changeLivingState('cell-0-0')"></button>
-            <button id="cell-0-1" class="cell row-0 col-1 alnatura" onclick="changeLivingState('cell-0-1')"></button>
-            <button id="cell-0-2" class="cell row-0 col-2 alnatura" onclick="changeLivingState('cell-0-2')"></button>
-            <button id="cell-0-3" class="cell row-0 col-3 alnatura" onclick="changeLivingState('cell-0-3')"></button>
+            <button id="cell-0-0" class="cell row-0 col-0 purple-cell dead" onclick="changeLivingState('cell-0-0')"></button>
+            <button id="cell-0-1" class="cell row-0 col-1 purple-cell dead" onclick="changeLivingState('cell-0-1')"></button>
+            <button id="cell-0-2" class="cell row-0 col-2 purple-cell dead" onclick="changeLivingState('cell-0-2')"></button>
+            <button id="cell-0-3" class="cell row-0 col-3 purple-cell dead" onclick="changeLivingState('cell-0-3')"></button>
         </div>
         <div>
-            <button id="cell-1-0" class="cell row-1 col-0 alnatura" onclick="changeLivingState('cell-1-0')"></button>
-            <button id="cell-1-1" class="cell row-1 col-1 alnatura" onclick="changeLivingState('cell-1-1')"></button>
-            <button id="cell-1-2" class="cell row-1 col-2 alnatura" onclick="changeLivingState('cell-1-2')"></button>
-            <button id="cell-1-3" class="cell row-1 col-3 alnatura" onclick="changeLivingState('cell-1-3')"></button>
+            <button id="cell-1-0" class="cell row-1 col-0 purple-cell dead" onclick="changeLivingState('cell-1-0')"></button>
+            <button id="cell-1-1" class="cell row-1 col-1 purple-cell dead" onclick="changeLivingState('cell-1-1')"></button>
+            <button id="cell-1-2" class="cell row-1 col-2 purple-cell dead" onclick="changeLivingState('cell-1-2')"></button>
+            <button id="cell-1-3" class="cell row-1 col-3 purple-cell dead" onclick="changeLivingState('cell-1-3')"></button>
         </div>
         <div>
-            <button id="cell-2-0" class="cell row-2 col-0 alnatura" onclick="changeLivingState('cell-2-0')"></button>
-            <button id="cell-2-1" class="cell row-2 col-1 alnatura" onclick="changeLivingState('cell-2-1')"></button>
-            <button id="cell-2-2" class="cell row-2 col-2 alnatura" onclick="changeLivingState('cell-2-2')"></button>
-            <button id="cell-2-3" class="cell row-2 col-3 alnatura" onclick="changeLivingState('cell-2-3')"></button>
+            <button id="cell-2-0" class="cell row-2 col-0 purple-cell dead" onclick="changeLivingState('cell-2-0')"></button>
+            <button id="cell-2-1" class="cell row-2 col-1 orange-cell dead" onclick="changeLivingState('cell-2-1')"></button>
+            <button id="cell-2-2" class="cell row-2 col-2 orange-cell dead" onclick="changeLivingState('cell-2-2')"></button>
+            <button id="cell-2-3" class="cell row-2 col-3 purple-cell dead" onclick="changeLivingState('cell-2-3')"></button>
         </div>
         <div>
-            <button id="cell-3-0" class="cell row-3 col-0 alnatura" onclick="changeLivingState('cell-3-0')"></button>
-            <button id="cell-3-1" class="cell row-3 col-1 alnatura" onclick="changeLivingState('cell-3-1')"></button>
-            <button id="cell-3-2" class="cell row-3 col-2 alnatura" onclick="changeLivingState('cell-3-2')"></button>
-            <button id="cell-3-3" class="cell row-3 col-3 alnatura" onclick="changeLivingState('cell-3-3')"></button>
+            <button id="cell-3-0" class="cell row-3 col-0 purple-cell dead" onclick="changeLivingState('cell-3-0')"></button>
+            <button id="cell-3-1" class="cell row-3 col-1 purple-cell dead" onclick="changeLivingState('cell-3-1')"></button>
+            <button id="cell-3-2" class="cell row-3 col-2 purple-cell dead" onclick="changeLivingState('cell-3-2')"></button>
+            <button id="cell-3-3" class="cell row-3 col-3 purple-cell dead" onclick="changeLivingState('cell-3-3')"></button>
         </div> 
     </section>
 
     <script>
-        /* Make more consice: */
-        let hexToRgb = c => `rgb(${c.match(/\w\w/g).map(x => + `0x${x}`)[0]}, ${c.match(/\w\w/g).map(x => + `0x${x}`)[1]}, ${c.match(/\w\w/g).map(x => + `0x${x}`)[2]})`;
-
         function changeLivingState(id) {
-            let mainAccentColor = getComputedStyle(document.querySelector('.alnatura')).getPropertyValue('--main-accent-color');
-            let selfColor = window.getComputedStyle(document.querySelector("#"+id)).getPropertyValue('background-color');
-            console.log(selfColor);
-            if (window.getComputedStyle(document.getElementById(id)).backgroundColor != hexToRgb(mainAccentColor)) {
-                console.log("TRUE");
-                document.getElementById(id).style.backgroundColor = mainAccentColor;
+            let aliveState = document.getElementById(id).classList[4];
+            if (aliveState === "alive") {
+                document.getElementById(id).classList.replace("alive", "dead");
             } else {
-                document.getElementById(id).style.backgroundColor = selfColor;
+                document.getElementById(id).classList.replace("dead", "alive");
             }
         }
     </script>

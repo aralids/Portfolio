@@ -14,6 +14,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dilara Sarach: Portfolio</title>
         <style>
+            * {
+                font-family: monospace;
+                font-size: 1vw;
+            }
+
             :root {
                 --main-bg-color: #FFFEF4;
                 --main-color: #76344D;
@@ -68,11 +73,49 @@
                 background-color: var(--main-accent-color);
             }
             
+            nav {
+                position: fixed;
+                width: 100vw;
+                height: 8vh;
+                align-items: center;
+                background-color: var(--main-color);
+                color: var(--secondary-font-color);
+            }
+
+            ul {
+                margin: 0px;
+                padding: 0px;
+                height: inherit;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                list-style-type: none;
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--secondary-font-color);
+            }
+
+            li {
+                margin: 1.5vw;
+            }
             
         </style>
     </head>
 
     <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="">WELCOME</a></li>
+                <li><a href="">ABOUT ME</a></li>
+                <li><a href="">TECHNOLOGIES</a></li>
+                <li><a href="">PROJECTS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
     <section class="cell-grid">
         <div>
             <button id="cell-0-0" class="cell row-0 col-0 purple-cell dead" onmouseover="changeLivingState('cell-0-0')"></button>

@@ -13,128 +13,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dilara Sarach: Portfolio</title>
-        <style>
-            :root {
-                --main-bg-color: #FFFEF4;
-                --main-color: #76344D;
-                --main-accent-color: #B5CE34;
-                --secondary-accent-color: #EF7C00;
-                --font-color: #454541;
-                --secondary-font-color: #FFFFFF; 
-            }
-
-            * {
-                font-family: monospace;
-                font-size: 1vw;
-            }
-
-            html {
-                height: 100%;
-            }
-
-
-            body {
-                margin: 0;
-                height: 100%;
-            }
-
-            main {
-                display: flex;
-                height: 100%;
-            }
-
-            nav {
-                position: fixed;
-                width: 100vw;
-                height: 8vh;
-                align-items: center;
-                background-color: var(--main-color);
-                color: var(--secondary-font-color);
-            }
-
-            ul {
-                margin: 0px;
-                padding: 0px;
-                height: inherit;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                list-style-type: none;
-            }
-
-            a {
-                text-decoration: none;
-                color: var(--secondary-font-color);
-            }
-
-            li {
-                margin: 1.5vw;
-            }
-
-            
-            div {
-                display: flex;
-            }
-
-            p {
-                margin: 0;
-                padding: 0;
-                background-color: #FFFEF4;
-                width: 100%;
-            }
-
-            .cell {
-                width: 50px;
-                height: 50px;
-                background-color: var(--main-color);
-                border: 1px solid var(--secondary-font-color);
-            }
-
-            .col-0 {
-                background-color: var(--main-accent-color);
-            }
-
-            .cell:nth-child(n+2) {
-                margin-left: -1px;
-            }
-
-            .purple-cell {
-                background-color: var(--main-color);
-            }
-
-            .orange-cell {
-                background-color: var(--secondary-accent-color);
-            }
-
-            .dead {
-                background-color: var(--main-accent-color);
-            }
-            
-            #cell-grid {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background-color: var(--main-bg-color);
-                height: 100%;
-                width: 62%;
-            }
-
-            #information {
-                padding-left: 5%;
-                padding-right: 5%;
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                background-color: var(--main-color);
-                height: 100%;
-                width: 38%;
-            }
-            
-            
-            
-        </style>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
     </head>
 
     <body>
@@ -182,20 +62,6 @@
 
         </section>
     </main>
-    <script>
-        function changeLivingState(id) {
-            let aliveState = document.getElementById(id).classList[4];
-            if (aliveState === "alive") {
-                document.getElementById(id).classList.replace("alive", "dead");
-            } else {
-                document.getElementById(id).classList.replace("dead", "alive");
-            }
-
-            var rect = document.getElementById("information").getBoundingClientRect();
-            console.log(rect.top, rect.right, rect.bottom, rect.left);
-            console.log(document.getElementById("information").parentElement.getBoundingClientRect());
-        }
-    </script>
     </body >
     <footer>
     </footer>

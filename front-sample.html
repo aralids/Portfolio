@@ -14,11 +14,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dilara Sarach: Portfolio</title>
         <style>
-            * {
-                font-family: monospace;
-                font-size: 1vw;
-            }
-
             :root {
                 --main-bg-color: #FFFEF4;
                 --main-color: #76344D;
@@ -28,23 +23,65 @@
                 --secondary-font-color: #FFFFFF; 
             }
 
+            * {
+                font-family: monospace;
+                font-size: 1vw;
+            }
+
+            html {
+                height: 100%;
+            }
+
+
             body {
                 margin: 0;
+                height: 100%;
             }
 
-            #cell-grid {
+            main {
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background-color: var(--main-bg-color);
-                height: 100vh;
+                height: 100%;
             }
 
+            nav {
+                position: fixed;
+                width: 100vw;
+                height: 8vh;
+                align-items: center;
+                background-color: var(--main-color);
+                color: var(--secondary-font-color);
+            }
+
+            ul {
+                margin: 0px;
+                padding: 0px;
+                height: inherit;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                list-style-type: none;
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--secondary-font-color);
+            }
+
+            li {
+                margin: 1.5vw;
+            }
+
+            
             div {
                 display: flex;
             }
 
+            p {
+                margin: 0;
+                padding: 0;
+                background-color: #FFFEF4;
+                width: 100%;
+            }
 
             .cell {
                 width: 50px;
@@ -73,33 +110,29 @@
                 background-color: var(--main-accent-color);
             }
             
-            nav {
-                position: fixed;
-                width: 100vw;
-                height: 8vh;
-                align-items: center;
-                background-color: var(--main-color);
-                color: var(--secondary-font-color);
-            }
-
-            ul {
-                margin: 0px;
-                padding: 0px;
-                height: inherit;
+            #cell-grid {
                 display: flex;
-                justify-content: flex-end;
+                flex-direction: column;
                 align-items: center;
-                list-style-type: none;
+                justify-content: center;
+                background-color: var(--main-bg-color);
+                height: 100%;
+                width: 62%;
             }
 
-            a {
-                text-decoration: none;
-                color: var(--secondary-font-color);
+            #information {
+                padding-left: 5%;
+                padding-right: 5%;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: var(--main-color);
+                height: 100%;
+                width: 38%;
             }
-
-            li {
-                margin: 1.5vw;
-            }
+            
+            
             
         </style>
     </head>
@@ -144,6 +177,9 @@
             </div> 
         </section>
         <section id="information">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus dolorem labore temporibus voluptatibus natus laboriosam omnis impedit. Excepturi vero placeat hic quis nobis consequatur a sint expedita, commodi odio cumque?</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus dolorem labore temporibus voluptatibus natus laboriosam omnis impedit. Excepturi vero placeat hic quis nobis consequatur a sint expedita, commodi odio cumque?</p>
+
         </section>
     </main>
     <script>
@@ -154,6 +190,10 @@
             } else {
                 document.getElementById(id).classList.replace("dead", "alive");
             }
+
+            var rect = document.getElementById("information").getBoundingClientRect();
+            console.log(rect.top, rect.right, rect.bottom, rect.left);
+            console.log(document.getElementById("information").parentElement.getBoundingClientRect());
         }
     </script>
     </body >

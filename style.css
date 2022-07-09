@@ -68,8 +68,9 @@ p {
 }
 
 .cell {
-    width: 15px;
-    height: 15px;
+    padding: 0;
+    width: 50px;
+    height: 50px;
     background-color: var(--main-color);
     border-left: 1px solid var(--secondary-font-color);
     border-bottom: 1px solid var(--secondary-font-color);
@@ -98,6 +99,8 @@ p {
 }
 
 #cell-grid {
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;

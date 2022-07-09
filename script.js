@@ -1,8 +1,8 @@
 let cellGrid = document.getElementById('cell-grid');
 let cellGridWidth = cellGrid.clientWidth;
 let cellGridHeight = cellGrid.clientHeight;
-let cellNumberWidth = Math.floor(cellGridWidth/50);
-let cellNumberHeight = Math.floor(cellGridHeight/50);
+let cellNumberWidth = Math.floor(cellGridWidth/20);
+let cellNumberHeight = Math.floor(cellGridHeight/20);
 
 for (let i = 0; i < cellNumberHeight; i++) {
     let div = document.createElement("div");
@@ -18,13 +18,12 @@ for (let i = 0; i < cellNumberHeight; i++) {
         btn.classList.add("cell", `row-${i}`, `coll-${j}`, "purple-cell", "dead");
         btn.setAttribute("onmouseover", `changeLivingState('${id}')`);
         document.getElementById(`row-${i}`).appendChild(btn);
-        /* btn.addEventListener("mouseover", changeLivingState(id)); */
     }
 }
 
 function changeLivingState(id) {
-    console.log(id)
     let aliveState = document.getElementById(id).classList[4];
+    console.log(id, aliveState);
     if (aliveState === "alive") {
         document.getElementById(id).classList.replace("alive", "dead");
     } else {

@@ -15,8 +15,8 @@ for (let i = 0; i < cellNumberHeight; i++) {
         let btn = document.createElement("button");
         let id = `cell-${i}-${j}`;
         btn.setAttribute("id", `cell-${i}-${j}`);
-        btn.classList.add("cell", `row-${i}`, `coll-${j}`, "purple-cell", "dead");
-        btn.setAttribute("onmouseover", `changeLivingState('${id}')`);
+        btn.classList.add("cell", `row-${i}`, `coll-${j}`, "white-cell", "dead");
+        btn.setAttribute("onmouseover", `resurrect('${id}')`);
         document.getElementById(`row-${i}`).appendChild(btn);
     }
 }
@@ -31,4 +31,9 @@ function changeLivingState(id) {
     }
 }
 
-
+function resurrect(id) {
+    let aliveState = document.getElementById(id).classList[4];
+    if (aliveState === "dead") {
+        document.getElementById(id).classList.replace("dead", "alive");
+    }
+}

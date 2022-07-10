@@ -58,11 +58,12 @@ header {
     /* display: ; */
     /* flex-direction: ;*/
     /* height: ;*/
-    width: 10%;
+    width: fit-content;
     /* justify-content: ; */
     /* align-items: ; */
     /* max-height: ; */
     padding: 4px;
+    margin-left: 3%;
 
 }
 
@@ -132,7 +133,6 @@ main {
     justify-content: center;
     /* align-items: ; */
     /* max-height: ; */
-
 }
 
 div {
@@ -153,7 +153,6 @@ div {
     /* justify-content: ; */
     /* align-items: ; */
     /* max-height: ; */
-
     border: 1px solid #FFF;
 }
 
@@ -162,34 +161,38 @@ div {
     flex-direction: column;
     /* height: ;*/
     width: 62%;
-    /* justify-content: ; */
+    justify-content: center;
     /* align-items: ; */
     /* max-height: ; */
+    margin-left: 3%;
+    margin-right: 5%;
 }
 
 h1 {
     font-family: 'Abhaya Libre', serif;
     font-size: 80px;
     font-weight: 800;
+    height: fit-content;
 }
 
 h2 {
     font-family: 'Abhaya Libre', serif;
     font-size: 24px;
     font-weight: 800;
+    height: fit-content;
 }
 
 p {
     /* display: ;*/
     /* flex-direction: ;*/
-    /* height: ;*/
+    height: fit-content;
     /* width: ;*/
     /* justify-content: ; */
     /* align-items: ; */
     /* max-height: ; */
 
     font-family: 'Abhaya Libre', serif;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
 }
 

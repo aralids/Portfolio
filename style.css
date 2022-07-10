@@ -171,15 +171,29 @@ div {
 }
 
 #information {
+    width: 62%;
+
+    margin-left: 3%;
+    padding-right: 5%;
+    overflow: scroll;
+}
+
+#information::-webkit-scrollbar {
+    display: none;
+}
+
+#information {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#information > section{
     display: flex;
     flex-direction: column;
     /* height: ;*/
-    width: 62%;
     justify-content: center;
     /* align-items: ; */
     /* max-height: ; */
-    margin-left: 3%;
-    padding-right: 5%;
 
 }
 

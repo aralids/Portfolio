@@ -1,17 +1,19 @@
 let cellGrid = document.getElementById('cell-grid');
+/*
 let cellGridWidth = cellGrid.clientWidth;
 let cellGridHeight = cellGrid.clientHeight;
 let cellNumberWidth = Math.floor(cellGridWidth/20);
 let cellNumberHeight = Math.floor(cellGridHeight/20);
+*/
 
-for (let i = 0; i < cellNumberHeight; i++) {
+for (let i = 0; i < 17; i++) {
     let div = document.createElement("div");
     div.setAttribute("id", `row-${i}`);
     cellGrid.appendChild(div);
 }
 
-for (let i = 0; i < cellNumberHeight; i++) {
-    for (let j = 0; j < cellNumberWidth; j++) {
+for (let i = 0; i < 17; i++) {
+    for (let j = 0; j < 15; j++) {
         let btn = document.createElement("button");
         let id = `cell-${i}-${j}`;
         btn.setAttribute("id", `cell-${i}-${j}`);

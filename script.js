@@ -1,11 +1,11 @@
-let cellGrid = document.getElementById('cell-grid');
-/*
-let cellGridWidth = cellGrid.clientWidth;
-let cellGridHeight = cellGrid.clientHeight;
-let cellNumberWidth = Math.floor(cellGridWidth/20);
-let cellNumberHeight = Math.floor(cellGridHeight/20);
-*/
+let cellColors = [];
+for (let i = 0; i < 17*15; i++) {
+    cellColors.push("white-cell")
+}
+cellColors.splice(0, 1, "purple-cell")
+console.log(cellColors[0]);
 
+let cellGrid = document.getElementById('cell-grid');
 for (let i = 0; i < 17; i++) {
     let div = document.createElement("div");
     div.setAttribute("id", `row-${i}`);
@@ -17,7 +17,7 @@ for (let i = 0; i < 17; i++) {
         let btn = document.createElement("button");
         let id = `cell-${i}-${j}`;
         btn.setAttribute("id", `cell-${i}-${j}`);
-        btn.classList.add("cell", `row-${i}`, `coll-${j}`, "white-cell", "dead");
+        btn.classList.add("cell", `row-${i}`, `coll-${j}`, cellColors[i*15+j], "dead");
         btn.setAttribute("onmouseover", `resurrect('${id}')`);
         document.getElementById(`row-${i}`).appendChild(btn);
     }
@@ -37,5 +37,22 @@ function resurrect(id) {
     let aliveState = document.getElementById(id).classList[4];
     if (aliveState === "dead") {
         document.getElementById(id).classList.replace("dead", "alive");
+    }
+}
+
+window.onkeydown = function() {updateCellGrid()};
+document.getElementById("cell-grid-wrapper").onscroll = function() {updateCellGrid()};
+document.getElementById("information").onscroll = function() {updateCellGrid()};
+
+function updateCellGrid() {
+    console.log("Here");
+    var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
+    console.log(winScroll);
+    if (winScroll > 5) {
+        cell = document.getElementById("cell-0-0");
+        if (cell.classList[4] == "alive") {
+            cell.classList.replace("alive", "dead");
+            cell.classList.replace("purple-cell", "white-cell")
+        }
     }
 }

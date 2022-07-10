@@ -172,7 +172,6 @@ div {
 
 #information {
     width: 62%;
-
     margin-left: 3%;
     padding-right: 5%;
     overflow: scroll;
@@ -187,7 +186,7 @@ div {
     scrollbar-width: none;  /* Firefox */
 }
 
-#information > section{
+#information > section {
     display: flex;
     flex-direction: column;
     /* height: ;*/
@@ -240,6 +239,10 @@ footer {
     background-color: #FFF;
 }
 
-.dead {
+.purple-cell {
     background-color: #76344D;
+}
+
+.dead {
+    background-color: #454541;
 }

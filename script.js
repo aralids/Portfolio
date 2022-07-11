@@ -41,8 +41,8 @@ function resurrect(id) {
 }
 
 window.onkeydown = function() {updateCellGrid()};
-document.getElementById("cell-grid-wrapper").onscroll = function() {updateCellGrid()};
 document.getElementById("information").onscroll = function() {updateCellGrid()};
+document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid()};
 
 function updateCellGrid() {
     console.log("Here");

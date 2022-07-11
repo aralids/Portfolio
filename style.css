@@ -125,18 +125,8 @@ main {
     /* max-height: ; */
 }
 
-#cell-grid-wrapper {
-    display: flex;
-    width: 38%;
-    justify-content: center;
-    align-items: center;
-
-    margin-right: 3%;
-
-}
-
 #cell-grid {
-    position: relative;
+    position: fixed;
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -144,6 +134,9 @@ main {
     justify-content: center;
     /* align-items: ; */
     /* max-height: ; */
+
+    top: calc(50% - 205px);
+    margin-right: 10%;
 
     border: 35px solid #E1E1E1;
     box-shadow: 0px 0px 20px 5px #A9A9A9;
@@ -171,10 +164,11 @@ div {
 }
 
 #information {
-    width: 62%;
     margin-left: 3%;
-    padding-right: 5%;
+    margin-right: 3%;
+    padding-right: 39%;
     overflow: scroll;
+
 }
 
 #information::-webkit-scrollbar {
@@ -194,6 +188,7 @@ div {
     /* align-items: ; */
     /* max-height: ; */
 
+    
 }
 
 h1 {
@@ -222,6 +217,7 @@ p {
     font-family: 'Abhaya Libre', serif;
     font-size: 18px;
     font-weight: 400;
+
 }
 
 footer {

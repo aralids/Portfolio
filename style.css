@@ -125,7 +125,7 @@ main {
     /* max-height: ; */
 }
 
-#cell-grid {
+#cell-grid, #card1, #card2 {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -142,6 +142,9 @@ main {
 
     z-index: 10;
     border: 35px solid #E1E1E1;
+}
+
+#cell-grid {
     box-shadow: 0px 0px 20px 5px #A9A9A9;
 }
 
@@ -234,6 +237,10 @@ footer {
 
 }
 
+#projects {
+    padding-right: 50%;
+}
+
 .orange-cell {
     background-color: #EF7C00;
 }
@@ -251,13 +258,9 @@ footer {
 }
 
 #card1 {
-    position: fixed;
-    top: 250px;
-    left: 64%;
-    z-index: -10;
+    z-index: -20;
 }
 
-button {
-    height: 20px;
-    width: 20px;
+#card2 {
+    z-index: -10;
 }

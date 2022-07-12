@@ -1,59 +1,32 @@
-function gridImage(name, scheme) {
+function gridImage(name, scheme, gridId, initialLivingState) {
     this.name = name;
     this.scheme = scheme;
-    this.makeCurrent = function() {
-        if (cellSchemeCurrent.length === 0) {
-            let cellGrid = document.getElementById("cell-grid");
-            let card1 = document.getElementById("card1");
-            let card2 = document.getElementById("card2");
+    this.gridId = gridId;
+    this.initialLivingState = initialLivingState;
+    this.makeCurrent = function(gridSchemeCurrent) {
+        if (gridSchemeCurrent.length === 0) {
+            let grid = document.getElementById(this.gridId);
             for (let i = 0; i < 17; i++) {
-                /* For cellGrid: */
                 let div = document.createElement("div");
-                div.setAttribute("id", `row-${i}`);
-                cellGrid.appendChild(div);
-
-                /* For card1: */
-                let div1 = document.createElement("div");
-                div1.setAttribute("id", `card1-row-${i}`);
-                card1.appendChild(div1);
-
-                /* For card2: */
-                let div2 = document.createElement("div");
-                div2.setAttribute("id", `card2-row-${i}`);
-                card2.appendChild(div2);
+                div.setAttribute("id", `${this.gridId}-row-${i}`);
+                grid.appendChild(div);
             }
             for (let i = 0; i < 17; i++) {
                 for (let j = 0; j < 15; j++) {
-                    /* For cellGrid: */
                     let btn = document.createElement("button");
-                    let id = `cell-${i}-${j}`;
-                    btn.setAttribute("id", `cell-${i}-${j}`);
-                    btn.classList.add("cell", `row-${i}`, `col-${j}`, this.scheme[i*15+j], "dead");
+                    let id = `${this.gridId}-cell-${i}-${j}`;
+                    btn.setAttribute("id", `${this.gridId}-cell-${i}-${j}`);
+                    btn.classList.add("cell", `${this.gridId}-row-${i}`, `${this.gridId}-col-${j}`, this.scheme[i*15+j], this.initialLivingState);
                     btn.setAttribute("onmouseover", `resurrect('${id}')`);
-                    document.getElementById(`row-${i}`).appendChild(btn);
-
-                    /* For card1: */
-                    let btn1 = document.createElement("button");
-                    let id1 = `card1-cell-${i}-${j}`;
-                    btn1.setAttribute("id", `card1-cell-${i}-${j}`);
-                    btn1.classList.add("cell", `card1-row-${i}`, `card1-col-${j}`, this.scheme[i*15+j], "alive");
-                    btn1.setAttribute("onmouseover", `resurrect('${id1}')`);
-                    document.getElementById(`card1-row-${i}`).appendChild(btn1);
-
-                    /* For card2: */
-                    let btn2 = document.createElement("button");
-                    let id2 = `card2-cell-${i}-${j}`;
-                    btn2.setAttribute("id", `card2-cell-${i}-${j}`);
-                    btn2.classList.add("cell", `card2-row-${i}`, `card2-col-${j}`, this.scheme[i*15+j], "alive");
-                    btn2.setAttribute("onmouseover", `resurrect('${id2}')`);
-                    document.getElementById(`card2-row-${i}`).appendChild(btn2);
+                    document.getElementById(`${this.gridId}-row-${i}`).appendChild(btn);
                 }
             }
+            console.log(this.gridId, gridSchemeCurrent.length);
             return this.scheme;
         } else {
-            differences = calculateDistance(cellSchemeCurrent, this.scheme);
+            differences = calculateDistance(gridSchemeCurrent, this.scheme);
             for (let i = 0; i < differences.length; i++) {
-                let cell = document.getElementById(`cell-${Math.floor(differences[i][0] / 15)}-${differences[i][0] % 15}`);
+                let cell = document.getElementById(`${this.gridId}-cell-${Math.floor(differences[i][0] / 15)}-${differences[i][0] % 15}`);
                 cell.classList.replace(cell.classList[3], differences[i][1])
             }
             return this.scheme;
@@ -102,16 +75,28 @@ function calculateDistance(cellSchemeCurrent, cellSchemeNext) {
 
 /* -- GRID COLOR SCHEMES -- */
 
+let cellSchemeCurrent = [];
+let cellSchemeCard1 = [];
+let cellSchemeCard2 = [];
 
-gridInitial = new gridImage("cellSchemeInitial", cellSchemeInitial);
-grid1 = new gridImage("cellScheme1", cellScheme1);
+gridCard1 = new gridImage("cellCard1", cellScheme1, "card1", "alive");
+gridCard2 = new gridImage("cellCard2", cellScheme1, "card2", "alive");
+gridInitial = new gridImage("cellSchemeInitial", cellSchemeInitial, "cell-grid", "dead");
+grid1 = new gridImage("cellScheme1", cellScheme1, "cell-grid", "dead");
+
+console.log(cellSchemeCurrent);
+console.log(cellSchemeCard1);
+console.log(cellSchemeCard2);
+cellSchemeCurrent = gridInitial.makeCurrent(cellSchemeCurrent);
+cellSchemeCard1 = gridCard1.makeCurrent(cellSchemeCard1);
+cellSchemeCard2 = gridCard2.makeCurrent(cellSchemeCard2);
+console.log(cellSchemeCurrent);
+console.log(cellSchemeCard1);
+console.log(cellSchemeCard2);
 
 window.onkeydown = function() {updateCellGrid()};
 document.getElementById("information").onscroll = function() {updateCellGrid()};
 document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid()};
-
-let cellSchemeCurrent = [];
-cellSchemeCurrent = gridInitial.makeCurrent();
 
 var rect = document.getElementById("cell-grid").getBoundingClientRect();
 
@@ -119,23 +104,30 @@ function updateCellGrid() {
     console.log("Here");
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
-    if (winScroll > 0 && winScroll < 537) {
-        cellSchemeCurrent = gridInitial.makeCurrent();
+    if (winScroll > 0 && winScroll < (537-200)) {
+        cellSchemeCurrent = gridInitial.makeCurrent(cellSchemeCurrent);
     }
-    if (winScroll > 537 && winScroll < 1075) {
+    if (winScroll > (537-200) && winScroll < (1075-200)) {
         document.getElementById("cell-grid").style.left = rect.left + "px";
         document.getElementById("card1").style.left = rect.left + "px";
         document.getElementById("card1").style.boxShadow = "none";
         document.getElementById("card2").style.left = rect.left + "px";
         document.getElementById("card2").style.boxShadow = "none";
-        cellSchemeCurrent = grid1.makeCurrent();
+        cellSchemeCurrent = grid1.makeCurrent(cellSchemeCurrent);
     }
-    if (winScroll > 1075) {
+    if (winScroll > (1075-200) && winScroll < (1612-200)) {
         document.getElementById("cell-grid").style.left = "calc(97% - 370px)";
         document.getElementById("card1").style.left = "calc(57% - 370px)";
         document.getElementById("card1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
         document.getElementById("card2").style.left = "calc(77% - 370px)";
         document.getElementById("card2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
+    }
+    if (winScroll > (1612-200)) {
+        document.getElementById("cell-grid").style.left = rect.left + "px";
+        document.getElementById("card1").style.left = rect.left + "px";
+        document.getElementById("card1").style.boxShadow = "none";
+        document.getElementById("card2").style.left = rect.left + "px";
+        document.getElementById("card2").style.boxShadow = "none";
     }
     console.log(calculateDistance(cellSchemeInitial, cellScheme1));
 }

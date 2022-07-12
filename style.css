@@ -231,6 +231,10 @@ footer {
 
 }
 
+.orange-cell {
+    background-color: #EF7C00;
+}
+
 .white-cell {
     background-color: #FFF;
 }

@@ -1,9 +1,9 @@
-let cellColors = [];
+let cellSchemeInitial = [];
 for (let i = 0; i < 17*15; i++) {
-    cellColors.push("white-cell")
+    cellSchemeInitial.push("white-cell")
 }
-cellColors.splice(0, 1, "purple-cell")
-console.log(cellColors[0]);
+cellSchemeInitial.splice(0, 1, "purple-cell")
+console.log(cellSchemeInitial[0]);
 
 let cellGrid = document.getElementById('cell-grid');
 for (let i = 0; i < 17; i++) {
@@ -17,7 +17,7 @@ for (let i = 0; i < 17; i++) {
         let btn = document.createElement("button");
         let id = `cell-${i}-${j}`;
         btn.setAttribute("id", `cell-${i}-${j}`);
-        btn.classList.add("cell", `row-${i}`, `coll-${j}`, cellColors[i*15+j], "dead");
+        btn.classList.add("cell", `row-${i}`, `coll-${j}`, cellSchemeInitial[i*15+j], "dead");
         btn.setAttribute("onmouseover", `resurrect('${id}')`);
         document.getElementById(`row-${i}`).appendChild(btn);
     }
@@ -40,19 +40,54 @@ function resurrect(id) {
     }
 }
 
-window.onkeydown = function() {updateCellGrid()};
-document.getElementById("information").onscroll = function() {updateCellGrid()};
-document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid()};
+/* GRID COLOR SCHEMES */
 
-function updateCellGrid() {
+let cellScheme1 = ["white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "orange-cell", "orange-cell", "orange-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "purple-cell", "purple-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "purple-cell", "purple-cell", "white-cell", "orange-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "purple-cell", "purple-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "purple-cell", "purple-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "orange-cell", "orange-cell", "purple-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "purple-cell", "purple-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+"white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", "white-cell", 
+];
+
+function calculateDistance(cellSchemeCurrent, cellSchemeNext) {
+    let differences = [];
+    for (let i = 0; i < 17*15; i++) {
+        if (cellSchemeCurrent[i] !== cellSchemeNext[i]) {
+            differences.push([i, cellSchemeNext[i]]);
+        } 
+    }
+    return differences;
+}
+
+/* -- GRID COLOR SCHEMES -- */
+
+let cellSchemeCurrent = cellSchemeInitial;
+window.onkeydown = function() {updateCellGrid(cellScheme1)};
+document.getElementById("information").onscroll = function() {updateCellGrid(cellScheme1)};
+document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid(cellScheme1)};
+
+function updateCellGrid(cellSchemeNext) {
     console.log("Here");
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
     if (winScroll > 5) {
-        cell = document.getElementById("cell-0-0");
-        if (cell.classList[4] == "alive") {
-            cell.classList.replace("alive", "dead");
-            cell.classList.replace("purple-cell", "white-cell")
+        differences = calculateDistance(cellSchemeCurrent, cellSchemeNext);
+        for (let i = 0; i < differences.length; i++) {
+            let cell = document.getElementById(`cell-${Math.floor(differences[i][0] / 15)}-${differences[i][0] % 15}`);
+            cell.classList.replace(cell.classList[3], differences[i][1])
         }
     }
+    console.log(calculateDistance(cellSchemeInitial, cellScheme1));
 }

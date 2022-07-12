@@ -74,19 +74,28 @@ function calculateDistance(cellSchemeCurrent, cellSchemeNext) {
 gridInitial = new gridImage("cellSchemeInitial", cellSchemeInitial);
 grid1 = new gridImage("cellScheme1", cellScheme1);
 
-window.onkeydown = function() {updateCellGrid(cellScheme1)};
-document.getElementById("information").onscroll = function() {updateCellGrid(cellScheme1)};
-document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid(cellScheme1)};
+window.onkeydown = function() {updateCellGrid()};
+document.getElementById("information").onscroll = function() {updateCellGrid()};
+document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid()};
 
 let cellSchemeCurrent = [];
 cellSchemeCurrent = gridInitial.makeCurrent();
 
-function updateCellGrid(cellSchemeNext) {
+var rect = document.getElementById("cell-grid").getBoundingClientRect();
+
+function updateCellGrid() {
     console.log("Here");
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
-    if (winScroll > 5) {
+    if (winScroll > 0 && winScroll < 537) {
+        cellSchemeCurrent = gridInitial.makeCurrent();
+    }
+    if (winScroll > 537 && winScroll < 1075) {
+        document.getElementById("cell-grid").style.left = rect.left + "px";;
         cellSchemeCurrent = grid1.makeCurrent();
+    }
+    if (winScroll > 1075) {
+        document.getElementById("cell-grid").style.left = "calc(97% - 370px)";
     }
     console.log(calculateDistance(cellSchemeInitial, cellScheme1));
 }

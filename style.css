@@ -135,7 +135,7 @@ main {
     /* align-items: ; */
     /* max-height: ; */
 
-    top: calc(50% - 205px);
+    top: calc(50% - 245px);
     margin-right: 10%;
 
     transition: all .5s ease-in-out;

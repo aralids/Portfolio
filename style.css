@@ -1,4 +1,7 @@
-/* resize responsiveness!!! */
+/* resize responsiveness!!! 
+   replace h2 with p!!!
+   use em instead of px for font-size to allow users to change the size in the browser menu - or rather a combo of em and % - or vw!!!
+   */
 
 /* display: ;*/
 /* flex-direction: ;*/

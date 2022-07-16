@@ -31,7 +31,7 @@ function gridImage(name, scheme, gridId) {
                 let cell = document.getElementById(`${this.gridId}-cell-${Math.floor(differences[i][0] / gridWidth)}-${differences[i][0] % gridWidth}`);
                 cell.classList.replace(cell.classList[3], differences[i][1]);
             }
-            for (let i = 0; i < this.scheme.length; i++) {
+            for (let i = 0; i < gridHeight*gridWidth; i++) {
                 let cell = document.getElementById(`${this.gridId}-cell-${Math.floor(i / gridWidth)}-${i % gridWidth}`);
                 cell.classList.replace(cell.classList[4], livingState);
             }
@@ -174,6 +174,8 @@ function updateCellGrid() {
     }
     if (winScroll > 2*(viewportHeight*(4/5) - 5) && winScroll < 3*(viewportHeight*(4/5)) - 5) {
         document.getElementById("cell-grid").style.left = "calc(97% - 490px)";
+        cellSchemeCurrent = grid1.makeCurrent(cellSchemeCurrent, "alive");
+
         document.getElementById("card1").style.left = "calc(77% - 490px)";
         document.getElementById("card1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
         document.getElementById("card2").style.left = "calc(87% - 490px)";
@@ -200,13 +202,13 @@ function changeLivingState(id) {
     if (aliveState === "alive") {
         document.getElementById(id).classList.replace("alive", "dead");
     } else {
-        document.getElementById(id).classList.replace("dead");
+        document.getElementById(id).classList.replace("dead", "alive");
     }
 }
 
 function resurrect(id) {
     let aliveState = document.getElementById(id).classList[4];
     if (aliveState === "dead") {
-        document.getElementById(id).classList.replace("dead");
+        document.getElementById(id).classList.replace("dead", "alive");
     }
 }

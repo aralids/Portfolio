@@ -25,8 +25,8 @@ function Grid(gridId) {
                     document.getElementById(`${this.gridId}-row-${i}`).appendChild(btn);
                 }
             }
-            
             this.scheme = schemeNext;
+
         } else {
             differences = calculateDistance(this.scheme, schemeNext);
             for (let i = 0; i < differences.length; i++) {
@@ -144,7 +144,8 @@ function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
     if (winScroll >= 0 && winScroll < viewportHeight*(4/5) - 5) {
-        cellGridMain.makeCurrent(cgmInitialScheme);
+        cellGridMain.makeCurrent(cgmInitialScheme, "dead");
+        
     }
     if (winScroll > viewportHeight*(4/5) - 5 && winScroll < 2*(viewportHeight*(4/5)) - 5) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
@@ -152,12 +153,12 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
-        cellGridMain.makeCurrent(cgmQuestionMark);
+        cellGridMain.makeCurrent(cgmQuestionMark, "dead");
 
     }
     if (winScroll > 2*(viewportHeight*(4/5) - 5) && winScroll < 3*(viewportHeight*(4/5)) - 5) {
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
-        cellGridMain.makeCurrent(cgmQuestionMark);
+        cellGridMain.makeCurrent(cgmQuestionMark, "alive");
 
         document.getElementById("cell-grid-project-1").style.left = "calc(77% - 490px)";
         document.getElementById("cell-grid-project-1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
@@ -166,7 +167,7 @@ function updateCellGrid() {
     }
     if (winScroll > 3*(viewportHeight*(4/5)) - 5) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
-        cellGridMain.makeCurrent(cgmQrCode);
+        cellGridMain.makeCurrent(cgmQrCode, "alive");
 
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
@@ -194,7 +195,124 @@ function resurrect(id) {
 
 
 
+function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) {
+    let otherLivingState;
+    if (livingStateNext === "alive") {
+        otherLivingState = "dead";
+    } else {
+        otherLivingState = "alive";
+    }
+    let sameColorSameState = [];
+    let sameColorDifferentState = [];
+    let differentColorSameState = [];
+    let differentColorDifferentState = [];
+    
+    for (let i = 0; i < gridHeight*gridWidth; i ++) {
+        let cellId = `${gridId}-cell-${Math.floor(i / gridWidth)}-${i % gridWidth}`;
+        let cell = document.getElementById(cellId);
+        if (cell.classList[4] === livingStateNext) {
+            if (cell.classList[3] === schemeNext[i]) {
+                sameColorSameState.push(cellId);
+            } else {
+                differentColorSameState.push(cellId);
+            }
+        } else {
+            if (cell.classList[3] === schemeNext[i]) {
+                sameColorDifferentState.push(cellId);
+            } else {
+                differentColorDifferentState.push(cellId);
+            }
+        }
+    }
 
+    let mapping = [];
+    
+    for (let i = 0; i < sameColorSameState.length / 2; i++) {
+        let changeBackAt = Math.random() * 100;
+        let changeAt = Math.random() * changeBackAt;
+
+        let randomCellIndex = Math.floor(Math.random() * sameColorSameState.length);
+        let randomCellId = sameColorSameState[randomCellIndex];
+        let numberPattern = /\d+/g;
+        let numberMatchArray = randomCellId.match(numberPattern);
+        console.log("BEBI", numberMatchArray);
+        let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
+        mapping.push([changeAt, [cellI, otherLivingState]]);
+        mapping.push([changeBackAt, [cellI, livingStateNext]]);
+    }
+
+    for (let i = 0; i < sameColorDifferentState.length; i++) {
+        let changeBackAt = Math.random() * 100;
+
+        let randomCellIndex = Math.floor(Math.random() * sameColorDifferentState.length);
+        let randomCellId = sameColorDifferentState[randomCellIndex];
+        let numberPattern = /\d+/g;
+        let numberMatchArray = randomCellId.match(numberPattern);
+        let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
+        mapping.push([changeBackAt, [cellI, livingStateNext]]);
+        sameColorDifferentState.splice(randomCellIndex, 1);
+    }
+
+    if (livingStateNext === "alive") {
+        for (let i = 0; i < differentColorSameState.length; i++) {
+            let changeBackAt = Math.random() * 100;
+            let changeColorAt = Math.random() * changeBackAt;
+            let changeAt = Math.random() * changeColorAt;
+
+            let randomCellIndex = Math.floor(Math.random() * differentColorSameState.length);
+            let randomCellId = differentColorSameState[randomCellIndex];
+            let numberPattern = /\d+/g;
+            let numberMatchArray = randomCellId.match(numberPattern);
+            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
+            mapping.push([changeAt, [cellI, otherLivingState]]);
+            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
+            mapping.push([changeBackAt, [cellI, livingStateNext]]);
+            differentColorSameState.splice(randomCellIndex, 1);
+        }
+
+        for (let i = 0; i < differentColorDifferentState.length; i++) {
+            let changeColorAt = Math.random() * 100;
+            let changeAt = Math.random() * changeColorAt;
+    
+            let randomCellIndex = Math.floor(Math.random() * differentColorDifferentState.length);
+            let randomCellId = differentColorDifferentState[randomCellIndex];
+            let numberPattern = /\d+/g;
+            let numberMatchArray = randomCellId.match(numberPattern);
+            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
+            mapping.push([changeAt, [cellI, livingStateNext]]);
+            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
+            differentColorDifferentState.splice(randomCellIndex, 1);
+        }
+    } else {
+        for (let i = 0; i < differentColorSameState.length; i++) {
+            let changeColorAt = Math.random() * changeBackAt;
+
+            let randomCellIndex = Math.floor(Math.random() * differentColorSameState.length);
+            let randomCellId = differentColorSameState[randomCellIndex];
+            let numberPattern = /\d+/g;
+            let numberMatchArray = randomCellId.match(numberPattern);
+            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
+            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
+            differentColorSameState.splice(randomCellIndex, 1);
+        }
+
+        for (let i = 0; i < differentColorDifferentState.length; i++) {
+            let changeAt = Math.random() * 100;
+            let changeColorAt = Math.random() * changeAt;
+    
+            let randomCellIndex = Math.floor(Math.random() * differentColorDifferentState.length);
+            let randomCellId = differentColorDifferentState[randomCellIndex];
+            let numberPattern = /\d+/g;
+            let numberMatchArray = randomCellId.match(numberPattern);
+            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
+            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
+            mapping.push([changeAt, [cellI, livingStateNext]]);
+            differentColorDifferentState.splice(randomCellIndex, 1);
+        }
+    }
+
+    console.log(sameColorSameState.length, sameColorDifferentState.length, differentColorSameState.length, differentColorDifferentState.length, mapping);
+}
 
 function stringifyScheme(schemeNum) {
     let stringifiedScheme = [];

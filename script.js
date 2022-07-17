@@ -140,23 +140,33 @@ document.getElementById("main").onmousewheel = function() {console.log("YAY"); u
 
 var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 
+let currentScrollSection = 0;
 function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
     if (winScroll >= 0 && winScroll < viewportHeight*(4/5) - 5) {
-        cellGridMain.makeCurrent(cgmInitialScheme, "dead");
-        
+        if (currentScrollSection !== 0) { 
+            cellGridMain.makeCurrent(cgmInitialScheme, "dead");
+        };
+        console.log("Here1");
+        currentScrollSection = 0;
+    
     }
-    if (winScroll > viewportHeight*(4/5) - 5 && winScroll < 2*(viewportHeight*(4/5)) - 5) {
+    if (winScroll > viewportHeight*(4/5) && winScroll < 2*(viewportHeight*(4/5))) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
-        cellGridMain.makeCurrent(cgmQuestionMark, "dead");
+
+        if (currentScrollSection !== 1) { 
+            cellGridMain.makeCurrent(cgmQuestionMark, "alive");
+        };
+        console.log("Here2");
+        currentScrollSection = 1;
 
     }
-    if (winScroll > 2*(viewportHeight*(4/5) - 5) && winScroll < 3*(viewportHeight*(4/5)) - 5) {
+    if (winScroll > 2*(viewportHeight*(4/5)) && winScroll < 3*(viewportHeight*(4/5))) {
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
         cellGridMain.makeCurrent(cgmQuestionMark, "alive");
 
@@ -164,8 +174,10 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
         document.getElementById("cell-grid-project-2").style.left = "calc(87% - 490px)";
         document.getElementById("cell-grid-project-2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
+
+        console.log("Here3");
     }
-    if (winScroll > 3*(viewportHeight*(4/5)) - 5) {
+    if (winScroll > 3*(viewportHeight*(4/5))) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
         cellGridMain.makeCurrent(cgmQrCode, "alive");
 
@@ -173,6 +185,8 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
+
+        console.log("Here4");
     }
 }
 
@@ -237,8 +251,6 @@ function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) 
         let numberMatchArray = randomCellId.match(numberPattern);
         console.log("BEBI", numberMatchArray);
         let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-        mapping.push([changeAt, [cellI, otherLivingState]]);
-        mapping.push([changeBackAt, [cellI, livingStateNext]]);
     }
 
     for (let i = 0; i < sameColorDifferentState.length; i++) {
@@ -249,7 +261,6 @@ function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) 
         let numberPattern = /\d+/g;
         let numberMatchArray = randomCellId.match(numberPattern);
         let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-        mapping.push([changeBackAt, [cellI, livingStateNext]]);
         sameColorDifferentState.splice(randomCellIndex, 1);
     }
 
@@ -264,9 +275,7 @@ function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) 
             let numberPattern = /\d+/g;
             let numberMatchArray = randomCellId.match(numberPattern);
             let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-            mapping.push([changeAt, [cellI, otherLivingState]]);
             mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
-            mapping.push([changeBackAt, [cellI, livingStateNext]]);
             differentColorSameState.splice(randomCellIndex, 1);
         }
 
@@ -279,7 +288,6 @@ function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) 
             let numberPattern = /\d+/g;
             let numberMatchArray = randomCellId.match(numberPattern);
             let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-            mapping.push([changeAt, [cellI, livingStateNext]]);
             mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
             differentColorDifferentState.splice(randomCellIndex, 1);
         }
@@ -306,7 +314,6 @@ function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) 
             let numberMatchArray = randomCellId.match(numberPattern);
             let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
             mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
-            mapping.push([changeAt, [cellI, livingStateNext]]);
             differentColorDifferentState.splice(randomCellIndex, 1);
         }
     }

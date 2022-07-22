@@ -105,6 +105,7 @@ let cgmQrCodeNum = [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 
 
 let cgmQrCode = stringifyScheme(cgmQrCodeNum);
 
+let schemeCurrentExample = ["white-cell", "orange-cell", "purple-cell", "white-cell"]
 
 
 /* -- GRID COLOR SCHEMES -- */
@@ -144,15 +145,25 @@ let currentScrollSection = 0;
 function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
-    if (winScroll >= 0 && winScroll < viewportHeight*(4/5) - 5) {
+    if (winScroll == 0) {
         if (currentScrollSection !== 0) { 
             cellGridMain.makeCurrent(cgmInitialScheme, "dead");
         };
-        console.log("Here1");
+        console.log("Here1", winScroll, viewportHeight*(4/5));
+        console.log("0 to ", viewportHeight*(4/5));
         currentScrollSection = 0;
+
     
     }
-    if (winScroll > viewportHeight*(4/5) && winScroll < 2*(viewportHeight*(4/5))) {
+    if (winScroll > 0 && winScroll < viewportHeight*(4/5)) {
+
+        if (currentScrollSection !== 1.5) { 
+            getCurrent();
+        };
+        
+        currentScrollSection = 1.5;
+    }
+    if (winScroll >= viewportHeight*(4/5) && winScroll < 2*(viewportHeight*(4/5))) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
@@ -162,31 +173,40 @@ function updateCellGrid() {
         if (currentScrollSection !== 1) { 
             cellGridMain.makeCurrent(cgmQuestionMark, "alive");
         };
-        console.log("Here2");
+        console.log("Here2", winScroll);
+        console.log(viewportHeight*(4/5), " to ", 2*viewportHeight*(4/5));
         currentScrollSection = 1;
 
     }
-    if (winScroll > 2*(viewportHeight*(4/5)) && winScroll < 3*(viewportHeight*(4/5))) {
+    if (winScroll >= 2*(viewportHeight*(4/5)) && winScroll < 3*(viewportHeight*(4/5))) {
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
-        cellGridMain.makeCurrent(cgmQuestionMark, "alive");
+        if (currentScrollSection !== 2) { 
+            cellGridMain.makeCurrent(cgmQuestionMark, "alive");
+        };
 
         document.getElementById("cell-grid-project-1").style.left = "calc(77% - 490px)";
         document.getElementById("cell-grid-project-1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
         document.getElementById("cell-grid-project-2").style.left = "calc(87% - 490px)";
         document.getElementById("cell-grid-project-2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
 
-        console.log("Here3");
+        console.log("Here3", winScroll);
+        console.log(2*viewportHeight*(4/5), " to ", 3*viewportHeight*(4/5));
+        currentScrollSection = 2;
     }
-    if (winScroll > 3*(viewportHeight*(4/5))) {
+    if (winScroll >= 3*(viewportHeight*(4/5))) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
-        cellGridMain.makeCurrent(cgmQrCode, "alive");
+        if (currentScrollSection !== 2) { 
+            cellGridMain.makeCurrent(cgmQrCode, "alive");
+        };
 
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
-        console.log("Here4");
+        console.log("Here4", winScroll);
+        console.log(3*viewportHeight*(4/5), " to ", 4*viewportHeight*(4/5));
+        currentScrollSection = 3;
     }
 }
 
@@ -317,7 +337,7 @@ function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) 
             differentColorDifferentState.splice(randomCellIndex, 1);
         }
     }
-
+    mapping.sort(function(a,b){return a[0] - b[0];}); 
     console.log(sameColorSameState.length, sameColorDifferentState.length, differentColorSameState.length, differentColorDifferentState.length, mapping);
 }
 
@@ -335,6 +355,21 @@ function stringifyScheme(schemeNum) {
         }
     }
     return stringifiedScheme;
+}
+
+function getCurrent() {
+    let scheme = [];
+    let livingStates = [];
+    for (let i = 0; i < gridHeight; i++) {
+        for (let j = 0; j < gridWidth; j++) {
+            let id = `cell-grid-main-cell-${i}-${j}`;
+            let cell = document.getElementById(id);
+            scheme.push(cell.classList[3]);
+            livingStates.push(cell.classList[4]);
+        }
+    }
+    console.log("livingStates", livingStates);
+    return scheme, livingStates;
 }
 
 function calculateDistance(schemeCurrent, schemeNext) {

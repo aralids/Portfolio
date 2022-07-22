@@ -7,9 +7,8 @@ cellGrids = ["cell-grid-main", "cell-grid-project-1", "cell-grid-project-2"];
 function Grid(gridId) {
     this.gridId = gridId;
     this.scheme = [];
-    this.makeCurrent = function(schemeNext, livingState) {
-        if (this.scheme.length === 0) {
-            let gridHTML = document.getElementById(this.gridId);
+    this.initialize = function(schemeNext, livingState) {
+        let gridHTML = document.getElementById(this.gridId);
             for (let i = 0; i < gridHeight; i++) {
                 let div = document.createElement("div");
                 div.setAttribute("id", `${this.gridId}-row-${i}`);
@@ -26,20 +25,15 @@ function Grid(gridId) {
                 }
             }
             this.scheme = schemeNext;
-
-        } else {
-            differences = calculateDistance(this.scheme, schemeNext);
+    }
+    this.makeCurrent = function(schemeNext) {
+        differences = calculateDistance(this.scheme, schemeNext);
             for (let i = 0; i < differences.length; i++) {
                 let cell = document.getElementById(`${this.gridId}-cell-${Math.floor(differences[i][0] / gridWidth)}-${differences[i][0] % gridWidth}`);
                 cell.classList.replace(cell.classList[3], differences[i][1]);
             }
-            for (let i = 0; i < gridHeight*gridWidth; i++) {
-                let cell = document.getElementById(`${this.gridId}-cell-${Math.floor(i / gridWidth)}-${i % gridWidth}`);
-                cell.classList.replace(cell.classList[4], livingState);
-            }
             this.scheme = schemeNext;
-        }
-    };
+        };
 }
 
 function GridImage(scheme) {
@@ -109,29 +103,12 @@ let schemeCurrentExample = ["white-cell", "orange-cell", "purple-cell", "white-c
 
 
 /* -- GRID COLOR SCHEMES -- */
-/*
-let cellSchemeCurrent = [];
-let cellSchemeCard1 = [];
-let cellSchemeCard2 = [];
-
-
-gridInitial = new gridImage(cellSchemeInitial, "cell-grid-main");
-grid1 = new gridImage(cellScheme1, "cell-grid-main");
-gridCard1 = new gridImage(cellScheme1, "cell-grid-project-1");
-gridCard2 = new gridImage(cellScheme1, "cell-grid-project-2");
-qrCodeGrid = new gridImage(qrCode, "cell-grid-main")
-
-cellSchemeCurrent = gridInitial.makeCurrent(cellSchemeCurrent, "dead");
-cellSchemeCard1 = gridCard1.makeCurrent(cellSchemeCard1, "alive");
-cellSchemeCard2 = gridCard2.makeCurrent(cellSchemeCard2, "alive");
-*/
-
 cellGridMain = new Grid("cell-grid-main");
-cellGridMain.makeCurrent(cgmInitialScheme, "dead");
+cellGridMain.initialize(cgmInitialScheme, "dead");
 cellGridProject2 = new Grid("cell-grid-project-2");
-cellGridProject2.makeCurrent(cgmQrCode, "alive");
+cellGridProject2.initialize(cgmQrCode, "alive");
 cellGridProject1 = new Grid("cell-grid-project-1");
-cellGridProject1.makeCurrent(cgmQrCode, "alive");
+cellGridProject1.initialize(cgmQrCode, "alive");
 
 
 let viewportHeight = window.innerHeight * (4 / 5);
@@ -157,7 +134,7 @@ function updateCellGrid() {
 
     if (winScroll == welcome) {
         if (currentScrollSection !== 0) { 
-            cellGridMain.makeCurrent(cgmInitialScheme, "dead");
+            cellGridMain.makeCurrent(cgmInitialScheme);
         };
         console.log("Here1", winScroll, viewportHeight*(4/5));
         console.log("0 to ", viewportHeight*(4/5));
@@ -209,6 +186,10 @@ function updateCellGrid() {
 
     if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (3 / 4)) {
 
+        if (currentScrollSection !== 0.75) { 
+            cellGridMain.makeCurrent(cgmQuestionMark);
+        };
+
         if (currentScrollSection == 0.5) { 
             let scheme, livingStatesArray = getCurrent();
             let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
@@ -256,18 +237,15 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
-        if (currentScrollSection !== 1) { 
-            cellGridMain.makeCurrent(cgmQuestionMark, "alive");
-        };
         console.log("Here2", winScroll);
-        console.log(viewportHeight*(4/5), " to ", 2*viewportHeight*(4/5));
+        console.log(aboutMe, " to ", projects);
         currentScrollSection = 1;
 
     }
-    if (winScroll >= projects && winScroll < contact) {
+    if (winScroll >= projects && winScroll < contact - 100) {
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
         if (currentScrollSection !== 2) { 
-            cellGridMain.makeCurrent(cgmQuestionMark, "alive");
+            cellGridMain.makeCurrent(cgmQuestionMark);
         };
 
         document.getElementById("cell-grid-project-1").style.left = "calc(77% - 490px)";
@@ -276,13 +254,13 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
 
         console.log("Here3", winScroll);
-        console.log(2*viewportHeight*(4/5), " to ", 3*viewportHeight*(4/5));
+        console.log(projects, " to ", contact);
         currentScrollSection = 2;
     }
-    if (winScroll >= contact) {
+    if (winScroll >= contact - 100) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
-        if (currentScrollSection !== 2) { 
-            cellGridMain.makeCurrent(cgmQrCode, "alive");
+        if (currentScrollSection !== 3) { 
+            cellGridMain.makeCurrent(cgmQrCode);
         };
 
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
@@ -291,7 +269,8 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
         console.log("Here4", winScroll);
-        console.log(3*viewportHeight*(4/5), " to ", 4*viewportHeight*(4/5));
+        console.log(contact);
+        console.log(contact, " to end");
         currentScrollSection = 3;
     }
 }
@@ -311,120 +290,6 @@ function resurrect(id) {
     if (aliveState === "dead") {
         document.getElementById(id).classList.replace("dead", "alive");
     }
-}
-
-
-
-function mapScrollToImage(gridId="cell-grid-main", schemeNext, livingStateNext) {
-    let otherLivingState;
-    if (livingStateNext === "alive") {
-        otherLivingState = "dead";
-    } else {
-        otherLivingState = "alive";
-    }
-    let sameColorSameState = [];
-    let sameColorDifferentState = [];
-    let differentColorSameState = [];
-    let differentColorDifferentState = [];
-    
-    for (let i = 0; i < gridHeight*gridWidth; i ++) {
-        let cellId = `${gridId}-cell-${Math.floor(i / gridWidth)}-${i % gridWidth}`;
-        let cell = document.getElementById(cellId);
-        if (cell.classList[4] === livingStateNext) {
-            if (cell.classList[3] === schemeNext[i]) {
-                sameColorSameState.push(cellId);
-            } else {
-                differentColorSameState.push(cellId);
-            }
-        } else {
-            if (cell.classList[3] === schemeNext[i]) {
-                sameColorDifferentState.push(cellId);
-            } else {
-                differentColorDifferentState.push(cellId);
-            }
-        }
-    }
-
-    let mapping = [];
-    
-    for (let i = 0; i < sameColorSameState.length / 2; i++) {
-        let changeBackAt = Math.random() * 100;
-        let changeAt = Math.random() * changeBackAt;
-
-        let randomCellIndex = Math.floor(Math.random() * sameColorSameState.length);
-        let randomCellId = sameColorSameState[randomCellIndex];
-        let numberPattern = /\d+/g;
-        let numberMatchArray = randomCellId.match(numberPattern);
-        console.log("BEBI", numberMatchArray);
-        let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-    }
-
-    for (let i = 0; i < sameColorDifferentState.length; i++) {
-        let changeBackAt = Math.random() * 100;
-
-        let randomCellIndex = Math.floor(Math.random() * sameColorDifferentState.length);
-        let randomCellId = sameColorDifferentState[randomCellIndex];
-        let numberPattern = /\d+/g;
-        let numberMatchArray = randomCellId.match(numberPattern);
-        let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-        sameColorDifferentState.splice(randomCellIndex, 1);
-    }
-
-    if (livingStateNext === "alive") {
-        for (let i = 0; i < differentColorSameState.length; i++) {
-            let changeBackAt = Math.random() * 100;
-            let changeColorAt = Math.random() * changeBackAt;
-            let changeAt = Math.random() * changeColorAt;
-
-            let randomCellIndex = Math.floor(Math.random() * differentColorSameState.length);
-            let randomCellId = differentColorSameState[randomCellIndex];
-            let numberPattern = /\d+/g;
-            let numberMatchArray = randomCellId.match(numberPattern);
-            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
-            differentColorSameState.splice(randomCellIndex, 1);
-        }
-
-        for (let i = 0; i < differentColorDifferentState.length; i++) {
-            let changeColorAt = Math.random() * 100;
-            let changeAt = Math.random() * changeColorAt;
-    
-            let randomCellIndex = Math.floor(Math.random() * differentColorDifferentState.length);
-            let randomCellId = differentColorDifferentState[randomCellIndex];
-            let numberPattern = /\d+/g;
-            let numberMatchArray = randomCellId.match(numberPattern);
-            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
-            differentColorDifferentState.splice(randomCellIndex, 1);
-        }
-    } else {
-        for (let i = 0; i < differentColorSameState.length; i++) {
-            let changeColorAt = Math.random() * changeBackAt;
-
-            let randomCellIndex = Math.floor(Math.random() * differentColorSameState.length);
-            let randomCellId = differentColorSameState[randomCellIndex];
-            let numberPattern = /\d+/g;
-            let numberMatchArray = randomCellId.match(numberPattern);
-            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
-            differentColorSameState.splice(randomCellIndex, 1);
-        }
-
-        for (let i = 0; i < differentColorDifferentState.length; i++) {
-            let changeAt = Math.random() * 100;
-            let changeColorAt = Math.random() * changeAt;
-    
-            let randomCellIndex = Math.floor(Math.random() * differentColorDifferentState.length);
-            let randomCellId = differentColorDifferentState[randomCellIndex];
-            let numberPattern = /\d+/g;
-            let numberMatchArray = randomCellId.match(numberPattern);
-            let cellI = Number(numberMatchArray[0]) * Number(numberMatchArray[1])
-            mapping.push([changeColorAt, [cellI, schemeNext[cellI]]]);
-            differentColorDifferentState.splice(randomCellIndex, 1);
-        }
-    }
-    mapping.sort(function(a,b){return a[0] - b[0];}); 
-    console.log(sameColorSameState.length, sameColorDifferentState.length, differentColorSameState.length, differentColorDifferentState.length, mapping);
 }
 
 function stringifyScheme(schemeNum) {
@@ -466,4 +331,8 @@ function calculateDistance(schemeCurrent, schemeNext) {
         } 
     }
     return differences;
+}
+
+function animateScroll() {
+
 }

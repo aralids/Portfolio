@@ -134,18 +134,28 @@ cellGridProject1 = new Grid("cell-grid-project-1");
 cellGridProject1.makeCurrent(cgmQrCode, "alive");
 
 
-let viewportHeight = window.innerHeight;
+let viewportHeight = window.innerHeight * (4 / 5);
+
+
+let welcome = 0;
+let aboutMe = viewportHeight;
+let projects = viewportHeight * 2;
+let contact = viewportHeight * 3;
+
+
 window.onkeydown = function() {updateCellGrid()};
 document.getElementById("information").onscroll = function() {updateCellGrid()};
 document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid()};
 
 var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 
+
 let currentScrollSection = 0;
 function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
-    if (winScroll == 0) {
+
+    if (winScroll == welcome) {
         if (currentScrollSection !== 0) { 
             cellGridMain.makeCurrent(cgmInitialScheme, "dead");
         };
@@ -155,61 +165,91 @@ function updateCellGrid() {
 
     
     }
-    if (winScroll > 0 && winScroll < viewportHeight*(4/5) / 2) {
-
+    if (winScroll > welcome && winScroll < aboutMe / 4) {
         if (currentScrollSection == 0) { 
             let scheme, livingStatesArray = getCurrent();
-            let numAlive = livingStatesArray.filter(item => item == "alive").length;
+            let aliveArray = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+                                             .filter(item => item > -1)
+                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            console.log("aliveArray NUM", Math.floor(aliveArray.length / 2));
+            let n = Math.floor(aliveArray.length / 2);
+            for (let i = 0; i < n; i++) {
+                console.log("how many?", n);
+                let randomItemId = Math.floor(Math.random()*aliveArray.length);
+                let randomItem = aliveArray[randomItemId];
+                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                aliveArray.splice(randomItemId, 1);
+                changeLivingState(randomCellId);
+            }
+        };
+        
+        currentScrollSection = 0.25;
+    }
+    if (winScroll >= aboutMe / 4 && winScroll < aboutMe / 2) {
+
+        if (currentScrollSection == 0.25) { 
+            let scheme, livingStatesArray = getCurrent();
             let aliveArray = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
                                              .filter(item => item > -1)
                                              .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
             console.log("aliveArray", aliveArray);
-            for (let i = 0; i < Math.floor(numAlive / 2); i++) {
-                let randomItem = aliveArray[Math.floor(Math.random()*aliveArray.length)];
+            let n = Math.floor(aliveArray.length);
+            for (let i = 0; i < n; i++) {
+                console.log("how many?", n);
+                let randomItemId = Math.floor(Math.random()*aliveArray.length);
+                let randomItem = aliveArray[randomItemId];
                 let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                aliveArray.splice(randomItemId, 1);
                 changeLivingState(randomCellId);
             }
         };
         
-        currentScrollSection = 0.25;
+        currentScrollSection = 0.5;
     }
-    if (winScroll > 0 && winScroll < viewportHeight*(4/5) / 2) {
 
-        if (currentScrollSection == 0.25) { 
+    if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (3 / 4)) {
+
+        if (currentScrollSection == 0.5) { 
+            let scheme, livingStatesArray = getCurrent();
+            let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
+                                             .filter(item => item > -1)
+                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            console.log("deadArray", deadArray);
+            let n = Math.floor(deadArray.length / 2);
+            for (let i = 0; i < n; i++) {
+                console.log("how many?", n);
+                let randomItemId = Math.floor(Math.random()*deadArray.length);
+                let randomItem = deadArray[randomItemId];
+                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                deadArray.splice(randomItemId, 1);
+                changeLivingState(randomCellId);
+            }
+        };
+        
+        currentScrollSection = 0.75;
+    }
+    if (winScroll > aboutMe * (3 / 4) && winScroll < aboutMe) {
+
+        if (currentScrollSection == 0.75) { 
             let scheme, livingStatesArray = getCurrent();
             let numDead = livingStatesArray.filter(item => item == "dead").length;
             let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
                                              .filter(item => item > -1)
                                              .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
             console.log("deadArray", deadArray);
-            for (let i = 0; i < Math.floor(numDead / 2); i++) {
-                let randomItem = deadArray[Math.floor(Math.random()*deadArray.length)];
+            let n = Math.floor(deadArray.length);
+            for (let i = 0; i < n; i++) {
+                console.log("how many?", n);
+                let randomItemId = Math.floor(Math.random()*deadArray.length);
+                let randomItem = deadArray[randomItemId];
                 let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                deadArray.splice(randomItemId, 1);
                 changeLivingState(randomCellId);
             }
         };
         
-        currentScrollSection = 0.25;
     }
-    if (winScroll > viewportHeight*(4/5) / 2 && winScroll < viewportHeight*(4/5)) {
-
-        if (currentScrollSection == 0.3) { 
-            let scheme, livingStatesArray = getCurrent();
-            let numDead = livingStatesArray.filter(item => item == "dead").length;
-            let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
-                                             .filter(item => item > -1)
-                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            console.log("deadArray", deadArray);
-            for (let i = 0; i < Math.floor(numDead / 2); i++) {
-                let randomItem = deadArray[Math.floor(Math.random()*deadArray.length)];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                changeLivingState(randomCellId);
-            }
-        };
-        
-        currentScrollSection = 0.6;
-    }
-    if (winScroll >= viewportHeight*(4/5) && winScroll < 2*(viewportHeight*(4/5))) {
+    if (winScroll >= aboutMe && winScroll < projects) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
@@ -224,7 +264,7 @@ function updateCellGrid() {
         currentScrollSection = 1;
 
     }
-    if (winScroll >= 2*(viewportHeight*(4/5)) && winScroll < 3*(viewportHeight*(4/5))) {
+    if (winScroll >= projects && winScroll < contact) {
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
         if (currentScrollSection !== 2) { 
             cellGridMain.makeCurrent(cgmQuestionMark, "alive");
@@ -239,7 +279,7 @@ function updateCellGrid() {
         console.log(2*viewportHeight*(4/5), " to ", 3*viewportHeight*(4/5));
         currentScrollSection = 2;
     }
-    if (winScroll >= 3*(viewportHeight*(4/5))) {
+    if (winScroll >= contact) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
         if (currentScrollSection !== 2) { 
             cellGridMain.makeCurrent(cgmQrCode, "alive");

@@ -158,7 +158,12 @@ function updateCellGrid() {
     if (winScroll > 0 && winScroll < viewportHeight*(4/5)) {
 
         if (currentScrollSection !== 1.5) { 
-            getCurrent();
+            let scheme, livingStatesArray = getCurrent();
+            let numDead = livingStatesArray.filter(item => item == "dead").length;
+            let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
+                                             .filter(item => item > -1)
+                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            console.log("deadArray", deadArray);
         };
         
         currentScrollSection = 1.5;

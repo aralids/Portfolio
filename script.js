@@ -159,6 +159,24 @@ function updateCellGrid() {
 
         if (currentScrollSection == 0) { 
             let scheme, livingStatesArray = getCurrent();
+            let numAlive = livingStatesArray.filter(item => item == "alive").length;
+            let aliveArray = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+                                             .filter(item => item > -1)
+                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            console.log("aliveArray", aliveArray);
+            for (let i = 0; i < Math.floor(numAlive / 2); i++) {
+                let randomItem = aliveArray[Math.floor(Math.random()*aliveArray.length)];
+                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                changeLivingState(randomCellId);
+            }
+        };
+        
+        currentScrollSection = 0.25;
+    }
+    if (winScroll > 0 && winScroll < viewportHeight*(4/5) / 2) {
+
+        if (currentScrollSection == 0.25) { 
+            let scheme, livingStatesArray = getCurrent();
             let numDead = livingStatesArray.filter(item => item == "dead").length;
             let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
                                              .filter(item => item > -1)
@@ -171,7 +189,7 @@ function updateCellGrid() {
             }
         };
         
-        currentScrollSection = 0.3;
+        currentScrollSection = 0.25;
     }
     if (winScroll > viewportHeight*(4/5) / 2 && winScroll < viewportHeight*(4/5)) {
 

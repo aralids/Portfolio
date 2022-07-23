@@ -191,7 +191,7 @@ function updateCellGrid() {
 
     if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (2 / 3)) {
         if (currentScrollSection < 0.66) { 
-            changeRandomCells(4, 0, "dead");
+            changeRandomCells(8, 0, "dead");
             cellGridMain.makeCurrent(cgmQuestionMark);
         } else if (currentScrollSection > 0.66) { 
             changeRandomCells(2, 0, "alive");
@@ -331,7 +331,7 @@ function changeRandomCells(fraction = 0, numCells = 0, nextLivingState) {
                                  .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
     let n;
     if (fraction !== 0) {
-        n = Math.round(array.length / fraction);
+        n = Math.floor(array.length / fraction);
     } else {
         n = numCells;
     }

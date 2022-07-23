@@ -134,8 +134,6 @@ function updateCellGrid() {
     console.log(currentScrollSection);
 
     if (winScroll == welcome) {
-        console.log("WELCOME");
-
         if (currentScrollSection === 0) {
         } else if (currentScrollSection !== 0) { 
             cellGridMain.makeCurrent(cgmInitialScheme);
@@ -147,15 +145,14 @@ function updateCellGrid() {
                 }
             }
         };
-
         currentScrollSection = 0;
-
-    
     }
-    if (winScroll > welcome && winScroll < aboutMe / 4) {
-        console.log("HERE 0.25");
 
-        if (currentScrollSection < 0.25) { 
+
+
+    if (winScroll > welcome && winScroll < aboutMe / 6) {
+        console.log("at 0.16");
+        if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
                 for (let j = 0; j < gridWidth; j++) {
                     let id = `cell-grid-main-cell-${i}-${j}`;
@@ -163,23 +160,35 @@ function updateCellGrid() {
                     cell.removeAttribute("onmouseover");
                 }
             }
-            
-            changeRandomCells(2, 0, "alive");
-
-        } else if (currentScrollSection > 0.25) {
+            changeRandomCells(4, 0, "alive");
+        } else if (currentScrollSection > 0.16) {
             cellGridMain.makeCurrent(cgmInitialScheme);
             changeRandomCells(0, 18, "dead");
         }
-        
-        currentScrollSection = 0.25;
+        currentScrollSection = 0.16;
     }
+
+
+    if (winScroll > welcome && winScroll < aboutMe / 3) {
+        console.log("at 0.32s");
+        if (currentScrollSection < 0.32) { 
+            changeRandomCells(2, 0, "alive");
+        } else if (currentScrollSection > 0.32) {
+            cellGridMain.makeCurrent(cgmInitialScheme);
+            changeRandomCells(0, 18, "dead");
+        }
+        currentScrollSection = 0.32;
+    }
+
+
+
     if (winScroll >= aboutMe / 4 && winScroll < aboutMe / 2) {
         console.log("HERE 0.5");
-
         changeRandomCells(1, 0, "alive");
-        
         currentScrollSection = 0.5;
     }
+
+
 
     if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (3 / 4)) {
         console.log("HERE 0.75");
@@ -307,7 +316,7 @@ function changeRandomCells(fraction = 0, numCells = 0, nextLivingState) {
                                  .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
     let n;
     if (fraction !== 0) {
-        n = Math.floor(array.length / fraction);
+        n = Math.round(array.length / fraction);
     } else {
         n = numCells;
     }

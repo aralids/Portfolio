@@ -264,7 +264,7 @@ footer {
 
 .dead {
     background-color: #454541;
-    transition: 1s ease-in background-color;
+    transition: 0.2s ease-in background-color;
 }
 
 .alive {

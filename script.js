@@ -163,31 +163,11 @@ function updateCellGrid() {
                     cell.removeAttribute("onmouseover");
                 }
             }
+            
+            changeRandomCells(2, 0, "alive");
 
-            let scheme, livingStatesArray = getCurrent();
-            let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
-                                             .filter(item => item > -1)
-                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            let n = Math.floor(array.length / 2);
-            for (let i = 0; i < n; i++) {
-                let randomItemId = Math.floor(Math.random()*array.length);
-                let randomItem = array[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                array.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
         } else if (currentScrollSection > 0.25) {
-            let scheme, livingStatesArray = getCurrent();
-            let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
-                                             .filter(item => item > -1)
-                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            for (let i = 0; i < 18; i++) {
-                let randomItemId = Math.floor(Math.random()*array.length);
-                let randomItem = array[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                array.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
+            changeRandomCells(0, 18, "dead");
         }
         
         currentScrollSection = 0.25;
@@ -195,18 +175,7 @@ function updateCellGrid() {
     if (winScroll >= aboutMe / 4 && winScroll < aboutMe / 2) {
         console.log("HERE 0.5");
 
-        let scheme, livingStatesArray = getCurrent();
-        let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
-                                            .filter(item => item > -1)
-                                            .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-        let n = Math.floor(array.length);
-        for (let i = 0; i < n; i++) {
-            let randomItemId = Math.floor(Math.random()*array.length);
-            let randomItem = array[randomItemId];
-            let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-            array.splice(randomItemId, 1);
-            changeLivingState(randomCellId);
-        }
+        changeRandomCells(1, 0, "alive");
 
         if (currentScrollSection < 0.5) {
             cellGridMain.makeCurrent(cgmQuestionMark);
@@ -221,31 +190,9 @@ function updateCellGrid() {
         console.log("HERE 0.75");
 
         if (currentScrollSection < 0.75) { 
-            let scheme, livingStatesArray = getCurrent();
-            let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
-                                             .filter(item => item > -1)
-                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            console.log("array", array);
-            for (let i = 0; i < 18; i++) {
-                let randomItemId = Math.floor(Math.random()*array.length);
-                let randomItem = array[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                array.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
+            changeRandomCells(0, 18, "dead");
         } else if (currentScrollSection > 0.75) { 
-            let scheme, livingStatesArray = getCurrent();
-            let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
-                                       .filter(item => item > -1)
-                                       .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            for (let i = 0; i < 42; i++) {
-                let randomItemId = Math.floor(Math.random()*array.length);
-                let randomItem = array[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                array.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
-            
+            changeRandomCells(0, 42, "alive");
         }
         
         currentScrollSection = 0.75;
@@ -254,30 +201,9 @@ function updateCellGrid() {
         console.log("HERE 1");
 
         if (currentScrollSection < 1) { 
-            let scheme, livingStatesArray = getCurrent();
-            let numDead = livingStatesArray.filter(item => item == "dead").length;
-            let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
-                                             .filter(item => item > -1)
-                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            for (let i = 0; i < 42; i++) {
-                let randomItemId = Math.floor(Math.random()*array.length);
-                let randomItem = array[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                array.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
+            changeRandomCells(0, 42, "dead");
         } else if (currentScrollSection > 1) { 
-            let scheme, livingStatesArray = getCurrent();
-            let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
-                                       .filter(item => item > -1)
-                                       .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            for (let i = 0; i < 18; i++) {
-                let randomItemId = Math.floor(Math.random()*array.length);
-                let randomItem = array[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                array.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
+            changeRandomCells(0, 18, "alive");
         };
         
         currentScrollSection = 1;
@@ -289,18 +215,8 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
-        let scheme, livingStatesArray = getCurrent();
-        let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
-                                            .filter(item => item > -1)
-                                            .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-        let n = Math.floor(array.length);
-        for (let i = 0; i < n; i++) {
-            let randomItemId = Math.floor(Math.random()*array.length);
-            let randomItem = array[randomItemId];
-            let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-            array.splice(randomItemId, 1);
-            changeLivingState(randomCellId);
-        }
+        changeRandomCells(1, 0, "dead");
+
         currentScrollSection = 2;
 
     }
@@ -388,6 +304,22 @@ function calculateDistance(schemeCurrent, schemeNext) {
     return differences;
 }
 
-function animateScroll() {
-
+function changeRandomCells(fraction = 0, numCells = 0, nextLivingState) {
+    let scheme, livingStatesArray = getCurrent();
+    let array = livingStatesArray.map((item, index) => item == nextLivingState ? index : -1)
+                                 .filter(item => item > -1)
+                                 .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+    let n;
+    if (fraction !== 0) {
+        n = Math.floor(array.length / fraction);
+    } else {
+        n = numCells;
+    }
+    for (let i = 0; i < n; i++) {
+        let randomItemId = Math.floor(Math.random()*array.length);
+        let randomItem = array[randomItemId];
+        let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+        array.splice(randomItemId, 1);
+        changeLivingState(randomCellId);
+    }
 }

@@ -122,7 +122,7 @@ let contact = viewportHeight * 3;
 
 window.onkeydown = function() {updateCellGrid()};
 document.getElementById("information").onscroll = function() {updateCellGrid()};
-document.getElementById("main").onmousewheel = function() {console.log("YAY"); updateCellGrid()};
+document.getElementById("main").onmousewheel = function() {updateCellGrid()};
 
 var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 
@@ -131,104 +131,156 @@ let currentScrollSection = 0;
 function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
     console.log(winScroll);
+    console.log(currentScrollSection);
 
     if (winScroll == welcome) {
-        if (currentScrollSection !== 0) { 
+        console.log("WELCOME");
+
+        if (currentScrollSection === 0) {
+        } else if (currentScrollSection !== 0) { 
             cellGridMain.makeCurrent(cgmInitialScheme);
+            for (let i = 0; i < gridHeight; i++) {
+                for (let j = 0; j < gridWidth; j++) {
+                    let id = `cell-grid-main-cell-${i}-${j}`;
+                    let cell = document.getElementById(id);
+                    cell.setAttribute("onmouseover", `resurrect('${id}')`);
+                }
+            }
         };
-        console.log("Here1", winScroll, viewportHeight*(4/5));
-        console.log("0 to ", viewportHeight*(4/5));
+
         currentScrollSection = 0;
 
     
     }
     if (winScroll > welcome && winScroll < aboutMe / 4) {
-        if (currentScrollSection == 0) { 
+        console.log("HERE 0.25");
+
+        if (currentScrollSection < 0.25) { 
+            for (let i = 0; i < gridHeight; i++) {
+                for (let j = 0; j < gridWidth; j++) {
+                    let id = `cell-grid-main-cell-${i}-${j}`;
+                    let cell = document.getElementById(id);
+                    cell.removeAttribute("onmouseover");
+                }
+            }
+
             let scheme, livingStatesArray = getCurrent();
-            let aliveArray = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+            let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
                                              .filter(item => item > -1)
                                              .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            console.log("aliveArray NUM", Math.floor(aliveArray.length / 2));
-            let n = Math.floor(aliveArray.length / 2);
+            let n = Math.floor(array.length / 2);
             for (let i = 0; i < n; i++) {
-                console.log("how many?", n);
-                let randomItemId = Math.floor(Math.random()*aliveArray.length);
-                let randomItem = aliveArray[randomItemId];
+                let randomItemId = Math.floor(Math.random()*array.length);
+                let randomItem = array[randomItemId];
                 let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                aliveArray.splice(randomItemId, 1);
+                array.splice(randomItemId, 1);
                 changeLivingState(randomCellId);
             }
-        };
+        } else if (currentScrollSection > 0.25) {
+            let scheme, livingStatesArray = getCurrent();
+            let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
+                                             .filter(item => item > -1)
+                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            for (let i = 0; i < 18; i++) {
+                let randomItemId = Math.floor(Math.random()*array.length);
+                let randomItem = array[randomItemId];
+                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                array.splice(randomItemId, 1);
+                changeLivingState(randomCellId);
+            }
+        }
         
         currentScrollSection = 0.25;
     }
     if (winScroll >= aboutMe / 4 && winScroll < aboutMe / 2) {
+        console.log("HERE 0.5");
 
-        if (currentScrollSection == 0.25) { 
-            let scheme, livingStatesArray = getCurrent();
-            let aliveArray = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
-                                             .filter(item => item > -1)
-                                             .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            console.log("aliveArray", aliveArray);
-            let n = Math.floor(aliveArray.length);
-            for (let i = 0; i < n; i++) {
-                console.log("how many?", n);
-                let randomItemId = Math.floor(Math.random()*aliveArray.length);
-                let randomItem = aliveArray[randomItemId];
-                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                aliveArray.splice(randomItemId, 1);
-                changeLivingState(randomCellId);
-            }
-        };
+        let scheme, livingStatesArray = getCurrent();
+        let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+                                            .filter(item => item > -1)
+                                            .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+        let n = Math.floor(array.length);
+        for (let i = 0; i < n; i++) {
+            let randomItemId = Math.floor(Math.random()*array.length);
+            let randomItem = array[randomItemId];
+            let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+            array.splice(randomItemId, 1);
+            changeLivingState(randomCellId);
+        }
+
+        if (currentScrollSection < 0.5) {
+            cellGridMain.makeCurrent(cgmQuestionMark);
+        } else if (currentScrollSection > 0.5) {
+            cellGridMain.makeCurrent(cgmInitialScheme);
+        }
         
         currentScrollSection = 0.5;
     }
 
     if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (3 / 4)) {
+        console.log("HERE 0.75");
 
-        if (currentScrollSection !== 0.75) { 
-            cellGridMain.makeCurrent(cgmQuestionMark);
-        };
-
-        if (currentScrollSection == 0.5) { 
+        if (currentScrollSection < 0.75) { 
             let scheme, livingStatesArray = getCurrent();
-            let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
+            let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
                                              .filter(item => item > -1)
                                              .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            console.log("deadArray", deadArray);
-            let n = Math.floor(deadArray.length / 2);
-            for (let i = 0; i < n; i++) {
-                console.log("how many?", n);
-                let randomItemId = Math.floor(Math.random()*deadArray.length);
-                let randomItem = deadArray[randomItemId];
+            console.log("array", array);
+            for (let i = 0; i < 18; i++) {
+                let randomItemId = Math.floor(Math.random()*array.length);
+                let randomItem = array[randomItemId];
                 let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                deadArray.splice(randomItemId, 1);
+                array.splice(randomItemId, 1);
                 changeLivingState(randomCellId);
             }
-        };
+        } else if (currentScrollSection > 0.75) { 
+            let scheme, livingStatesArray = getCurrent();
+            let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+                                       .filter(item => item > -1)
+                                       .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            for (let i = 0; i < 42; i++) {
+                let randomItemId = Math.floor(Math.random()*array.length);
+                let randomItem = array[randomItemId];
+                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                array.splice(randomItemId, 1);
+                changeLivingState(randomCellId);
+            }
+            
+        }
         
         currentScrollSection = 0.75;
     }
     if (winScroll > aboutMe * (3 / 4) && winScroll < aboutMe) {
+        console.log("HERE 1");
 
-        if (currentScrollSection == 0.75) { 
+        if (currentScrollSection < 1) { 
             let scheme, livingStatesArray = getCurrent();
             let numDead = livingStatesArray.filter(item => item == "dead").length;
-            let deadArray = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
+            let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
                                              .filter(item => item > -1)
                                              .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
-            console.log("deadArray", deadArray);
-            let n = Math.floor(deadArray.length);
-            for (let i = 0; i < n; i++) {
-                console.log("how many?", n);
-                let randomItemId = Math.floor(Math.random()*deadArray.length);
-                let randomItem = deadArray[randomItemId];
+            for (let i = 0; i < 42; i++) {
+                let randomItemId = Math.floor(Math.random()*array.length);
+                let randomItem = array[randomItemId];
                 let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
-                deadArray.splice(randomItemId, 1);
+                array.splice(randomItemId, 1);
+                changeLivingState(randomCellId);
+            }
+        } else if (currentScrollSection > 1) { 
+            let scheme, livingStatesArray = getCurrent();
+            let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+                                       .filter(item => item > -1)
+                                       .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+            for (let i = 0; i < 18; i++) {
+                let randomItemId = Math.floor(Math.random()*array.length);
+                let randomItem = array[randomItemId];
+                let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+                array.splice(randomItemId, 1);
                 changeLivingState(randomCellId);
             }
         };
         
+        currentScrollSection = 1;
     }
     if (winScroll >= aboutMe && winScroll < projects) {
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
@@ -237,9 +289,19 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
-        console.log("Here2", winScroll);
-        console.log(aboutMe, " to ", projects);
-        currentScrollSection = 1;
+        let scheme, livingStatesArray = getCurrent();
+        let array = livingStatesArray.map((item, index) => item == "dead" ? index : -1)
+                                            .filter(item => item > -1)
+                                            .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+        let n = Math.floor(array.length);
+        for (let i = 0; i < n; i++) {
+            let randomItemId = Math.floor(Math.random()*array.length);
+            let randomItem = array[randomItemId];
+            let randomCellId = `cell-grid-main-cell-${randomItem[0]}-${randomItem[1]}`
+            array.splice(randomItemId, 1);
+            changeLivingState(randomCellId);
+        }
+        currentScrollSection = 2;
 
     }
     if (winScroll >= projects && winScroll < contact - 100) {
@@ -253,8 +315,6 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.left = "calc(87% - 490px)";
         document.getElementById("cell-grid-project-2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
 
-        console.log("Here3", winScroll);
-        console.log(projects, " to ", contact);
         currentScrollSection = 2;
     }
     if (winScroll >= contact - 100) {
@@ -268,16 +328,12 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
-        console.log("Here4", winScroll);
-        console.log(contact);
-        console.log(contact, " to end");
         currentScrollSection = 3;
     }
 }
 
 function changeLivingState(id) {
     let aliveState = document.getElementById(id).classList[4];
-    console.log(id, aliveState);
     if (aliveState === "alive") {
         document.getElementById(id).classList.replace("alive", "dead");
     } else {
@@ -319,7 +375,6 @@ function getCurrent() {
             livingStates.push(cell.classList[4]);
         }
     }
-    console.log("livingStates", livingStates);
     return scheme, livingStates;
 }
 

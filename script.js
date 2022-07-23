@@ -160,10 +160,9 @@ function updateCellGrid() {
                     cell.removeAttribute("onmouseover");
                 }
             }
-            changeRandomCells(4, 0, "alive");
+            changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 0.16) {
-            cellGridMain.makeCurrent(cgmInitialScheme);
-            changeRandomCells(0, 18, "dead");
+            changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 0.16;
     }
@@ -175,7 +174,7 @@ function updateCellGrid() {
             changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 0.32) {
             cellGridMain.makeCurrent(cgmInitialScheme);
-            changeRandomCells(0, 18, "dead");
+            changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 0.32;
     }

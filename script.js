@@ -167,6 +167,7 @@ function updateCellGrid() {
             changeRandomCells(2, 0, "alive");
 
         } else if (currentScrollSection > 0.25) {
+            cellGridMain.makeCurrent(cgmInitialScheme);
             changeRandomCells(0, 18, "dead");
         }
         
@@ -176,12 +177,6 @@ function updateCellGrid() {
         console.log("HERE 0.5");
 
         changeRandomCells(1, 0, "alive");
-
-        if (currentScrollSection < 0.5) {
-            cellGridMain.makeCurrent(cgmQuestionMark);
-        } else if (currentScrollSection > 0.5) {
-            cellGridMain.makeCurrent(cgmInitialScheme);
-        }
         
         currentScrollSection = 0.5;
     }
@@ -191,6 +186,7 @@ function updateCellGrid() {
 
         if (currentScrollSection < 0.75) { 
             changeRandomCells(0, 18, "dead");
+            cellGridMain.makeCurrent(cgmQuestionMark);
         } else if (currentScrollSection > 0.75) { 
             changeRandomCells(0, 42, "alive");
         }

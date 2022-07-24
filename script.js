@@ -133,6 +133,8 @@ function updateCellGrid() {
     console.log(winScroll);
     console.log(currentScrollSection);
 
+    /* WELCOME - ABOUT ME */
+
     if (winScroll == welcome) {
         if (currentScrollSection === 0) {
         } else if (currentScrollSection !== 0) { 
@@ -147,11 +149,7 @@ function updateCellGrid() {
         };
         currentScrollSection = 0;
     }
-
-
-
     if (winScroll > welcome && winScroll < aboutMe / 6) {
-        console.log("at 0.16");
         if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
                 for (let j = 0; j < gridWidth; j++) {
@@ -166,10 +164,7 @@ function updateCellGrid() {
         }
         currentScrollSection = 0.16;
     }
-
-
     if (winScroll >= aboutMe / 6 && winScroll < aboutMe / 3) {
-        console.log("at 0.32s");
         if (currentScrollSection < 0.32) { 
             changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 0.32) {
@@ -178,17 +173,11 @@ function updateCellGrid() {
         }
         currentScrollSection = 0.32;
     }
-
-
-
     if (winScroll >= aboutMe / 3 && winScroll < aboutMe / 2) {
         console.log("HERE 0.5");
         changeRandomCells(1, 0, "alive");
         currentScrollSection = 0.5;
     }
-
-
-
     if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (2 / 3)) {
         if (currentScrollSection < 0.66) { 
             changeRandomCells(8, 0, "dead");
@@ -199,9 +188,6 @@ function updateCellGrid() {
         currentScrollSection = 0.66;
         }
     }
-
-
-
     if (winScroll >= aboutMe * (2 / 3) && winScroll < aboutMe * (5 / 6)) {
         console.log("HERE 1");
         if (currentScrollSection < 0.82) { 
@@ -212,9 +198,6 @@ function updateCellGrid() {
         
         currentScrollSection = 0.82;
     }
-
-
-
     if (winScroll >= aboutMe * (5 / 6) && winScroll < aboutMe * (9 / 10)) {
         console.log("HERE 1");
         if (currentScrollSection < 1) { 
@@ -225,13 +208,13 @@ function updateCellGrid() {
         
         currentScrollSection = 1;
     }
-
-
     if (winScroll >= aboutMe * (9 / 10) && winScroll < aboutMe) {
         console.log("at 1.16")
         changeRandomCells(1, 0, "dead");
         currentScrollSection = 1.16;
     }
+
+    /* ABOUT ME - PROJECTS */
 
 
     if (winScroll >= aboutMe && winScroll < aboutMe + ((projects - aboutMe) / 6)) {
@@ -253,14 +236,10 @@ function updateCellGrid() {
         }
         currentScrollSection = 1.48;
     }
-
-
     if (winScroll >= aboutMe + ((projects - aboutMe) / 3) && winScroll < aboutMe + ((projects - aboutMe) / 2)) {
         changeRandomCells(1, 0, "alive");
         currentScrollSection = 1.64;
     }
-
-
     if (winScroll >= aboutMe + ((projects - aboutMe) / 2) && winScroll < aboutMe + ((projects - aboutMe) * (2/3))) {
         console.log("at 1.32");
         if (currentScrollSection < 1.80) {
@@ -271,9 +250,6 @@ function updateCellGrid() {
         }
         currentScrollSection = 1.80;
     }
-
-
-
     if (winScroll >= aboutMe + ((projects - aboutMe) * (2/3)) && winScroll < aboutMe + ((projects - aboutMe) * (5/6))) {
         console.log("at 1.48");
         if (currentScrollSection < 1.96) {
@@ -283,9 +259,6 @@ function updateCellGrid() {
         }
         currentScrollSection = 1.96;
     }
-
-
-    
     if (winScroll >= aboutMe + ((projects - aboutMe) * (5/6)) && winScroll < projects) {
         console.log("COORDS ", aboutMe, aboutMe + ((projects - aboutMe) / 4))
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
@@ -299,30 +272,71 @@ function updateCellGrid() {
         currentScrollSection = 2;
 
     }
-    if (winScroll >= projects && winScroll < contact - 100) {
+    if (winScroll >= projects && winScroll < projects + ((contact - projects) / 6)) {
+        console.log("at 1.16")
+        changeRandomCells(1, 0, "dead");
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
-        if (currentScrollSection !== 2) { 
-            cellGridMain.makeCurrent(cgmQuestionMark);
-        };
-
         document.getElementById("cell-grid-project-1").style.left = "calc(77% - 490px)";
         document.getElementById("cell-grid-project-1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
         document.getElementById("cell-grid-project-2").style.left = "calc(87% - 490px)";
         document.getElementById("cell-grid-project-2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
-
-        currentScrollSection = 2;
+        currentScrollSection = 2.16;
     }
-    if (winScroll >= contact - 100) {
-        document.getElementById("cell-grid-main").style.left = rect.left + "px";
-        if (currentScrollSection !== 3) { 
-            cellGridMain.makeCurrent(cgmQrCode);
-        };
 
+
+    /* PROJECTS - CONTACT */
+
+
+    if (winScroll >= projects + ((contact - projects) / 6) && winScroll < projects + ((contact - projects) / 4.5)) {
+        document.getElementById("cell-grid-main").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
-
+        console.log("at 1.32")
+        if (currentScrollSection < 2.32) { 
+            changeRandomCells(0, 18, "alive");
+        } else if (currentScrollSection > 1.32) {
+            changeRandomCells(2, 0, "dead");
+        }
+        currentScrollSection = 2.32;
+    }
+    if (winScroll >= projects + ((contact - projects) / 4.5) && winScroll < projects + ((contact - projects) / 3)) {
+        if (currentScrollSection < 2.48) { 
+            changeRandomCells(8, 0, "alive");
+        } else if (currentScrollSection > 2.48) {
+            cellGridMain.makeCurrent(cgmInitialScheme);
+            changeRandomCells(2, 0, "dead");
+        }
+        currentScrollSection = 2.48;
+    }
+    if (winScroll >= projects + ((contact - projects) / 3) && winScroll < projects + ((contact - projects) / 2)) {
+        changeRandomCells(1, 0, "alive");
+        currentScrollSection = 2.64;
+    }
+    if (winScroll >= projects + ((contact - projects) / 2) && winScroll < projects + ((contact - projects) * (2 / 3 ))) {
+        console.log("at 1.32");
+        if (currentScrollSection < 2.80) {
+            cellGridMain.makeCurrent(cgmQrCode);
+            changeRandomCells(0, 18, "dead");
+        } else if (currentScrollSection > 2.80) {
+            changeRandomCells(2, 0, "alive");
+        }
+        currentScrollSection = 2.80;
+    }
+    if (winScroll >= projects + ((contact - projects) * (2 / 3)) && winScroll < projects + ((contact - projects) * (5 / 6))) {
+        if (currentScrollSection < 2.90) {
+            changeRandomCells(2, 0, "dead");
+        } else if (currentScrollSection > 2.90) {
+            changeRandomCells(2, 0, "alive");
+        }
+        currentScrollSection = 2.90;
+    }
+    if (winScroll >= projects + ((contact - projects) * (5 / 6))) {
+        if (currentScrollSection !== 3) { 
+            cellGridMain.makeCurrent(cgmQrCode);
+            changeRandomCells(1, 0, "dead");
+        };
         currentScrollSection = 3;
     }
 }

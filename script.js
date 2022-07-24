@@ -149,7 +149,7 @@ function updateCellGrid() {
         };
         currentScrollSection = 0;
     }
-    if (winScroll > welcome && winScroll < aboutMe / 6) {
+    if (winScroll > welcome && winScroll < aboutMe / 8) {
         if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
                 for (let j = 0; j < gridWidth; j++) {
@@ -164,7 +164,7 @@ function updateCellGrid() {
         }
         currentScrollSection = 0.16;
     }
-    if (winScroll >= aboutMe / 6 && winScroll < aboutMe / 3) {
+    if (winScroll >= aboutMe / 8 && winScroll < aboutMe / 6) {
         if (currentScrollSection < 0.32) { 
             changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 0.32) {
@@ -173,12 +173,12 @@ function updateCellGrid() {
         }
         currentScrollSection = 0.32;
     }
-    if (winScroll >= aboutMe / 3 && winScroll < aboutMe / 2) {
+    if (winScroll >= aboutMe / 6 && winScroll < aboutMe / 3) {
         console.log("HERE 0.5");
         changeRandomCells(1, 0, "alive");
         currentScrollSection = 0.5;
     }
-    if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (2 / 3)) {
+    if (winScroll >= aboutMe / 3 && winScroll < aboutMe / 2) {
         if (currentScrollSection < 0.66) { 
             changeRandomCells(8, 0, "dead");
             cellGridMain.makeCurrent(cgmQuestionMark);
@@ -188,7 +188,7 @@ function updateCellGrid() {
         currentScrollSection = 0.66;
         }
     }
-    if (winScroll >= aboutMe * (2 / 3) && winScroll < aboutMe * (5 / 6)) {
+    if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (2 / 3)) {
         console.log("HERE 1");
         if (currentScrollSection < 0.82) { 
             changeRandomCells(2, 0, "dead");
@@ -198,7 +198,7 @@ function updateCellGrid() {
         
         currentScrollSection = 0.82;
     }
-    if (winScroll >= aboutMe * (5 / 6) && winScroll < aboutMe * (9 / 10)) {
+    if (winScroll >= aboutMe * (2 / 3) && winScroll < aboutMe * (5 / 6)) {
         console.log("HERE 1");
         if (currentScrollSection < 1) { 
             changeRandomCells(2, 0, "dead");
@@ -208,7 +208,7 @@ function updateCellGrid() {
         
         currentScrollSection = 1;
     }
-    if (winScroll >= aboutMe * (9 / 10) && winScroll < aboutMe) {
+    if (winScroll >= aboutMe * (5 / 6) && winScroll < aboutMe + ((projects - aboutMe) / 8)) {
         console.log("at 1.16")
         changeRandomCells(1, 0, "dead");
         currentScrollSection = 1.16;
@@ -217,19 +217,19 @@ function updateCellGrid() {
     /* ABOUT ME - PROJECTS */
 
 
-    if (winScroll >= aboutMe && winScroll < aboutMe + ((projects - aboutMe) / 6)) {
+    if (winScroll >= aboutMe + ((projects - aboutMe) / 8) && winScroll < aboutMe + ((projects - aboutMe) / 4)) {
         console.log("at 1.32")
         if (currentScrollSection < 1.32) { 
-            changeRandomCells(2, 0, "alive");
+            changeRandomCells(0, 12, "alive");
         } else if (currentScrollSection > 1.32) {
             changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 1.32;
     }
 
-    if (winScroll >= aboutMe + ((projects - aboutMe) / 6) && winScroll < aboutMe + ((projects - aboutMe) / 3)) {
+    if (winScroll >= aboutMe + ((projects - aboutMe) / 4) && winScroll < aboutMe + ((projects - aboutMe) / 3)) {
         if (currentScrollSection < 1.48) { 
-            changeRandomCells(8, 0, "alive");
+            changeRandomCells(3, 0, "alive");
         } else if (currentScrollSection > 1.48) {
             cellGridMain.makeCurrent(cgmQuestionMark);
             changeRandomCells(2, 0, "dead");

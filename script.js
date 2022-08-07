@@ -164,7 +164,7 @@ function updateCellGrid() {
         }
         currentScrollSection = 0.16;
     }
-    if (winScroll >= aboutMe / 8 && winScroll < aboutMe / 6) {
+    if (winScroll > welcome && winScroll < aboutMe / 6) {
         if (currentScrollSection < 0.32) { 
             changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 0.32) {
@@ -173,12 +173,12 @@ function updateCellGrid() {
         }
         currentScrollSection = 0.32;
     }
-    if (winScroll >= aboutMe / 6 && winScroll < aboutMe / 3) {
+    if (winScroll > welcome && winScroll < aboutMe / 3) {
         console.log("HERE 0.5");
         changeRandomCells(1, 0, "alive");
         currentScrollSection = 0.5;
     }
-    if (winScroll >= aboutMe / 3 && winScroll < aboutMe / 2) {
+    if (winScroll > welcome && winScroll < aboutMe / 2) {
         if (currentScrollSection < 0.66) { 
             changeRandomCells(8, 0, "dead");
             cellGridMain.makeCurrent(cgmQuestionMark);
@@ -231,13 +231,17 @@ function updateCellGrid() {
         if (currentScrollSection < 1.48) { 
             changeRandomCells(3, 0, "alive");
         } else if (currentScrollSection > 1.48) {
-            cellGridMain.makeCurrent(cgmQuestionMark);
             changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 1.48;
     }
     if (winScroll >= aboutMe + ((projects - aboutMe) / 3) && winScroll < aboutMe + ((projects - aboutMe) / 2)) {
         changeRandomCells(1, 0, "alive");
+        if (currentScrollSection < 1.48) { 
+            cellGridMain.makeCurrent(cgmInitialScheme);
+        } else if (currentScrollSection > 1.48) {
+            cellGridMain.makeCurrent(cgmQuestionMark);
+        }
         currentScrollSection = 1.64;
     }
     if (winScroll >= aboutMe + ((projects - aboutMe) / 2) && winScroll < aboutMe + ((projects - aboutMe) * (2/3))) {

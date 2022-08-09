@@ -112,7 +112,7 @@ cellGridProject1.initialize(cgmQrCode, "alive");
 
 
 let viewportHeight = window.innerHeight * (4 / 5);
-let viewportHeightFraction = viewportHeight / 5;
+let viewportHeightFraction = viewportHeight / 7;
 
 
 let welcome = 0;
@@ -132,7 +132,7 @@ let currentScrollSection = 0;
 function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
 
-    /* WELCOME - ABOUT ME */
+    /* WELCOME */
 
     if (winScroll == welcome) {
         if (currentScrollSection === 0) {
@@ -148,6 +148,9 @@ function updateCellGrid() {
         };
         currentScrollSection = 0;
     }
+
+    /* WELCOME */
+
     if (winScroll > welcome && winScroll < viewportHeightFraction) {
         if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
@@ -157,140 +160,108 @@ function updateCellGrid() {
                     cell.removeAttribute("onmouseover");
                 }
             }
-            kill("cell-grid-main-cell-10-5");
-            kill("cell-grid-main-cell-16-13");
-            kill("cell-grid-main-cell-9-11");
-            kill("cell-grid-main-cell-1-19");
-            kill("cell-grid-main-cell-6-15");
-            kill("cell-grid-main-cell-19-2");
-            kill("cell-grid-main-cell-6-7");
-            kill("cell-grid-main-cell-10-6");
-            kill("cell-grid-main-cell-14-12");
-            kill("cell-grid-main-cell-0-0");
-            kill("cell-grid-main-cell-6-18");
-            kill("cell-grid-main-cell-3-6");
-            kill("cell-grid-main-cell-20-13");
-            kill("cell-grid-main-cell-14-20");
-            kill("cell-grid-main-cell-17-8");
-            kill("cell-grid-main-cell-2-12");
-            kill("cell-grid-main-cell-6-4");
-            kill("cell-grid-main-cell-13-3");
+            changeRandomCells(4, 0, "alive");
         } else if (currentScrollSection > 0.16) {
+            changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 0.16;
     }
-    if (winScroll > viewportHeightFraction && winScroll < viewportHeightFraction * 2) {
+    if (winScroll >= viewportHeightFraction && winScroll < viewportHeightFraction * 2) {
         if (currentScrollSection < 0.32) { 
-            kill("cell-grid-main-cell-20-20");
-            kill("cell-grid-main-cell-19-19");
-            kill("cell-grid-main-cell-20-19");
-            kill("cell-grid-main-cell-16-17");
-            kill("cell-grid-main-cell-15-14");
-            kill("cell-grid-main-cell-13-0");
-            kill("cell-grid-main-cell-11-2");
-            kill("cell-grid-main-cell-8-5");
-            kill("cell-grid-main-cell-8-17");
-            kill("cell-grid-main-cell-1-3");
-            kill("cell-grid-main-cell-3-20");
-            kill("cell-grid-main-cell-4-14");
-            kill("cell-grid-main-cell-20-3");
-            kill("cell-grid-main-cell-12-10");
-            kill("cell-grid-main-cell-11-16");
-            kill("cell-grid-main-cell-18-20");
-            kill("cell-grid-main-cell-5-9");
-            kill("cell-grid-main-cell-18-7");
-            kill("cell-grid-main-cell-16-5");
-            kill("cell-grid-main-cell-9-6");
-            kill("cell-grid-main-cell-11-7");
-            kill("cell-grid-main-cell-15-13");
-            kill("cell-grid-main-cell-2-9");
-            kill("cell-grid-main-cell-3-4");
-            kill("cell-grid-main-cell-8-14");
-            kill("cell-grid-main-cell-12-8");
-            kill("cell-grid-main-cell-7-16");
-            kill("cell-grid-main-cell-7-15");
-            kill("cell-grid-main-cell-5-0");
+            changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 0.32) {
-            cellGridMain.makeCurrent(cgmInitialScheme);
+            changeRandomCells(4, 0, "dead");
         }
         currentScrollSection = 0.32;
     }
-    if (winScroll > viewportHeightFraction * 2 && winScroll < viewportHeightFraction * 3) {
+    if (winScroll >= viewportHeightFraction * 2 && winScroll < viewportHeightFraction * 3) {
         changeRandomCells(1, 0, "alive");
+        if (currentScrollSection < 0.5) { 
+            cellGridMain.makeCurrent(cgmQuestionMark);
+        } else if (currentScrollSection > 0.5) {
+            cellGridMain.makeCurrent(cgmInitialScheme);
+        }
         currentScrollSection = 0.5;
     }
-    if (winScroll > viewportHeightFraction * 3 && winScroll < viewportHeightFraction * 4) {
+    if (winScroll >= viewportHeightFraction * 3 && winScroll < viewportHeightFraction * 4) {
         if (currentScrollSection < 0.66) { 
-            cellGridMain.makeCurrent(cgmQuestionMark);
+            changeRandomCells(32, 0, "dead");
         } else if (currentScrollSection > 0.66) { 
             changeRandomCells(2, 0, "alive");
         
         currentScrollSection = 0.66;
         }
     }
-    if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (2 / 3)) {
+    if (winScroll >= viewportHeightFraction * 4 && winScroll < viewportHeightFraction * 5) {
         if (currentScrollSection < 0.82) { 
-            changeRandomCells(2, 0, "dead");
+            changeRandomCells(4, 0, "dead");
         } else if (currentScrollSection > 0.82) { 
-            changeRandomCells(2, 0, "alive");
+            changeRandomCells(4, 0, "alive");
         };
         
         currentScrollSection = 0.82;
     }
-    if (winScroll >= aboutMe * (2 / 3) && winScroll < aboutMe * (5 / 6)) {
+    if (winScroll >= viewportHeightFraction * 5 && winScroll < viewportHeightFraction * 6) {
         if (currentScrollSection < 1) { 
             changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 1) { 
-            changeRandomCells(2, 0, "alive");
+            changeRandomCells(32, 0, "alive");
         };
         
+        currentScrollSection = 0.92;
+    }
+
+    /* ABOUT ME */
+
+    if (winScroll >= viewportHeightFraction * 6 && winScroll < aboutMe + viewportHeightFraction) {
+        changeRandomCells(1, 0, "dead");
         currentScrollSection = 1;
     }
-    if (winScroll >= aboutMe * (5 / 6) && winScroll < aboutMe + ((projects - aboutMe) / 8)) {
-        changeRandomCells(1, 0, "dead");
-        currentScrollSection = 1.16;
-    }
 
-    /* ABOUT ME - PROJECTS */
+    /* ABOUT ME */
 
 
-    if (winScroll >= aboutMe + ((projects - aboutMe) / 8) && winScroll < aboutMe + ((projects - aboutMe) / 4)) {
+    if (winScroll >= aboutMe + viewportHeightFraction && winScroll < aboutMe + viewportHeightFraction * 2) {
         console.log("at 1.32")
         if (currentScrollSection < 1.32) { 
-            changeRandomCells(0, 12, "alive");
+            changeRandomCells(6, 0, "alive");
         } else if (currentScrollSection > 1.32) {
             changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 1.32;
     }
 
-    if (winScroll >= aboutMe + ((projects - aboutMe) / 4) && winScroll < aboutMe + ((projects - aboutMe) / 3)) {
+    if (winScroll >= aboutMe + viewportHeightFraction * 2 && winScroll < aboutMe + viewportHeightFraction * 3) {
         if (currentScrollSection < 1.48) { 
-            changeRandomCells(3, 0, "alive");
+            changeRandomCells(2, 0, "alive");
         } else if (currentScrollSection > 1.48) {
             changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 1.48;
     }
-    if (winScroll >= aboutMe + ((projects - aboutMe) / 3) && winScroll < aboutMe + ((projects - aboutMe) / 2)) {
+    if (winScroll >= aboutMe + viewportHeightFraction * 3 && winScroll < aboutMe + viewportHeightFraction * 4) {
         changeRandomCells(1, 0, "alive");
-        if (currentScrollSection < 1.48) { 
+        if (currentScrollSection < 1.64) { 
             cellGridMain.makeCurrent(cgmInitialScheme);
-        } else if (currentScrollSection > 1.48) {
+        } else if (currentScrollSection > 1.64) {
             cellGridMain.makeCurrent(cgmQuestionMark);
         }
         currentScrollSection = 1.64;
     }
-    if (winScroll >= aboutMe + ((projects - aboutMe) / 2) && winScroll < aboutMe + ((projects - aboutMe) * (2/3))) {
+    if (winScroll >= aboutMe + viewportHeightFraction * 4 && winScroll < aboutMe + viewportHeightFraction * 5) {
         if (currentScrollSection < 1.80) {
-            cellGridMain.makeCurrent(cgmInitialScheme);
             changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 1.80) {
             changeRandomCells(2, 0, "alive");
         }
         currentScrollSection = 1.80;
     }
-    if (winScroll >= aboutMe + ((projects - aboutMe) * (2/3)) && winScroll < aboutMe + ((projects - aboutMe) * (5/6))) {
+    if (winScroll >= aboutMe + viewportHeightFraction * 5 && winScroll < aboutMe + viewportHeightFraction * 6) {
+        document.getElementById("cell-grid-main").style.left = rect.left + "px";
+        document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
+        document.getElementById("cell-grid-project-1").style.boxShadow = "none";
+        document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
+        document.getElementById("cell-grid-project-2").style.boxShadow = "none";
         if (currentScrollSection < 1.96) {
             changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 1.96) {
@@ -298,86 +269,70 @@ function updateCellGrid() {
         }
         currentScrollSection = 1.96;
     }
-    if (winScroll >= aboutMe + ((projects - aboutMe) * (5/6)) && winScroll < projects) {
-        document.getElementById("cell-grid-main").style.left = rect.left + "px";
-        document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
-        document.getElementById("cell-grid-project-1").style.boxShadow = "none";
-        document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
-        document.getElementById("cell-grid-project-2").style.boxShadow = "none";
 
+    /* PROJECTS */
+
+    if (winScroll >= aboutMe + viewportHeightFraction * 6 && winScroll < projects + viewportHeightFraction) {
         changeRandomCells(1, 0, "dead");
 
-        currentScrollSection = 2;
-
-    }
-    if (winScroll >= projects && winScroll < projects + ((contact - projects) / 6)) {
-        changeRandomCells(1, 0, "dead");
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
         document.getElementById("cell-grid-project-1").style.left = "calc(77% - 490px)";
         document.getElementById("cell-grid-project-1").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
         document.getElementById("cell-grid-project-2").style.left = "calc(87% - 490px)";
         document.getElementById("cell-grid-project-2").style.boxShadow = "0px 0px 20px 5px #A9A9A9";
-        currentScrollSection = 2.16;
+
+        currentScrollSection = 2;
     }
 
+    /* PROJECTS */
 
-    /* PROJECTS - CONTACT */
-
-
-    if (winScroll >= projects + ((contact - projects) / 6) && winScroll < projects + ((contact - projects) / 4.5)) {
-        document.getElementById("cell-grid-main").style.left = rect.left + "px";
-        document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
-        document.getElementById("cell-grid-project-1").style.boxShadow = "none";
-        document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
-        document.getElementById("cell-grid-project-2").style.boxShadow = "none";
-        if (currentScrollSection < 2.32) { 
-            changeRandomCells(0, 18, "alive");
-        } else if (currentScrollSection > 1.32) {
+    if (winScroll >= projects + viewportHeightFraction && winScroll < projects + viewportHeightFraction * 2) {
+        if (currentScrollSection < 2.16) {
+            document.getElementById("cell-grid-main").style.left = rect.left + "px";
+            document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
+            document.getElementById("cell-grid-project-1").style.boxShadow = "none";
+            document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
+            document.getElementById("cell-grid-project-2").style.boxShadow = "none";
+            changeRandomCells(4, 0, "alive");
+        } else if (currentScrollSection > 2.16) {
             changeRandomCells(2, 0, "dead");
+        }
+        currentScrollSection = 2.16;
+    }if (winScroll >= projects + viewportHeightFraction * 2 && winScroll < projects + viewportHeightFraction * 3) {
+        if (currentScrollSection < 2.32) { 
+            changeRandomCells(2, 0, "alive");
+        } else if (currentScrollSection > 2.32) {
+            changeRandomCells(4, 0, "dead");
         }
         currentScrollSection = 2.32;
     }
-    if (winScroll >= projects + ((contact - projects) / 4.5) && winScroll < projects + ((contact - projects) / 3)) {
+    if (winScroll >= projects + viewportHeightFraction * 3 && winScroll < projects + viewportHeightFraction * 4) {
+        changeRandomCells(1, 0, "alive");
         if (currentScrollSection < 2.48) { 
-            changeRandomCells(8, 0, "alive");
+            cellGridMain.makeCurrent(cgmQrCode);
         } else if (currentScrollSection > 2.48) {
             cellGridMain.makeCurrent(cgmInitialScheme);
-            changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 2.48;
     }
-    if (winScroll >= projects + ((contact - projects) / 3) && winScroll < projects + ((contact - projects) / 2)) {
+    if (winScroll >= projects + viewportHeightFraction * 4 && winScroll < projects + viewportHeightFraction * 5) {
         if (currentScrollSection < 2.64) {
-            cellGridMain.makeCurrent(cgmQrCode);
-            changeRandomCells(0, 18, "dead");
+            changeRandomCells(4, 0, "dead");
         } else if (currentScrollSection > 2.64) {
             changeRandomCells(2, 0, "alive");
         }
-        changeRandomCells(1, 0, "alive");
         currentScrollSection = 2.64;
     }
-    if (winScroll >= projects + ((contact - projects) / 2) && winScroll < projects + ((contact - projects) * (2 / 3 ))) {
+    if (winScroll >= projects + viewportHeightFraction * 5 && winScroll < projects + viewportHeightFraction * 6) {
         if (currentScrollSection < 2.80) {
-            cellGridMain.makeCurrent(cgmQrCode);
-            changeRandomCells(0, 18, "dead");
+            changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 2.80) {
             changeRandomCells(2, 0, "alive");
         }
         currentScrollSection = 2.80;
     }
-    if (winScroll >= projects + ((contact - projects) * (2 / 3)) && winScroll < projects + ((contact - projects) * (5 / 6))) {
-        if (currentScrollSection < 2.90) {
-            changeRandomCells(2, 0, "dead");
-        } else if (currentScrollSection > 2.90) {
-            changeRandomCells(2, 0, "alive");
-        }
-        currentScrollSection = 2.90;
-    }
-    if (winScroll >= projects + ((contact - projects) * (5 / 6))) {
-        if (currentScrollSection !== 3) { 
-            cellGridMain.makeCurrent(cgmQrCode);
-            changeRandomCells(1, 0, "dead");
-        };
+    if (winScroll >= projects + viewportHeightFraction * 6) {
+        changeRandomCells(1, 0, "dead");
         currentScrollSection = 3;
     }
 }

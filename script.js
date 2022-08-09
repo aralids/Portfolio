@@ -112,6 +112,7 @@ cellGridProject1.initialize(cgmQrCode, "alive");
 
 
 let viewportHeight = window.innerHeight * (4 / 5);
+let viewportHeightFraction = viewportHeight / 5;
 
 
 let welcome = 0;
@@ -130,8 +131,6 @@ var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 let currentScrollSection = 0;
 function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
-    console.log(winScroll);
-    console.log(currentScrollSection);
 
     /* WELCOME - ABOUT ME */
 
@@ -149,7 +148,7 @@ function updateCellGrid() {
         };
         currentScrollSection = 0;
     }
-    if (winScroll > welcome && winScroll < aboutMe / 8) {
+    if (winScroll > welcome && winScroll < viewportHeightFraction) {
         if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
                 for (let j = 0; j < gridWidth; j++) {
@@ -158,29 +157,70 @@ function updateCellGrid() {
                     cell.removeAttribute("onmouseover");
                 }
             }
-            changeRandomCells(2, 0, "alive");
+            kill("cell-grid-main-cell-10-5");
+            kill("cell-grid-main-cell-16-13");
+            kill("cell-grid-main-cell-9-11");
+            kill("cell-grid-main-cell-1-19");
+            kill("cell-grid-main-cell-6-15");
+            kill("cell-grid-main-cell-19-2");
+            kill("cell-grid-main-cell-6-7");
+            kill("cell-grid-main-cell-10-6");
+            kill("cell-grid-main-cell-14-12");
+            kill("cell-grid-main-cell-0-0");
+            kill("cell-grid-main-cell-6-18");
+            kill("cell-grid-main-cell-3-6");
+            kill("cell-grid-main-cell-20-13");
+            kill("cell-grid-main-cell-14-20");
+            kill("cell-grid-main-cell-17-8");
+            kill("cell-grid-main-cell-2-12");
+            kill("cell-grid-main-cell-6-4");
+            kill("cell-grid-main-cell-13-3");
         } else if (currentScrollSection > 0.16) {
-            changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 0.16;
     }
-    if (winScroll > welcome && winScroll < aboutMe / 6) {
+    if (winScroll > viewportHeightFraction && winScroll < viewportHeightFraction * 2) {
         if (currentScrollSection < 0.32) { 
-            changeRandomCells(2, 0, "alive");
+            kill("cell-grid-main-cell-20-20");
+            kill("cell-grid-main-cell-19-19");
+            kill("cell-grid-main-cell-20-19");
+            kill("cell-grid-main-cell-16-17");
+            kill("cell-grid-main-cell-15-14");
+            kill("cell-grid-main-cell-13-0");
+            kill("cell-grid-main-cell-11-2");
+            kill("cell-grid-main-cell-8-5");
+            kill("cell-grid-main-cell-8-17");
+            kill("cell-grid-main-cell-1-3");
+            kill("cell-grid-main-cell-3-20");
+            kill("cell-grid-main-cell-4-14");
+            kill("cell-grid-main-cell-20-3");
+            kill("cell-grid-main-cell-12-10");
+            kill("cell-grid-main-cell-11-16");
+            kill("cell-grid-main-cell-18-20");
+            kill("cell-grid-main-cell-5-9");
+            kill("cell-grid-main-cell-18-7");
+            kill("cell-grid-main-cell-16-5");
+            kill("cell-grid-main-cell-9-6");
+            kill("cell-grid-main-cell-11-7");
+            kill("cell-grid-main-cell-15-13");
+            kill("cell-grid-main-cell-2-9");
+            kill("cell-grid-main-cell-3-4");
+            kill("cell-grid-main-cell-8-14");
+            kill("cell-grid-main-cell-12-8");
+            kill("cell-grid-main-cell-7-16");
+            kill("cell-grid-main-cell-7-15");
+            kill("cell-grid-main-cell-5-0");
         } else if (currentScrollSection > 0.32) {
             cellGridMain.makeCurrent(cgmInitialScheme);
-            changeRandomCells(2, 0, "dead");
         }
         currentScrollSection = 0.32;
     }
-    if (winScroll > welcome && winScroll < aboutMe / 3) {
-        console.log("HERE 0.5");
+    if (winScroll > viewportHeightFraction * 2 && winScroll < viewportHeightFraction * 3) {
         changeRandomCells(1, 0, "alive");
         currentScrollSection = 0.5;
     }
-    if (winScroll > welcome && winScroll < aboutMe / 2) {
+    if (winScroll > viewportHeightFraction * 3 && winScroll < viewportHeightFraction * 4) {
         if (currentScrollSection < 0.66) { 
-            changeRandomCells(8, 0, "dead");
             cellGridMain.makeCurrent(cgmQuestionMark);
         } else if (currentScrollSection > 0.66) { 
             changeRandomCells(2, 0, "alive");
@@ -189,7 +229,6 @@ function updateCellGrid() {
         }
     }
     if (winScroll >= aboutMe / 2 && winScroll < aboutMe * (2 / 3)) {
-        console.log("HERE 1");
         if (currentScrollSection < 0.82) { 
             changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 0.82) { 
@@ -199,7 +238,6 @@ function updateCellGrid() {
         currentScrollSection = 0.82;
     }
     if (winScroll >= aboutMe * (2 / 3) && winScroll < aboutMe * (5 / 6)) {
-        console.log("HERE 1");
         if (currentScrollSection < 1) { 
             changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 1) { 
@@ -209,7 +247,6 @@ function updateCellGrid() {
         currentScrollSection = 1;
     }
     if (winScroll >= aboutMe * (5 / 6) && winScroll < aboutMe + ((projects - aboutMe) / 8)) {
-        console.log("at 1.16")
         changeRandomCells(1, 0, "dead");
         currentScrollSection = 1.16;
     }
@@ -245,7 +282,6 @@ function updateCellGrid() {
         currentScrollSection = 1.64;
     }
     if (winScroll >= aboutMe + ((projects - aboutMe) / 2) && winScroll < aboutMe + ((projects - aboutMe) * (2/3))) {
-        console.log("at 1.32");
         if (currentScrollSection < 1.80) {
             cellGridMain.makeCurrent(cgmInitialScheme);
             changeRandomCells(2, 0, "dead");
@@ -255,7 +291,6 @@ function updateCellGrid() {
         currentScrollSection = 1.80;
     }
     if (winScroll >= aboutMe + ((projects - aboutMe) * (2/3)) && winScroll < aboutMe + ((projects - aboutMe) * (5/6))) {
-        console.log("at 1.48");
         if (currentScrollSection < 1.96) {
             changeRandomCells(2, 0, "dead");
         } else if (currentScrollSection > 1.96) {
@@ -264,7 +299,6 @@ function updateCellGrid() {
         currentScrollSection = 1.96;
     }
     if (winScroll >= aboutMe + ((projects - aboutMe) * (5/6)) && winScroll < projects) {
-        console.log("COORDS ", aboutMe, aboutMe + ((projects - aboutMe) / 4))
         document.getElementById("cell-grid-main").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
@@ -277,7 +311,6 @@ function updateCellGrid() {
 
     }
     if (winScroll >= projects && winScroll < projects + ((contact - projects) / 6)) {
-        console.log("at 1.16")
         changeRandomCells(1, 0, "dead");
         document.getElementById("cell-grid-main").style.left = "calc(97% - 490px)";
         document.getElementById("cell-grid-project-1").style.left = "calc(77% - 490px)";
@@ -297,7 +330,6 @@ function updateCellGrid() {
         document.getElementById("cell-grid-project-1").style.boxShadow = "none";
         document.getElementById("cell-grid-project-2").style.left = rect.left + "px";
         document.getElementById("cell-grid-project-2").style.boxShadow = "none";
-        console.log("at 1.32")
         if (currentScrollSection < 2.32) { 
             changeRandomCells(0, 18, "alive");
         } else if (currentScrollSection > 1.32) {
@@ -315,11 +347,16 @@ function updateCellGrid() {
         currentScrollSection = 2.48;
     }
     if (winScroll >= projects + ((contact - projects) / 3) && winScroll < projects + ((contact - projects) / 2)) {
+        if (currentScrollSection < 2.64) {
+            cellGridMain.makeCurrent(cgmQrCode);
+            changeRandomCells(0, 18, "dead");
+        } else if (currentScrollSection > 2.64) {
+            changeRandomCells(2, 0, "alive");
+        }
         changeRandomCells(1, 0, "alive");
         currentScrollSection = 2.64;
     }
     if (winScroll >= projects + ((contact - projects) / 2) && winScroll < projects + ((contact - projects) * (2 / 3 ))) {
-        console.log("at 1.32");
         if (currentScrollSection < 2.80) {
             cellGridMain.makeCurrent(cgmQrCode);
             changeRandomCells(0, 18, "dead");
@@ -358,6 +395,13 @@ function resurrect(id) {
     let aliveState = document.getElementById(id).classList[4];
     if (aliveState === "dead") {
         document.getElementById(id).classList.replace("dead", "alive");
+    }
+}
+
+function kill(id) {
+    let aliveState = document.getElementById(id).classList[4];
+    if (aliveState === "alive") {
+        document.getElementById(id).classList.replace("alive", "dead");
     }
 }
 
@@ -401,20 +445,22 @@ function calculateDistance(schemeCurrent, schemeNext) {
     return differences;
 }
 
-function changeRandomCells(fraction = 0, numCells = 0, nextLivingState) {
+function changeRandomCells(fraction = 0, numCells = 0, currentLivingState) {
     let scheme, livingStatesArray = getCurrent();
-    let array = livingStatesArray.map((item, index) => item == nextLivingState ? index : -1)
+    let array = livingStatesArray.map((item, index) => item == currentLivingState ? index : -1)
                                  .filter(item => item > -1)
                                  .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
     let n;
     if (fraction !== 0) {
-        console.log("n true 1")
         n = Math.floor(array.length / fraction);
     } else {
-        console.log("n true 2")
         n = numCells;
     }
-    console.log("n: ", n);
+    console.log("array: ", array);
+    console.log("array length: ", array.length);
+    console.log("fraction: ", fraction);
+    console.log("array length / fraction: ", Math.floor(array.length / fraction));
+    console.log(n);
     for (let i = 0; i < n; i++) {
         let randomItemId = Math.floor(Math.random()*array.length);
         let randomItem = array[randomItemId];

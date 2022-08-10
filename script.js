@@ -126,8 +126,6 @@ document.getElementById("main").onmousewheel = function() {updateCellGrid()};
 
 var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 resurrect("cell-grid-main-cell-4-4");
-resurrect("cell-grid-main-cell-3-4");
-resurrect("cell-grid-main-cell-4-5");
 setInterval(function () {gameOfLife()}, 4000);
 
 
@@ -446,6 +444,8 @@ function next(arrLength, i) {
 }
 
 function gameOfLife() {
+    let newlyDead = [];
+    let newlyAlive = [];
     for (let i = 0; i < gridHeight; i++) {
         for (let j = 0; j < gridWidth; j++) {
             let id = `cell-grid-main-cell-${i}-${j}`;
@@ -468,20 +468,31 @@ function gameOfLife() {
             let cellBottomLeft = document.getElementById(idBottomLeft);
             let cellBottomRight = document.getElementById(idBottomRight);
 
-            let neighbours = [cellLeft, cellRight, cellTop, cellBottom, cellTopLeft, cellTopRight, cellBottomLeft, cellBottomRight];
+            let neighbours = [cellTopLeft, cellTop, cellTopRight,
+                              cellLeft, cellRight,
+                              cellBottomLeft, cellBottom, cellBottomRight];
             let aliveNeighbours = neighbours.map(item => item.classList[4])
                                             .map(item => item === "alive" ? 1 : 0)
                                             .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+            if (aliveNeighbours > 0) {
+                console.log(id);
+            }
             if (cell.classList[4] === "alive") {
                 if (aliveNeighbours < 2 || aliveNeighbours > 3) {
-                    cell.classList.replace("alive", "dead");
+                    newlyDead.push(id);
                 }
             } else {
                 if (aliveNeighbours === 3) {
-                    cell.classList.replace("dead", "alive");
+                    newlyAlive.push(id);
                 }
             }
         }
+    }
+    for (let i of newlyAlive) {
+        resurrect(i);
+    }
+    for (let i of newlyDead) {
+        kill(i);
     }
     console.log("11:11");
 

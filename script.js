@@ -120,12 +120,15 @@ let aboutMe = viewportHeight;
 let projects = viewportHeight * 2;
 let contact = viewportHeight * 3;
 
-
 window.onkeydown = function() {updateCellGrid()};
 document.getElementById("information").onscroll = function() {updateCellGrid()};
 document.getElementById("main").onmousewheel = function() {updateCellGrid()};
 
 var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
+resurrect("cell-grid-main-cell-4-4");
+resurrect("cell-grid-main-cell-3-4");
+resurrect("cell-grid-main-cell-4-5");
+setInterval(function () {gameOfLife()}, 4000);
 
 
 let currentScrollSection = 0;
@@ -146,6 +149,8 @@ function updateCellGrid() {
                 }
             }
         };
+
+        setInterval(function () {gameOfLife()}, 6000);
     }
 
     /* WELCOME */
@@ -432,20 +437,38 @@ function changeRandomCells(fraction = 0, numCells = 0, currentLivingState) {
     }
 }
 
+function previous(arrLength, i) {
+    return i === 0 ? arrLength - 1 : i - 1;
+}
+
+function next(arrLength, i) {
+    return i === arrLength - 1 ? 0 : i + 1;
+}
+
 function gameOfLife() {
     for (let i = 0; i < gridHeight; i++) {
         for (let j = 0; j < gridWidth; j++) {
             let id = `cell-grid-main-cell-${i}-${j}`;
-            let idLeft = j === 0 ? `cell-grid-main-cell-${i}-${gridWidth - 1}` : `cell-grid-main-cell-${i}-${j - 1}`;
-            let idRight = j === gridWidth - 1 ? `cell-grid-main-cell-${i}-${0}` : `cell-grid-main-cell-${i}-${j + 1}`;
-            let idTop = i === 0 ? `cell-grid-main-cell-${gridHeight - 1}-${j}` : `cell-grid-main-cell-${i - 1}-${j}`;
-            let idBottom = i === gridHeight - 1 ? `cell-grid-main-cell-${0}-${j}` : `cell-grid-main-cell-${i + 1}-${j}`;
+            let idLeft = `cell-grid-main-cell-${i}-${previous(gridWidth, j)}`;
+            let idRight = `cell-grid-main-cell-${i}-${next(gridWidth, j)}`;
+            let idTop = `cell-grid-main-cell-${previous(gridHeight, i)}-${j}`;
+            let idBottom = `cell-grid-main-cell-${next(gridHeight, i)}-${j}`;
+            let idTopLeft = `cell-grid-main-cell-${previous(gridHeight, i)}-${previous(gridWidth, j)}`;
+            let idTopRight = `cell-grid-main-cell-${previous(gridHeight, i)}-${next(gridWidth, j)}`;
+            let idBottomLeft = `cell-grid-main-cell-${next(gridHeight, i)}-${previous(gridWidth, j)}`;
+            let idBottomRight = `cell-grid-main-cell-${next(gridHeight, i)}-${next(gridWidth, j)}`;
+
             let cell = document.getElementById(id);
             let cellLeft = document.getElementById(idLeft);
             let cellRight = document.getElementById(idRight);
             let cellTop = document.getElementById(idTop);
             let cellBottom = document.getElementById(idBottom);
-            let neighbours = [cellLeft, cellRight, cellTop, cellBottom]
+            let cellTopLeft = document.getElementById(idTopLeft);
+            let cellTopRight = document.getElementById(idTopRight);
+            let cellBottomLeft = document.getElementById(idBottomLeft);
+            let cellBottomRight = document.getElementById(idBottomRight);
+
+            let neighbours = [cellLeft, cellRight, cellTop, cellBottom, cellTopLeft, cellTopRight, cellBottomLeft, cellBottomRight];
             let aliveNeighbours = neighbours.map(item => item.classList[4])
                                             .map(item => item === "alive" ? 1 : 0)
                                             .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
@@ -460,5 +483,6 @@ function gameOfLife() {
             }
         }
     }
+    console.log("11:11");
 
 }

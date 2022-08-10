@@ -149,13 +149,15 @@ function updateCellGrid() {
                     cell.setAttribute("onmouseover", `resurrect('${id}')`);
                 }
             }
+            startInterval(1500);
         };
     }
 
     /* WELCOME */
-
-    if (winScroll > welcome && winScroll < viewportHeightFraction) {
+    if (winScroll > welcome) {
         clearInterval(myInterval);
+    }
+    if (winScroll > welcome && winScroll < viewportHeightFraction) {
         if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
                 for (let j = 0; j < gridWidth; j++) {

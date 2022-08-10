@@ -30,11 +30,11 @@
     font-family: 'Source Code Pro', monospace;
     font-size: 1vw;
     color: #454541;
+    scroll-behavior: smooth;
 }
 
 html {
-    scroll-behavior: smooth;
- }
+}
 
 body {
     display: flex;

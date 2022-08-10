@@ -146,7 +146,6 @@ function updateCellGrid() {
                 }
             }
         };
-        currentScrollSection = 0;
     }
 
     /* WELCOME */
@@ -400,6 +399,14 @@ function calculateDistance(schemeCurrent, schemeNext) {
     return differences;
 }
 
+function calculateAlive() {
+    let scheme, livingStatesArray = getCurrent();
+    let array = livingStatesArray.map((item, index) => item == "alive" ? index : -1)
+                                 .filter(item => item > -1)
+                                 .map(item => [Math.floor(item / gridWidth), item % gridWidth]);
+    return array.length;
+}
+
 function changeRandomCells(fraction = 0, numCells = 0, currentLivingState) {
     let scheme, livingStatesArray = getCurrent();
     let array = livingStatesArray.map((item, index) => item == currentLivingState ? index : -1)
@@ -423,4 +430,35 @@ function changeRandomCells(fraction = 0, numCells = 0, currentLivingState) {
         array.splice(randomItemId, 1);
         changeLivingState(randomCellId);
     }
+}
+
+function gameOfLife() {
+    for (let i = 0; i < gridHeight; i++) {
+        for (let j = 0; j < gridWidth; j++) {
+            let id = `cell-grid-main-cell-${i}-${j}`;
+            let idLeft = j === 0 ? `cell-grid-main-cell-${i}-${gridWidth - 1}` : `cell-grid-main-cell-${i}-${j - 1}`;
+            let idRight = j === gridWidth - 1 ? `cell-grid-main-cell-${i}-${0}` : `cell-grid-main-cell-${i}-${j + 1}`;
+            let idTop = i === 0 ? `cell-grid-main-cell-${gridHeight - 1}-${j}` : `cell-grid-main-cell-${i - 1}-${j}`;
+            let idBottom = i === gridHeight - 1 ? `cell-grid-main-cell-${0}-${j}` : `cell-grid-main-cell-${i + 1}-${j}`;
+            let cell = document.getElementById(id);
+            let cellLeft = document.getElementById(idLeft);
+            let cellRight = document.getElementById(idRight);
+            let cellTop = document.getElementById(idTop);
+            let cellBottom = document.getElementById(idBottom);
+            let neighbours = [cellLeft, cellRight, cellTop, cellBottom]
+            let aliveNeighbours = neighbours.map(item => item.classList[4])
+                                            .map(item => item === "alive" ? 1 : 0)
+                                            .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+            if (cell.classList[4] === "alive") {
+                if (aliveNeighbours < 2 || aliveNeighbours > 3) {
+                    cell.classList.replace("alive", "dead");
+                }
+            } else {
+                if (aliveNeighbours === 3) {
+                    cell.classList.replace("dead", "alive");
+                }
+            }
+        }
+    }
+
 }

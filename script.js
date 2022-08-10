@@ -126,7 +126,11 @@ document.getElementById("main").onmousewheel = function() {updateCellGrid()};
 
 var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 resurrect("cell-grid-main-cell-4-4");
-setInterval(function () {gameOfLife()}, 4000);
+var myInterval;
+function startInterval(x) {
+    myInterval = setInterval(function () {gameOfLife()}, x);
+};
+startInterval(1500);
 
 
 let currentScrollSection = 0;
@@ -134,7 +138,6 @@ function updateCellGrid() {
     var winScroll = document.getElementById("information").scrollTop || document.documentElement.scrollTop;
 
     /* WELCOME */
-
     if (winScroll == welcome) {
         if (currentScrollSection === 0) {
         } else if (currentScrollSection !== 0) { 
@@ -147,13 +150,12 @@ function updateCellGrid() {
                 }
             }
         };
-
-        setInterval(function () {gameOfLife()}, 6000);
     }
 
     /* WELCOME */
 
     if (winScroll > welcome && winScroll < viewportHeightFraction) {
+        clearInterval(myInterval);
         if (currentScrollSection < 0.16) { 
             for (let i = 0; i < gridHeight; i++) {
                 for (let j = 0; j < gridWidth; j++) {

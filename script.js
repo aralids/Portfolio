@@ -128,6 +128,9 @@ var rect = document.getElementById("cell-grid-main").getBoundingClientRect();
 resurrect("cell-grid-main-cell-4-4");
 var myInterval;
 function startInterval(x) {
+    if (myInterval) {
+        clearInterval(myInterval);
+    };
     myInterval = setInterval(function () {gameOfLife()}, x);
 };
 startInterval(1500);

@@ -129,7 +129,36 @@ main {
   /* max-height: ; */
 }
 
-#cell-grid-main,
+.flip-card {
+  position: fixed;
+  height: 322px;
+  width: 322px;
+  transition: all 0.5s ease-in-out;
+  z-index: 300;
+  top: calc(50% - 161px);
+  perspective: 1000px;
+  margin-right: 10%;
+}
+
+#portrait {
+  position: fixed;
+  height: 322px;
+  width: 322px;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  border: 35px solid #e1e1e1;
+}
+
+.flip-card-inner {
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
 #cell-grid-project-1,
 #cell-grid-project-2 {
   position: fixed;
@@ -142,7 +171,6 @@ main {
   /* max-height: ; */
 
   top: calc(50% - 161px);
-  margin-right: 10%;
 
   transition: all 0.5s ease-in-out;
 
@@ -151,12 +179,27 @@ main {
 }
 
 #cell-grid-main {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: fit-content;
+  justify-content: center;
+  border: 35px solid #e1e1e1;
+  z-index: 300;
+
   transition: all 0.25s ease-in-out;
   box-shadow: 0px 0px 20px 5px #a9a9a9;
+  backface-visibility: hidden;
 }
 
 #cell-grid-project-1 {
   transition: all 0.75s ease-in-out;
+  margin-right: 10%;
+}
+
+#cell-grid-project-2 {
+  margin-right: 10%;
 }
 
 div {

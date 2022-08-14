@@ -129,7 +129,7 @@ main {
   /* max-height: ; */
 }
 
-.flip-card {
+#flip-card {
   position: fixed;
   height: 322px;
   width: 322px;
@@ -149,13 +149,13 @@ main {
   border: 35px solid #e1e1e1;
 }
 
-.flip-card-inner {
+#flip-card-inner {
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-card-inner {
+.flippable:hover #flip-card-inner {
   transform: rotateY(180deg);
 }
 

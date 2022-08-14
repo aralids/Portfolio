@@ -1182,8 +1182,8 @@ function updateCellGrid() {
     winScroll >= aboutMe + viewportHeightFraction * 5 &&
     winScroll < aboutMe + viewportHeightFraction * 6
   ) {
-    document.getElementById('cell-grid-main').removeAttribute('onclick')
-    document.getElementById('cell-grid-main').style.cursor = 'default'
+    document.getElementById('flip-card').removeAttribute('onclick')
+    document.getElementById('flip-card').style.cursor = 'default'
     document.getElementById('cell-grid-project-1').removeAttribute('onclick')
     document.getElementById('cell-grid-project-1').style.cursor = 'default'
     document.getElementById('cell-grid-project-2').removeAttribute('onclick')
@@ -1193,7 +1193,7 @@ function updateCellGrid() {
       item.style.cursor = 'default'
     })
 
-    document.getElementById('cell-grid-main').style.left = rect.left + 'px'
+    document.getElementById('flip-card').style.left = rect.left + 'px'
     document.getElementById('cell-grid-project-1').style.left = rect.left + 'px'
     document.getElementById('cell-grid-project-1').style.boxShadow = 'none'
     document.getElementById('cell-grid-project-2').style.left = rect.left + 'px'
@@ -1214,7 +1214,7 @@ function updateCellGrid() {
   ) {
     changeRandomCells(1, 0, 'dead')
 
-    document.getElementById('cell-grid-main').style.left = 'calc(97% - 490px)'
+    document.getElementById('flip-card').style.left = 'calc(97% - 490px)'
     document.getElementById('cell-grid-project-1').style.left =
       'calc(77% - 490px)'
     document.getElementById('cell-grid-project-1').style.boxShadow =
@@ -1225,7 +1225,7 @@ function updateCellGrid() {
       '0px 0px 20px 5px #A9A9A9'
 
     document
-      .getElementById('cell-grid-main')
+      .getElementById('flip-card')
       .setAttribute('onclick', "window.open('https://google.com', '_blank')")
     document.getElementById('cell-grid-main').style.cursor = 'pointer'
 
@@ -1254,8 +1254,8 @@ function updateCellGrid() {
     winScroll < projects + viewportHeightFraction * 2
   ) {
     if (currentScrollSection < 2.16) {
-      document.getElementById('cell-grid-main').removeAttribute('onclick')
-      document.getElementById('cell-grid-main').style.cursor = 'default'
+      document.getElementById('flip-card').removeAttribute('onclick')
+      document.getElementById('flip-card').style.cursor = 'default'
       document.getElementById('cell-grid-project-1').removeAttribute('onclick')
       document.getElementById('cell-grid-project-1').style.cursor = 'default'
       document.getElementById('cell-grid-project-2').removeAttribute('onclick')
@@ -1265,7 +1265,7 @@ function updateCellGrid() {
         item.style.cursor = 'default'
       })
 
-      document.getElementById('cell-grid-main').style.left = rect.left + 'px'
+      document.getElementById('flip-card').style.left = rect.left + 'px'
       document.getElementById('cell-grid-project-1').style.left =
         rect.left + 'px'
       document.getElementById('cell-grid-project-1').style.boxShadow = 'none'

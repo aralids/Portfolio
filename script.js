@@ -1182,6 +1182,10 @@ function updateCellGrid() {
     winScroll >= aboutMe + viewportHeightFraction * 5 &&
     winScroll < aboutMe + viewportHeightFraction * 6
   ) {
+    document.getElementById('cell-grid-main').removeAttribute('onclick')
+    document.getElementById('cell-grid-project-1').removeAttribute('onclick')
+    document.getElementById('cell-grid-project-2').removeAttribute('onclick')
+
     document.getElementById('cell-grid-main').style.left = rect.left + 'px'
     document.getElementById('cell-grid-project-1').style.left = rect.left + 'px'
     document.getElementById('cell-grid-project-1').style.boxShadow = 'none'
@@ -1213,6 +1217,18 @@ function updateCellGrid() {
     document.getElementById('cell-grid-project-2').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
 
+    document
+      .getElementById('cell-grid-main')
+      .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+
+    document
+      .getElementById('cell-grid-project-1')
+      .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+
+    document
+      .getElementById('cell-grid-project-2')
+      .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+
     currentScrollSection = 2
   }
 
@@ -1223,6 +1239,10 @@ function updateCellGrid() {
     winScroll < projects + viewportHeightFraction * 2
   ) {
     if (currentScrollSection < 2.16) {
+      document.getElementById('cell-grid-main').removeAttribute('onclick')
+      document.getElementById('cell-grid-project-1').removeAttribute('onclick')
+      document.getElementById('cell-grid-project-2').removeAttribute('onclick')
+
       document.getElementById('cell-grid-main').style.left = rect.left + 'px'
       document.getElementById('cell-grid-project-1').style.left =
         rect.left + 'px'

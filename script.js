@@ -1183,8 +1183,15 @@ function updateCellGrid() {
     winScroll < aboutMe + viewportHeightFraction * 6
   ) {
     document.getElementById('cell-grid-main').removeAttribute('onclick')
+    document.getElementById('cell-grid-main').style.cursor = 'default'
     document.getElementById('cell-grid-project-1').removeAttribute('onclick')
+    document.getElementById('cell-grid-project-1').style.cursor = 'default'
     document.getElementById('cell-grid-project-2').removeAttribute('onclick')
+    document.getElementById('cell-grid-project-2').style.cursor = 'default'
+    buttons = document.querySelectorAll('button')
+    buttons.forEach((item) => {
+      item.style.cursor = 'default'
+    })
 
     document.getElementById('cell-grid-main').style.left = rect.left + 'px'
     document.getElementById('cell-grid-project-1').style.left = rect.left + 'px'
@@ -1220,14 +1227,22 @@ function updateCellGrid() {
     document
       .getElementById('cell-grid-main')
       .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+    document.getElementById('cell-grid-main').style.cursor = 'pointer'
 
     document
       .getElementById('cell-grid-project-1')
       .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+    document.getElementById('cell-grid-project-1').style.cursor = 'pointer'
 
     document
       .getElementById('cell-grid-project-2')
       .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+    document.getElementById('cell-grid-project-2').style.cursor = 'pointer'
+
+    buttons = document.querySelectorAll('button')
+    buttons.forEach((item) => {
+      item.style.cursor = 'pointer'
+    })
 
     currentScrollSection = 2
   }
@@ -1240,8 +1255,15 @@ function updateCellGrid() {
   ) {
     if (currentScrollSection < 2.16) {
       document.getElementById('cell-grid-main').removeAttribute('onclick')
+      document.getElementById('cell-grid-main').style.cursor = 'default'
       document.getElementById('cell-grid-project-1').removeAttribute('onclick')
+      document.getElementById('cell-grid-project-1').style.cursor = 'default'
       document.getElementById('cell-grid-project-2').removeAttribute('onclick')
+      document.getElementById('cell-grid-project-2').style.cursor = 'default'
+      buttons = document.querySelectorAll('button')
+      buttons.forEach((item) => {
+        item.style.cursor = 'default'
+      })
 
       document.getElementById('cell-grid-main').style.left = rect.left + 'px'
       document.getElementById('cell-grid-project-1').style.left =

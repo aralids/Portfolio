@@ -44,6 +44,14 @@ function Grid(gridId) {
     }
     this.scheme = schemeNext
   }
+  this.makeInvisible = function () {
+    let gridHTML = document.getElementById(this.gridId)
+    gridHTML.style.display = 'none'
+  }
+  this.makeVisible = function () {
+    let gridHTML = document.getElementById(this.gridId)
+    gridHTML.style.display = 'initial'
+  }
 }
 
 function GridImage(scheme) {
@@ -984,8 +992,10 @@ cellGridMain = new Grid('cell-grid-main')
 cellGridMain.initialize(cgmInitialScheme, 'dead')
 cellGridProject2 = new Grid('cell-grid-project-2')
 cellGridProject2.initialize(cgmQrCode, 'alive')
+cellGridProject2.makeInvisible()
 cellGridProject1 = new Grid('cell-grid-project-1')
 cellGridProject1.initialize(cgmQrCode, 'alive')
+cellGridProject1.makeInvisible()
 
 let viewportHeight = window.innerHeight * (4 / 5)
 let viewportHeightFraction = viewportHeight / 7
@@ -1129,7 +1139,9 @@ function updateCellGrid() {
   ) {
     cardFlipped = 0
     changeRandomCells(1, 0, 'dead')
+
     document.getElementById('flip-card').setAttribute('onclick', 'flipCard()')
+
     currentScrollSection = 1
   }
 
@@ -1205,6 +1217,8 @@ function updateCellGrid() {
     document.getElementById('cell-grid-project-2').style.boxShadow = 'none'
     if (currentScrollSection < 1.96) {
       changeRandomCells(2, 0, 'dead')
+      cellGridProject1.makeVisible()
+      cellGridProject2.makeVisible()
     } else if (currentScrollSection > 1.96) {
       changeRandomCells(0, 18, 'alive')
     }
@@ -1279,6 +1293,8 @@ function updateCellGrid() {
       document.getElementById('cell-grid-project-2').style.boxShadow = 'none'
       changeRandomCells(4, 0, 'alive')
     } else if (currentScrollSection > 2.16) {
+      cellGridProject1.makeVisible()
+      cellGridProject2.makeVisible()
       changeRandomCells(2, 0, 'dead')
     }
     currentScrollSection = 2.16
@@ -1518,6 +1534,8 @@ function gameOfLife() {
 }
 
 function flipCard() {
+  cellGridProject1.makeInvisible()
+  cellGridProject2.makeInvisible()
   if (cardFlipped === 0) {
     document.getElementById('flip-card-inner').style.transform =
       'rotateY(180deg)'

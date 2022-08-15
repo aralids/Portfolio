@@ -1019,6 +1019,7 @@ function startInterval(x) {
 startInterval(1500)
 
 let currentScrollSection = 0
+let cardFlipped = 0
 function updateCellGrid() {
   var winScroll =
     document.getElementById('information').scrollTop ||
@@ -1110,9 +1111,10 @@ function updateCellGrid() {
     winScroll >= viewportHeightFraction * 5 &&
     winScroll < viewportHeightFraction * 6
   ) {
-    if (currentScrollSection < 1) {
+    if (currentScrollSection < 0.92) {
       changeRandomCells(2, 0, 'dead')
-    } else if (currentScrollSection > 1) {
+    } else if (currentScrollSection > 0.92) {
+      document.getElementById('flip-card').removeAttribute('onclick')
       changeRandomCells(32, 0, 'alive')
     }
 
@@ -1125,18 +1127,9 @@ function updateCellGrid() {
     winScroll >= viewportHeightFraction * 6 &&
     winScroll < aboutMe + viewportHeightFraction
   ) {
-    let cardFlipped = 0
-    document.getElementById('flip-card').addEventListener('click', function () {
-      if (cardFlipped === 0) {
-        document.getElementById('flip-card-inner').style.transform =
-          'rotateY(180deg)'
-        cardFlipped = 1
-      } else {
-        document.getElementById('flip-card-inner').style.transform = ''
-        cardFlipped = 0
-      }
-    })
+    cardFlipped = 0
     changeRandomCells(1, 0, 'dead')
+    document.getElementById('flip-card').setAttribute('onclick', 'flipCard()')
     currentScrollSection = 1
   }
 
@@ -1148,6 +1141,7 @@ function updateCellGrid() {
   ) {
     console.log('at 1.32')
     if (currentScrollSection < 1.32) {
+      document.getElementById('flip-card').removeAttribute('onclick')
       changeRandomCells(6, 0, 'alive')
     } else if (currentScrollSection > 1.32) {
       changeRandomCells(2, 0, 'dead')
@@ -1521,4 +1515,15 @@ function gameOfLife() {
     kill(i)
   }
   console.log('11:11')
+}
+
+function flipCard() {
+  if (cardFlipped === 0) {
+    document.getElementById('flip-card-inner').style.transform =
+      'rotateY(180deg)'
+    cardFlipped = 1
+  } else {
+    document.getElementById('flip-card-inner').style.transform = ''
+    cardFlipped = 0
+  }
 }

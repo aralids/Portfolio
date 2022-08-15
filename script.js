@@ -1125,6 +1125,17 @@ function updateCellGrid() {
     winScroll >= viewportHeightFraction * 6 &&
     winScroll < aboutMe + viewportHeightFraction
   ) {
+    let cardFlipped = 0
+    document.getElementById('flip-card').addEventListener('click', function () {
+      if (cardFlipped === 0) {
+        document.getElementById('flip-card-inner').style.transform =
+          'rotateY(180deg)'
+        cardFlipped = 1
+      } else {
+        document.getElementById('flip-card-inner').style.transform = ''
+        cardFlipped = 0
+      }
+    })
     changeRandomCells(1, 0, 'dead')
     currentScrollSection = 1
   }

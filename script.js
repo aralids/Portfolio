@@ -1121,6 +1121,7 @@ function updateCellGrid() {
     winScroll >= viewportHeightFraction * 5 &&
     winScroll < viewportHeightFraction * 6
   ) {
+    document.getElementById('flip-card-inner').style.transform = ''
     if (currentScrollSection < 0.92) {
       changeRandomCells(2, 0, 'dead')
     } else if (currentScrollSection > 0.92) {
@@ -1139,9 +1140,7 @@ function updateCellGrid() {
   ) {
     cardFlipped = 0
     changeRandomCells(1, 0, 'dead')
-
     document.getElementById('flip-card').setAttribute('onclick', 'flipCard()')
-
     currentScrollSection = 1
   }
 
@@ -1151,7 +1150,7 @@ function updateCellGrid() {
     winScroll >= aboutMe + viewportHeightFraction &&
     winScroll < aboutMe + viewportHeightFraction * 2
   ) {
-    console.log('at 1.32')
+    document.getElementById('flip-card-inner').style.transform = ''
     if (currentScrollSection < 1.32) {
       document.getElementById('flip-card').removeAttribute('onclick')
       changeRandomCells(6, 0, 'alive')
@@ -1246,7 +1245,6 @@ function updateCellGrid() {
     document
       .getElementById('flip-card')
       .setAttribute('onclick', "window.open('https://google.com', '_blank')")
-    document.getElementById('cell-grid-main').style.cursor = 'pointer'
 
     document
       .getElementById('cell-grid-project-1')

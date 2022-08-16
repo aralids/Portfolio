@@ -323,3 +323,31 @@ footer {
 
 button {
 }
+
+#welcome {
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+  height: 10%;
+  margin-top: 15px;
+}
+
+input {
+  border: none;
+  background-color: #e1e1e1;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+  color: #454541;
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-bottom: 2%;
+}
+
+#submit-button {
+  background-color: #454541;
+  color: #fff;
+  width: fit-content;
+}

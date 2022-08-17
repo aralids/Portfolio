@@ -1551,3 +1551,8 @@ function hideProjects() {
   document.getElementById('cell-grid-project-2').style.left = rect.left + 'px'
   document.getElementById('cell-grid-project-2').style.boxShadow = 'none'
 }
+
+function onSubmitAction(event) {
+  event.preventDefault()
+  console.log('Here SUBMIT')
+}

@@ -321,6 +321,19 @@ footer {
   background-color: #76344d;
 }
 
+.red-cell {
+  background-color: #b90000;
+  background-color: red;
+}
+
+.green-cell {
+  background-color: #37c871ff;
+}
+
+.dark-grey-cell {
+  background-color: #454541;
+}
+
 .dead {
   background-color: #454541;
   transition: 0.5s ease-in background-color;
@@ -355,7 +368,7 @@ button {
 #contact-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 82%;
   height: 50%;
   margin-top: 15px;
 }
@@ -392,6 +405,25 @@ input:focus {
   background-color: #454541;
   color: #fff;
   width: fit-content;
+}
+
+#projects-list {
+  margin-top: 30px;
+  height: 24%;
+  width: 100%;
+}
+
+.project-name {
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+  padding-left: 3%;
+  padding-right: 7%;
+  margin-bottom: 2%;
+  background-color: #454541;
+  color: #fff;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1vw;
 }
 
 #contact-submit-button {

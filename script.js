@@ -1237,11 +1237,11 @@ function updateCellGrid() {
 
     document.getElementById('flip-card').style.left = 'calc(95% - 322px)'
     document.getElementById('cell-grid-project-1').style.left =
-      'calc(65% - 322px)'
+      'calc(71% - 322px)'
     document.getElementById('cell-grid-project-1').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
     document.getElementById('cell-grid-project-2').style.left =
-      'calc(80% - 322px)'
+      'calc(83% - 322px)'
     document.getElementById('cell-grid-project-2').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
 
@@ -1377,9 +1377,9 @@ function stringifyScheme(schemeNum) {
     if (schemeNum[i] === 0) {
       stringifiedScheme.push('white-cell')
     } else if (schemeNum[i] === 1) {
-      stringifiedScheme.push('purple-cell')
+      stringifiedScheme.push('dark-grey-cell')
     } else if (schemeNum[i] === 2) {
-      stringifiedScheme.push('orange-cell')
+      stringifiedScheme.push('red-cell')
     }
   }
   return stringifiedScheme

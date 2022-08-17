@@ -68,13 +68,14 @@
             experience - or just keep scrolling.
             <br />
           </p>
-          <form id="login-form" action="" method="post">
-            <input type="text" name="username" placeholder="username from CV" />
-            <input
-              type="password"
-              name="password"
-              placeholder="password from CV"
-            />
+          <form
+            id="login-form"
+            action=""
+            method="post"
+            onsubmit="event.preventDefault()"
+          >
+            <input type="text" placeholder="username from CV" />
+            <input type="password" placeholder="password from CV" />
             <input id="submit-button" type="submit" value="Submit" />
           </form>
         </section>

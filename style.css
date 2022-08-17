@@ -346,6 +346,10 @@ input {
   margin-bottom: 2%;
 }
 
+input:focus {
+  outline-width: 0;
+}
+
 #submit-button {
   background-color: #454541;
   color: #fff;

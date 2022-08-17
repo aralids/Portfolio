@@ -1037,6 +1037,7 @@ function updateCellGrid() {
 
   /* WELCOME */
   if (winScroll == welcome) {
+    hideProjects()
     if (currentScrollSection === 0) {
     } else if (currentScrollSection !== 0) {
       cellGridMain.makeCurrent(cgmInitialScheme)
@@ -1077,6 +1078,7 @@ function updateCellGrid() {
     if (currentScrollSection < 0.32) {
       changeRandomCells(2, 0, 'alive')
     } else if (currentScrollSection > 0.32) {
+      cellGridMain.makeCurrent(cgmInitialScheme)
       changeRandomCells(4, 0, 'dead')
     }
     currentScrollSection = 0.32
@@ -1098,6 +1100,7 @@ function updateCellGrid() {
     winScroll < viewportHeightFraction * 4
   ) {
     if (currentScrollSection < 0.66) {
+      cellGridMain.makeCurrent(cgmQuestionMark)
       changeRandomCells(32, 0, 'dead')
     } else if (currentScrollSection > 0.66) {
       changeRandomCells(2, 0, 'alive')
@@ -1138,6 +1141,7 @@ function updateCellGrid() {
     winScroll >= viewportHeightFraction * 6 &&
     winScroll < aboutMe + viewportHeightFraction
   ) {
+    hideProjects()
     cardFlipped = 0
     changeRandomCells(1, 0, 'dead')
     document.getElementById('flip-card').setAttribute('onclick', 'flipCard()')
@@ -1168,6 +1172,7 @@ function updateCellGrid() {
       changeRandomCells(2, 0, 'alive')
     } else if (currentScrollSection > 1.48) {
       changeRandomCells(2, 0, 'dead')
+      cellGridMain.makeCurrent(cgmQuestionMark)
     }
     currentScrollSection = 1.48
   }
@@ -1187,7 +1192,9 @@ function updateCellGrid() {
     winScroll >= aboutMe + viewportHeightFraction * 4 &&
     winScroll < aboutMe + viewportHeightFraction * 5
   ) {
+    hideProjects()
     if (currentScrollSection < 1.8) {
+      cellGridMain.makeCurrent(cgmInitialScheme)
       changeRandomCells(2, 0, 'dead')
     } else if (currentScrollSection > 1.8) {
       changeRandomCells(2, 0, 'alive')
@@ -1198,6 +1205,7 @@ function updateCellGrid() {
     winScroll >= aboutMe + viewportHeightFraction * 5 &&
     winScroll < aboutMe + viewportHeightFraction * 6
   ) {
+    hideProjects()
     document.getElementById('flip-card').removeAttribute('onclick')
     document.getElementById('flip-card').style.cursor = 'default'
     document.getElementById('cell-grid-project-1').removeAttribute('onclick')
@@ -1209,11 +1217,6 @@ function updateCellGrid() {
       item.style.cursor = 'default'
     })
 
-    document.getElementById('flip-card').style.left = rect.left + 'px'
-    document.getElementById('cell-grid-project-1').style.left = rect.left + 'px'
-    document.getElementById('cell-grid-project-1').style.boxShadow = 'none'
-    document.getElementById('cell-grid-project-2').style.left = rect.left + 'px'
-    document.getElementById('cell-grid-project-2').style.boxShadow = 'none'
     if (currentScrollSection < 1.96) {
       changeRandomCells(2, 0, 'dead')
       cellGridProject1.makeVisible()
@@ -1270,6 +1273,7 @@ function updateCellGrid() {
     winScroll >= projects + viewportHeightFraction &&
     winScroll < projects + viewportHeightFraction * 2
   ) {
+    hideProjects()
     if (currentScrollSection < 2.16) {
       document.getElementById('flip-card').removeAttribute('onclick')
       document.getElementById('flip-card').style.cursor = 'default'
@@ -1281,14 +1285,6 @@ function updateCellGrid() {
       buttons.forEach((item) => {
         item.style.cursor = 'default'
       })
-
-      document.getElementById('flip-card').style.left = rect.left + 'px'
-      document.getElementById('cell-grid-project-1').style.left =
-        rect.left + 'px'
-      document.getElementById('cell-grid-project-1').style.boxShadow = 'none'
-      document.getElementById('cell-grid-project-2').style.left =
-        rect.left + 'px'
-      document.getElementById('cell-grid-project-2').style.boxShadow = 'none'
       changeRandomCells(4, 0, 'alive')
     } else if (currentScrollSection > 2.16) {
       cellGridProject1.makeVisible()
@@ -1302,8 +1298,10 @@ function updateCellGrid() {
     winScroll < projects + viewportHeightFraction * 3
   ) {
     if (currentScrollSection < 2.32) {
+      hideProjects()
       changeRandomCells(2, 0, 'alive')
     } else if (currentScrollSection > 2.32) {
+      cellGridMain.makeCurrent(cgmInitialScheme)
       changeRandomCells(4, 0, 'dead')
     }
     currentScrollSection = 2.32
@@ -1325,6 +1323,7 @@ function updateCellGrid() {
     winScroll < projects + viewportHeightFraction * 5
   ) {
     if (currentScrollSection < 2.64) {
+      cellGridMain.makeCurrent(cgmQrCode)
       changeRandomCells(4, 0, 'dead')
     } else if (currentScrollSection > 2.64) {
       changeRandomCells(2, 0, 'alive')
@@ -1343,6 +1342,7 @@ function updateCellGrid() {
     currentScrollSection = 2.8
   }
   if (winScroll >= projects + viewportHeightFraction * 6) {
+    hideProjects()
     changeRandomCells(1, 0, 'dead')
     currentScrollSection = 3
   }
@@ -1542,4 +1542,12 @@ function flipCard() {
     document.getElementById('flip-card-inner').style.transform = ''
     cardFlipped = 0
   }
+}
+
+function hideProjects() {
+  document.getElementById('flip-card').style.left = rect.left + 'px'
+  document.getElementById('cell-grid-project-1').style.left = rect.left + 'px'
+  document.getElementById('cell-grid-project-1').style.boxShadow = 'none'
+  document.getElementById('cell-grid-project-2').style.left = rect.left + 'px'
+  document.getElementById('cell-grid-project-2').style.boxShadow = 'none'
 }

@@ -1235,13 +1235,13 @@ function updateCellGrid() {
   ) {
     changeRandomCells(1, 0, 'dead')
 
-    document.getElementById('flip-card').style.left = 'calc(95% - 322px)'
+    document.getElementById('flip-card').style.left = 'calc(90% - 322px)'
     document.getElementById('cell-grid-project-1').style.left =
-      'calc(71% - 322px)'
+      'calc(66% - 322px)'
     document.getElementById('cell-grid-project-1').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
     document.getElementById('cell-grid-project-2').style.left =
-      'calc(83% - 322px)'
+      'calc(78% - 322px)'
     document.getElementById('cell-grid-project-2').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
 
@@ -1375,11 +1375,11 @@ function stringifyScheme(schemeNum) {
   let stringifiedScheme = []
   for (let i = 0; i < schemeNum.length; i++) {
     if (schemeNum[i] === 0) {
-      stringifiedScheme.push('white-cell')
+      stringifiedScheme.push('light-color-cell')
     } else if (schemeNum[i] === 1) {
-      stringifiedScheme.push('dark-grey-cell')
+      stringifiedScheme.push('main-color-cell')
     } else if (schemeNum[i] === 2) {
-      stringifiedScheme.push('red-cell')
+      stringifiedScheme.push('dark-color-cell')
     }
   }
   return stringifiedScheme
@@ -1559,8 +1559,14 @@ function onSubmitAction(event) {
     console.log('alnatura')
     document.getElementById('logo_alnatura2').style.opacity = '1'
     document.getElementById('logo_classic').style.opacity = '0'
+    changeColorPalette('alnatura')
   } else {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
+    changeColorPalette('classic')
   }
+}
+
+function changeColorPalette(theme) {
+  document.documentElement.className = theme
 }

@@ -11,7 +11,17 @@
 /* align-items: ; */
 /* max-height: ; */
 
-:root {
+:root,
+:root.classic {
+  --main-bg-color: #ffe680;
+  --main-color: #b80000;
+  --main-accent-color: #00d455;
+  --secondary-accent-color: red;
+  --font-color: #454541;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+}
+:root.alnatura {
   --main-bg-color: #fffef4;
   --main-color: #76344d;
   --main-accent-color: #b5ce34;
@@ -313,12 +323,12 @@ footer {
   background-color: #ef7c00;
 }
 
-.white-cell {
-  background-color: #fff;
+.light-color-cell {
+  background-color: var(--secondary-font-color);
 }
 
-.purple-cell {
-  background-color: #76344d;
+.main-color-cell {
+  background-color: var(--main-color);
 }
 
 .red-cell {
@@ -330,8 +340,8 @@ footer {
   background-color: #37c871ff;
 }
 
-.dark-grey-cell {
-  background-color: #454541;
+.dark-color-cell {
+  background-color: var(--font-color);
 }
 
 .dead {

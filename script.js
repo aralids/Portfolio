@@ -1235,13 +1235,13 @@ function updateCellGrid() {
   ) {
     changeRandomCells(1, 0, 'dead')
 
-    document.getElementById('flip-card').style.left = 'calc(97% - 490px)'
+    document.getElementById('flip-card').style.left = 'calc(95% - 322px)'
     document.getElementById('cell-grid-project-1').style.left =
-      'calc(77% - 490px)'
+      'calc(65% - 322px)'
     document.getElementById('cell-grid-project-1').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
     document.getElementById('cell-grid-project-2').style.left =
-      'calc(87% - 490px)'
+      'calc(80% - 322px)'
     document.getElementById('cell-grid-project-2').style.boxShadow =
       '0px 0px 20px 5px #A9A9A9'
 

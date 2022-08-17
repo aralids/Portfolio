@@ -93,8 +93,8 @@
         <section id="about-me">
           <h1>Dilara Sarach</h1>
           <h2>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis,
-            amet?
+            A bioinformatician by trade, an art & food connoisseur by heart.
+            Based in Frankfurt.
           </h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto harum
@@ -106,33 +106,56 @@
         <section id="projects">
           <h1>Projects</h1>
           <h2>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-            dolor incidunt, architecto est sequi animi?
+            This page is all pure HTML, CSS & JavaScript. Take a gander at
+            another 3 hearty projects!
           </h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto harum
-            iure explicabo quidem ullam accusamus? Provident exercitationem quam
-            quas, nihil ipsam earum non. A minus qui laboriosam omnis voluptate?
-            Deleniti.
+            Receipt reader
+          </p>
+          <p>
+            Gastro Obscura
+          </p>
+          <p>
+            Vitamins
           </p>
         </section>
         <section id="contact">
           <h1>Contact me</h1>
           <h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-            dignissimos debitis quos?
+            Write me an email or scan the QR code to call me.
           </h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto harum
-            iure explicabo quidem ullam accusamus? Provident exercitationem quam
-            quas, nihil ipsam earum non. A minus qui laboriosam omnis voluptate?
-            Deleniti.
+            You might have to hold your phone a bit further away than usual to
+            successfully scan the code.
           </p>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
-            aspernatur soluta ex saepe facere illo quam porro illum iste officia
-            sed, unde pariatur vero qui ea quae, possimus temporibus maiores!
-          </p>
+          <form
+            id="contact-form"
+            action=""
+            method="post"
+            onsubmit="onSubmitAction(event);"
+          >
+            <input
+              type="text"
+              id="name"
+              placeholder="name, company: John Doe, Google Inc."
+            />
+            <input
+              type="email"
+              id="email"
+              placeholder="email address: john.doe@gmail.com"
+            />
+            <input
+              type="text"
+              id="subject"
+              placeholder="subject: Your Application at Google Inc."
+            />
+            <input
+              type="text"
+              id="message"
+              placeholder="your message: What a beautiful website..."
+            />
+            <input id="contact-submit-button" type="submit" value="Submit" />
+          </form>
         </section>
       </section>
     </main>

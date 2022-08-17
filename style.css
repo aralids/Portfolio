@@ -306,7 +306,7 @@ footer {
 }
 
 #projects {
-  padding-right: 50%;
+  padding-right: 45%;
 }
 
 .orange-cell {
@@ -352,6 +352,14 @@ button {
   margin-top: 15px;
 }
 
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+  margin-top: 15px;
+}
+
 input {
   border: none;
   background-color: #e1e1e1;
@@ -363,12 +371,29 @@ input {
   margin-bottom: 2%;
 }
 
+#contact-form input {
+  margin-bottom: 5px;
+  padding-left: 2%;
+}
+
+#name,
+#email,
+#subject,
+#contact-submit-button {
+  height: 10%;
+}
+
 input:focus {
   outline-width: 0;
 }
 
-#submit-button {
+#submit-button,
+#contact-submit-button {
   background-color: #454541;
   color: #fff;
   width: fit-content;
+}
+
+#contact-submit-button {
+  width: 100%;
 }

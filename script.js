@@ -1555,4 +1555,12 @@ function hideProjects() {
 function onSubmitAction(event) {
   event.preventDefault()
   console.log('Here SUBMIT')
+  if (document.getElementById('username').value === 'alnatura') {
+    console.log('alnatura')
+    document.getElementById('logo_alnatura2').style.opacity = '1'
+    document.getElementById('logo_classic').style.opacity = '0'
+  } else {
+    document.getElementById('logo_classic').style.opacity = '1'
+    document.getElementById('logo_alnatura2').style.opacity = '0'
+  }
 }

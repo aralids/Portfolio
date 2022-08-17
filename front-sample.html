@@ -32,6 +32,17 @@
         <img
           src="logo.svg"
           alt="Logo"
+          id="logo_classic"
+          class="opaque"
+          draggable="false"
+          onmousedown="return false"
+          style="user-drag: none;"
+        />
+        <img
+          src="logo_alnatura2.svg"
+          alt="Logo"
+          id="logo_alnatura2"
+          class="transparent"
           draggable="false"
           onmousedown="return false"
           style="user-drag: none;"
@@ -74,7 +85,7 @@
             method="post"
             onsubmit="onSubmitAction(event);"
           >
-            <input type="text" placeholder="username from CV" />
+            <input type="text" id="username" placeholder="username from CV" />
             <input type="password" placeholder="password from CV" />
             <input id="submit-button" type="submit" value="Submit" />
           </form>

@@ -63,15 +63,32 @@ header {
 }
 
 #logo {
-  /* display: ; */
+  position: relative;
+  display: inline;
   /* flex-direction: ;*/
   /* height: ;*/
+  height: 100%;
+  margin-left: 3%;
   width: fit-content;
+  margin-right: 7%;
   /* justify-content: ; */
   /* align-items: ; */
   /* max-height: ; */
-  padding: 4px;
-  margin-left: 3%;
+  background-color: #b5ce34;
+}
+
+#logo_classic {
+  width: 70px;
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+#logo_alnatura2 {
+  width: 70px;
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
 }
 
 nav {

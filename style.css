@@ -319,29 +319,12 @@ footer {
   padding-right: 45%;
 }
 
-.orange-cell {
-  background-color: #ef7c00;
-}
-
 .light-color-cell {
   background-color: var(--secondary-font-color);
 }
 
 .main-color-cell {
   background-color: var(--main-color);
-}
-
-.red-cell {
-  background-color: #b90000;
-  background-color: red;
-}
-
-.green-cell {
-  background-color: #37c871ff;
-}
-
-.dark-color-cell {
-  background-color: var(--font-color);
 }
 
 .dead {
@@ -433,38 +416,23 @@ input:focus {
   color: #fff;
   font-family: 'Source Code Pro', monospace;
   font-size: 1vw;
-  margin-bottom: 10px;
 }
-
-
 
 #contact-submit-button {
   width: 100%;
 }
 
 .project-description {
-  
   flex-direction: column;
   padding-left: 14px;
   padding-right: 14px;
   display: none;
-}
-
-.project-name:hover {
-  cursor: pointer;
-}
-
-.project-name:hover + .project-description {
-  display: flex;
-}
-
-.project-description:hover {
-  display: initial;
+  padding-bottom: 30px;
 }
 
 .project {
   height: fit-content;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 span {
@@ -473,4 +441,13 @@ span {
   margin: 5px;
   padding-left: 7px;
   padding-right: 7px;
+}
+
+.project:hover {
+  padding-bottom: 0;
+}
+
+.project:hover > .project-description {
+  display: flex;
+  padding-top: 30px;
 }

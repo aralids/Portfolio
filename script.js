@@ -1570,3 +1570,7 @@ function onSubmitAction(event) {
 function changeColorPalette(theme) {
   document.documentElement.className = theme
 }
+
+function submit() {
+  document.getElementById("hidden-button").click();
+}

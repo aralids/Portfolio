@@ -83,10 +83,12 @@
             id="login-form"
             action=""
             method="post"
-            onsubmit="onSubmitAction(event);"
           >
             <input type="text" id="username" placeholder="username from CV" />
             <input type="password" placeholder="password from CV" />
+            <input id="hidden-button" type="submit" value="Submit" />
+          </form>
+          <form action="" id="mock-form" method="post" onsubmit="onSubmitAction(event);">
             <input id="submit-button" type="submit" value="Submit" />
           </form>
         </section>
@@ -110,7 +112,7 @@
           </h2>
           <p></p>
           <section id="projects-list">
-            <section id="project-1" class="project">
+            <section id="project-1" class="project" onclick="submit()">
               <p class="project-name">
                 The fridge-friendly
               </p>
@@ -121,7 +123,7 @@
                 </p>
               </section>
             </section>
-            <section id="project-2" class="project">
+            <section id="project-2" class="project" onclick="submit()">
               <p class="project-name">
                 GastroObscura
               </p>
@@ -132,14 +134,14 @@
                 </p>
               </section>
             </section>
-            <section id="project-3" class="project">
+            <section id="project-3" class="project" onclick="submit()">
               <p class="project-name">
                 Suggest-a-recipe
               </p>
               <section class="project-description">
                 <p class="project-text">
-                  Tell the app what you've had today. It will work its magic and suggest a recipe based on the vitamins and nutrients you've been missing lately.
-                  <br> <br> What I learned: <span>jQuery</span> <span>AJAX</span> <span>Django</span>
+                  Tell the app what you've had today. It will work its magic and suggest a recipe based on the vitamins and nutrients you've been lacking as of late.
+                  <br> <br> What I learned: <span>jQuery</span> <span>AJAX</span> <span>Time-tracking</span>
                 </p>
               </section>
             </section>
@@ -178,7 +180,7 @@
             <input
               type="text"
               id="message"
-              placeholder="your message: What a beautiful website..."
+              placeholder="your message: Dear Ms.Sarach,..."
             />
             <input id="contact-submit-button" type="submit" value="Submit" />
           </form>

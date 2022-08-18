@@ -327,6 +327,10 @@ footer {
   background-color: var(--main-color);
 }
 
+.dark-color-cell {
+  background-color: var(--font-color);
+}
+
 .dead {
   background-color: #454541;
   transition: 0.5s ease-in background-color;
@@ -350,12 +354,17 @@ button {
 #welcome {
 }
 
+#mock-form,
 #login-form {
   display: flex;
   flex-direction: column;
   width: 24%;
-  height: 10%;
   margin-top: 15px;
+  height: fit-content;
+}
+
+#mock-form {
+  margin: 0;
 }
 
 #contact-form {
@@ -374,30 +383,33 @@ input, span {
   color: #454541;
   padding-left: 7%;
   padding-right: 7%;
-  margin-bottom: 2%;
+  margin-bottom: 4px;
+  height: 20px;
 }
 
 #contact-form input {
+  height: 20px;
   margin-bottom: 5px;
   padding-left: 2%;
 }
 
-#name,
-#email,
-#subject,
-#contact-submit-button {
-  height: 10%;
+#message {
+  min-height: 200px;
 }
 
 input:focus {
   outline-width: 0;
 }
-
+ 
 #submit-button,
 #contact-submit-button {
   background-color: #454541;
   color: #fff;
   width: fit-content;
+}
+
+#hidden-button {
+  display: none;
 }
 
 #projects-list {
@@ -431,7 +443,7 @@ input:focus {
   opacity: 0;
   max-height: 0;
   
-  transition: all .6s ease;
+  transition: all 0.6s ease;
 }
 
 .project {
@@ -450,7 +462,10 @@ span {
 .project:hover > .project-description {
   visibility: visible;
   opacity: 1;
-  max-width: 1000px;
+  max-height: 1000px;
   padding-top: 30px;
-  padding-bottom: 160px;
+}
+
+.project {
+  cursor: pointer;
 }

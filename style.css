@@ -426,8 +426,12 @@ input:focus {
   flex-direction: column;
   padding-left: 14px;
   padding-right: 14px;
-  display: none;
-  padding-bottom: 30px;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  
+  transition: all .6s ease;
 }
 
 .project {
@@ -443,11 +447,10 @@ span {
   padding-right: 7px;
 }
 
-.project:hover {
-  padding-bottom: 0;
-}
-
 .project:hover > .project-description {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  max-width: 1000px;
   padding-top: 30px;
+  padding-bottom: 160px;
 }

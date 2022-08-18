@@ -13,20 +13,20 @@
 
 :root,
 :root.classic {
-  --main-bg-color: #ffe680;
+  --main-bg-color: #454541;
   --main-color: #b80000;
   --main-accent-color: #00d455;
   --secondary-accent-color: red;
-  --font-color: #454541;
+  --font-color: #ffe680;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
 }
 :root.alnatura {
   --main-bg-color: #fffef4;
   --main-color: #76344d;
-  --main-accent-color: #b5ce34;
-  --secondary-accent-color: #ef7c00;
-  --font-color: #454541;
+  --main-accent-color: #454541;
+  --secondary-accent-color: #b5ce34;
+  --font-color: #ef7c00;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
 }
@@ -383,7 +383,7 @@ button {
   margin-top: 15px;
 }
 
-input {
+input, span {
   border: none;
   background-color: #e1e1e1;
   border-bottom: 2px solid black;
@@ -429,13 +429,48 @@ input:focus {
   border-radius: 5px;
   padding-left: 3%;
   padding-right: 7%;
-  margin-bottom: 2%;
   background-color: #454541;
   color: #fff;
   font-family: 'Source Code Pro', monospace;
   font-size: 1vw;
+  margin-bottom: 10px;
 }
+
+
 
 #contact-submit-button {
   width: 100%;
+}
+
+.project-description {
+  
+  flex-direction: column;
+  padding-left: 14px;
+  padding-right: 14px;
+  display: none;
+}
+
+.project-name:hover {
+  cursor: pointer;
+}
+
+.project-name:hover + .project-description {
+  display: flex;
+}
+
+.project-description:hover {
+  display: initial;
+}
+
+.project {
+  height: fit-content;
+  padding-bottom: 10px;
+}
+
+span {
+  display: inline;
+  width: fit-content;
+  margin: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
 }

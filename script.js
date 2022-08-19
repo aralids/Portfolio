@@ -1568,9 +1568,10 @@ function onSubmitAction(event) {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
     changeColorPalette('classic')
-    document.getElementById('login-form').style.visibility = 'visible'
+    
     document.getElementById('login-form').style.opacity = '1'
-    document.getElementById('login-form').style.maxHeight = '1000px'
+    document.getElementById('login-form').style.visibility = 'visible'
+    document.getElementById('login-form').style.maxHeight = '50px'
     document.getElementById('submit-button').setAttribute('value', 'Submit')
   }
 }

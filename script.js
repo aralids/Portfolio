@@ -1247,16 +1247,16 @@ function updateCellGrid() {
 
     document
       .getElementById('flip-card')
-      .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+      .setAttribute('onclick', "submit()")
 
     document
       .getElementById('cell-grid-project-1')
-      .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+      .setAttribute('onclick', "submit()")
     document.getElementById('cell-grid-project-1').style.cursor = 'pointer'
 
     document
       .getElementById('cell-grid-project-2')
-      .setAttribute('onclick', "window.open('https://google.com', '_blank')")
+      .setAttribute('onclick', "submit()")
     document.getElementById('cell-grid-project-2').style.cursor = 'pointer'
 
     buttons = document.querySelectorAll('button')

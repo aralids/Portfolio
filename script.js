@@ -1555,15 +1555,23 @@ function hideProjects() {
 function onSubmitAction(event) {
   event.preventDefault()
   console.log('Here SUBMIT')
-  if (document.getElementById('username').value === 'alnatura') {
+  if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'alnatura') {
     console.log('alnatura')
     document.getElementById('logo_alnatura2').style.opacity = '1'
     document.getElementById('logo_classic').style.opacity = '0'
     changeColorPalette('alnatura')
-  } else {
+    document.getElementById('login-form').style.visibility = 'hidden'
+    document.getElementById('login-form').style.opacity = '0'
+    document.getElementById('login-form').style.maxHeight = '0'
+    document.getElementById('submit-button').setAttribute('value', 'Log out')
+  } else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
     changeColorPalette('classic')
+    document.getElementById('login-form').style.visibility = 'visible'
+    document.getElementById('login-form').style.opacity = '1'
+    document.getElementById('login-form').style.maxHeight = '1000px'
+    document.getElementById('submit-button').setAttribute('value', 'Submit')
   }
 }
 

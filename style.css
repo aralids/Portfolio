@@ -361,6 +361,12 @@ button {
   width: 24%;
   margin-top: 15px;
   height: fit-content;
+  
+  visibility: visible;
+  opacity: 1;
+  max-height: 1000px;
+  
+  transition: all 0.6s ease;
 }
 
 #mock-form {

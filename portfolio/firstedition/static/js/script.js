@@ -4,6 +4,10 @@ let gridWidth = 21
 livingStates = ['dead', 'alive']
 cellGrids = ['cell-grid-main', 'cell-grid-project-1', 'cell-grid-project-2']
 
+document.getElementById('cell-grid-project-1').addEventListener('click', function() {
+  submit('temple')
+});
+
 function Grid(gridId) {
   this.gridId = gridId
   this.scheme = []
@@ -1580,6 +1584,16 @@ function changeColorPalette(theme) {
   document.documentElement.className = theme
 }
 
-function submit() {
-  document.getElementById("hidden-button").click();
+function submit(project) {
+  if (project === 'temple') {
+    document.getElementById('login-form').setAttribute('action', 'temple')
+    console.log("temple")
+  } else if (project === 'gastroobscura') {
+    document.getElementById('login-form').setAttribute('action', 'gastroobscura/')
+  } else if (project === 'vitamins') {
+    document.getElementById('login-form').setAttribute('action', 'vitamins/')
+  }
+  
+  console.log("1")
+  document.getElementById('hidden-button').click()
 }

@@ -15,7 +15,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dilara Sarach: Portfolio</title>
-    <link rel="icon" href="logo.svg" />
+    <link rel="icon" href="{% static 'img/logo.svg' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,6 +85,7 @@
             action=""
             method="post"
           >
+          {% csrf_token %}
             <input type="text" id="username" placeholder="username from CV" />
             <input type="password" id="password" placeholder="password from CV" />
             <input id="hidden-button" type="submit" value="Submit" />
@@ -113,7 +114,7 @@
           </h2>
           <p></p>
           <section id="projects-list">
-            <section id="project-1" class="project" onclick="submit()">
+            <section id="project-1" class="project">
               <p class="project-name">
                 My fridge is a temple...
               </p>
@@ -124,7 +125,7 @@
                 </p>
               </section>
             </section>
-            <section id="project-2" class="project" onclick="submit()">
+            <section id="project-2" class="project" onclick="submit('gastroobscura')">
               <p class="project-name">
                 Gastro Obscura
               </p>
@@ -135,7 +136,7 @@
                 </p>
               </section>
             </section>
-            <section id="project-3" class="project" onclick="submit()">
+            <section id="project-3" class="project" onclick="submit('vitamins')">
               <p class="project-name">
                 Casino Vitamins
               </p>

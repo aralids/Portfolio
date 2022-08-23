@@ -1,15 +1,35 @@
+/* FREQUENTLY UTILIZED VARIABLES */
+
 let gridHeight = 21
 let gridWidth = 21
 
+let htmlLoginForm = document.getElementById('login-form')
 let htmlFlipCard = document.getElementById('flip-card')
 let htmlFlipCardInner = document.getElementById('flip-card-inner')
 let htmlCellGridMain = document.getElementById('cell-grid-main')
 let htmlCellGridProject1 = document.getElementById('cell-grid-project-1')
 let htmlCellGridProject2 = document.getElementById('cell-grid-project-2')
 
-
 livingStates = ['dead', 'alive']
 cellGrids = ['cell-grid-main', 'cell-grid-project-1', 'cell-grid-project-2']
+
+let viewportHeight = window.innerHeight * (4 / 5)
+let viewportHeightFraction = viewportHeight / 7
+
+let welcome = 0
+let aboutMe = viewportHeight
+let projects = viewportHeight * 2
+let contact = viewportHeight * 3
+
+var rect = htmlCellGridMain.getBoundingClientRect()
+var myInterval
+
+let currentScrollSection = 0
+let cardFlipped = 0
+
+/* FREQUENTLY UTILIZED VARIABLES */
+
+/* CLASSES */
 
 function Grid(gridId) {
   this.gridId = gridId
@@ -64,6 +84,8 @@ function Grid(gridId) {
 function GridImage(scheme) {
   this.scheme = scheme
 }
+
+/* CLASSES */
 
 /* GRID COLOR SCHEMES */
 
@@ -124,14 +146,10 @@ let cgmQrCodeNum = [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 
 
 let cgmQrCode = stringifyScheme(cgmQrCodeNum)
 
-let schemeCurrentExample = [
-  'white-cell',
-  'orange-cell',
-  'purple-cell',
-  'white-cell',
-]
-
 /* -- GRID COLOR SCHEMES -- */
+
+/* SETTING UP THE STAGE FOR updateCellGrid() */
+
 cellGridMain = new Grid('cell-grid-main')
 cellGridMain.initialize(cgmQrCode, 'dead')
 cellGridProject2 = new Grid('cell-grid-project-2')
@@ -140,14 +158,6 @@ cellGridProject2.makeInvisible()
 cellGridProject1 = new Grid('cell-grid-project-1')
 cellGridProject1.initialize(cgmQrCode, 'alive')
 cellGridProject1.makeInvisible()
-
-let viewportHeight = window.innerHeight * (4 / 5)
-let viewportHeightFraction = viewportHeight / 7
-
-let welcome = 0
-let aboutMe = viewportHeight
-let projects = viewportHeight * 2
-let contact = viewportHeight * 3
 
 window.onkeydown = function () {
   updateCellGrid()
@@ -159,9 +169,7 @@ document.getElementById('main').onmousewheel = function () {
   updateCellGrid()
 }
 
-var rect = htmlCellGridMain.getBoundingClientRect()
 resurrect('cell-grid-main-cell-4-4')
-var myInterval
 function startInterval(x) {
   if (myInterval) {
     clearInterval(myInterval)
@@ -172,13 +180,12 @@ function startInterval(x) {
 }
 startInterval(1500)
 
-let currentScrollSection = 0
-let cardFlipped = 0
-function updateCellGrid() {
-  var winScroll =
-    document.getElementById('information').scrollTop ||
-    document.documentElement.scrollTop
+/* SETTING UP THE STAGE FOR updateCellGrid() */
 
+/* FUNCTIONS */
+
+function updateCellGrid() {
+  var winScroll = document.getElementById('information').scrollTop || document.documentElement.scrollTop
   /* WELCOME */
   if (winScroll == welcome) {
     hideProjects()
@@ -195,7 +202,6 @@ function updateCellGrid() {
       startInterval(1500)
     }
   }
-
   /* WELCOME */
   if (winScroll > welcome) {
     clearInterval(myInterval)
@@ -350,10 +356,9 @@ function updateCellGrid() {
     winScroll < aboutMe + viewportHeightFraction * 6
   ) {
     hideProjects()
-    document.getElementById("cell-grid-main").removeAttribute("onclick")
-    document.getElementById("cell-grid-project-1").removeAttribute("onclick")
-    document.getElementById("cell-grid-project-2").removeAttribute("onclick")
-
+    htmlCellGridMain.removeAttribute("onclick")
+    htmlCellGridProject1.removeAttribute("onclick")
+    htmlCellGridProject2.removeAttribute("onclick")
 
     htmlFlipCard.removeAttribute('onclick')
     htmlFlipCard.style.cursor = 'default'
@@ -385,27 +390,12 @@ function updateCellGrid() {
     changeRandomCells(1, 0, 'dead')
 
     htmlFlipCard.style.left = 'calc(90% - 322px)'
-    htmlCellGridProject1.style.left =
-      'calc(66% - 322px)'
-    htmlCellGridProject1.style.boxShadow =
-      '0px 0px 20px 5px #A9A9A9'
-    htmlCellGridProject2.style.left =
-      'calc(78% - 322px)'
-    htmlCellGridProject2.style.boxShadow =
-      '0px 0px 20px 5px #A9A9A9'
+    htmlCellGridProject1.style.left = 'calc(66% - 322px)'
+    htmlCellGridProject1.style.boxShadow = '0px 0px 20px 5px #A9A9A9'
+    htmlCellGridProject2.style.left = 'calc(78% - 322px)'
+    htmlCellGridProject2.style.boxShadow = '0px 0px 20px 5px #A9A9A9'
 
-    document
-      .getElementById('flip-card')
-      .setAttribute('onclick', "submit()")
-
-    document
-      .getElementById('cell-grid-project-1')
-      .setAttribute('onclick', "submit()")
     htmlCellGridProject1.style.cursor = 'pointer'
-
-    document
-      .getElementById('cell-grid-project-2')
-      .setAttribute('onclick', "submit()")
     htmlCellGridProject2.style.cursor = 'pointer'
 
     buttons = document.querySelectorAll('button')
@@ -413,14 +403,12 @@ function updateCellGrid() {
       item.style.cursor = 'pointer'
     })
 
-    document.getElementById("cell-grid-project-1").setAttribute("onclick", "submit('temple')")
-    document.getElementById("cell-grid-project-2").setAttribute("onclick", "submit('gastroobscura')")
-    document.getElementById("cell-grid-main").setAttribute("onclick", "submit('vitamins')")
+    htmlCellGridProject1.setAttribute("onclick", "submit('temple')")
+    htmlCellGridProject2.setAttribute("onclick", "submit('gastroobscura')")
+    htmlCellGridMain.setAttribute("onclick", "submit('vitamins')")
     document.getElementById("project-1").setAttribute("onclick", "submit('temple')")
     document.getElementById("project-2").setAttribute("onclick", "submit('gastroobscura')")
     document.getElementById("project-3").setAttribute("onclick", "submit('vitamins')")
-
-
     currentScrollSection = 2
   }
 
@@ -431,9 +419,9 @@ function updateCellGrid() {
     winScroll < projects + viewportHeightFraction * 2
   ) {
     hideProjects()
-    document.getElementById("cell-grid-main").removeAttribute("onclick")
-    document.getElementById("cell-grid-project-1").removeAttribute("onclick")
-    document.getElementById("cell-grid-project-2").removeAttribute("onclick")
+    htmlCellGridMain.removeAttribute("onclick")
+    htmlCellGridProject1.removeAttribute("onclick")
+    htmlCellGridProject2.removeAttribute("onclick")
     if (currentScrollSection < 2.16) {
       htmlFlipCard.removeAttribute('onclick')
       htmlFlipCard.style.cursor = 'default'
@@ -592,11 +580,6 @@ function changeRandomCells(fraction = 0, numCells = 0, currentLivingState) {
   } else {
     n = numCells
   }
-  console.log('array: ', array)
-  console.log('array length: ', array.length)
-  console.log('fraction: ', fraction)
-  console.log('array length / fraction: ', Math.floor(array.length / fraction))
-  console.log(n)
   for (let i = 0; i < n; i++) {
     let randomItemId = Math.floor(Math.random() * array.length)
     let randomItem = array[randomItemId]
@@ -651,16 +634,9 @@ function gameOfLife() {
       let cellBottomLeft = document.getElementById(idBottomLeft)
       let cellBottomRight = document.getElementById(idBottomRight)
 
-      let neighbours = [
-        cellTopLeft,
-        cellTop,
-        cellTopRight,
-        cellLeft,
-        cellRight,
-        cellBottomLeft,
-        cellBottom,
-        cellBottomRight,
-      ]
+      let neighbours = [cellTopLeft, cellTop, cellTopRight,
+        cellLeft, cellRight,
+        cellBottomLeft, cellBottom, cellBottomRight]
       let aliveNeighbours = neighbours
         .map((item) => item.classList[4])
         .map((item) => (item === 'alive' ? 1 : 0))
@@ -669,7 +645,6 @@ function gameOfLife() {
           0,
         )
       if (aliveNeighbours > 0) {
-        console.log(id)
       }
       if (cell.classList[4] === 'alive') {
         if (aliveNeighbours < 2 || aliveNeighbours > 3) {
@@ -688,15 +663,13 @@ function gameOfLife() {
   for (let i of newlyDead) {
     kill(i)
   }
-  console.log('11:11')
 }
 
 function flipCard() {
   cellGridProject1.makeInvisible()
   cellGridProject2.makeInvisible()
   if (cardFlipped === 0) {
-    htmlFlipCardInner.style.transform =
-      'rotateY(180deg)'
+    htmlFlipCardInner.style.transform = 'rotateY(180deg)'
     cardFlipped = 1
   } else {
     htmlFlipCardInner.style.transform = ''
@@ -714,24 +687,22 @@ function hideProjects() {
 
 function onSubmitAction(event) {
   event.preventDefault()
-  console.log('Here SUBMIT')
   if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'alnatura') {
-    console.log('alnatura')
     document.getElementById('logo_alnatura2').style.opacity = '1'
     document.getElementById('logo_classic').style.opacity = '0'
     changeColorPalette('alnatura')
-    document.getElementById('login-form').style.visibility = 'hidden'
-    document.getElementById('login-form').style.opacity = '0'
-    document.getElementById('login-form').style.maxHeight = '0'
+    htmlLoginForm.style.visibility = 'hidden'
+    htmlLoginForm.style.opacity = '0'
+    htmlLoginForm.style.maxHeight = '0'
     document.getElementById('submit-button').setAttribute('value', 'Log out')
   } else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
     changeColorPalette('classic')
     
-    document.getElementById('login-form').style.opacity = '1'
-    document.getElementById('login-form').style.visibility = 'visible'
-    document.getElementById('login-form').style.maxHeight = '50px'
+    htmlLoginForm.style.opacity = '1'
+    htmlLoginForm.style.visibility = 'visible'
+    htmlLoginForm.style.maxHeight = '50px'
     document.getElementById('submit-button').setAttribute('value', 'Submit')
   }
 }
@@ -742,14 +713,13 @@ function changeColorPalette(theme) {
 
 function submit(project) {
   if (project === 'temple') {
-    document.getElementById('login-form').setAttribute('action', 'temple')
-    console.log("temple")
+    htmlLoginForm.setAttribute('action', 'temple')
   } else if (project === 'gastroobscura') {
-    document.getElementById('login-form').setAttribute('action', 'gastroobscura')
+    htmlLoginForm.setAttribute('action', 'gastroobscura')
   } else if (project === 'vitamins') {
-    document.getElementById('login-form').setAttribute('action', 'vitamins')
+    htmlLoginForm.setAttribute('action', 'vitamins')
   }
-  
-  console.log("1")
   document.getElementById('hidden-button').click()
 }
+
+/* FUNCTIONS */

@@ -4,10 +4,6 @@ let gridWidth = 21
 livingStates = ['dead', 'alive']
 cellGrids = ['cell-grid-main', 'cell-grid-project-1', 'cell-grid-project-2']
 
-document.getElementById('cell-grid-project-1').addEventListener('click', function() {
-  submit('temple')
-});
-
 function Grid(gridId) {
   this.gridId = gridId
   this.scheme = []
@@ -1210,6 +1206,11 @@ function updateCellGrid() {
     winScroll < aboutMe + viewportHeightFraction * 6
   ) {
     hideProjects()
+    document.getElementById("cell-grid-main").removeAttribute("onclick")
+    document.getElementById("cell-grid-project-1").removeAttribute("onclick")
+    document.getElementById("cell-grid-project-2").removeAttribute("onclick")
+
+
     document.getElementById('flip-card').removeAttribute('onclick')
     document.getElementById('flip-card').style.cursor = 'default'
     document.getElementById('cell-grid-project-1').removeAttribute('onclick')
@@ -1268,6 +1269,14 @@ function updateCellGrid() {
       item.style.cursor = 'pointer'
     })
 
+    document.getElementById("cell-grid-project-1").setAttribute("onclick", "submit('temple')")
+    document.getElementById("cell-grid-project-2").setAttribute("onclick", "submit('gastroobscura')")
+    document.getElementById("cell-grid-main").setAttribute("onclick", "submit('vitamins')")
+    document.getElementById("project-1").setAttribute("onclick", "submit('temple')")
+    document.getElementById("project-2").setAttribute("onclick", "submit('gastroobscura')")
+    document.getElementById("project-3").setAttribute("onclick", "submit('vitamins')")
+
+
     currentScrollSection = 2
   }
 
@@ -1278,6 +1287,9 @@ function updateCellGrid() {
     winScroll < projects + viewportHeightFraction * 2
   ) {
     hideProjects()
+    document.getElementById("cell-grid-main").removeAttribute("onclick")
+    document.getElementById("cell-grid-project-1").removeAttribute("onclick")
+    document.getElementById("cell-grid-project-2").removeAttribute("onclick")
     if (currentScrollSection < 2.16) {
       document.getElementById('flip-card').removeAttribute('onclick')
       document.getElementById('flip-card').style.cursor = 'default'
@@ -1589,9 +1601,9 @@ function submit(project) {
     document.getElementById('login-form').setAttribute('action', 'temple')
     console.log("temple")
   } else if (project === 'gastroobscura') {
-    document.getElementById('login-form').setAttribute('action', 'gastroobscura/')
+    document.getElementById('login-form').setAttribute('action', 'gastroobscura')
   } else if (project === 'vitamins') {
-    document.getElementById('login-form').setAttribute('action', 'vitamins/')
+    document.getElementById('login-form').setAttribute('action', 'vitamins')
   }
   
   console.log("1")

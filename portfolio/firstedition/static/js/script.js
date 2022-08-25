@@ -409,6 +409,7 @@ function updateCellGrid() {
     document.getElementById("project-1").setAttribute("onclick", "submit('temple')")
     document.getElementById("project-2").setAttribute("onclick", "submit('gastroobscura')")
     document.getElementById("project-3").setAttribute("onclick", "submit('vitamins')")
+    
     currentScrollSection = 2
   }
 

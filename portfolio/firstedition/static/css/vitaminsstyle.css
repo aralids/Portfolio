@@ -1,0 +1,65 @@
+:root,
+:root.classic {
+  --main-bg-color: #454541;
+  --main-color: #b80000;
+  --main-accent-color: #00d455;
+  --secondary-accent-color: red;
+  --font-color: #ffe680;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+}
+:root.alnatura {
+  --main-bg-color: #fffef4;
+  --main-color: #76344d; 
+  --main-accent-color: #454541;
+  --secondary-accent-color: #b5ce34;
+  --font-color: #ef7c00;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* width: ;*/
+    /* justify-content: ; */
+    /* align-items: ; */
+    /* max-height: ; */
+    background-color: #00d455;
+  }
+  
+
+header {
+    height: 10%;
+    /* flex-direction: ;*/
+    /* width: ;*/
+    /* justify-content: ; */
+    /* align-items: ; */
+    /* max-height: ; */
+  
+    background-color: #fff;
+    border-bottom: 0.1px solid whitesmoke;
+  }
+
+main {
+    height: 90%;
+    background-color: #b5ce34;
+}
+
+footer {
+    height: 10%;
+    background-color: #76344d;
+  }
+

@@ -21,6 +21,10 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1vw;
+  box-sizing: border-box;
+  color: #454541;
 }
 
 html {
@@ -37,29 +41,76 @@ body {
     /* justify-content: ; */
     /* align-items: ; */
     /* max-height: ; */
-    background-color: #00d455;
   }
   
 
 header {
+    display: flex;
     height: 10%;
     /* flex-direction: ;*/
     /* width: ;*/
     /* justify-content: ; */
     /* align-items: ; */
     /* max-height: ; */
-  
+    padding-top: 1.8px;
+    padding-bottom: 4px;
     background-color: #fff;
     border-bottom: 0.1px solid whitesmoke;
   }
 
 main {
     height: 90%;
-    background-color: #b5ce34;
 }
 
 footer {
     height: 10%;
-    background-color: #76344d;
+    border-top: 0.1px solid whitesmoke;
   }
 
+#logo {
+    position: relative;
+    width: 70px;
+    margin-left: 3%;
+}
+
+#logo > img {
+    height: 70px;
+}
+
+#logo_classic, #logo_alnatura2 {
+    position: absolute;
+}
+
+#disclaimer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+#logo_alnatura2 {
+    opacity: 0;
+}
+
+#reels {
+    margin-left: calc(6% + 70px);
+    margin-right: calc(6% + 70px);
+    display: flex;
+    height: 100%;
+}
+
+#reel-1, #reel-2, #reel-3 {
+    border-left: 35px solid whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    text-align: center;
+}
+
+#reel-3 {
+    border-right: 35px solid whitesmoke;
+}

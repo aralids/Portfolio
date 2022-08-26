@@ -11,4 +11,8 @@ $(document).ready(function (){
         }
         console.log($('#reel-1').scrollTop());
     })
+    for (let i = 0; i < 20; i++) {
+        let x = $('#reel-1').scrollTop();
+        $('#reel-1').animate({ scrollTop: (x + i*201.1) % 804.4 }, 1000);
+    }
 })

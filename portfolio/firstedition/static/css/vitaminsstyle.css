@@ -46,7 +46,7 @@ body {
 
 header {
     display: flex;
-    height: 10%;
+    height: 11%;
     /* flex-direction: ;*/
     /* width: ;*/
     /* justify-content: ; */
@@ -99,18 +99,42 @@ footer {
     height: 100%;
 }
 
-#reel-1, #reel-2, #reel-3 {
-    border-left: 35px solid whitesmoke;
+.reel {
+    background-color: whitesmoke;
+    border-left: 35px solid white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    height: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+    min-width: 31%;
 }
+
+.reel::-webkit-scrollbar {
+    display: none;
+  }
 
 p {
     text-align: center;
 }
 
 #reel-3 {
-    border-right: 35px solid whitesmoke;
+    border-right: 35px solid white;
+}
+
+#pfp {
+    width: 140px;
+}
+
+.slot {
+    border-bottom: 3px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 33.33%;
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+    
 }

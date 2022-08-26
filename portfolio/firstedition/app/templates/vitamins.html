@@ -8,6 +8,7 @@
         <link rel="icon" href="{% static 'img/logo.svg' %}" />
         <link rel="stylesheet" href="{% static 'css/vitaminsstyle.css'%}"/>
         <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;800&family=Signika&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -37,18 +38,93 @@
         </header>
         <main>
             <section id="reels">
-                <section id="reel-1">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                <section id="reel-1" class="reel">
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Shte se napiq i shte te zabravq.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Ne se naduhvai, lud shte te napravq.</p>
+                    </section>
+                    <section class="slot">
+                        <p>I kvo sega? Ne razbra kolko burzo moga da te zamenq.</p>
+                    </section>
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Shte se napiq i shte te zabravq.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Ne se naduhvai, lud shte te napravq.</p>
+                    </section>
                 </section>
-                <section id="reel-2">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                <section id="reel-2" class="reel">
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
                 </section>
-                <section id="reel-3">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                <section id="reel-3" class="reel">
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
                 </section>
             </section>
         </main>
         <footer>
         </footer>
+        <script src="{% static 'js/vitaminsscript.js' %}"></script>
     </body>
 </html>

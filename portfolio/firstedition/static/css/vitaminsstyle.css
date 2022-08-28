@@ -128,7 +128,6 @@ p {
 }
 
 .slot {
-    border-bottom: 3px solid #fff;
     display: flex;
     justify-content: center;
     align-items: center;

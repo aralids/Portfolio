@@ -106,14 +106,11 @@ footer {
     flex-direction: column;
     align-items: center;
     height: 100%;
-    overflow: scroll;
+    overflow: hidden;
     scrollbar-width: none;
     min-width: 31%;
 }
 
-.reel::-webkit-scrollbar {
-    display: none;
-  }
 
 p {
     text-align: center;
@@ -128,6 +125,7 @@ p {
 }
 
 .slot {
+    border-bottom: 3px solid #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,4 +134,14 @@ p {
     padding-left: 15%;
     padding-right: 15%;
     
+    animation: slide 5s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, -724px, 0); /* The image width */
+    }
 }

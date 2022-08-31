@@ -2,21 +2,26 @@ $(document).ready(function (){
     let slotHeight = $('.slot').outerHeight();
     let slotHeight4 = $('.slot').outerHeight()*4;
     let reel = $('.reel').outerHeight();
-    $('#reel-1').scrollTop(slotHeight);
-    console.log("slot: ", slotHeight)
-    console.log("slot x 4: ", slotHeight4)
-    console.log("reel: ", reel)
-    setInterval(function(){ 
-        if ($('#reel-1').scrollTop() < slotHeight) {
-            $('#reel-1').scrollTop($('#reel-1').scrollTop() + slotHeight4);
-            window.setTimeout(function () {
-                disableScroll = false;
-            }, 40);
+    let pastScroll = 0
+    let currentScroll = 0
+    
+    console.log($("#reel-1").scrollTop())
+    $('#reel-1').on('scroll', function() { 
+        pastScroll = currentScroll
+        if ($('#reel-1').scrollTop() <= slotHeight) {
+            $('#reel-1').scrollTop($('#reel-1').scrollTop() + slotHeight4 + 10);
         } else if ($('#reel-1').scrollTop() >= slotHeight * 5) {
-            $('#reel-1').scrollTop($('#reel-1').scrollTop() - slotHeight4);
-            window.setTimeout(function () {
-                disableScroll = false;
-            }, 40);
+            $('#reel-1').scrollTop($('#reel-1').scrollTop() - slotHeight * 4);
+            console.log("TRUE")
         }
-    }, 40);
+        currentScroll = $('#reel-1').scrollTop()
+        console.log($("#reel-1").scrollTop())
+        
+    });
+
+    console.log("Well, ", $("#reel-1").scrollTop())
 })
+
+function scrollUp() {
+    $('#reel-1').animate({scrollTop: 910}, 1000).animate({scrollTop: 200}, 800)
+}

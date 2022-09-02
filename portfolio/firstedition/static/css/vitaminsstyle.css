@@ -115,10 +115,6 @@ footer {
     display: none;
   }
 
-p {
-    text-align: center;
-}
-
 #reel-3 {
     border-right: 35px solid white;
 }
@@ -130,16 +126,18 @@ p {
 .slot {
     border-bottom: 3px solid #fff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     min-height: 33.33%;
     width: 100%;
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .spinning {
-    animation: slide 5s linear infinite;
+    overflow: hidden;
+    animation: slide 20s linear infinite;
 }
 
 @keyframes slide {

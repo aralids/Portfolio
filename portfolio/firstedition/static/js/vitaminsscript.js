@@ -1,27 +1,29 @@
 $(document).ready(function (){
     let slotHeight = $('.slot').outerHeight();
-    let slotHeight4 = $('.slot').outerHeight()*4;
-    let reel = $('.reel').outerHeight();
-    let pastScroll = 0
-    let currentScroll = 0
     
-    console.log($("#reel-1").scrollTop())
-    $('#reel-1').on('scroll', function() { 
-        pastScroll = currentScroll
-        if ($('#reel-1').scrollTop() <= slotHeight) {
-            $('#reel-1').scrollTop($('#reel-1').scrollTop() + slotHeight4 + 10);
-        } else if ($('#reel-1').scrollTop() >= slotHeight * 5) {
-            $('#reel-1').scrollTop($('#reel-1').scrollTop() - slotHeight * 4);
-            console.log("TRUE")
+    console.log($("#reel-2").scrollTop())
+    $('#reel-2').on('scroll', function() { 
+        if ($('#reel-2').scrollTop() < slotHeight) {
+            $('#reel-2').scrollTop($('#reel-2').scrollTop() + slotHeight * 4);
+        } else if ($('#reel-2').scrollTop() > slotHeight * 5) {
+            $('#reel-2').scrollTop($('#reel-2').scrollTop() - slotHeight * 4);
         }
-        currentScroll = $('#reel-1').scrollTop()
-        console.log($("#reel-1").scrollTop())
         
     });
 
-    console.log("Well, ", $("#reel-1").scrollTop())
-})
+    console.log($("#reel-3").scrollTop())
+    $('#reel-3').on('scroll', function() { 
+        if ($('#reel-3').scrollTop() < slotHeight) {
+            $('#reel-3').scrollTop($('#reel-3').scrollTop() + slotHeight * 4);
+        } else if ($('#reel-3').scrollTop() > slotHeight * 5) {
+            $('#reel-3').scrollTop($('#reel-3').scrollTop() - slotHeight * 4);
+        }
+        
+    });
 
-function scrollUp() {
-    $('#reel-1').animate({scrollTop: 910}, 1000).animate({scrollTop: 200}, 800)
-}
+    $('#reel-1').on('scroll touchmove mousewheel', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      })
+})

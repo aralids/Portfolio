@@ -1,0 +1,96 @@
+:root,
+:root.classic {
+  --main-bg-color: #454541;
+  --main-color: #b80000;
+  --main-accent-color: #00d455;
+  --secondary-accent-color: red;
+  --font-color: #ffe680;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+}
+:root.alnatura {
+  --main-bg-color: #fffef4;
+  --main-color: #76344d; 
+  --main-accent-color: #454541;
+  --secondary-accent-color: #b5ce34;
+  --font-color: #ef7c00;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1vw;
+  box-sizing: border-box;
+  color: #454541;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* width: ;*/
+    /* justify-content: ; */
+    /* align-items: ; */
+    /* max-height: ; */
+  }
+  
+
+header {
+    display: flex;
+    min-height: 75px;
+    /* flex-direction: ;*/
+    /* width: ;*/
+    /* justify-content: ; */
+    /* align-items: ; */
+    /* max-height: ; */
+    padding-top: 1.8px;
+    padding-bottom: 4px;
+    background-color: #fff;
+    border-bottom: 0.1px solid whitesmoke;
+  }
+
+main {
+  width: 100%;
+  height: calc(100% - 150px);
+}
+
+
+#logo {
+    position: relative;
+    width: 70px;
+    margin-left: 3%;
+}
+
+#logo > img {
+    height: 70px;
+}
+
+#logo_classic, #logo_alnatura2 {
+    position: absolute;
+}
+
+#disclaimer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+#logo_alnatura2 {
+    opacity: 0;
+}
+
+footer {
+    max-height: 75px;
+    min-height: 75px;
+    border-top: 0.1px solid whitesmoke;
+}

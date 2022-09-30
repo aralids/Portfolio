@@ -1,1 +1,45 @@
-<h1>Temple</h1>
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dilara Sarach: Symbols</title>
+        <link rel="icon" href="{% static 'img/logo.svg' %}" />
+        <link rel="stylesheet" href="{% static 'css/symbolsstyle.css'%}"/>
+        <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;800&family=Signika&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <section id="logo">
+                <img
+                src="{% static 'img/logo.svg' %}"
+                alt="Logo"
+                id="logo_classic"
+                class="opaque"
+                draggable="false"
+                onmousedown="return false"
+                style="user-drag: none;"
+                />
+                <img
+                src="{% static 'img/logo_alnatura2.svg' %}"
+                alt="Logo"
+                id="logo_alnatura2"
+                class="transparent"
+                draggable="false"
+                onmousedown="return false"
+                style="user-drag: none;"
+                />
+            </section>
+            <section id="disclaimer">
+            </section>
+        </header>
+        <main id="main">
+            <canvas id="canvas" width="3000" height="3000"></canvas>
+        </main>
+        <footer>
+        </footer>
+        <script src="{% static 'js/symbolsscript.js' %}"></script>
+    </body>
+</html>

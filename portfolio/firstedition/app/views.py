@@ -3,14 +3,18 @@ from django.template import loader
 from django.urls import reverse
 
 def index(request):
-  template = loader.get_template('index.html')
+  template = loader.get_template('app/index.html')
   return HttpResponse(template.render({}, request))
 def temple(request):
-  template = loader.get_template('temple.html')
+  user = request.POST['username']
+  if user == 'alnatura':
+    template = loader.get_template('app/temple.html')
+  else:
+    template = loader.get_template('app/gastroobscura.html')
   return HttpResponse(template.render({}, request))
 def gastroobscura(request):
-  template = loader.get_template('gastroobscura.html')
+  template = loader.get_template('app/gastroobscura.html')
   return HttpResponse(template.render({}, request))
 def vitamins(request):
-  template = loader.get_template('vitamins.html')
+  template = loader.get_template('app/vitamins.html')
   return HttpResponse(template.render({}, request))

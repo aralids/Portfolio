@@ -714,11 +714,10 @@ function changeColorPalette(theme) {
 
 function submit(project) {
   if (project === 'temple') {
-    htmlLoginForm.setAttribute('action', 'temple')
   } else if (project === 'gastroobscura') {
-    htmlLoginForm.setAttribute('action', 'gastroobscura')
+    htmlLoginForm.setAttribute('action', 'gastroobscura/')
   } else if (project === 'vitamins') {
-    htmlLoginForm.setAttribute('action', 'vitamins')
+    htmlLoginForm.setAttribute('action', 'vitamins/')
   }
   document.getElementById('hidden-button').click()
 }

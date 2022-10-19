@@ -1,17 +1,14 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from django.shortcuts import render
 
 def index(request):
   template = loader.get_template('app/index.html')
   return HttpResponse(template.render({}, request))
 def temple(request):
   user = request.POST['username']
-  if user == 'alnatura':
-    template = loader.get_template('app/temple.html')
-  else:
-    template = loader.get_template('app/gastroobscura.html')
-  return HttpResponse(template.render({}, request))
+  return render(request, 'app/temple.html', {'user': user})
 def gastroobscura(request):
   template = loader.get_template('app/gastroobscura.html')
   return HttpResponse(template.render({}, request))

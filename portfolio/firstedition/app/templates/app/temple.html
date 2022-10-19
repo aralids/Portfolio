@@ -14,7 +14,11 @@
         <header>
             <section id="logo">
                 <img
-                src="{% static 'img/logo.svg' %}"
+                {% if user == 'alnatura' %}
+                    src="{% static 'img/logo_alnatura2.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo.svg' %}"
+                {% endif %}
                 alt="Logo"
                 id="logo_classic"
                 class="opaque"

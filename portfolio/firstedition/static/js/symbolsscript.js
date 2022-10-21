@@ -3,6 +3,7 @@ const main = document.getElementById("main");
 canvas.height = main.offsetHeight;
 canvas.width = main.offsetWidth;
 const ctx = canvas.getContext("2d");
+let drawing = [];
 
 let prevX = null
 let prevY = null
@@ -48,11 +49,31 @@ window.addEventListener("mousemove", (e) => {
     let currentX = e.clientX
     let currentY = e.clientY - 75
 
+    drawing.push([ctx.strokeStyle, ctx.lineWidth, prevX, prevY, currentX, currentY]);
+
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
     ctx.lineTo(currentX, currentY)
     ctx.stroke()
 
+    console.log('drawing: ', drawing);
+   
     prevX = currentX
     prevY = currentY
 })
+
+function highlightEntry(e) {
+    let entryClass = e.classList[0];
+    let list = document.querySelectorAll(`.${entryClass}`);
+    for (path of list) {
+        path.classList.add("highlighted");
+    }
+}
+
+function unhighlightEntry(e) {
+    let entryClass = e.classList[0];
+    let list = document.querySelectorAll(`.${entryClass}`);
+    for (path of list) {
+        path.classList.remove("highlighted");
+    }
+}

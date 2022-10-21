@@ -14,7 +14,7 @@
         <header>
             <section id="logo">
                 <img
-                {% if user == 'alnatura' %}
+                {% if username == 'alnatura' %}
                     src="{% static 'img/logo_alnatura2.svg' %}"
                 {% else  %}
                     src="{% static 'img/logo.svg' %}"
@@ -50,7 +50,20 @@
                 <button class="clear">clear</button>
                 <button class="save">save</button>
             </div>
-            <canvas id="canvas" width="3000" height="3000"></canvas>
+            
+            <canvas id="canvas" width="3000" height="3000">
+            </canvas>
+            {% if entry %}
+                <svg class="svg" height="210" width="400"> 
+                    <path d="M150 0 L75 400" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
+                    <path d="M0 150 L200 75" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
+                </svg>
+                <h1>
+                    {{ entry }}
+                </h1>
+            {% else %}
+                <svg class="svg" height="210" width="400"> <path d="M150 0 L75 200" style="fill:#000;stroke:#000;stroke-width:5" /> </svg>
+            {% endif %}
         </main>
         <footer>
         </footer>

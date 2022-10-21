@@ -53,17 +53,16 @@
             
             <canvas id="canvas" width="3000" height="3000">
             </canvas>
-            {% if entry %}
+            {% for entry in entries %}
                 <svg class="svg" height="210" width="400"> 
-                    <path d="M150 0 L75 400" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
-                    <path d="M0 150 L200 75" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
+                    {% for path in paths %}
+                    <path d="M{{ path.0 }} {{ path.1 }} {{ path.2 }} {{ path.3 }}" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
+                    {% endfor %}
                 </svg>
                 <h1>
-                    {{ entry }}
+                    {{ paths }}
                 </h1>
-            {% else %}
-                <svg class="svg" height="210" width="400"> <path d="M150 0 L75 200" style="fill:#000;stroke:#000;stroke-width:5" /> </svg>
-            {% endif %}
+            {% endfor %}
         </main>
         <footer>
         </footer>

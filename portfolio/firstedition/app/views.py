@@ -10,9 +10,16 @@ def index(request):
 def temple(request):
   username = request.POST['username']
   user = User.objects.get(username='')
-  first_entry = user.entry_set.all()[4]
-  first_entry_line_list = first_entry.drawing.split()
-  return render(request, 'app/temple.html', {'username': '', 'entry': int(first_entry_line_list[0])})
+  entries = user.entry_set.all()
+  for entry in entries:
+    drawing = entry.drawing
+    drawing_list = drawing.split()
+    drawing_list = [int(parameter) for parameter in drawing_list]
+    paths = []
+    for i in range(0, len(drawing_list), 4):
+      path = drawing_list[i:i+4]
+      paths.append(path)
+  return render(request, 'app/temple.html', {'username': '', 'entries': entries, 'paths': paths})
 def gastroobscura(request):
   template = loader.get_template('app/gastroobscura.html')
   return HttpResponse(template.render({}, request))

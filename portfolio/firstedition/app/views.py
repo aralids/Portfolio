@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import User, Entry
 from datetime import datetime
 import time
@@ -14,7 +15,6 @@ def update(request):
   user = User.objects.get(username='')
   entries = user.entry_set.all()
   for entry in entries:
-    print("Entry: ", entry)
     drawing = entry.drawing
     drawing_list = drawing.split()
     drawing_list = [int(parameter) for parameter in drawing_list]
@@ -29,7 +29,7 @@ def update(request):
     obj.drawing += request.POST.get('line')
     obj.save()
     print(request.POST.get('line'))
-    return HttpResponseRedirect('/app/temple/')
+    return HttpResponse('')
 
 def temple(request):
   username = ''

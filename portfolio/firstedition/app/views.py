@@ -26,10 +26,16 @@ def update(request):
     obj, created = user.entry_set.get_or_create(day=datetime.today().strftime('%Y-%m-%d'))
     if created:
       obj.save()
-    obj.drawing += request.POST.get('line')
-    obj.save()
-    print(request.POST.get('line'))
-    return HttpResponse('')
+    new_line = request.POST.get('line')
+    new_line_list = new_line.split()
+    response = ''
+    for i in range(0, len(new_line_list), 4):
+      four = ' '.join(new_line_list[i:i+4])
+      if not (four in obj.drawing):
+        obj.drawing += four + " "
+        obj.save()
+        response += four + " "
+  return HttpResponse(response)
 
 def temple(request):
   username = ''

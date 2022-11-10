@@ -67,8 +67,7 @@ window.addEventListener("mousemove", (e) => {
     let currentX = e.clientX
     let currentY = e.clientY - 75
 
-    drawing = `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
-    console.log(drawing);
+    drawing += `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
 
 
     $.ajax({
@@ -80,7 +79,8 @@ window.addEventListener("mousemove", (e) => {
             "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
         },
         success: function (response) {
-            console.log("success", drawing);
+            console.log("success", response);
+            drawing = response;
         },
         error: function (response) {
             console.log("ERROR", response);

@@ -15,7 +15,7 @@ class Entry(models.Model):
     drawing = models.TextField()
 
     def __str__(self):
-        return str(self.day) + ", user: " + str(self.user.id)
+        return str(self.day) + ", user: " + str(self.user.id) + ", drawing: " + str(self.drawing)
 
 class Associations(models.Model):
     entry = models.ForeignKey(Entry, on_delete=models.CASCADE)

@@ -3,7 +3,7 @@ const main = document.getElementById("main");
 canvas.height = main.offsetHeight;
 canvas.width = main.offsetWidth;
 const ctx = canvas.getContext("2d");
-let drawing = [];
+let drawing = "";
 
 let prevX = null
 let prevY = null
@@ -49,14 +49,47 @@ window.addEventListener("mousemove", (e) => {
     let currentX = e.clientX
     let currentY = e.clientY - 75
 
-    drawing.push([ctx.strokeStyle, ctx.lineWidth, prevX, prevY, currentX, currentY]);
+    drawing = `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
+
+    let address = $("#canvas").attr("data-url");
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    $.ajax({
+        type: 'POST',
+        url: address,
+        data: {line: drawing},
+        datatype: "text",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+        },
+        success: function (response) {
+            console.log("success", drawing);
+        },
+        error: function (response) {
+            console.log("ERROR", response["responseJSON"]["error"]);
+        }
+    })
 
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
     ctx.lineTo(currentX, currentY)
     ctx.stroke()
-
-    console.log('drawing: ', drawing);
    
     prevX = currentX
     prevY = currentY

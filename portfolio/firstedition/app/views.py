@@ -38,7 +38,7 @@ def update(request):
   return HttpResponse(response)
 
 def temple(request):
-  username = ''
+  u = request.POST.get("username")
   user = User.objects.get(username='')
   entries = user.entry_set.all()
   paths = []
@@ -49,14 +49,14 @@ def temple(request):
     for i in range(0, len(drawing_list), 4):
       path = drawing_list[i:i+4]
       paths.append(path)
-  return render(request, 'app/temple.html', {'username': '',
-                                             'entries': entries,
-                                             'paths': paths})
+  return render(request, 'app/temple.html', {'entries': entries,
+                                             'paths': paths,
+                                             'username': ''})
 
 def gastroobscura(request):
-  template = loader.get_template('app/gastroobscura.html')
-  return HttpResponse(template.render({}, request))
+  u = request.POST.get("username")
+  return render(request, 'app/gastroobscura.html', {'username': u})
 
 def vitamins(request):
-  template = loader.get_template('app/vitamins.html')
-  return HttpResponse(template.render({}, request))
+  u = request.POST.get("username")
+  return render(request, 'app/vitamins.html', {'username': u})

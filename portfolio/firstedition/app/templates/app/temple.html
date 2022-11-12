@@ -15,9 +15,9 @@
             <section id="logo">
                 <img
                 {% if username == 'alnatura' %}
-                    src="{% static 'img/logo_alnatura2.svg' %}"
-                {% else  %}
                     src="{% static 'img/logo.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo_alnatura2.svg' %}"
                 {% endif %}
                 alt="Logo"
                 id="logo_classic"
@@ -26,17 +26,6 @@
                 onmousedown="return false"
                 style="user-drag: none;"
                 />
-                <img
-                src="{% static 'img/logo_alnatura2.svg' %}"
-                alt="Logo"
-                id="logo_alnatura2"
-                class="transparent"
-                draggable="false"
-                onmousedown="return false"
-                style="user-drag: none;"
-                />
-            </section>
-            <section id="disclaimer">
             </section>
         </header>
         <main id="main">
@@ -59,9 +48,6 @@
                     <path d="M{{ path.0 }} {{ path.1 }} {{ path.2 }} {{ path.3 }}" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
                     {% endfor %}
                 </svg>
-                <h1>
-                    {{ paths }}
-                </h1>
             {% endfor %}
         </main>
         <footer>

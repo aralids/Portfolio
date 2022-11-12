@@ -61,7 +61,7 @@ header {
 main {
   width: 100%;
   height: calc(100% - 150px);
-  background-color: #76344d;
+  background-color: #fff;
 }
 
 
@@ -87,7 +87,7 @@ footer {
     max-height: 75px;
     min-height: 75px;
     border-top: 0.1px solid whitesmoke;
-    background-color: #00d455;
+    background-color: #fff;
 }
 
 .nav{
@@ -168,7 +168,7 @@ h1 {
 }
 
 .svg-path {
-  opacity: 0.5;
+  opacity: 0.1;
 }
 
 .highlighted {

@@ -1,3 +1,5 @@
+let mode = "viewing mode";
+
 const canvas = document.getElementById("canvas");
 const main = document.getElementById("main");
 canvas.height = main.offsetHeight;
@@ -19,9 +21,11 @@ clrs.forEach(clr => {
     })
 })
 
-let clearBtn = document.querySelector(".clear")
-clearBtn.addEventListener("click", () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+let drawingModeBtn = document.querySelector(".drawing-mode")
+drawingModeBtn.addEventListener("click", () => {
+    mode = "drawing mode";
+    console.log("mode1: ", mode);
+    drawingMode();
 })
 
 // Saving drawing as image
@@ -53,48 +57,52 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-window.addEventListener("mousedown", (e) => draw = true)
-window.addEventListener("mouseup", (e) => draw = false)
-let address = $("#canvas").attr("data-url");
+function drawingMode() {
+    console.log("mode: ", mode);
+    window.addEventListener("mousedown", (e) => draw = true)
+    window.addEventListener("mouseup", (e) => draw = false)
+    let address = $("#canvas").attr("data-url");
 
-window.addEventListener("mousemove", (e) => {
-    if(prevX == null || prevY == null || !draw){
-        prevX = e.clientX
-        prevY = e.clientY - 75
-        return
-    }
-
-    let currentX = e.clientX
-    let currentY = e.clientY - 75
-
-    drawing += `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
-
-
-    $.ajax({
-        method: 'POST',
-        url: address,
-        data: {line: drawing},
-        datatype: "text",
-        headers: {
-            "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
-        },
-        success: function (response) {
-            console.log("success", response);
-            drawing = response;
-        },
-        error: function (response) {
-            console.log("ERROR", response);
+    window.addEventListener("mousemove", (e) => {
+        if(prevX == null || prevY == null || !draw){
+            prevX = e.clientX
+            prevY = e.clientY - 75
+            return
         }
+
+        let currentX = e.clientX
+        let currentY = e.clientY - 75
+
+        drawing += `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
+
+
+        $.ajax({
+            method: 'POST',
+            url: address,
+            data: {line: drawing},
+            datatype: "text",
+            headers: {
+                "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
+            },
+            success: function (response) {
+                console.log("success", response);
+                drawing = response;
+            },
+            error: function (response) {
+                console.log("ERROR", response);
+            }
+        })
+
+        ctx.beginPath()
+        ctx.moveTo(prevX, prevY)
+        ctx.lineTo(currentX, currentY)
+        ctx.stroke()
+    
+        prevX = currentX
+        prevY = currentY
     })
 
-    ctx.beginPath()
-    ctx.moveTo(prevX, prevY)
-    ctx.lineTo(currentX, currentY)
-    ctx.stroke()
-   
-    prevX = currentX
-    prevY = currentY
-})
+}
 
 function highlightEntry(e) {
     let entryClass = e.getAttribute("date");

@@ -168,11 +168,11 @@ h1 {
 }
 
 .svg-path {
-  opacity: 0.1;
+  opacity: 1;
 }
 
-.highlighted {
-  opacity: 1;
+.unhighlighted {
+  opacity: 0.1;
 }
 
 

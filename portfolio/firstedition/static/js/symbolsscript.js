@@ -98,9 +98,9 @@ window.addEventListener("mousemove", (e) => {
 
 function highlightEntry(e) {
     let entryClass = e.getAttribute("date");
-    let list = document.querySelectorAll(`[date="${entryClass}"]`);
+    let list = document.querySelectorAll(`path:not([date="${entryClass}"])`);
     for (path of list) {
-        path.classList.add("highlighted");
+        path.classList.add("unhighlighted");
     }
     let today = new Date(); 
     let date =  today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -111,6 +111,6 @@ function unhighlightEntry(e) {
     let entryClass = e.classList[0];
     let list = document.querySelectorAll(`.${entryClass}`);
     for (path of list) {
-        path.classList.remove("highlighted");
+        path.classList.remove("unhighlighted");
     }
 }

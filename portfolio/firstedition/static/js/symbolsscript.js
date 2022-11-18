@@ -28,17 +28,14 @@ drawingModeBtn.addEventListener("click", () => {
     drawingMode();
 })
 
-// Saving drawing as image
-let saveBtn = document.querySelector(".save")
-saveBtn.addEventListener("click", () => {
-    let data = canvas.toDataURL("imag/png")
-    let a = document.createElement("a")
-    a.href = data
-    // what ever name you specify here
-    // the image will be saved as that name
-    a.download = "sketch.png"
-    a.click()
+let viewingModeBtn = document.querySelector(".viewing-mode")
+viewingModeBtn.addEventListener("click", () => {
+    mode = "viewing mode";
+    console.log("mode1: ", mode);
+    viewingMode();
 })
+
+
 
 function getCookie(name) {
     let cookieValue = null;
@@ -59,6 +56,11 @@ const csrftoken = getCookie('csrftoken');
 
 function drawingMode() {
     console.log("mode: ", mode);
+    let list = document.querySelectorAll(".svg-path");
+    for (path of list) {
+        path.removeAttribute("onmouseover");
+        path.removeAttribute("onmouseout");
+    }
     window.addEventListener("mousedown", (e) => draw = true)
     window.addEventListener("mouseup", (e) => draw = false)
     let address = $("#canvas").attr("data-url");
@@ -102,6 +104,15 @@ function drawingMode() {
         prevY = currentY
     })
 
+}
+
+function viewingMode() {
+    console.log("mode: ", mode);
+    let list = document.querySelectorAll(".svg-path");
+    for (path of list) {
+        path.setAttribute("onmouseover", "highlightEntry(this)");
+        path.setAttribute("onmouseout", "unhighlightEntry(this)");
+    }
 }
 
 function highlightEntry(e) {

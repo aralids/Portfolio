@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import User, Entry
-from datetime import datetime
+from datetime import datetime, date
 import time
 
 def index(request):
@@ -39,8 +39,10 @@ def update(request):
 
 def temple(request):
   u = request.POST.get("username")
-  user = User.objects.get(username='')
+  print("username: ", u)
+  user = User.objects.get(username=u)
   entries = user.entry_set.all()
+  log = {}
   paths = []
   for entry in entries:
     drawing = entry.drawing
@@ -49,9 +51,11 @@ def temple(request):
     for i in range(0, len(drawing_list), 4):
       path = drawing_list[i:i+4]
       paths.append(path)
-  return render(request, 'app/temple.html', {'entries': entries,
-                                             'paths': paths,
-                                             'username': ''})
+    log[entry.day] = paths
+    paths = []
+  print(log)
+  return render(request, 'app/temple.html', {'entries': log,
+                                             'username': u})
 
 def gastroobscura(request):
   u = request.POST.get("username")

@@ -102,6 +102,9 @@ function highlightEntry(e) {
     for (path of list) {
         path.classList.add("highlighted");
     }
+    let today = new Date(); 
+    let date =  today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    console.log(e.getAttribute("date"), date);
 }
 
 function unhighlightEntry(e) {

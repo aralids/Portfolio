@@ -15,9 +15,9 @@
             <section id="logo">
                 <img
                 {% if username == 'alnatura' %}
-                    src="{% static 'img/logo.svg' %}"
-                {% else  %}
                     src="{% static 'img/logo_alnatura2.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo.svg' %}"
                 {% endif %}
                 alt="Logo"
                 id="logo_classic"
@@ -42,13 +42,13 @@
             
             <canvas id="canvas" width="3000" height="3000" data-url="/app/update/">
             </canvas>
-            {% for entry in entries %}
                 <svg class="svg" height="210" width="400"> 
-                    {% for path in paths %}
-                    <path d="M{{ path.0 }} {{ path.1 }} {{ path.2 }} {{ path.3 }}" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)" />
+                {% for key,value in entries.items %}
+                    {% for path in value %}
+                    <path d="M{{ path.0 }} {{ path.1 }} {{ path.2 }} {{ path.3 }}" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" date={{ key|date:'Y-m-d' }} onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)"/>
                     {% endfor %}
+                {% endfor %}
                 </svg>
-            {% endfor %}
         </main>
         <footer>
         </footer>

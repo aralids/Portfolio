@@ -97,8 +97,8 @@ window.addEventListener("mousemove", (e) => {
 })
 
 function highlightEntry(e) {
-    let entryClass = e.classList[0];
-    let list = document.querySelectorAll(`.${entryClass}`);
+    let entryClass = e.getAttribute("date");
+    let list = document.querySelectorAll(`[date="${entryClass}"]`);
     for (path of list) {
         path.classList.add("highlighted");
     }

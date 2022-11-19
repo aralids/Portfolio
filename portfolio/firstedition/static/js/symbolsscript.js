@@ -31,7 +31,6 @@ drawingModeBtn.addEventListener("click", () => {
 
 let viewingModeBtn = document.querySelector(".viewing-mode")
 viewingModeBtn.addEventListener("click", () => {
-    mode = "viewing mode";
     console.log("mode1: ", mode);
     viewingMode();
 })
@@ -106,6 +105,21 @@ function drawingMode() {
 }
 
 function viewingMode(specificDate="") {
+    
+    let paths = document.querySelectorAll("path");
+    for (path of paths) {
+        path.classList.replace("highlighted-unmodifiable", "highlighted");
+        path.classList.replace("unhighlighted", "highlighted");
+        path.setAttribute("onmouseover", "unhighlightAllButEntry(this)");
+        path.setAttribute("onmouseout", "highlightAll()");
+    }
+
+    if (mode === "drawing mode") {
+        location.reload();
+    }
+
+    mode = "viewing mode";
+
     console.log("mode: ", mode);
     if (specificDate === "") {  
         let list = document.querySelectorAll(".svg-path");
@@ -115,9 +129,11 @@ function viewingMode(specificDate="") {
         }
     }
     else {
+
         let entryInstance = document.querySelector(`path[date="${specificDate}"]`);
         let entryInstances = document.querySelectorAll(`path[date="${specificDate}"]`);
         unhighlightAllButEntry(entryInstance, 1);
+        console.log("SSss: ", specificDate, entryInstance);
         for (path of entryInstances) {
             path.removeAttribute("onmouseover");
             path.removeAttribute("onmouseout");

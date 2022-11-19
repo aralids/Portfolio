@@ -194,3 +194,9 @@ function countClicks() {
         viewingMode(date);
     }
 }
+
+function showAssociations(entry) {
+    let entryDate = entry.getAttribute("date");
+    viewingMode(entryDate);
+    document.getElementById("input-date").value = entryDate;
+}

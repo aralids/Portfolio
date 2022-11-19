@@ -144,8 +144,9 @@ button{
   background-color: #03bb56;
   color: #fff;
 }
-.save{
-  background-color: #0f65d4;
+
+form {
+  width: 25%;
 }
 
 canvas {
@@ -167,12 +168,12 @@ h1 {
   color: #000;
 }
 
-.svg-path {
+.highlighted, .highlighted-unmodifiable {
   opacity: 1;
 }
 
 .unhighlighted {
-  opacity: 0.1;
+  opacity: 0.5;
 }
 
 

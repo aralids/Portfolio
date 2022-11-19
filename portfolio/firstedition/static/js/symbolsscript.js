@@ -1,4 +1,5 @@
 let mode = "viewing mode";
+let date = "2022-11-18";
 
 const canvas = document.getElementById("canvas");
 const main = document.getElementById("main");
@@ -34,8 +35,6 @@ viewingModeBtn.addEventListener("click", () => {
     console.log("mode1: ", mode);
     viewingMode();
 })
-
-
 
 function getCookie(name) {
     let cookieValue = null;
@@ -106,30 +105,76 @@ function drawingMode() {
 
 }
 
-function viewingMode() {
+function viewingMode(specificDate="") {
     console.log("mode: ", mode);
-    let list = document.querySelectorAll(".svg-path");
-    for (path of list) {
-        path.setAttribute("onmouseover", "highlightEntry(this)");
-        path.setAttribute("onmouseout", "unhighlightEntry(this)");
+    if (specificDate === "") {  
+        let list = document.querySelectorAll(".svg-path");
+        for (path of list) {
+            path.setAttribute("onmouseover", "unhighlightAllButEntry(this)");
+            path.setAttribute("onmouseout", "highlightAll()");
+        }
+    }
+    else {
+        let entryInstance = document.querySelector(`path[date="${specificDate}"]`);
+        let entryInstances = document.querySelectorAll(`path[date="${specificDate}"]`);
+        unhighlightAllButEntry(entryInstance, 1);
+        for (path of entryInstances) {
+            path.removeAttribute("onmouseover");
+            path.removeAttribute("onmouseout");
+        }
+        let nonEntryInstances = document.querySelectorAll(`path:not([date="${specificDate}"])`);
+        console.log("--UNHIGHLIGHT", nonEntryInstances)
+        for (path of nonEntryInstances) {
+            console.log("UNHIGHLIGHT")
+            path.setAttribute("onmouseover", "highlightEntry(this)");
+            path.setAttribute("onmouseout", "unhighlightAll()");
+        }
     }
 }
 
 function highlightEntry(e) {
-    let entryClass = e.getAttribute("date");
-    let list = document.querySelectorAll(`path:not([date="${entryClass}"])`);
+    let entryDate = e.getAttribute("date");
+    let list = document.querySelectorAll(`path[date="${entryDate}"]`);
     for (path of list) {
-        path.classList.add("unhighlighted");
+        path.classList.replace("unhighlighted", "highlighted");
+    }
+}
+
+function unhighlightAllButEntry(e, unmodifiable=0) {
+    let entryDate = e.getAttribute("date");
+    let list = document.querySelectorAll(`path:not([date="${entryDate}"])`);
+    for (path of list) {
+        path.classList.replace("highlighted", "unhighlighted");
+    }
+    if (unmodifiable) {
+        let list2 = document.querySelectorAll(`path[date="${entryDate}"]`);
+        for (path of list2) {
+            path.classList.replace("highlighted", "highlighted-unmodifiable");
+        }
     }
     let today = new Date(); 
     let date =  today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     console.log(e.getAttribute("date"), date);
 }
 
-function unhighlightEntry(e) {
-    let entryClass = e.classList[0];
-    let list = document.querySelectorAll(`.${entryClass}`);
+function highlightAll() {
+    let list = document.querySelectorAll(".unhighlighted");
     for (path of list) {
-        path.classList.remove("unhighlighted");
+        path.classList.replace("unhighlighted", "highlighted");
+    }
+}
+
+function unhighlightAll() {
+    let list = document.querySelectorAll(".highlighted");
+    for (path of list) {
+        path.classList.replace("highlighted", "unhighlighted");
+    }
+}
+
+function countClicks() {
+    date = document.getElementById("input-date").value;
+    console.log(date);
+    if (mode === "viewing mode") {
+        viewingMode(date);
     }
 }

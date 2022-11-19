@@ -38,14 +38,17 @@
                 <div class="clr" data-clr="#fff"></div>
                 <button class="drawing-mode">drawing mode</button>
                 <button class="viewing-mode">viewing mode</button>
+                <form>
+                    <input type="date" id="input-date" name="input-date" value="" onchange="countClicks()">
+                </form>
             </div>
             
-            <canvas id="canvas" width="3000" height="3000" data-url="/app/update/">
+            <canvas id="canvas" width="3000" height="3000" data-url="/app/update/" data-url-temple="/app/temple">
             </canvas>
                 <svg class="svg" height="210" width="400"> 
                 {% for key,value in entries.items %}
                     {% for path in value %}
-                    <path d="M{{ path.0 }} {{ path.1 }} {{ path.2 }} {{ path.3 }}" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path" date={{ key|date:'Y-m-d' }} onmouseover="highlightEntry(this)" onmouseout="unhighlightEntry(this)"/>
+                    <path d="M{{ path.0 }} {{ path.1 }} {{ path.2 }} {{ path.3 }}" style="fill:#000;stroke:#000;stroke-width:5" class="svg-path highlighted" date={{ key|date:'Y-m-d' }} onmouseover="unhighlightAllButEntry(this)" onmouseout="highlightAll()"/>
                     {% endfor %}
                 {% endfor %}
                 </svg>

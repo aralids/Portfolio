@@ -23,19 +23,15 @@ def update(request):
       path = drawing_list[i:i+4]
       paths.append(path)
   if request.method == "POST":
-    obj, created = user.entry_set.get_or_create(day=datetime.today().strftime('%Y-%m-%d'))
+    date = request.POST.get('day')
+    obj, created = user.entry_set.get_or_create(day=date)
+    print("date from JS: ", date)
     if created:
       obj.save()
     new_line = request.POST.get('line')
-    new_line_list = new_line.split()
-    response = ''
-    for i in range(0, len(new_line_list), 4):
-      four = ' '.join(new_line_list[i:i+4])
-      if not (four in obj.drawing):
-        obj.drawing += four + " "
-        obj.save()
-        response += four + " "
-  return HttpResponse(response)
+    obj.drawing += new_line
+    obj.save()
+  return HttpResponse("")
 
 def temple(request):
   u = request.POST.get("username")

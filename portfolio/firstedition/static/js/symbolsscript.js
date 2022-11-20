@@ -1,5 +1,4 @@
 let mode = "viewing mode";
-let date = "2022-11-18";
 
 const canvas = document.getElementById("canvas");
 const main = document.getElementById("main");
@@ -7,6 +6,8 @@ canvas.height = main.offsetHeight;
 canvas.width = main.offsetWidth;
 const ctx = canvas.getContext("2d");
 let drawing = "";
+let date = ""
+let address = $("#canvas").attr("data-url");
 
 let prevX = null
 let prevY = null
@@ -53,6 +54,9 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 function drawingMode() {
+    let todayOfficial = new Date(); 
+    let dateOfficial =  todayOfficial.getFullYear() + '-' + (todayOfficial.getMonth() + 1) + '-' + todayOfficial.getDate();
+    date = document.getElementById("input-date").value == 0 ? dateOfficial : document.getElementById("input-date").value;
     console.log("mode: ", mode);
     let list = document.querySelectorAll(".svg-path");
     for (path of list) {
@@ -61,7 +65,6 @@ function drawingMode() {
     }
     window.addEventListener("mousedown", (e) => draw = true)
     window.addEventListener("mouseup", (e) => draw = false)
-    let address = $("#canvas").attr("data-url");
 
     window.addEventListener("mousemove", (e) => {
         if(prevX == null || prevY == null || !draw){
@@ -75,24 +78,6 @@ function drawingMode() {
 
         drawing += `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
 
-
-        $.ajax({
-            method: 'POST',
-            url: address,
-            data: {line: drawing},
-            datatype: "text",
-            headers: {
-                "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
-            },
-            success: function (response) {
-                console.log("success", response);
-                drawing = response;
-            },
-            error: function (response) {
-                console.log("ERROR", response);
-            }
-        })
-
         ctx.beginPath()
         ctx.moveTo(prevX, prevY)
         ctx.lineTo(currentX, currentY)
@@ -100,7 +85,10 @@ function drawingMode() {
     
         prevX = currentX
         prevY = currentY
+        
+        console.log(drawing)
     })
+
 
 }
 
@@ -115,7 +103,7 @@ function viewingMode(specificDate="") {
     }
 
     if (mode === "drawing mode") {
-        location.reload();
+        $.when(sendAJAX()).done(location.reload());
     }
 
     mode = "viewing mode";
@@ -168,9 +156,9 @@ function unhighlightAllButEntry(e, unmodifiable=0) {
             path.classList.replace("highlighted", "highlighted-unmodifiable");
         }
     }
-    let today = new Date(); 
-    let date =  today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    console.log(e.getAttribute("date"), date);
+    let todaynow = new Date(); 
+    let datenow =  todaynow.getFullYear() + '-' + (todaynow.getMonth() + 1) + '-' + todaynow.getDate();
+    console.log(e.getAttribute("date"), datenow);
 }
 
 function highlightAll() {
@@ -193,10 +181,33 @@ function countClicks() {
     if (mode === "viewing mode") {
         viewingMode(date);
     }
+    if (mode === "drawing mode") {
+        sendAJAX();
+        drawingMode();
+    }
 }
 
 function showAssociations(entry) {
     let entryDate = entry.getAttribute("date");
     viewingMode(entryDate);
     document.getElementById("input-date").value = entryDate;
+}
+
+function sendAJAX() {
+    $.ajax({
+        method: 'POST',
+        url: address,
+        data: {line: drawing, day: date},
+        datatype: "text",
+        headers: {
+            "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
+        },
+        success: function (response) {
+            console.log("success", response);
+            drawing = "";
+        },
+        error: function (response) {
+            console.log("ERROR", response);
+        }
+    })
 }

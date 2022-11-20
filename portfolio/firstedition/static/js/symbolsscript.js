@@ -144,6 +144,8 @@ function viewingMode(specificDate="") {
 
 function highlightEntry(e) {
     let entryDate = e.getAttribute("date");
+    dateShower.firstChild.data = entryDate;
+    document.onmousemove = handleMouseMove;
     let list = document.querySelectorAll(`path[date="${entryDate}"]`);
     for (path of list) {
         path.classList.replace("unhighlighted", "highlighted");
@@ -181,6 +183,8 @@ function highlightAll() {
 }
 
 function unhighlightAll() {
+    document.onmousemove = () => (console.log("highlightAll"));
+    dateShower.style.visibility = "hidden";
     let list = document.querySelectorAll(".highlighted");
     for (path of list) {
         path.classList.replace("highlighted", "unhighlighted");

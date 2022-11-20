@@ -180,4 +180,14 @@ h1 {
   width: 5%;
 }
 
+#date-shower {
+  top: 20%;
+  width: 150px;
+  height: 40px;
+  position: fixed;
+  background-color: lightgrey;
+  padding: 0;
+  visibility: hidden;
+}
+
 

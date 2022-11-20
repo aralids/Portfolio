@@ -150,8 +150,12 @@ function highlightEntry(e) {
     }
 }
 
+let dateShower = document.getElementById("date-shower");
+
 function unhighlightAllButEntry(e, unmodifiable=0) {
     let entryDate = e.getAttribute("date");
+    dateShower.firstChild.data = entryDate;
+    document.onmousemove = handleMouseMove;
     let list = document.querySelectorAll(`path:not([date="${entryDate}"])`);
     for (path of list) {
         path.classList.replace("highlighted", "unhighlighted");
@@ -168,6 +172,8 @@ function unhighlightAllButEntry(e, unmodifiable=0) {
 }
 
 function highlightAll() {
+    document.onmousemove = () => (console.log("highlightAll"));
+    dateShower.style.visibility = "hidden";
     let list = document.querySelectorAll(".unhighlighted");
     for (path of list) {
         path.classList.replace("unhighlighted", "highlighted");
@@ -224,3 +230,29 @@ XBtn.addEventListener("click", () => {
     document.getElementById("input-date").value = "";
     viewingMode();
 })
+
+let cursorX = 0;
+let cursorY = 0;
+function handleMouseMove(event) {
+    var eventDoc, doc, body;
+
+    event = event || window.event; // IE-ism
+    if (event.pageX == null && event.clientX != null) {
+        eventDoc = (event.target && event.target.ownerDocument) || document;
+        doc = eventDoc.documentElement;
+        body = eventDoc.body;
+
+        event.pageX = event.clientX +
+            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+            (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY +
+            (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+            (doc && doc.clientTop  || body && body.clientTop  || 0 );
+    }
+
+    console.log(event.pageX, event.pageY, event)
+    
+    dateShower.style.left = `calc(${event.pageX}px + 2px)`;
+    dateShower.style.top = `calc(${event.pageY}px - 42px)`;
+    dateShower.style.visibility = "visible";
+}

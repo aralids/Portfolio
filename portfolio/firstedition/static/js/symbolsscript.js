@@ -6,11 +6,11 @@ canvas.height = main.offsetHeight;
 canvas.width = main.offsetWidth;
 const ctx = canvas.getContext("2d");
 let drawing = "";
-let date = ""
+let date = "";
 let address = $("#canvas").attr("data-url");
 
-let prevX = null
-let prevY = null
+let prevX = null;
+let prevY = null;
 
 ctx.lineWidth = 5
 
@@ -23,14 +23,14 @@ clrs.forEach(clr => {
     })
 })
 
-let drawingModeBtn = document.querySelector(".drawing-mode")
+let drawingModeBtn = document.querySelector(".drawing-mode");
 drawingModeBtn.addEventListener("click", () => {
     mode = "drawing mode";
     console.log("mode1: ", mode);
     drawingMode();
 })
 
-let viewingModeBtn = document.querySelector(".viewing-mode")
+let viewingModeBtn = document.querySelector(".viewing-mode");
 viewingModeBtn.addEventListener("click", () => {
     console.log("mode1: ", mode);
     viewingMode();
@@ -54,6 +54,7 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 function drawingMode() {
+    XBtn.style.visibility = "hidden";
     let todayOfficial = new Date(); 
     let dateOfficial =  todayOfficial.getFullYear() + '-' + (todayOfficial.getMonth() + 1) + '-' + todayOfficial.getDate();
     date = document.getElementById("input-date").value == 0 ? dateOfficial : document.getElementById("input-date").value;
@@ -120,11 +121,16 @@ function viewingMode(specificDate="") {
 
         let entryInstance = document.querySelector(`path[date="${specificDate}"]`);
         let entryInstances = document.querySelectorAll(`path[date="${specificDate}"]`);
-        unhighlightAllButEntry(entryInstance, 1);
-        console.log("SSss: ", specificDate, entryInstance);
-        for (path of entryInstances) {
-            path.removeAttribute("onmouseover");
-            path.removeAttribute("onmouseout");
+        console.log("entryInstance", entryInstance)
+        if (entryInstance === null) {
+            unhighlightAll();
+        } else {
+            unhighlightAllButEntry(entryInstance, 1);
+            console.log("SSss: ", specificDate, entryInstance);
+            for (path of entryInstances) {
+                path.removeAttribute("onmouseover");
+                path.removeAttribute("onmouseout");
+            }
         }
         let nonEntryInstances = document.querySelectorAll(`path:not([date="${specificDate}"])`);
         console.log("--UNHIGHLIGHT", nonEntryInstances)
@@ -211,3 +217,10 @@ function sendAJAX() {
         }
     })
 }
+
+let XBtn = document.getElementById("X-button");
+XBtn.addEventListener("click", () => {
+    console.log("Clicked X");
+    document.getElementById("input-date").value = "";
+    viewingMode();
+})

@@ -26,13 +26,11 @@ clrs.forEach(clr => {
 let drawingModeBtn = document.querySelector(".drawing-mode");
 drawingModeBtn.addEventListener("click", () => {
     mode = "drawing mode";
-    console.log("mode1: ", mode);
     drawingMode();
 })
 
 let viewingModeBtn = document.querySelector(".viewing-mode");
 viewingModeBtn.addEventListener("click", () => {
-    console.log("mode1: ", mode);
     if (mode === "drawing mode") {
         sendAJAX();
     }
@@ -45,7 +43,6 @@ function getCookie(name) {
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
@@ -57,22 +54,25 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 function drawingMode() {
-    XBtn.style.visibility = "hidden";
+    let svgPaths = document.querySelectorAll(".svg-path");
+    for (svgPath of svgPaths) {
+        svgPath.classList.replace("unhighlighted", "highlighted");
+        svgPath.classList.replace("highlighted-modifiable", "highlighted");
+    };
+    $("#association-shower").css("visibility", "hidden");
+    $("#X-button").css("visibility", "hidden");
     let todayOfficial = new Date(); 
     let dateOfficial =  todayOfficial.getFullYear() + '-' + (todayOfficial.getMonth() + 1) + '-' + todayOfficial.getDate();
-    date = document.getElementById("input-date").value == 0 ? dateOfficial : document.getElementById("input-date").value;
-    console.log("mode: ", mode);
-    let list = document.querySelectorAll(".svg-path");
-    for (path of list) {
-        path.removeAttribute("onmouseover");
-        path.removeAttribute("onmouseout");
-        path.removeAttribute("onclick");
-    }
+    date = $("#input-date").val() == 0 ? dateOfficial : $("#input-date").val();
+    $(".svg-path").removeAttr("onmouseover");
+    $(".svg-path").removeAttr("onmouseout");
+    $(".svg-path").removeAttr("onclick");
+
     window.addEventListener("mousedown", (e) => draw = true)
     window.addEventListener("mouseup", (e) => draw = false)
 
     window.addEventListener("mousemove", (e) => {
-        if(prevX == null || prevY == null || !draw){
+        if (prevX == null || prevY == null || !draw) {
             prevX = e.clientX
             prevY = e.clientY - 75
             return
@@ -90,11 +90,7 @@ function drawingMode() {
     
         prevX = currentX
         prevY = currentY
-        
-        console.log(drawing)
     })
-
-
 }
 
 function viewingMode(specificDate="") {
@@ -113,8 +109,6 @@ function viewingMode(specificDate="") {
     }
 
     mode = "viewing mode";
-
-    console.log("mode: ", mode);
     if (specificDate === "") {  
         let list = document.querySelectorAll(".svg-path");
         for (path of list) {
@@ -126,41 +120,36 @@ function viewingMode(specificDate="") {
 
         let entryInstance = document.querySelector(`path[date="${specificDate}"]`);
         let entryInstances = document.querySelectorAll(`path[date="${specificDate}"]`);
-        console.log("entryInstance", entryInstance)
         if (entryInstance === null) {
             unhighlightAll();
         } else {
             unhighlightAllButEntry(entryInstance, 1);
-            console.log("SSss: ", specificDate, entryInstance);
             for (path of entryInstances) {
                 path.setAttribute("onmouseover", "showDate(this)");
                 path.setAttribute("onmouseout", "hideDate(this)");
             }
         }
         let nonEntryInstances = document.querySelectorAll(`path:not([date="${specificDate}"])`);
-        console.log("--UNHIGHLIGHT", nonEntryInstances)
         for (path of nonEntryInstances) {
-            console.log("UNHIGHLIGHT")
             path.setAttribute("onmouseover", "highlightEntry(this)");
             path.setAttribute("onmouseout", "unhighlightAll()");
         }
     }
 }
 
-function showDate(e) {
-    let entryDate = e.getAttribute("date");
+function showDate(entry) {
+    let entryDate = $(entry).attr("date");;
     dateShower.firstChild.data = entryDate;
     document.onmousemove = handleMouseMove;
 }
 
 function hideDate(e) {
-    console.log("dateShower hidden")
     document.onmousemove = () => (console.log("highlightAll"));
-    dateShower.style.visibility = "hidden";
+    $(dateShower).css("visibility", "hidden");
 }
 
-function highlightEntry(e) {
-    let entryDate = e.getAttribute("date");
+function highlightEntry(entry) {
+    let entryDate = $(entry).attr("date");;
     dateShower.firstChild.data = entryDate;
     document.onmousemove = handleMouseMove;
     let list = document.querySelectorAll(`path[date="${entryDate}"]`);
@@ -171,8 +160,8 @@ function highlightEntry(e) {
 
 let dateShower = document.getElementById("date-shower");
 
-function unhighlightAllButEntry(e, unmodifiable=0) {
-    let entryDate = e.getAttribute("date");
+function unhighlightAllButEntry(entry, unmodifiable=0) {
+    let entryDate = $(entry).attr("date");
     dateShower.firstChild.data = entryDate;
     document.onmousemove = handleMouseMove;
     let list = document.querySelectorAll(`path:not([date="${entryDate}"])`);
@@ -185,14 +174,10 @@ function unhighlightAllButEntry(e, unmodifiable=0) {
             path.classList.replace("highlighted", "highlighted-unmodifiable");
         }
     }
-    let todaynow = new Date(); 
-    let datenow =  todaynow.getFullYear() + '-' + (todaynow.getMonth() + 1) + '-' + todaynow.getDate();
-    console.log(e.getAttribute("date"), datenow);
 }
 
 function highlightAll() {
-    document.onmousemove = () => (console.log("highlightAll"));
-    dateShower.style.visibility = "hidden";
+    hideDate();
     let list = document.querySelectorAll(".unhighlighted");
     for (path of list) {
         path.classList.replace("unhighlighted", "highlighted");
@@ -200,8 +185,7 @@ function highlightAll() {
 }
 
 function unhighlightAll() {
-    document.onmousemove = () => (console.log("highlightAll"));
-    dateShower.style.visibility = "hidden";
+    hideDate();
     let list = document.querySelectorAll(".highlighted");
     for (path of list) {
         path.classList.replace("highlighted", "unhighlighted");
@@ -210,7 +194,6 @@ function unhighlightAll() {
 
 function countClicks() {
     date = document.getElementById("input-date").value;
-    console.log(date);
     if (mode === "viewing mode") {
         viewingMode(date);
     }
@@ -221,10 +204,10 @@ function countClicks() {
 }
 
 function showAssociations(entry) {
-    let entryDate = entry.getAttribute("date");
+    let entryDate = $(entry).attr("date");
     viewingMode(entryDate);
-    document.getElementById("input-date").value = entryDate;
-    document.getElementById("association-shower").style.visibility = "visible";
+    $("#input-date").val(entryDate);
+    $("#association-shower").css("visibility", "visible");
     $("#association-top h3").html(entryDate);
 }
 
@@ -235,7 +218,7 @@ function sendAJAX() {
         data: {line: drawing, day: date},
         datatype: "text",
         headers: {
-            "X-CSRFToken": csrftoken,  // don't forget to include the 'getCookie' function
+            "X-CSRFToken": csrftoken,
         },
         success: function (response) {
             console.log("success", response);
@@ -245,22 +228,18 @@ function sendAJAX() {
             console.log("ERROR", response);
         }
     })
-
-    console.log("AJAX sent!")
 }
 
 let XBtn = document.getElementById("X-button");
 XBtn.addEventListener("click", () => {
-    console.log("Clicked X");
-    document.getElementById("input-date").value = "";
+    $("#input-date").val("");
     viewingMode();
 })
 
 let associationXBtn = document.getElementById("association-X-button");
 associationXBtn.addEventListener("click", () => {
-    console.log("Association-X clicked!")
-    document.getElementById("input-date").value = "";
-    document.getElementById("association-shower").style.visibility = "hidden";
+    $("#input-date").val("");
+    $("#association-shower").css("visibility", "hidden");
     viewingMode();
 })
 
@@ -282,12 +261,10 @@ function handleMouseMove(event) {
             (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
             (doc && doc.clientTop  || body && body.clientTop  || 0 );
     }
-
-    console.log(event.pageX, event.pageY, event)
     
-    dateShower.style.left = `calc(${event.pageX}px + 2px)`;
-    dateShower.style.top = `calc(${event.pageY}px - 42px)`;
-    dateShower.style.visibility = "visible";
+    $(dateShower).css("left", `calc(${event.pageX}px + 2px)`);
+    $(dateShower).css("top", `calc(${event.pageY}px - 42px)`);
+    $(dateShower).css("visibility", "visible");
 }
 
 function sleep (time) {

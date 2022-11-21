@@ -128,8 +128,8 @@ function viewingMode(specificDate="") {
             unhighlightAllButEntry(entryInstance, 1);
             console.log("SSss: ", specificDate, entryInstance);
             for (path of entryInstances) {
-                path.removeAttribute("onmouseover");
-                path.removeAttribute("onmouseout");
+                path.setAttribute("onmouseover", "showDate(this)");
+                path.setAttribute("onmouseout", "hideDate(this)");
             }
         }
         let nonEntryInstances = document.querySelectorAll(`path:not([date="${specificDate}"])`);
@@ -140,6 +140,18 @@ function viewingMode(specificDate="") {
             path.setAttribute("onmouseout", "unhighlightAll()");
         }
     }
+}
+
+function showDate(e) {
+    let entryDate = e.getAttribute("date");
+    dateShower.firstChild.data = entryDate;
+    document.onmousemove = handleMouseMove;
+}
+
+function hideDate(e) {
+    console.log("dateShower hidden")
+    document.onmousemove = () => (console.log("highlightAll"));
+    dateShower.style.visibility = "hidden";
 }
 
 function highlightEntry(e) {

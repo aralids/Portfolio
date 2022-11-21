@@ -111,7 +111,7 @@ function viewingMode(specificDate="") {
     }
 
     if (mode === "drawing mode") {
-        location.reload();
+        $(document).ajaxStop(function() { location.reload(true); });
     }
 
     mode = "viewing mode";

@@ -14,23 +14,17 @@ def index(request):
 def update(request):
   user = User.objects.get(username='')
   entries = user.entry_set.all()
-  for entry in entries:
-    drawing = entry.drawing
-    drawing_list = drawing.split()
-    drawing_list = [int(parameter) for parameter in drawing_list]
-    paths = []
-    for i in range(0, len(drawing_list), 4):
-      path = drawing_list[i:i+4]
-      paths.append(path)
   if request.method == "POST":
     date = request.POST.get('day')
     obj, created = user.entry_set.get_or_create(day=date)
-    print("date from JS: ", date)
     if created:
       obj.save()
     new_line = request.POST.get('line')
+    print("obj.drawing", obj.drawing)
     obj.drawing += new_line
+    print("obj.drawing mid", obj.drawing)
     obj.save()
+    print("obj.drawing new", obj.drawing)
   return HttpResponse("")
 
 def temple(request):
@@ -40,14 +34,34 @@ def temple(request):
   entries = user.entry_set.all()
   log = {}
   paths = []
+  color = ""
   for entry in entries:
+    log[(color, entry.day)] = []
     drawing = entry.drawing
     drawing_list = drawing.split()
-    drawing_list = [int(parameter) for parameter in drawing_list]
-    for i in range(0, len(drawing_list), 4):
-      path = drawing_list[i:i+4]
-      paths.append(path)
-    log[entry.day] = paths
+
+    i = 0
+    print("log[(color, entry.day)]: ", log[(color, entry.day)])
+    while i < len(drawing_list):
+      if drawing_list[i].startswith("#"):
+        if paths != []:
+          try:
+            log[(color, entry.day)] += paths
+          except KeyError:
+            log[(color, entry.day)] = paths
+          paths = []
+        color = drawing_list[i]
+        i += 1
+        continue
+      else:
+        path = [int(parameter) for parameter in drawing_list[i:i+4]]
+        paths.append(path)
+        i += 4
+        continue
+    try:
+      log[(color, entry.day)] += paths
+    except KeyError:
+      log[(color, entry.day)] = paths
     paths = []
   print(log)
   return render(request, 'app/temple.html', {'entries': log,

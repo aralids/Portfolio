@@ -5,7 +5,7 @@ const main = document.getElementById("main");
 canvas.height = main.offsetHeight;
 canvas.width = main.offsetWidth;
 const ctx = canvas.getContext("2d");
-let drawing = "";
+let drawing = "#000 ";
 let date = "";
 let address = $("#canvas").attr("data-url");
 
@@ -20,6 +20,9 @@ clrs = Array.from(clrs)
 clrs.forEach(clr => {
     clr.addEventListener("click", () => {
         ctx.strokeStyle = clr.dataset.clr
+        console.log("Color changed! ", ctx.strokeStyle)
+        sendAJAX(ctx.strokeStyle);
+        console.log("nextColor: ", ctx.strokeStyle)
     })
 })
 
@@ -211,7 +214,9 @@ function showAssociations(entry) {
     $("#association-top h3").html(entryDate);
 }
 
-function sendAJAX() {
+function sendAJAX(nextColor="") {
+    
+    console.log("drawing: ", drawing)
     $.ajax({
         method: 'POST',
         url: address,
@@ -221,13 +226,17 @@ function sendAJAX() {
             "X-CSRFToken": csrftoken,
         },
         success: function (response) {
+            
+            console.log("nextColor: ", nextColor)
+            
+            drawing = nextColor == 0 ? drawing : nextColor + " ";
             console.log("success", response);
-            drawing = "";
         },
         error: function (response) {
             console.log("ERROR", response);
         }
     })
+    console.log("nextColor: ", nextColor)
 }
 
 let XBtn = document.getElementById("X-button");

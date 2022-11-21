@@ -33,6 +33,9 @@ drawingModeBtn.addEventListener("click", () => {
 let viewingModeBtn = document.querySelector(".viewing-mode");
 viewingModeBtn.addEventListener("click", () => {
     console.log("mode1: ", mode);
+    if (mode === "drawing mode") {
+        sendAJAX();
+    }
     viewingMode();
 })
 
@@ -63,6 +66,7 @@ function drawingMode() {
     for (path of list) {
         path.removeAttribute("onmouseover");
         path.removeAttribute("onmouseout");
+        path.removeAttribute("onclick");
     }
     window.addEventListener("mousedown", (e) => draw = true)
     window.addEventListener("mouseup", (e) => draw = false)
@@ -101,10 +105,11 @@ function viewingMode(specificDate="") {
         path.classList.replace("unhighlighted", "highlighted");
         path.setAttribute("onmouseover", "unhighlightAllButEntry(this)");
         path.setAttribute("onmouseout", "highlightAll()");
+        path.setAttribute("onclick", "showAssociations(this)");
     }
 
     if (mode === "drawing mode") {
-        $.when(sendAJAX()).done(location.reload());
+        location.reload();
     }
 
     mode = "viewing mode";
@@ -240,6 +245,8 @@ function sendAJAX() {
             console.log("ERROR", response);
         }
     })
+
+    console.log("AJAX sent!")
 }
 
 let XBtn = document.getElementById("X-button");
@@ -281,4 +288,8 @@ function handleMouseMove(event) {
     dateShower.style.left = `calc(${event.pageX}px + 2px)`;
     dateShower.style.top = `calc(${event.pageY}px - 42px)`;
     dateShower.style.visibility = "visible";
+}
+
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
 }

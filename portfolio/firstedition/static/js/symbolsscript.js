@@ -21,7 +21,10 @@ clrs.forEach(clr => {
     clr.addEventListener("click", () => {
         ctx.strokeStyle = clr.dataset.clr
         console.log("Color changed! ", ctx.strokeStyle)
-        sendAJAX(ctx.strokeStyle);
+        if (drawing.split().length !== 1) {
+            sendAJAX(ctx.strokeStyle);
+        }
+        drawing = ctx.strokeStyle + " ";
         console.log("nextColor: ", ctx.strokeStyle)
     })
 })

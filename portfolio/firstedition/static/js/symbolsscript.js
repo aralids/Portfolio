@@ -207,6 +207,8 @@ function showAssociations(entry) {
     let entryDate = entry.getAttribute("date");
     viewingMode(entryDate);
     document.getElementById("input-date").value = entryDate;
+    document.getElementById("association-shower").style.visibility = "visible";
+    $("#association-top h3").html(entryDate);
 }
 
 function sendAJAX() {
@@ -232,6 +234,14 @@ let XBtn = document.getElementById("X-button");
 XBtn.addEventListener("click", () => {
     console.log("Clicked X");
     document.getElementById("input-date").value = "";
+    viewingMode();
+})
+
+let associationXBtn = document.getElementById("association-X-button");
+associationXBtn.addEventListener("click", () => {
+    console.log("Association-X clicked!")
+    document.getElementById("input-date").value = "";
+    document.getElementById("association-shower").style.visibility = "hidden";
     viewingMode();
 })
 

@@ -20,12 +20,10 @@ clrs = Array.from(clrs)
 clrs.forEach(clr => {
     clr.addEventListener("click", () => {
         ctx.strokeStyle = clr.dataset.clr
-        console.log("Color changed! ", ctx.strokeStyle)
         if (drawing.split().length !== 1) {
             sendAJAX(ctx.strokeStyle);
         }
         drawing = ctx.strokeStyle + " ";
-        console.log("nextColor: ", ctx.strokeStyle)
     })
 })
 
@@ -220,10 +218,7 @@ function showAssociations(entry) {
 }
 
 function sendAJAX(nextColor="") {
-    
-    console.log("drawing: ", drawing)
     let username = document.getElementById("logo").getAttribute("username");
-    console.log("username: ", username);
     $.ajax({
         method: 'POST',
         url: address,
@@ -233,17 +228,12 @@ function sendAJAX(nextColor="") {
             "X-CSRFToken": csrftoken,
         },
         success: function (response) {
-            
-            console.log("nextColor: ", nextColor)
-            
             drawing = nextColor == 0 ? drawing : nextColor + " ";
-            console.log("success", response);
         },
         error: function (response) {
             console.log("ERROR", response);
         }
     })
-    console.log("nextColor: ", nextColor)
 }
 
 let XBtn = document.getElementById("X-button");

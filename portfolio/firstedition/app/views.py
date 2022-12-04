@@ -12,7 +12,8 @@ def index(request):
   return HttpResponse(template.render({}, request))
 
 def update(request):
-  user = User.objects.get(username='')
+  user = User.objects.get(username=request.POST.get('username'))
+  print("username: ", user)
   entries = user.entry_set.all()
   if request.method == "POST":
     date = request.POST.get('day')

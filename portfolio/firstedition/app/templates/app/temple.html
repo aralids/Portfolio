@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
-            <section id="logo">
+            <section id="logo" username={{ username }}>
                 <img
                 {% if username == 'alnatura' %}
                     src="{% static 'img/logo_alnatura2.svg' %}"
@@ -38,10 +38,12 @@
                 <div class="clr" data-clr="#fff"></div>
                 <button class="drawing-mode">drawing mode</button>
                 <button class="viewing-mode">viewing mode</button>
+                <button class="edit-associations-mode">edit-associations mode</button>
                 <form>
                     <input type="date" id="input-date" name="input-date" value="" onchange="countClicks()">
                 </form>
                 <button id="X-button">X</button>
+                <button id="save-button">Save</button>
             </div>
             <button id="date-shower">"2022-11-20"</button>
             <div id="association-shower">

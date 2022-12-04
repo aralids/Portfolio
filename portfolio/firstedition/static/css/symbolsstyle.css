@@ -153,6 +153,7 @@ canvas {
   width: 100%;
   height: 100%;
   z-index: 75;
+  margin-left: calc(130px + 70px);
 }
 
 svg {
@@ -176,8 +177,12 @@ h1 {
   opacity: 0.5;
 }
 
-#X-button {
+#X-button, #save-button {
   width: 5%;
+}
+
+#save-button {
+  visibility: hidden;
 }
 
 #date-shower {

@@ -67,6 +67,7 @@ function drawingMode() {
     };
     $("#association-shower").css("visibility", "hidden");
     $("#X-button").css("visibility", "hidden");
+    $("#save-button").css("visibility", "visible");
     let todayOfficial = new Date(); 
     let dateOfficial =  todayOfficial.getFullYear() + '-' + (todayOfficial.getMonth() + 1) + '-' + todayOfficial.getDate();
     date = $("#input-date").val() == 0 ? dateOfficial : $("#input-date").val();
@@ -79,15 +80,15 @@ function drawingMode() {
 
     window.addEventListener("mousemove", (e) => {
         if (prevX == null || prevY == null || !draw) {
-            prevX = e.clientX
+            prevX = e.clientX - 200
             prevY = e.clientY - 75
             return
         }
 
-        let currentX = e.clientX
+        let currentX = e.clientX - 200
         let currentY = e.clientY - 75
 
-        drawing += `${prevX-75} ${prevY} ${currentX-75} ${currentY} `
+        drawing += `${prevX+125} ${prevY} ${currentX+125} ${currentY} `
 
         ctx.beginPath()
         ctx.moveTo(prevX, prevY)
@@ -101,6 +102,7 @@ function drawingMode() {
 
 function viewingMode(specificDate="") {
     
+    $("#save-button").css("visibility", "hidden");
     let paths = document.querySelectorAll("path");
     for (path of paths) {
         path.classList.replace("highlighted-unmodifiable", "highlighted");
@@ -220,10 +222,12 @@ function showAssociations(entry) {
 function sendAJAX(nextColor="") {
     
     console.log("drawing: ", drawing)
+    let username = document.getElementById("logo").getAttribute("username");
+    console.log("username: ", username);
     $.ajax({
         method: 'POST',
         url: address,
-        data: {line: drawing, day: date},
+        data: {line: drawing, day: date, username: username},
         datatype: "text",
         headers: {
             "X-CSRFToken": csrftoken,
@@ -246,6 +250,11 @@ let XBtn = document.getElementById("X-button");
 XBtn.addEventListener("click", () => {
     $("#input-date").val("");
     viewingMode();
+})
+
+let saveBtn = document.getElementById("save-button");
+saveBtn.addEventListener("click", () => {
+    sendAJAX();
 })
 
 let associationXBtn = document.getElementById("association-X-button");

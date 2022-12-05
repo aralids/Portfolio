@@ -61,6 +61,7 @@ footer {
 main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 75px 0;
     height: 100%;
@@ -73,4 +74,6 @@ main {
 
 .gmap_canvas {
     border-radius: 1000%;
+    border: 35px solid #e1e1e1;
+    box-shadow: 0px 0px 20px 5px #a9a9a9;
 }

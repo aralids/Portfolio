@@ -72,10 +72,10 @@
       <section id="information">
         <section id="welcome">
           <h1>Hello,</h1>
-          <h2>
+          <h2 id="probably">
             you are probably here because you received my application - welcome!
           </h2>
-          <p>
+          <p id="do">
             Use the username & password from my CV to log in for a personalized
             experience - or just keep scrolling.
             <br />
@@ -169,24 +169,27 @@
           >
             <input
               type="text"
+              name="employer-name"
               id="name"
               placeholder="name, company: John Doe, Google Inc."
             />
             <input
               type="email"
+              name="employer-email"
               id="email"
               placeholder="email address: john.doe@gmail.com"
             />
             <input
               type="text"
+              name="employer-text"
               id="subject"
               placeholder="subject: Your Application at Google Inc."
             />
-            <input
-              type="textarea"
+            <textarea
+              name="employer-message"
               id="message"
-              placeholder="your message: Dear Ms. Sarach,..."
-            />
+              cols="50"
+              placeholder="your message: Dear Ms. Sarach,..."></textarea>
             <input id="contact-submit-button" type="submit" value="Submit" />
           </form>
         </section>

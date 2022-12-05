@@ -89,11 +89,29 @@ function GridImage(scheme) {
 
 /* GRID COLOR SCHEMES */
 
-let cgmInitialSchemeNum = []
-for (let i = 0; i < gridHeight * gridWidth; i++) {
-  cgmInitialSchemeNum.push(0)
-}
-cgmInitialSchemeNum.splice(0, 1, 1)
+let cgmInitialSchemeNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 2, 2, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 0, 1, 1, 0, 1, 2, 2, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
+  0, 0, 0, 1, 0, 0, 1, 0, 1, 2, 2, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 2, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 2, 2, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+]
+
 let cgmInitialScheme = stringifyScheme(cgmInitialSchemeNum)
 
 let cgmQuestionMarkNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
@@ -151,7 +169,7 @@ let cgmQrCode = stringifyScheme(cgmQrCodeNum)
 /* SETTING UP THE STAGE FOR updateCellGrid() */
 
 cellGridMain = new Grid('cell-grid-main')
-cellGridMain.initialize(cgmQrCode, 'dead')
+cellGridMain.initialize(cgmInitialScheme, 'dead')
 cellGridProject2 = new Grid('cell-grid-project-2')
 cellGridProject2.initialize(cgmQrCode, 'alive')
 cellGridProject2.makeInvisible()
@@ -169,7 +187,32 @@ document.getElementById('main').onmousewheel = function () {
   updateCellGrid()
 }
 
+resurrect('cell-grid-main-cell-3-4')
 resurrect('cell-grid-main-cell-4-4')
+resurrect('cell-grid-main-cell-5-4')
+resurrect('cell-grid-main-cell-12-12')
+resurrect('cell-grid-main-cell-12-13')
+resurrect('cell-grid-main-cell-12-14')
+resurrect('cell-grid-main-cell-4-14')
+resurrect('cell-grid-main-cell-5-15')
+resurrect('cell-grid-main-cell-5-16')
+resurrect('cell-grid-main-cell-6-16')
+resurrect('cell-grid-main-cell-7-16')
+resurrect('cell-grid-main-cell-20-1')
+resurrect('cell-grid-main-cell-0-1')
+resurrect('cell-grid-main-cell-0-0')
+resurrect('cell-grid-main-cell-20-2')
+resurrect('cell-grid-main-cell-1-1')
+resurrect('cell-grid-main-cell-15-7')
+resurrect('cell-grid-main-cell-16-6')
+resurrect('cell-grid-main-cell-15-6')
+resurrect('cell-grid-main-cell-14-7')
+resurrect('cell-grid-main-cell-16-6')
+resurrect('cell-grid-main-cell-15-6')
+resurrect('cell-grid-main-cell-10-16')
+resurrect('cell-grid-main-cell-9-15')
+resurrect('cell-grid-main-cell-9-16')
+resurrect('cell-grid-main-cell-8-14')
 function startInterval(x) {
   if (myInterval) {
     clearInterval(myInterval)
@@ -191,7 +234,7 @@ function updateCellGrid() {
     hideProjects()
     if (currentScrollSection === 0) {
     } else if (currentScrollSection !== 0) {
-      cellGridMain.makeCurrent(cgmQrCode)
+      cellGridMain.makeCurrent(cgmInitialScheme)
       for (let i = 0; i < gridHeight; i++) {
         for (let j = 0; j < gridWidth; j++) {
           let id = `cell-grid-main-cell-${i}-${j}`
@@ -696,6 +739,8 @@ function onSubmitAction(event) {
     htmlLoginForm.style.opacity = '0'
     htmlLoginForm.style.maxHeight = '0'
     document.getElementById('submit-button').setAttribute('value', 'Log out')
+    document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
+    document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href=''>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
   } else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
@@ -705,6 +750,9 @@ function onSubmitAction(event) {
     htmlLoginForm.style.visibility = 'visible'
     htmlLoginForm.style.maxHeight = '50px'
     document.getElementById('submit-button').setAttribute('value', 'Submit')
+    document.getElementById('probably').innerHTML = "you are probably here because you received my application - welcome!";
+    document.getElementById("do").innerHTML = "Use the username & password from my CV to log in for a personalized experience - or just keep scrolling."
+
   }
 }
 

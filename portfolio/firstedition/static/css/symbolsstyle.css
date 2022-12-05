@@ -104,6 +104,10 @@ footer {
   background-color: #76344d;
 }
 
+#color-picker {
+  border-radius: 100%;
+}
+
 .clr {
   height: 30px;
   width: 30px;
@@ -150,9 +154,10 @@ form {
 
 canvas {
   z-index: 75;
-  margin-right: calc(3% + 70px);
+  margin-top: 50px;
   width: calc(94% - 140px);
-  background-color: white;
+  height: calc(100% - 50px);
+  background-color: olive;
 }
 
 svg {
@@ -162,7 +167,6 @@ svg {
   width: calc(94% - 140px);
   height: calc(100% - 200px);
   z-index: 150;
-  background-color: #00d455;
 }
 
 .highlighted, .highlighted-unmodifiable {
@@ -233,5 +237,16 @@ svg {
   border: 0.1px solid whitesmoke;
   background-color: #ffe680;
   z-index: 10000;
+}
+
+input[type=color] {
+  display: none;
+
+}
+span {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px; 
+  background-color:red;
 }
 

@@ -22,4 +22,14 @@ class Associations(models.Model):
     text = models.TextField()
     files = models.TextField()
     links = models.TextField()
+
+class Place(models.Model):
+    title = models.TextField()
+    city = models.TextField()
+    country = models.TextField()
+    latitude = models.FloatField()
+    longtitude = models.FloatField()
+    adress = models.TextField()
+    image_links = models.TextField()
+    link = models.TextField()
     

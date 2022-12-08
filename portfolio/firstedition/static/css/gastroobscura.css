@@ -40,6 +40,7 @@ header, footer {
     height: 75px;
     width: 100%;
     display: flex;
+    background-color: white;
 }
 
 header {
@@ -73,7 +74,10 @@ main {
     width: 50%;
     margin-left: 3%;
     z-index: 25;
-    background-color: #00d455;
+}
+
+.main-background h1, .main-background p {
+    color: #454541;
 }
 
 .place-info {
@@ -81,24 +85,32 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: calc(100% - 150px);
+    height: 100%;
     padding-left: 3%;
     background-color: grey;
     z-index: 30;
 }
 
 #place-1-info {
-    animation: peek 5s;
+    clip-path: circle(50px at 1073px 70px);
 }
 
 @keyframes peek {
-	0% {clip-path: circle(10%)}
-	100% {clip-path: circle(100%)}
+    0% {clip-path: circle(50px at 1073px 70px)}
+	100% {clip-path: circle(500% at 1073px 70px)}
+}
+
+@keyframes close {
+    0% {clip-path: circle(500% at 1073px 70px)}
+	100% {clip-path: circle(50px at 1073px 70px)}
 }
 
 h1 {
     font-family: 'Abhaya Libre', serif;
+    color: white;
     font-size: 40px;
     font-weight: 800;
     height: fit-content;
@@ -107,7 +119,7 @@ h1 {
 p {
     padding-top: 20px;
     height: fit-content;
-  
+    color: white;
     font-family: 'Abhaya Libre', serif;
     font-size: 18px;
     font-weight: 400;

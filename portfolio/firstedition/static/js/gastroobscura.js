@@ -47,6 +47,7 @@ function assignGeoValues(position) {
             const domContainer = document.querySelector('#like_button_container');
             const root = ReactDOM.createRoot(domContainer);
             root.render(e(PlaceSet));
+            console.log("circle1: ", document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + 250)
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -67,11 +68,19 @@ getLocation();
 
 const e = React.createElement;
 
+function Clipping(props) {
+    return ( 
+        <div id={props.id} className="place-info" style={{"clipPath": props.clippingShape}}>
+            <h1>Frau Fischer Fountain</h1>
+            <p>Link: <br /> Address: <br /> A few photos: </p>
+        </div>
+    );
+}
 
 function Place(props) {
-    console.log("props: ", (String(props.left) + "px"))
+    console.log("props: ", props)
     return ( 
-        <img className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="100px" />
+        <img id={props.id} className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="100px" />
     );
 }
 
@@ -131,9 +140,21 @@ class PlaceSet extends React.Component {
         console.log('i: ', i, this.state.placesTop[i])
         return (
             <Place  
+                id={`place-${i}`}
                 top={this.state.placesTop[i]}
                 left={this.state.placesLeft[i]}
                 frontImageLink={this.state.placesFrontImageLink[i]}
+            />
+        );
+    }
+
+    renderClipping(i) {
+        let clippingTop = String(this.state.placesTop[i] + 50) + "px";
+        let clippingLeft = String(this.state.placesLeft[i] + 50) + "px";
+        return (
+            <Clipping  
+                id={`place-${i}-info`}
+                clippingShape={`circle(50px at ${clippingLeft} ${clippingTop})`}
             />
         );
     }
@@ -143,6 +164,7 @@ class PlaceSet extends React.Component {
         let item;
         for (item of Object.keys(this.state.places)) {
             htmlElements.push(this.renderPlace(item));
+            htmlElements.push(this.renderClipping(item));
         }
         console.log(htmlElements)
         return htmlElements;

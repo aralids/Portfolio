@@ -90,7 +90,7 @@ class LikeButton extends React.Component {
 function Place(props) {
     console.log("props: ", (String(props.left) + "px"))
     return ( 
-        <img className="place" style={{"top": String(props.top) + "px"}} src={props.frontImageLink} width="100px" />
+        <img className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="100px" />
     );
 }
 
@@ -105,12 +105,12 @@ class PlaceSet extends React.Component {
         };
         console.log("this.state.places: ", this.state.places)
         this.getPlacesData();
-        console.log('placesLeft: ', this.state.placesFrontImageLink)
+        console.log('placesTop: ', this.state.placesTop)
     }
 
     getPlacesData() {
-        let cx = document.getElementsByClassName("gmap_canvas")[0].offsetTop;
-        let cy = document.getElementsByClassName("gmap_canvas")[0].offsetLeft;
+        let cx = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + 250;
+        let cy = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().top + 250;
 
         console.log('cx, cy: ', cx, cy)
 
@@ -119,15 +119,15 @@ class PlaceSet extends React.Component {
         if (numOfPlaces % 2 === 1) {
             placesDegrees = [180];
         } else {
-            placesDegrees = [165, 195];
+            placesDegrees = [163, 133];
         }
         for (let i=0; i<(numOfPlaces-1)/2; i++) {
-            placesDegrees.push(placesDegrees[placesDegrees.length-1] + 30)
-            placesDegrees.unshift(placesDegrees[0] - 30)
+            placesDegrees.push(placesDegrees[placesDegrees.length-1] - 30)
+            placesDegrees.unshift(placesDegrees[0] + 30)
         }
 
 
-        let placesCentres = placesDegrees.map(item => [cx + 200*Math.cos(inRadians(item)), cy + 200*Math.sin(inRadians(item))]);
+        let placesCentres = placesDegrees.map(item => [cx + 350*Math.cos(inRadians(item)), cy + 350*Math.sin(inRadians(item))]);
 
         
 

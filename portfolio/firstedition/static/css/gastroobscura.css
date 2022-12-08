@@ -40,7 +40,6 @@ header, footer {
     height: 75px;
     width: 100%;
     display: flex;
-    background-color: pink;
 }
 
 header {
@@ -61,12 +60,34 @@ footer {
 
 main {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     padding: 75px 0;
     height: 100%;
-    background-color: #ffc;
+}
+
+.main-background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin-left: 3%;
+    clip-path: circle(50%);
+}
+
+h1 {
+    font-family: 'Abhaya Libre', serif;
+    font-size: 40px;
+    font-weight: 800;
+    height: fit-content;
+}
+
+p {
+    padding-top: 20px;
+    height: fit-content;
+  
+    font-family: 'Abhaya Libre', serif;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 #logo > img {
@@ -74,11 +95,12 @@ main {
 }
 
 .mapouter {
-    left: 30%;
+    position: fixed;
+    top: calc(50% - 250px);
+    left: 65%;
 }
 
 .gmap_canvas {
-    position: fixed;
     border-radius: 1000%;
     border: 35px solid #e1e1e1;
     box-shadow: 0px 0px 20px 5px #a9a9a9;

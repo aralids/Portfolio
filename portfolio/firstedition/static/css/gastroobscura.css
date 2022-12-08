@@ -45,6 +45,7 @@ header, footer {
 header {
     top: 0;
     border-bottom: 0.1px solid whitesmoke;
+    z-index: 50;
 }
 
 #logo {
@@ -71,7 +72,29 @@ main {
     justify-content: center;
     width: 50%;
     margin-left: 3%;
-    clip-path: circle(50%);
+    z-index: 25;
+    background-color: #00d455;
+}
+
+.place-info {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: calc(100% - 150px);
+    padding-left: 3%;
+    background-color: grey;
+    z-index: 30;
+}
+
+#place-1-info {
+    animation: peek 5s;
+}
+
+@keyframes peek {
+	0% {clip-path: circle(10%)}
+	100% {clip-path: circle(100%)}
 }
 
 h1 {
@@ -98,6 +121,7 @@ p {
     position: fixed;
     top: calc(50% - 250px);
     left: 65%;
+    z-index: 100;
 }
 
 .gmap_canvas {

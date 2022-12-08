@@ -88,9 +88,9 @@ class LikeButton extends React.Component {
 
 
 function Place(props) {
-    console.log("props: ", props)
+    console.log("props: ", (String(props.left) + "px"))
     return ( 
-        <img className="place" src={props.frontImageLink} width="100px" />
+        <img className="place" style={{"top": String(props.top) + "px"}} src={props.frontImageLink} width="100px" />
     );
 }
 

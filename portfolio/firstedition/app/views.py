@@ -78,7 +78,7 @@ def get_geolocation(request):
   for i in range(0, len(places_coords)):
     distance = geopy.distance.geodesic(geoloc, places_coords[i]).km
     places_distance.append(distance)
-  smallest_k_elements_indices = sorted(range(len(places_distance)), key = lambda sub: places_distance[sub])[:10]
+  smallest_k_elements_indices = sorted(range(len(places_distance)), key = lambda sub: places_distance[sub])[:3]
 
   smallest_k_elements = []
   for i in range(0, len(smallest_k_elements_indices)):

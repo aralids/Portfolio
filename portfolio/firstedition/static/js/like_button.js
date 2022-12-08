@@ -1,3 +1,5 @@
+import { places } from "./gastroobscura.js"
+
 'use strict';
 
 const e = React.createElement;

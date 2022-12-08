@@ -77,3 +77,12 @@ main {
     border: 35px solid #e1e1e1;
     box-shadow: 0px 0px 20px 5px #a9a9a9;
 }
+
+.place {
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 35px solid #e1e1e1;
+    box-shadow: 0px 0px 20px 5px #a9a9a9;
+}

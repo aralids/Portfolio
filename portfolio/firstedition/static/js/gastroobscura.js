@@ -44,6 +44,9 @@ function assignGeoValues(position) {
         success: function (response) {
             places = response; 
             console.log("places: ", places);
+            const domContainer = document.querySelector('#like_button_container');
+            const root = ReactDOM.createRoot(domContainer);
+            root.render(e(PlaceSet));
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -84,19 +87,11 @@ class LikeButton extends React.Component {
 }
 
 
-class Place extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    render() {
-        return ( 
-            <div className="place" onClick={props.onClick} top={props.top} left={props.left}>
-                <img src={props.frontImage}></img>
-            </div>
-        );
-    }
-    
+function Place(props) {
+    console.log("props: ", props)
+    return ( 
+        <img className="place" src={props.frontImageLink} width="100px" />
+    );
 }
 
 class PlaceSet extends React.Component {
@@ -106,14 +101,18 @@ class PlaceSet extends React.Component {
             places: places,
             placesTop: [],
             placesLeft: [],
-            placesFrontImageLink: []
+            placesFrontImageLink: [],
         };
+        console.log("this.state.places: ", this.state.places)
         this.getPlacesData();
+        console.log('placesLeft: ', this.state.placesFrontImageLink)
     }
 
     getPlacesData() {
-        let cx = document.getElementsByClassName("gmap_canvas").offsetTop;
-        let cy = document.getElementsByClassName("gmap_canvas").offsetLeft;
+        let cx = document.getElementsByClassName("gmap_canvas")[0].offsetTop;
+        let cy = document.getElementsByClassName("gmap_canvas")[0].offsetLeft;
+
+        console.log('cx, cy: ', cx, cy)
 
         let numOfPlaces = Object.keys(this.state.places).length;
         let placesDegrees;
@@ -127,13 +126,19 @@ class PlaceSet extends React.Component {
             placesDegrees.unshift(placesDegrees[0] - 30)
         }
 
+
         let placesCentres = placesDegrees.map(item => [cx + 200*Math.cos(inRadians(item)), cy + 200*Math.sin(inRadians(item))]);
+
+        
 
         this.state.placesLeft = placesCentres.map(item => item[0] - 50);
         this.state.placesTop = placesCentres.map(item => item[1] - 50);
 
         for (let i=0; i<Object.keys(this.state.places).length; i++) {
-            placesFrontImageLink.push(this.state.places[i][image_links][0]);
+            console.log("this.state.places[i][image_links]: ", this.state.places[i]["image_links"][0])
+            let a = this.state.places[i]["image_links"][0];
+            console.log('this.placesFrontImageLink: ', this.placesFrontImageLink)
+            this.state.placesFrontImageLink.push(a);
         }
         
     }
@@ -142,27 +147,27 @@ class PlaceSet extends React.Component {
     }
 
     renderPlace(i) {
+        console.log('i: ', i, this.state.placesTop[i])
         return (
             <Place  
                 top={this.state.placesTop[i]}
                 left={this.state.placesLeft[i]}
                 frontImageLink={this.state.placesFrontImageLink[i]}
-                onClick={() => this.handleClick(i)}
             />
         );
     }
   
     render() {
         let htmlElements = [];
+        let item;
         for (item of Object.keys(this.state.places)) {
             htmlElements.push(this.renderPlace(item));
         }
-        return 
+        console.log(htmlElements)
+        return htmlElements;
     }
   }
 
-const domContainer = document.querySelector('#like_button_container');
-const root = ReactDOM.createRoot(domContainer);
-root.render(e(LikeButton));
+
 
 

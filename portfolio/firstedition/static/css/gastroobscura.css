@@ -83,6 +83,6 @@ main {
     height: 100px;
     width: 100px;
     border-radius: 100%;
-    border: 35px solid #e1e1e1;
+    border: 5px solid #e1e1e1;
     box-shadow: 0px 0px 20px 5px #a9a9a9;
 }

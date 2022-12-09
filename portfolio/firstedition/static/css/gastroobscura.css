@@ -7,6 +7,8 @@
   --font-color: #ffe680;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --clipping-left: 1073px;
+  --clipping-top: 70px;
 }
 :root.alnatura {
   --main-bg-color: #fffef4;
@@ -99,13 +101,13 @@ main {
 }
 
 @keyframes peek {
-    0% {clip-path: circle(50px at 1073px 70px)}
-	100% {clip-path: circle(500% at 1073px 70px)}
+    0% {clip-path: circle(50px at var(--clipping-left) var(--clipping-top))}
+	100% {clip-path: circle(500% at var(--clipping-left) var(--clipping-top))}
 }
 
 @keyframes close {
-    0% {clip-path: circle(500% at 1073px 70px)}
-	100% {clip-path: circle(50px at 1073px 70px)}
+    0% {clip-path: circle(500% at var(--clipping-left) var(--clipping-top))}
+	100% {clip-path: circle(50px at var(--clipping-left) var(--clipping-top))}
 }
 
 h1 {
@@ -151,4 +153,23 @@ p {
     box-shadow: 0px 0px 20px 5px #a9a9a9;
     z-index: 100;
     cursor: pointer;
+}
+
+.gallery {
+    display: flex;
+    height: 50%;
+    margin-right: 50%;
+    overflow: scroll;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    z-index: 10;
+}
+
+.gallery-image {
+    margin-right: 5px;
+    border-radius: 7px;
+}
+
+a {
+    text-decoration: none;
 }

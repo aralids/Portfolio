@@ -69,10 +69,14 @@ getLocation();
 const e = React.createElement;
 
 function Clipping(props) {
+    console.log("props: ", props)
     return ( 
-        <div id={props.id} className="place-info" style={{"clipPath": props.clippingShape}}>
-            <h1>Frau Fischer Fountain</h1>
-            <p>Link: <br /> Address: <br /> A few photos: </p>
+        <div id={props.id} className="place-info" style={{"clipPath": props.clippingShape, "backgroundColor": props.color}}>
+            {props.title}
+            <p>{props.address}</p>
+            <div className="gallery">
+                {props.images}
+            </div>
         </div>
     );
 }
@@ -80,7 +84,7 @@ function Clipping(props) {
 function Place(props) {
     console.log("props: ", props)
     return ( 
-        <img id={props.id} className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="100px" />
+        <img id={props.id} className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="100px" onClick={props.onClick}/>
     );
 }
 
@@ -92,6 +96,8 @@ class PlaceSet extends React.Component {
             placesTop: [],
             placesLeft: [],
             placesFrontImageLink: [],
+            placesColor: ["#E5E4E2", "#D3D3D3", "#C0C0C0", "#A9A9A9", "#808080"],
+            clicked: Array(5).fill(0)
         };
         console.log("this.state.places: ", this.state.places)
         this.getPlacesData();
@@ -134,6 +140,39 @@ class PlaceSet extends React.Component {
     }
 
     handleClick(i) {
+        let clippingTop = String(this.state.placesTop[i] + 50) + "px";
+        let clippingLeft = String(this.state.placesLeft[i] + 50) + "px";
+        document.documentElement.style.setProperty('--clipping-left', clippingLeft);
+        document.documentElement.style.setProperty('--clipping-top', clippingTop);
+        console.log("Clicked: ", i)
+
+        if (this.state.clicked.every(item => item === 0)) {
+            document.getElementById(`place-${i}-info`).style.animation = "peek 5s forwards"
+            document.getElementById(`place-${i}-info`).style.clipPath = `circle(200% at ${clippingLeft} ${clippingTop})`
+            this.state.clicked[i] = 1;
+            console.log("case 1")
+        } else if (this.state.clicked.some(item => item === 1)) {
+            if (this.state.clicked[i] === 1) {
+                document.getElementById(`place-${i}-info`).style.animation = "close 1s forwards";
+                document.getElementById(`place-${i}-info`).style.clipPath = `circle(50px at ${clippingLeft} ${clippingTop})`
+                this.state.clicked[i] = 0;
+                console.log("case 2")
+            } else {
+                document.getElementById(`place-${i}-info`).style.animation = "peek 5s forwards"
+
+                let j = this.state.clicked.indexOf(1);
+                console.log("j: ", j)
+                let clippingTopJ = String(this.state.placesTop[j] + 50) + "px";
+                let clippingLeftJ = String(this.state.placesLeft[j] + 50) + "px";
+                document.getElementById(`place-${j}-info`).style.animation = ""; 
+                document.getElementById(`place-${j}-info`).style.clipPath = `circle(50px at ${clippingLeftJ} ${clippingTopJ})`;               
+                this.state.clicked[j] = 0;
+
+                
+                this.state.clicked[i] = 1;
+                console.log("case 3")
+            }
+        }
     }
 
     renderPlace(i) {
@@ -144,6 +183,7 @@ class PlaceSet extends React.Component {
                 top={this.state.placesTop[i]}
                 left={this.state.placesLeft[i]}
                 frontImageLink={this.state.placesFrontImageLink[i]}
+                onClick={() => this.handleClick(i)}
             />
         );
     }
@@ -151,9 +191,17 @@ class PlaceSet extends React.Component {
     renderClipping(i) {
         let clippingTop = String(this.state.placesTop[i] + 50) + "px";
         let clippingLeft = String(this.state.placesLeft[i] + 50) + "px";
+        let galleryImages = [];
+        for (let k=0; k<this.state.places[i].image_links.length; k++) {
+            galleryImages.push(<img className="gallery-image" src={this.state.places[i].image_links[k]}/>)
+        }
         return (
             <Clipping  
+                images={galleryImages}
+                title={<a href={this.state.places[i]["link"]} target="_blank"><h1>{this.state.places[i]["title"] + "   "}<i class="fa fa-external-link" style={{"fontSize":"24px", "color":"white"}}></i></h1></a>}
+                address={this.state.places[i]["address"].join(" | ")}
                 id={`place-${i}-info`}
+                color={this.state.placesColor[i]}
                 clippingShape={`circle(50px at ${clippingLeft} ${clippingTop})`}
             />
         );

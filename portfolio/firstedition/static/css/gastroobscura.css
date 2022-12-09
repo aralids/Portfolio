@@ -112,7 +112,7 @@ main {
 
 h1 {
     font-family: 'Abhaya Libre', serif;
-    color: white;
+    color: #454541;
     font-size: 40px;
     font-weight: 800;
     height: fit-content;
@@ -121,7 +121,7 @@ h1 {
 p {
     padding-top: 20px;
     height: fit-content;
-    color: white;
+    color: #454541;
     font-family: 'Abhaya Libre', serif;
     font-size: 18px;
     font-weight: 400;

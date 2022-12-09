@@ -71,7 +71,7 @@ const e = React.createElement;
 function Clipping(props) {
     console.log("props: ", props)
     return ( 
-        <div id={props.id} className="place-info" style={{"clipPath": props.clippingShape, "backgroundColor": props.color}}>
+        <div id={props.id} className="place-info" style={{"clipPath": props.clippingShape, "background": props.color}}>
             {props.title}
             <p>{props.address}</p>
             <div className="gallery">
@@ -198,10 +198,10 @@ class PlaceSet extends React.Component {
         return (
             <Clipping  
                 images={galleryImages}
-                title={<a href={this.state.places[i]["link"]} target="_blank"><h1>{this.state.places[i]["title"] + "   "}<i class="fa fa-external-link" style={{"fontSize":"24px", "color":"white"}}></i></h1></a>}
+                title={<a href={this.state.places[i]["link"]} target="_blank"><h1>{this.state.places[i]["title"] + "   "}<i class="fa fa-external-link" style={{"fontSize":"24px", "color":"#454541"}}></i></h1></a>}
                 address={this.state.places[i]["address"].join(" | ")}
                 id={`place-${i}-info`}
-                color={this.state.placesColor[i]}
+                color={`radial-gradient(circle at ${clippingLeft} ${clippingTop}, #C0C0C0 0%, white 30%)`}
                 clippingShape={`circle(50px at ${clippingLeft} ${clippingTop})`}
             />
         );

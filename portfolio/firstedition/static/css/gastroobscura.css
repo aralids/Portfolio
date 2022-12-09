@@ -136,12 +136,24 @@ p {
     top: calc(50% - 250px);
     left: 65%;
     z-index: 100;
+    text-align: right;
+    height: 500px;
+    width: 500px;
 }
 
 .gmap_canvas {
     border-radius: 1000%;
     border: 35px solid #e1e1e1;
     box-shadow: 0px 0px 20px 5px #a9a9a9;
+    overflow: hidden;
+    background: none !important;
+    height: 500px;
+    width: 500px;
+}
+
+#gmap_canvas {
+    height: 500px;
+    width: 500px;
 }
 
 .place {

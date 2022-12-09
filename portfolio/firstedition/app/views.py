@@ -95,11 +95,15 @@ def get_geolocation(request):
     address = closest_k_places[i].adress.split("\n")
     link = closest_k_places[i].link
     image_links = closest_k_places[i].image_links.split()
+    latitude = closest_k_places[i].latitude
+    longitude = closest_k_places[i].longtitude
     place_values = {
       "title": title,
       "address": address,
       "link": link,
-      "image_links": image_links
+      "image_links": image_links,
+      "latitude": latitude,
+      "longitude": longitude
     }
     closest_k_places_values[i] = place_values
   print("place_values: ", closest_k_places_values)

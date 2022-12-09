@@ -2,6 +2,7 @@ let latitude;
 let longitude;
 let address = $("main").attr("data-url");
 let places = {}
+let map;
 console.log("address: ", address);
 
 function getCookie(name) {
@@ -42,12 +43,21 @@ function assignGeoValues(position) {
             "X-CSRFToken": csrftoken,
         },
         success: function (response) {
+            const currentLocation = { lat: latitude, lng: longitude };
+            map = new google.maps.Map(document.getElementById("gmap_canvas"), {zoom: 5, center: currentLocation});
+            
             places = response; 
+            for (let i=0; i<Object.keys(places).length; i++) {
+                const placeLocation = { lat: places[i]["latitude"], lng: places[i]["longitude"] };
+                const marker = new google.maps.Marker({ position: placeLocation, map: map });
+            }
+
             console.log("places: ", places);
             const domContainer = document.querySelector('#like_button_container');
             const root = ReactDOM.createRoot(domContainer);
             root.render(e(PlaceSet));
             console.log("circle1: ", document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + 250)
+            console.log("longitude: ", longitude)
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -59,7 +69,6 @@ function inRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
-
 
 
 getLocation();
@@ -144,7 +153,9 @@ class PlaceSet extends React.Component {
         let clippingLeft = String(this.state.placesLeft[i] + 50) + "px";
         document.documentElement.style.setProperty('--clipping-left', clippingLeft);
         document.documentElement.style.setProperty('--clipping-top', clippingTop);
-        console.log("Clicked: ", i)
+        console.log("Clicked: ", map)
+        map.setCenter({lng: this.state.places[i]["longitude"], lat: this.state.places[i]["latitude"]});
+        map.setZoom(10);
 
         if (this.state.clicked.every(item => item === 0)) {
             document.getElementById(`place-${i}-info`).style.animation = "peek 5s forwards"
@@ -198,10 +209,10 @@ class PlaceSet extends React.Component {
         return (
             <Clipping  
                 images={galleryImages}
-                title={<a href={this.state.places[i]["link"]} target="_blank"><h1>{this.state.places[i]["title"] + "   "}<i class="fa fa-external-link" style={{"fontSize":"24px", "color":"#454541"}}></i></h1></a>}
+                title={<a href={this.state.places[i]["link"]} target="_blank"><h1>{this.state.places[i]["title"] + "   "}<i className="fa fa-external-link" style={{"fontSize":"24px", "color":"#454541"}}></i></h1></a>}
                 address={this.state.places[i]["address"].join(" | ")}
                 id={`place-${i}-info`}
-                color={`radial-gradient(circle at ${clippingLeft} ${clippingTop}, #C0C0C0 0%, white 30%)`}
+                color={`radial-gradient(circle at ${clippingLeft} ${clippingTop}, #C0C0C0 0%, white 15%)`}
                 clippingShape={`circle(50px at ${clippingLeft} ${clippingTop})`}
             />
         );

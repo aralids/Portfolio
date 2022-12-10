@@ -10,7 +10,7 @@ import geopy.distance
 
 
 def index(request):
-  template = loader.get_template('app/index.html')
+  template = loader.get_template('api/index.html')
   return HttpResponse(template.render({}, request))
 
 def update(request):
@@ -68,7 +68,7 @@ def temple(request):
       log[(color, entry.day)] = paths
     paths = []
   print(log)
-  return render(request, 'app/temple.html', {'entries': log,
+  return render(request, 'api/temple.html', {'entries': log,
                                              'username': u,
                                              'password': password})
 
@@ -114,11 +114,11 @@ def get_geolocation(request):
 def gastroobscura(request):
   u = request.POST.get("username")
   p = request.POST.get("password")
-  return render(request, 'app/gastroobscura.html', {'username': u,
+  return render(request, 'api/gastroobscura.html', {'username': u,
                                                     'password': p})
 
 def vitamins(request):
   u = request.POST.get("username")
   p = request.POST.get("password")
-  return render(request, 'app/vitamins.html', {'username': u,
+  return render(request, 'api/vitamins.html', {'username': u,
                                                'password': p})

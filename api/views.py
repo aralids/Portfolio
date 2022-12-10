@@ -36,6 +36,7 @@ def temple(request):
   print("a: ", a)
   print(User.objects.all())
   print("request.POST: ", request.POST)
+  print("request.GET: ", request.GET)
   u = request.POST.get("username")
   password = request.POST.get("password")
   print("username: ", u)

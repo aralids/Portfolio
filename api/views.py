@@ -75,7 +75,7 @@ def temple(request):
       log[(color, entry.day)] = paths
     paths = []
   print(log)
-  return render(request, '/templates/app/temple.html', {'entries': log,
+  return render(request, 'app/temple.html', {'entries': log,
                                              'username': u,
                                              'password': password})
 

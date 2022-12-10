@@ -49,17 +49,15 @@ header {
     min-height: 75px;
     padding-top: 1.8px;
     padding-bottom: 4px;
-    background-color: #EF626C;
-    border-bottom: 0.1px solid whitesmoke;
   }
 
 main {
     display: flex;
     margin-top: 75px;
-    margin-bottom: 75px;
-    height: calc(100% - 150px);
+    margin-bottom: 50px;
+    height: calc(100% - 125px);
     width: 100%;
-    background-color: #b5ce34;
+    background-color: silver;
 }
 
 
@@ -83,11 +81,10 @@ main {
 
 footer {
     position: fixed;
-    top: calc(100% - 75px);
-    height: 75px;
+    top: calc(100% - 50px);
+    height: 50px;
     width: 100%;
-    border-top: 0.1px solid whitesmoke;
-    background-color: firebrick;
+    background-color: silver;
 }
 
 .nav{
@@ -101,7 +98,9 @@ footer {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  background-color: #76344d;
+  background-color: silver;
+  padding-left: calc(3% - 12.5px);
+  padding-right: 50px;
 }
 
 #color-picker {
@@ -120,44 +119,66 @@ footer {
 .clr:hover{
   transform: scale(1.2);
 }
-.clr:nth-child(1){
-  background-color: #000;
-}
 .clr:nth-child(2){
-  background-color: #EF626C;
+  background-color: var(--main-color);
 }
 .clr:nth-child(3){
-  background-color: #fdec03;
+  background-color: var(--font-color);
 }
 .clr:nth-child(4){
-  background-color: #24d102;
+  background-color: var(--main-accent-color);
 }
 .clr:nth-child(5){
-  background-color: #fff;
+  background-color: var(--secondary-accent-color);
+}
+.clr:nth-child(6){
+  background-color: #454541;
+}
+
+#info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 3px solid red;
+}
+
+#info > p {
+  font-family: 'Abhaya Libre', serif;
+  font-size: 20px;
 }
 
 button{
-  width: fit-content;
+  background-color: #e1e1e1;
   border: none;
-  outline: none;
-  padding: .6em 1em;
-  border-radius: 3px;
-  background-color: grey;
-  color: #fff;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 5px;
+  height: 40px;
   cursor: pointer;
 }
 
 form {
+  margin: 5px;
   width: 20%;
+}
+
+#input-date {
+  margin: 5px;
+  width: 100%;
 }
 
 canvas {
   z-index: 75;
   margin-top: 50px;
-  width: calc(94% - 140px);
+  width: calc(94% - 70px);
   height: calc(100% - 50px);
-  background-color: olive;
+  background-color: white;
+  border: 1px solid silver;
+  border-radius: 4px;
 }
 
 svg {
@@ -178,11 +199,16 @@ svg {
 }
 
 #X-button, #save-button {
-  width: 5%;
+  top: 0;
+  position: fixed;
+  margin: 5px;
+  width: 75px;
+  z-index: 1200;
 }
 
 #save-button {
   visibility: hidden;
+  z-index: 1400;
 }
 
 #date-shower {
@@ -190,7 +216,7 @@ svg {
   width: 150px;
   height: 40px;
   position: fixed;
-  background-color: grey;
+  background-color: silver;
   padding: 0;
   z-index: 250;
   visibility: hidden;
@@ -198,17 +224,19 @@ svg {
 
 #association-shower {
   position: fixed;
-  background-color: lightgrey;
-  width: 20%;
+  background-color: white;
+  width: 50%;
   height: 70%;
-  left: 40%;
-  top: 18%;
+  left: calc(25% + 37.5px);
+  top: calc(50% - 225px);
   opacity: 1;
   z-index: 200;
   padding: 20px;
-  border: 1px solid black;
+  border: 35px solid #e1e1e1;
+  box-shadow: 0px 0px 20px 5px #a9a9a9;
   border-radius: 5px;
   visibility: hidden;
+  z-index: 1400;
 }
 
 #association-top {
@@ -232,21 +260,31 @@ svg {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-left: 3%;
-  width: 70px;
+  margin-left: calc(3% - 2.5px);
+  width: 75px;
   border: 0.1px solid whitesmoke;
-  background-color: #ffe680;
+  background-color: white;
   z-index: 10000;
+  margin-top: 50px;
+  border-radius: 5px;
 }
 
-input[type=color] {
+#color {
   display: none;
 
 }
-span {
+#color-picker {
   border-radius: 100%;
   width: 30px;
   height: 30px; 
-  background-color:red;
+  border: 3px solid rgb(214, 214, 214);
+  background: radial-gradient(red, #ffe680, #00d455, lightblue, purple);
+}
+
+.clicked {
+  color: white;
+  background-color: #454541;
+  border: none;
+  border-top: 1px solid black;
 }
 

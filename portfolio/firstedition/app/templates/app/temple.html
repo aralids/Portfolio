@@ -12,10 +12,12 @@
     </head>
     <body>
         <header>
-            <section id="logo" username={{ username }}>
+            <section id="logo" username={{ username }} password={{ password }}>
                 <img
                 {% if username == 'alnatura' %}
                     src="{% static 'img/logo_alnatura2.svg' %}"
+                {% elif username == 'lex' and password == 'love&AI' %}
+                    src="{% static 'img/logo_lex.svg' %}"
                 {% else  %}
                     src="{% static 'img/logo.svg' %}"
                 {% endif %}
@@ -31,15 +33,15 @@
         <main id="main">
             <div class="nav">
                 <!-- We will be accessing the data-clr in JavaScript -->
+                <button id="viewing-mode" class="viewing-mode clicked">viewing mode</button>
                 <button class="drawing-mode">drawing mode</button>
-                <button class="viewing-mode">viewing mode</button>
                 <button class="edit-associations-mode">edit-associations mode</button>
-                <form>
+                <form id="form">
                     <input type="date" id="input-date" name="input-date" value="" onchange="countClicks()">
                 </form>
-                <button id="X-button">X</button>
-                <button id="save-button">Save</button>
             </div>
+            <button id="X-button">X</button>
+            <button id="save-button">Save</button>
             <button id="date-shower">"2022-11-20"</button>
             <div id="association-shower">
                 <div id="association-top">
@@ -48,9 +50,13 @@
                 </div>
                 <div id="association-files"><p>Files (images, audio, etc.)</p></div>
                 <div id="association-videos"><p>Videos</p></div>
-                <div id="association-text"><p>Text</p></div>
+                <div id="association-text">
+                    <p>Text</p>
+                    <div></div>
+                </div>
             </div>
             <section id="toolkit">
+                <div id="info" class="clr"><p>i</p></div>
                 <div class="clr" data-clr="#000"></div>
                 <div class="clr" data-clr="#EF626C"></div>
                 <div class="clr" data-clr="#fdec03"></div>
@@ -58,6 +64,7 @@
                 <div class="clr" data-clr="#fff"></div>
                 <span id="color-picker"></span>
                 <input type='color' value='#fefefe' class='bar' id='color'>
+                
             </section>
             <canvas id="canvas"  data-url="/app/update/" data-url-temple="/app/temple"></canvas>
             <svg class="svg" height="210" width="400">

@@ -48,6 +48,15 @@
           onmousedown="return false"
           style="user-drag: none;"
         />
+        <img
+          src="{% static 'img/logo_lex.svg' %}"
+          alt="Logo"
+          id="logo_lex"
+          class="transparent"
+          draggable="false"
+          onmousedown="return false"
+          style="user-drag: none;"
+        />
       </section>
       <nav>
         <ul>
@@ -87,7 +96,7 @@
           >
           {% csrf_token %}
             <input type="text" id="username" name="username" placeholder="username from CV" />
-            <input type="password" id="password" placeholder="password from CV" />
+            <input type="password" id="password" name="password" placeholder="password from CV" />
             <input id="hidden-button" type="submit" value="Submit" formtarget="_blank"/>
           </form>
           <form action="" id="mock-form" method="post" onsubmit="onSubmitAction(event);">
@@ -97,16 +106,19 @@
         <section id="about-me">
           <h1>Dilara Sarach</h1>
           <h2>
-            A bioinformatician by trade, an art &amp; food connoisseur by heart.
+            A bioinformatician by trade, an art(ifice) connoisseur by heart.
           </h2>
           <p>
             <br>
 
-            You're finding me at the end of my studies as I embark on mastering the web - the biggest canvas there is. <br>
-            University taught me R, SQL, Haskell, C++ and Python. TypeScript, React and Django are my current focus, <br> 
-            however I am most dangerous with just bare-bones HTML, CSS and JS because of the creative freedom they grant. <br><br>
-
-            And what is programming but an art form? <br>
+            And what is coding but the acme of art? <br>
+            Think about it: A program is non-ephemeral (unlike a delicious meal); it is perfectly reproducible (unlike a spontaneous
+            dance); and it is infinitely editable (unlike a drawing on a delicate piece of paper). <br> <br> 
+            
+            Enough pretentious contemplations, you are here for the blitz facts: I am based in Frankfurt
+            am Main, Germany. My favorite painter is Ernst Wilhelm Nay. I love sewing (and finding ways to automate parts of the process) & 
+            fine dark chocolate (80%, coconut-sugar-sweetened, by LOVECHOCK) 
+            - two addictions I am willing to work hard to finance.<br><br>
           </p>
         </section>
         <section id="projects">
@@ -123,7 +135,7 @@
               </p>
               <section id="project-1" class="project-description">
                 <p class="project-text">
-                  Progress: <span class="progress"><span class="progress-full"></span><span class="progress-full"></span><span class="progress-full"></span><span class="progress-full"></span><span class="progress-empty"></span></span>
+                  Progress: <span class="progress"><span class="progress-full"></span><span class="progress-full"></span><span class="progress-full"></span><span class="progress-empty"></span><span class="progress-empty"></span></span>
                   <br> <br> Document your day using hand-drawn symbols, text, music, images, videos. Essentially a diary, but multi-sensory.
                   <br> <br> What I learned: <span class="technology">Django</span> <span class="technology">AJAX</span> <span class="technology">jQuery</span>
                 </p>

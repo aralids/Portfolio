@@ -4,7 +4,7 @@
         {% load static %}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dilara Sarach: Casino Vitamins</title>
+        <title>Dilara Sarach: Vitamins</title>
         <link rel="icon" href="{% static 'img/logo.svg' %}" />
         <link rel="stylesheet" href="{% static 'css/vitaminsstyle.css'%}"/>
         <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;800&family=Signika&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet"/>
@@ -14,19 +14,16 @@
         <header>
             <section id="logo">
                 <img
-                src="{% static 'img/logo.svg' %}"
+                {% if username == 'alnatura' %}
+                    src="{% static 'img/logo_alnatura2.svg' %}"
+                {% elif username == 'lex' and password == 'love&AI' %}
+                    src="{% static 'img/logo_lex.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo.svg' %}"
+                {% endif %}
                 alt="Logo"
                 id="logo_classic"
                 class="opaque"
-                draggable="false"
-                onmousedown="return false"
-                style="user-drag: none;"
-                />
-                <img
-                src="{% static 'img/logo_alnatura2.svg' %}"
-                alt="Logo"
-                id="logo_alnatura2"
-                class="transparent"
                 draggable="false"
                 onmousedown="return false"
                 style="user-drag: none;"

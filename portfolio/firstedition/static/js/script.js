@@ -138,7 +138,57 @@ let cgmQuestionMarkNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
   ];
 
-let cgmQuestionMark = stringifyScheme(cgmQuestionMarkNum)
+let cgmQuestionMark = stringifyScheme(cgmQuestionMarkNum);
+
+let project1Num = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 4, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1, 0, 4, 0, 0, 0, 0,
+  0, 0, 0, 4, 4, 4, 0, 0, 0, 2, 0, 2, 0, 0, 0, 4, 4, 4, 0, 0, 0,
+  0, 0, 0, 0, 4, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1, 0, 4, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+]
+
+let project1 = stringifyScheme(project1Num);
+
+let project2Num = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+]
+
+let project2 = stringifyScheme(project2Num);
 
 let cgmQrCodeNum = [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
   1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1,
@@ -171,10 +221,10 @@ let cgmQrCode = stringifyScheme(cgmQrCodeNum)
 cellGridMain = new Grid('cell-grid-main')
 cellGridMain.initialize(cgmInitialScheme, 'dead')
 cellGridProject2 = new Grid('cell-grid-project-2')
-cellGridProject2.initialize(cgmQrCode, 'alive')
+cellGridProject2.initialize(project1, 'alive')
 cellGridProject2.makeInvisible()
 cellGridProject1 = new Grid('cell-grid-project-1')
-cellGridProject1.initialize(cgmQrCode, 'alive')
+cellGridProject1.initialize(project2, 'alive')
 cellGridProject1.makeInvisible()
 
 window.onkeydown = function () {
@@ -572,6 +622,10 @@ function stringifyScheme(schemeNum) {
       stringifiedScheme.push('main-color-cell')
     } else if (schemeNum[i] === 2) {
       stringifiedScheme.push('dark-color-cell')
+    } else if (schemeNum[i] === 3) {
+      stringifiedScheme.push('secondary-accent-color-cell')
+    } else if (schemeNum[i] === 4) {
+      stringifiedScheme.push('secondary-accent-color-cell')
     }
   }
   return stringifiedScheme
@@ -734,6 +788,7 @@ function onSubmitAction(event) {
   if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'alnatura') {
     document.getElementById('logo_alnatura2').style.opacity = '1'
     document.getElementById('logo_classic').style.opacity = '0'
+    document.getElementById('logo_lex').style.opacity = '0'
     changeColorPalette('alnatura')
     htmlLoginForm.style.visibility = 'hidden'
     htmlLoginForm.style.opacity = '0'
@@ -741,9 +796,21 @@ function onSubmitAction(event) {
     document.getElementById('submit-button').setAttribute('value', 'Log out')
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href=''>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
+  } else if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'lex' && document.getElementById('password').value === 'love&AI') {
+      document.getElementById('logo_lex').style.opacity = '1'
+      document.getElementById('logo_classic').style.opacity = '0'
+      document.getElementById('logo_alnatura2').style.opacity = '0'
+      changeColorPalette('lex')
+      htmlLoginForm.style.visibility = 'hidden'
+      htmlLoginForm.style.opacity = '0'
+      htmlLoginForm.style.maxHeight = '0'
+      document.getElementById('submit-button').setAttribute('value', 'Log out')
+      document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
+      document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href=''>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
   } else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
+    document.getElementById('logo_lex').style.opacity = '0'
     changeColorPalette('classic')
     
     htmlLoginForm.style.opacity = '1'
@@ -767,7 +834,7 @@ function submit(project) {
   } else if (project === 'vitamins') {
     htmlLoginForm.setAttribute('action', 'vitamins/')
   }
-  document.getElementById('hidden-button').click()
+  document.getElementById('hidden-button').click();
 }
 
 /* FUNCTIONS */

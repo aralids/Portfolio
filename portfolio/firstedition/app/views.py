@@ -32,7 +32,8 @@ def update(request):
 
 def temple(request):
   u = request.POST.get("username")
-  print("username: ", u)
+  password = request.POST.get("password")
+  print("password: ", password)
   user = User.objects.get(username=u)
   entries = user.entry_set.all()
   log = {}
@@ -68,7 +69,8 @@ def temple(request):
     paths = []
   print(log)
   return render(request, 'app/temple.html', {'entries': log,
-                                             'username': u})
+                                             'username': u,
+                                             'password': password})
 
 def get_geolocation(request):
   geoloc = request.POST.get("geoloc").split()
@@ -111,8 +113,12 @@ def get_geolocation(request):
   
 def gastroobscura(request):
   u = request.POST.get("username")
-  return render(request, 'app/gastroobscura.html', {'username': u})
+  p = request.POST.get("password")
+  return render(request, 'app/gastroobscura.html', {'username': u,
+                                                    'password': p})
 
 def vitamins(request):
   u = request.POST.get("username")
-  return render(request, 'app/vitamins.html', {'username': u})
+  p = request.POST.get("password")
+  return render(request, 'app/vitamins.html', {'username': u,
+                                               'password': p})

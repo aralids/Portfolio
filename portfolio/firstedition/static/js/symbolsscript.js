@@ -1,5 +1,9 @@
 let mode = "viewing mode";
 
+console.log(document.getElementById("logo").getAttribute("password"))
+
+console.log(document.getElementById("form").getBoundingClientRect());
+
 const canvas = document.getElementById("canvas");
 const main = document.getElementById("main");
 canvas.height = main.offsetHeight;
@@ -41,6 +45,12 @@ viewingModeBtn.addEventListener("click", () => {
     viewingMode();
 })
 
+let editAssociationsModeBtn = document.querySelector(".edit-associations-mode");
+editAssociationsModeBtn.addEventListener("click", () => {
+    mode = "edit-associations mode";
+    editAssociationsMode();
+})
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -58,6 +68,9 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 function drawingMode() {
+    document.getElementsByClassName("edit-associations-mode")[0].classList.remove("clicked");
+    document.getElementsByClassName("drawing-mode")[0].classList.add("clicked");
+    document.getElementsByClassName("viewing-mode")[0].classList.remove("clicked");
     let svgPaths = document.querySelectorAll(".svg-path");
     for (svgPath of svgPaths) {
         svgPath.classList.replace("unhighlighted", "highlighted");
@@ -99,7 +112,10 @@ function drawingMode() {
 }
 
 function viewingMode(specificDate="") {
-    
+    $("#X-button").css("visibility", "visible");
+    document.getElementsByClassName("edit-associations-mode")[0].classList.remove("clicked");
+    document.getElementsByClassName("drawing-mode")[0].classList.remove("clicked");
+    document.getElementsByClassName("viewing-mode")[0].classList.add("clicked");
     $("#save-button").css("visibility", "hidden");
     let paths = document.querySelectorAll("path");
     for (path of paths) {
@@ -141,6 +157,12 @@ function viewingMode(specificDate="") {
             path.setAttribute("onmouseout", "unhighlightAll()");
         }
     }
+}
+
+function editAssociationsMode(specificDate="") {
+    document.getElementsByClassName("edit-associations-mode")[0].classList.add("clicked");
+    document.getElementsByClassName("drawing-mode")[0].classList.remove("clicked");
+    document.getElementsByClassName("viewing-mode")[0].classList.remove("clicked");
 }
 
 function showDate(entry) {
@@ -237,12 +259,16 @@ function sendAJAX(nextColor="") {
 }
 
 let XBtn = document.getElementById("X-button");
+XBtn.style.top = String(document.getElementById("viewing-mode").getBoundingClientRect().top - 5) + "px";
+XBtn.style.left = String(document.getElementById("form").getBoundingClientRect().right + 10) + "px";
 XBtn.addEventListener("click", () => {
     $("#input-date").val("");
     viewingMode();
 })
 
 let saveBtn = document.getElementById("save-button");
+saveBtn.style.top = String(document.getElementById("viewing-mode").getBoundingClientRect().top - 5) + "px";
+saveBtn.style.left = String(document.getElementById("form").getBoundingClientRect().right + 10) + "px";
 saveBtn.addEventListener("click", () => {
     sendAJAX();
 })
@@ -281,3 +307,12 @@ function handleMouseMove(event) {
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
+
+$("#color").change(function(event) {
+    console.log($(this).val());
+    $("#color-picker").css('background-color',$(this).val());
+});
+
+$("#color-picker").click(function(event) {
+    $("#color").click();
+});

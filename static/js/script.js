@@ -837,4 +837,6 @@ function submit(project) {
   document.getElementById('hidden-button').click();
 }
 
+console.log("AAAAAAAAA")
+
 /* FUNCTIONS */

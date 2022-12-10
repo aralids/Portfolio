@@ -835,8 +835,8 @@ function submit(project) {
     htmlLoginForm.setAttribute('action', 'vitamins/')
   }
   
-  console.log("username value: ", document.getElementById('username').value)
-  console.log("password value: ", document.getElementById('password').value)
+  console.log("username value: ", document.getElementById('username'))
+  console.log("password value: ", document.getElementById('password'))
   // document.getElementById('hidden-button').click();
 }
 

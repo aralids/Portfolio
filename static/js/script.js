@@ -834,7 +834,10 @@ function submit(project) {
   } else if (project === 'vitamins') {
     htmlLoginForm.setAttribute('action', 'vitamins/')
   }
-  document.getElementById('hidden-button').click();
+  
+  console.log("username value: ", document.getElementById('username').value)
+  console.log("password value: ", document.getElementById('password').value)
+  // document.getElementById('hidden-button').click();
 }
 
 var csrf = document.querySelector('meta[name="csrf-token"]').content;

@@ -837,7 +837,7 @@ function submit(project) {
   
   console.log("username value: ", document.getElementById('username'))
   console.log("password value: ", document.getElementById('password'))
-  // document.getElementById('hidden-button').click();
+  document.getElementById('hidden-button').click();
 }
 
 var csrf = document.querySelector('meta[name="csrf-token"]').content;

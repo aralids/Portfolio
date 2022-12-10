@@ -7,6 +7,7 @@ from .models import User, Entry, Place
 from datetime import datetime, date
 import time
 import geopy.distance
+import django
 
 
 def index(request):

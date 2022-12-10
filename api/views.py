@@ -33,8 +33,9 @@ def update(request):
 
 def temple(request):
   a = django.middleware.csrf.get_token(request)
-  u = request.GET.get("username")
-  password = request.GET.get("password")
+  print("request.POST: ", request.POST)
+  u = request.POST.get("username")
+  password = request.POST.get("password")
   user = User.objects.get(username=u)
   entries = user.entry_set.all()
   log = {}

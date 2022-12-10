@@ -92,13 +92,13 @@ function drawingMode() {
 
     window.addEventListener("mousemove", (e) => {
         if (prevX == null || prevY == null || !draw) {
-            prevX = e.clientX - 60
-            prevY = e.clientY - 85
+            prevX = e.clientX - 70
+            prevY = e.clientY - 95
             return
         }
 
-        let currentX = e.clientX - 60
-        let currentY = e.clientY - 85
+        let currentX = e.clientX - 70
+        let currentY = e.clientY - 95
 
         drawing += `${prevX+125} ${prevY} ${currentX+125} ${currentY} `
 

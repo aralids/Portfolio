@@ -114,7 +114,7 @@ def get_geolocation(request):
 def gastroobscura(request):
   u = request.POST.get("username")
   p = request.POST.get("password")
-  return render(request, '/gastroobscura.html', {'username': u,
+  return render(request, 'gastroobscura.html', {'username': u,
                                                     'password': p})
 
 def vitamins(request):

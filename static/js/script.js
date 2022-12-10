@@ -837,6 +837,7 @@ function submit(project) {
   document.getElementById('hidden-button').click();
 }
 
-console.log("AAAAAAAAA")
+var csrf = document.querySelector('meta[name="csrf-token"]').content;
+console.log(csrf)
 
 /* FUNCTIONS */

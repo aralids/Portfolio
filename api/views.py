@@ -10,7 +10,7 @@ import geopy.distance
 
 
 def index(request):
-  template = loader.get_template('app/index.html')
+  template = loader.get_template('index.html')
   return HttpResponse(template.render({}, request))
 
 def update(request):

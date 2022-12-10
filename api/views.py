@@ -31,6 +31,8 @@ def update(request):
   return HttpResponse("")
 
 def temple(request):
+  a = django.middleware.csrf.get_token(request)
+  print("a: ", a)
   print(User.objects.all())
   print("request.POST: ", request.POST)
   u = request.POST.get("username")

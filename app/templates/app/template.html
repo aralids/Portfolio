@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dilara Sarach: Symbols</title>
+        <link rel="icon" href="{% static 'img/logo.svg' %}" />
+        <link rel="stylesheet" href="{% static 'css/template.css'%}"/>
+    </head>
+    <body>
+        <header>
+            <section id="logo">
+                <img
+                {% if username == 'alnatura' %}
+                    src="{% static 'img/logo_alnatura2.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo.svg' %}"
+                {% endif %}
+                alt="Logo"
+                id="logo_classic"
+                class="opaque"
+                draggable="false"
+                onmousedown="return false"
+                style="user-drag: none;"
+                />
+            </section>
+        </header>
+        <main>
+            <p>main</p>
+        </main>
+        <footer>
+            <p>footer</p>
+        </footer>
+    </body>
+</html>

@@ -7,14 +7,12 @@ from .models import User, Entry, Place
 from datetime import datetime, date
 import time
 import geopy.distance
-from django.views.decorators.csrf import csrf_protect
 
 
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render({}, request))
 
-@csrf_protect
 def update(request):
   user = User.objects.get(username=request.POST.get('username'))
   print("username: ", user)
@@ -32,10 +30,11 @@ def update(request):
     print("obj.drawing new", obj.drawing)
   return HttpResponse("")
 
-@csrf_protect
 def temple(request):
+  print(User.objects.all())
   u = request.POST.get("username")
   password = request.POST.get("password")
+  print("username: ", u)
   print("password: ", password)
   user = User.objects.get(username=u)
   entries = user.entry_set.all()
@@ -75,7 +74,6 @@ def temple(request):
                                              'username': u,
                                              'password': password})
 
-@csrf_protect
 def get_geolocation(request):
   geoloc = request.POST.get("geoloc").split()
   geoloc = (float(geoloc[0]), float(geoloc[1]))
@@ -115,13 +113,12 @@ def get_geolocation(request):
   print("place_values: ", closest_k_places_values)
   return JsonResponse(closest_k_places_values)
 
-@csrf_protect  
 def gastroobscura(request):
   u = request.POST.get("username")
   p = request.POST.get("password")
   return render(request, 'gastroobscura.html', {'username': u,
                                                     'password': p})
-@csrf_protect
+
 def vitamins(request):
   u = request.POST.get("username")
   p = request.POST.get("password")

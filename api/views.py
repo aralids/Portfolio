@@ -32,6 +32,7 @@ def update(request):
 
 def temple(request):
   print(User.objects.all())
+  print("request.POST: ", request.POST)
   u = request.POST.get("username")
   password = request.POST.get("password")
   print("username: ", u)

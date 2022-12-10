@@ -28,6 +28,7 @@ clrs.forEach(clr => {
             sendAJAX(ctx.strokeStyle);
         }
         drawing = ctx.strokeStyle + " ";
+        console.log("drawing: ", drawing);
     })
 })
 
@@ -91,13 +92,13 @@ function drawingMode() {
 
     window.addEventListener("mousemove", (e) => {
         if (prevX == null || prevY == null || !draw) {
-            prevX = e.clientX - 50
-            prevY = e.clientY - 75
+            prevX = e.clientX - 60
+            prevY = e.clientY - 85
             return
         }
 
-        let currentX = e.clientX - 50
-        let currentY = e.clientY - 75
+        let currentX = e.clientX - 60
+        let currentY = e.clientY - 85
 
         drawing += `${prevX+125} ${prevY} ${currentX+125} ${currentY} `
 

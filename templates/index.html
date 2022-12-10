@@ -90,6 +90,7 @@
             <br />
           </p>
           <form id="login-form" action="temple/" method="post">
+            {% csrf_token %}
             <input type="text" id="username" name="username" value="admin" placeholder="username from CV">
             <input type="password" id="password" name="password" value="" placeholder="password from CV">
             <input id="hidden-button" type="submit" value="Submit" formtarget="_blank">

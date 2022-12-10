@@ -89,14 +89,9 @@
             experience - or just keep scrolling.
             <br />
           </p>
-          <form
-            id="login-form"
-            action="temple/"
-            method="post"
-          >
-          
-            <input type="text" id="username" name="username" placeholder="username from CV" value="admin"/>
-            <input type="password" id="password" name="password" placeholder="password from CV" value="" />
+          <form id="login-form" action="temple/" method="post">
+            <input type="text" id="username" name="username" value="admin"/>
+            <input type="password" id="password" name="password" value="" />
             <input id="hidden-button" type="submit" value="Submit" formtarget="_blank"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           </form>

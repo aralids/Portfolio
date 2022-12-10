@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dilara Sarach: Vitamins</title>
+        <link rel="icon" href="{% static 'img/logo.svg' %}" />
+        <link rel="stylesheet" href="{% static 'css/vitaminsstyle.css'%}"/>
+        <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;800&family=Signika&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <section id="logo">
+                <img
+                {% if username == 'alnatura' %}
+                    src="{% static 'img/logo_alnatura2.svg' %}"
+                {% elif username == 'lex' and password == 'love&AI' %}
+                    src="{% static 'img/logo_lex.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo.svg' %}"
+                {% endif %}
+                alt="Logo"
+                id="logo_classic"
+                class="opaque"
+                draggable="false"
+                onmousedown="return false"
+                style="user-drag: none;"
+                />
+            </section>
+            <section id="disclaimer">
+                <p>THIS IS NO MEDICAL ADVICE! USE FOR FUN & WHEN OUT OF IDEAS ON WHAT TO COOK.</p>
+            </section>
+        </header>
+        <main>
+            <section id="reels">
+                <section id="reel-1" class="reel">
+                    <section class="slot">
+                        <h5>IRON<br><br></h5>
+                        <p>Daily dose: 18 mg<br></p>
+                        <p>Needed for: hemoglobin, myoglobin</p>
+                        <p>Can you have too much? Yes! Keep it under 45 mg.</p>
+                    </section>
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <h5>BASIC INFO <br><br></h5>
+                        <p>Name: Maria <br></p>
+                        <p>Age: 25</p>
+                        <p>Sex: Female</p>
+                        <p>Weight: 50kg</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN A <br><br></h5>
+                        <p>Daily dose: 700 µG <br></p>
+                        <p>Needed for: eye health, white blood cells, skin</p>
+                        <p>Can you have too much? Yes! Keep it under 3,000 µG.</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B1 <br><br></h5>
+                        <p>Daily dose: 1.1 mg <br></p>
+                        <p>Needed for: metabolism (needed to make ATP)</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B2 <br><br></h5>
+                        <p>Daily dose: 1.1 mg <br></p>
+                        <p>Needed for: metabolism, red blood cells</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B3 <br><br></h5>
+                        <p>Daily dose: 14 mg <br></p>
+                        <p>Needed for: normal cholesterol levels, skin</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B5 <br><br></h5>
+                        <p>Daily dose: 5 mg <br></p>
+                        <p>Needed for: metabolism</p>
+                        <p>Can the body produce it? No.</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B6 <br><br></h5>
+                        <p>Daily dose: 1.3 mg <br></p>
+                        <p>Needed for: metabolism, cardiovascular health</p>
+                        <p>Can the body produce it? No.</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B7 (Biotin) <br><br></h5>
+                        <p>Daily dose: 30 µG <br></p>
+                        <p>Needed for: metabolism, skin, hair, nails</p>
+                        <p>Can the body produce it? No.</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B9 (Folate) <br><br></h5>
+                        <p>Daily dose: 400 µG <br></p>
+                        <p>Needed for: DNA & RNA repair, homocysteine neutralization, fetal development</p>
+                        <p>Can the body produce it? No.</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B12 <br><br></h5>
+                        <p>Daily dose: 2.4 µG <br></p>
+                        <p>Needed for: brain & nerve cell health, red blood cells</p>
+                        <p>Can the body produce it? No.</p>
+                        <p>Can you have too much? Kind of. Keep it under 25 µG just in case!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>CHOLINE <br><br></h5>
+                        <p>Daily dose: 425 mg <br></p>
+                        <p>Needed for: structural integrity of cells, neurotransmission</p>
+                        <p>Can the body produce it? Yes, but not enough.</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN D <br><br></h5>
+                        <p>Daily dose: 15 µG <br></p>
+                        <p>Needed for: bone health</p>
+                        <p>Can the body produce it? Yes - just get some sunlight!</p>
+                        <p>Can you have too much? Yes! Keep it under 100 µG!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN E <br><br></h5>
+                        <p>Daily dose: 15 mg <br></p>
+                        <p>Needed for: antioxidation, immune function, artery clot prevention</p>
+                        <p>Can the body produce it? No.</p>
+                        <p>Can you have too much? Kind of. Keep it under 1000 mg just in case!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN K <br><br></h5>
+                        <p>Daily dose: 90 µG <br></p>
+                        <p>Needed for: blood clotting, bone health</p>
+                        <p>Can the body produce it? One of two types - yes.</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>CALCIUM <br><br></h5>
+                        <p>Daily dose: 1,000 mg <br></p>
+                        <p>Needed for: bone health, blood clotting, muscle contraction, +</p>
+                        <p>Can you have too much? Yes! Keep it under 2,000 mg!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>CHLORIDE <br><br></h5>
+                        <p>Daily dose: 2.3 g <br></p>
+                        <p>Needed for: body fluid balance</p>
+                        <p>Can you have too much? Yes! Beware kidney stones!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>CHROMIUM <br><br></h5>
+                        <p>Daily dose: 25 µG <br></p>
+                        <p>Needed for: enhances the action of insulin, metabolism</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                    <section class="slot">
+                        <h5>COPPER <br><br></h5>
+                        <p>Daily dose: 900 µG <br></p>
+                        <p>Needed for: collagen & connective tissue production, metabolism</p>
+                        <p>Can you have too much? Yes! Keep it under 10,000 µG.</p>
+                    </section>
+                    <section class="slot">
+                        <h5>FLUORIDE<br><br></h5>
+                        <p>Daily dose: 3 mg <br></p>
+                        <p>Needed for: strong teeth & bones</p>
+                        <p>Can you have too much? Yes! Keep it under 10 mg.</p>
+                    </section>
+                    <section class="slot">
+                        <h5>IODINE<br><br></h5>
+                        <p>Daily dose: 150 µG <br></p>
+                        <p>Needed for: thyroid gland functioning</p>
+                        <p>Can you have too much? Yes! Keep it under 1,100 µG.</p>
+                    </section>
+                    <section class="slot">
+                        <h5>IRON<br><br></h5>
+                        <p>Daily dose: 18 mg<br></p>
+                        <p>Needed for: hemoglobin, myoglobin</p>
+                        <p>Can you have too much? Yes! Keep it under 45 mg.</p>
+                    </section>
+                    <section class="slot">
+                        <h5>MAGNESIUM<br><br></h5>
+                        <p>Daily dose: 310 mg<br></p>
+                        <p>Needed for: hemoglobin, myoglobin</p>
+                        <p>Can you have too much? Yes! Keep it under 45 mg.</p>
+                    </section>
+                    
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <h5>BASIC INFO <br><br></h5>
+                        <p>Name: Maria <br></p>
+                        <p>Age: 25</p>
+                        <p>Sex: Female</p>
+                        <p>Weight: 50kg</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN A <br><br></h5>
+                        <p>Daily dose: 700 µG <br></p>
+                        <p>Needed for: eye health, white blood cells, skin</p>
+                        <p>Can you have too much? Yes! Keep it under 3,000 µG.</p>
+                    </section>
+                    <section class="slot">
+                        <h5>VITAMIN B1 <br><br></h5>
+                        <p>Daily dose: 1.1 mg <br></p>
+                        <p>Needed for: metabolism (needed to make ATP)</p>
+                        <p>Can you have too much? No!</p>
+                    </section>
+                </section>
+                <section id="reel-2" class="reel">
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                </section>
+                <section id="reel-3" class="reel">
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">   
+                        <img
+                        src="{% static 'img/logo.svg' %}"
+                        alt="Profile photo"
+                        id="pfp"
+                        class="opaque"
+                        draggable="false"
+                        onmousedown="return false"
+                        style="user-drag: none;"
+                        />
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                    <section class="slot">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam esse saepe explicabo.</p>
+                    </section>
+                </section>
+            </section>
+            <section id="button-section">
+                <button id="button">GO!</button>
+            </section>
+        </main>
+        <footer>
+        </footer>
+        <script src="{% static 'js/vitaminsscript.js' %}"></script>
+    </body>
+</html>

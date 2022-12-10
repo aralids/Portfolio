@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dilara Sarach: Gastro Obscura</title>
+        <link rel="icon" href="{% static 'img/logo.svg' %}" />
+        <link rel="stylesheet" href="{% static 'css/gastroobscura.css'%}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;800&family=Signika&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQSeyHjbZEWBBo9pNlXBCx4Iq5VCB-pVI&callback=initMap"></script>
+    </head>
+    <body>
+        <header>
+            <section id="logo">
+                <img
+                {% if username == 'alnatura' %}
+                    src="{% static 'img/logo_alnatura2.svg' %}"
+                {% elif username == 'lex' and password == 'love&AI' %}
+                    src="{% static 'img/logo_lex.svg' %}"
+                {% else  %}
+                    src="{% static 'img/logo.svg' %}"
+                {% endif %}
+                alt="Logo"
+                id="logo_classic"
+                class="opaque"
+                draggable="false"
+                onmousedown="return false"
+                style="user-drag: none;"
+                />
+            </section>
+        </header>
+        <main id="main" data-url="/app/get_geolocation/">
+            
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <div id="gmap_canvas"></div>
+                </div>
+            </div>
+            <div class="main-background">
+                <h1>Gastro Obscura</h1>
+                <p>Ready for a unique dish? <br>
+                On your right, the 5 food/drink places from the Gastro Obscura catalog that are closest to you geographically - top is nearest.
+                Click on either for all the info that you need before you visit!</p>
+            </div>
+            
+            <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+            <div id="like_button_container"></div>
+            <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+            <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>S
+        </main>
+        <footer>
+            
+        </footer>
+        <script type="text/babel" src="{% static 'js/gastroobscura.js' %}"></script>
+    </body>
+</html>

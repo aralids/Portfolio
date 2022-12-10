@@ -33,14 +33,8 @@ def update(request):
 
 def temple(request):
   a = django.middleware.csrf.get_token(request)
-  print("a: ", a)
-  print(User.objects.all())
-  print("request.POST: ", request.POST)
-  print("request.GET: ", request.GET)
   u = request.GET.get("username")
   password = request.GET.get("password")
-  print("username: ", u)
-  print("password: ", password)
   user = User.objects.get(username=u)
   entries = user.entry_set.all()
   log = {}
@@ -119,13 +113,13 @@ def get_geolocation(request):
   return JsonResponse(closest_k_places_values)
 
 def gastroobscura(request):
-  u = request.POST.get("username")
-  p = request.POST.get("password")
-  return render(request, 'gastroobscura.html', {'username': u,
+  u = request.GET.get("username")
+  p = request.GET.get("password")
+  return render(request, 'app/gastroobscura.html', {'username': u,
                                                     'password': p})
 
 def vitamins(request):
-  u = request.POST.get("username")
-  p = request.POST.get("password")
-  return render(request, '/vitamins.html', {'username': u,
+  u = request.GET.get("username")
+  p = request.GET.get("password")
+  return render(request, 'app/vitamins.html', {'username': u,
                                                'password': p})

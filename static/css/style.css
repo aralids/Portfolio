@@ -264,6 +264,7 @@ div {
   overflow: scroll;
 }
 
+
 #information::-webkit-scrollbar {
   display: none;
 }
@@ -362,12 +363,6 @@ footer {
 
 #cell-grid-project-2 {
   z-index: 200;
-}
-
-button {
-}
-
-#welcome {
 }
 
 #mock-form,
@@ -521,4 +516,57 @@ input:focus {
 
 #contact-submit-button {
   cursor: pointer;
+}
+
+
+@media (width < 1275px) {
+  #information {
+    padding-right: 55%;
+  }
+  .section {
+    height: 100%;
+  }
+  h1 {
+    font-size: 50px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 13.5px;
+  }
+  nav ul {
+    height: 100%;
+  }
+}
+
+@media (width < 570px) {
+  #information {
+    padding-right: 10%;
+  }
+  #cell-grid-main {
+    display: none;
+  }
+  #cell-grid-project-1 {
+    display: none;
+    visibility: none;
+    opacity: 0;
+  }
+  #cell-grid-project-2 {
+    display: none;
+    visibility: none;
+    opacity: 0;
+  }
+  h1 {
+    font-size: 60px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 13.5px;
+  }
+  .section {
+    height: 100%;
+  }
 }

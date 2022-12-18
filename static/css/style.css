@@ -62,11 +62,6 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  /* height: ;*/
-  /* width: ;*/
-  /* justify-content: ; */
-  /* align-items: ; */
-  /* max-height: ; */
 }
 
 header {

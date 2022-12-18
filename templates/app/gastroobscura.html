@@ -14,7 +14,7 @@
     </head>
     <body>
         <header>
-            <section id="logo">
+            <section id="logo" username={{ username }} password={{ password }}>
                 <img
                 {% if username == 'alnatura' %}
                     src="{% static 'img/logo_alnatura2.svg' %}"

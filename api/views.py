@@ -10,10 +10,25 @@ import geopy.distance
 import django
 from django.core.exceptions import ObjectDoesNotExist
 from requests_html import HTMLSession
+from django.core.mail import send_mail
+
+from django.core.mail import EmailMessage
+
 
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render({}, request))
+
+
+def send_mail(request):
+  print("send_mail request: ", request.POST)
+  name = request.POST.get("employer-name")
+  email_address = request.POST.get("employer-email")
+  subject = request.POST.get("employer-subject")
+  msg = request.POST.get("employer-message")
+  email = EmailMessage(subject, name + " " + email_address + " " + msg, to=['dilara.sarach@abv.bg'])
+  email.send()
+  return HttpResponse("")
 
 def save_associations(request):
   print("save_assoc request: ", request.POST)
@@ -165,13 +180,14 @@ def get_geolocation(request):
   return JsonResponse(closest_k_places_values)
 
 def gastroobscura(request):
-  u = request.GET.get("username")
-  p = request.GET.get("password")
+  print("GO request: ", request.POST)
+  u = request.POST.get("username")
+  p = request.POST.get("password")
   return render(request, 'app/gastroobscura.html', {'username': u,
                                                     'password': p})
 
 def vitamins(request):
-  u = request.GET.get("username")
-  p = request.GET.get("password")
+  u = request.POST.get("username")
+  p = request.POST.get("password")
   return render(request, 'app/vitamins.html', {'username': u,
                                                'password': p})

@@ -3,7 +3,7 @@ let longitude;
 let address = $("main").attr("data-url");
 let places = {}
 let map;
-console.log("address: ", address);
+console.log("username: ", $("#logo").attr("username"));
 
 function getCookie(name) {
     let cookieValue = null;

@@ -3,3 +3,4 @@ Lib/
 Scripts/
 pyvenv.cfg
 portfolio/
+api/settings.py

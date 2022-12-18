@@ -840,7 +840,11 @@ function submit(project) {
   document.getElementById('hidden-button').click();
 }
 
-var csrf = document.querySelector('meta[name="csrf-token"]').content;
-console.log(csrf)
+
+function submitted() {
+  console.log("Submitted")
+  document.getElementById("contact-submit-button").setAttribute("value", "Successfully submitted! Thank you!");
+  document.getElementById("contact-submit-button").cursor = "auto";
+}
 
 /* FUNCTIONS */

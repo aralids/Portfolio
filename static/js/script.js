@@ -795,7 +795,7 @@ function onSubmitAction(event) {
     htmlLoginForm.style.maxHeight = '0'
     document.getElementById('submit-button').setAttribute('value', 'Log out')
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
-    document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href=''>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
+    document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
   } else if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'lex' && document.getElementById('password').value === 'love&AI') {
       document.getElementById('logo_lex').style.opacity = '1'
       document.getElementById('logo_classic').style.opacity = '0'
@@ -806,7 +806,7 @@ function onSubmitAction(event) {
       htmlLoginForm.style.maxHeight = '0'
       document.getElementById('submit-button').setAttribute('value', 'Log out')
       document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
-      document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href=''>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
+      document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
   } else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'

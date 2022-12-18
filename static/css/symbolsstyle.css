@@ -155,6 +155,7 @@ footer {
 #info > p {
   font-family: 'Abhaya Libre', serif;
   font-size: 20px;
+  font-weight: 600;
 }
 
 button{
@@ -294,6 +295,7 @@ svg {
 
 #info-section > p, #association-shower > p {
   padding: 100px;
+  font-weight: 500;
 }
 
 #association-shower, #edit-associations {

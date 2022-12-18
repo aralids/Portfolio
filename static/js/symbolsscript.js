@@ -297,21 +297,23 @@ function showAssociations(entry) {
 
 function sendAJAX(nextColor="") {
     let username = document.getElementById("logo").getAttribute("username");
-    $.ajax({
-        method: 'POST',
-        url: address,
-        data: {line: drawing, day: date, username: username},
-        datatype: "text",
-        headers: {
-            "X-CSRFToken": csrftoken,
-        },
-        success: function (response) {
-            console.log("get_associations(): ", response);
-        },
-        error: function (response) {
-            console.log("ERROR", response);
-        }
-    })
+    if (document.getElementById("logo").getAttribute("username") != "admin") {
+        $.ajax({
+            method: 'POST',
+            url: address,
+            data: {line: drawing, day: date, username: username},
+            datatype: "text",
+            headers: {
+                "X-CSRFToken": csrftoken,
+            },
+            success: function (response) {
+                console.log("get_associations(): ", response);
+            },
+            error: function (response) {
+                console.log("ERROR", response);
+            }
+        })
+    }
 }
 
 
@@ -422,21 +424,23 @@ function saveAssociations() {
     let newImages = document.getElementById("edit-image").value;
     let newVideos = document.getElementById("edit-video").value;
     console.log("newVideos: ", newVideos);
-    $.ajax({
-        method: 'POST',
-        url: '/save_associations/',
-        data: {username: username, new_text: newText, day: currentModifiableDate, new_images: newImages, new_links: newVideos},
-        datatype: "text",
-        headers: {
-            "X-CSRFToken": csrftoken,
-        },
-        success: function (response) {
-            console.log("save_associations(): ", response);
-        },
-        error: function (response) {
-            console.log("ERROR", response);
-        }
-    })
+    if (document.getElementById("logo").getAttribute("username") != "admin") {
+        $.ajax({
+            method: 'POST',
+            url: '/save_associations/',
+            data: {username: username, new_text: newText, day: currentModifiableDate, new_images: newImages, new_links: newVideos},
+            datatype: "text",
+            headers: {
+                "X-CSRFToken": csrftoken,
+            },
+            success: function (response) {
+                console.log("save_associations(): ", response);
+            },
+            error: function (response) {
+                console.log("ERROR", response);
+            }
+        })
+    }
 }
 
 function hideEditAssociations() {

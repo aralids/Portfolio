@@ -33,9 +33,9 @@
 
 :root.lex {
   --main-bg-color: #fffef4;
-  --main-color: #7cd3e6; 
+  --main-color: #1a95cd; 
   --main-accent-color: #FFDB00;
-  --secondary-accent-color: #1a95cd;
+  --secondary-accent-color: #7cd3e6;
   --font-color: #2EF332;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;

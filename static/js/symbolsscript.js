@@ -1,6 +1,6 @@
 let mode = "viewing mode";
-
-console.log(document.getElementById("logo").getAttribute("password"))
+document.documentElement.className = "admin";
+console.log(document.documentElement.className)
 
 console.log(document.getElementById("form").getBoundingClientRect());
 
@@ -12,6 +12,12 @@ const ctx = canvas.getContext("2d");
 let drawing = "#000 ";
 let date = "";
 let address = $("#canvas").attr("data-url");
+let currentModifiableDate = ""
+let currentText = "";
+let currentImageLinks;
+let currentVideoLinks;
+let currentImageLinksActual;
+let currentVideoLinksActual;
 
 let prevX = null;
 let prevY = null;
@@ -23,7 +29,8 @@ let clrs = document.querySelectorAll(".clr")
 clrs = Array.from(clrs)
 clrs.forEach(clr => {
     clr.addEventListener("click", () => {
-        ctx.strokeStyle = clr.dataset.clr
+        console.log("clr backgroundColor", $(clr).css("backgroundColor"));
+        ctx.strokeStyle = $(clr).css("backgroundColor");
         if (drawing.split().length !== 1) {
             sendAJAX(ctx.strokeStyle);
         }
@@ -40,16 +47,13 @@ drawingModeBtn.addEventListener("click", () => {
 
 let viewingModeBtn = document.querySelector(".viewing-mode");
 viewingModeBtn.addEventListener("click", () => {
-    if (mode === "drawing mode") {
-        sendAJAX();
-    }
     viewingMode();
 })
 
 let editAssociationsModeBtn = document.querySelector(".edit-associations-mode");
 editAssociationsModeBtn.addEventListener("click", () => {
     mode = "edit-associations mode";
-    editAssociationsMode();
+    editAssociation();
 })
 
 function getCookie(name) {
@@ -69,6 +73,7 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 function drawingMode() {
+    unfadeColors();
     document.getElementsByClassName("edit-associations-mode")[0].classList.remove("clicked");
     document.getElementsByClassName("drawing-mode")[0].classList.add("clicked");
     document.getElementsByClassName("viewing-mode")[0].classList.remove("clicked");
@@ -100,7 +105,7 @@ function drawingMode() {
         let currentX = e.clientX - 70
         let currentY = e.clientY - 95
 
-        drawing += `${prevX+125} ${prevY} ${currentX+125} ${currentY} `
+        drawing += `${prevX} ${prevY} ${currentX} ${currentY} `
 
         ctx.beginPath()
         ctx.moveTo(prevX, prevY)
@@ -113,6 +118,7 @@ function drawingMode() {
 }
 
 function viewingMode(specificDate="") {
+    fadeColors();
     $("#X-button").css("visibility", "visible");
     document.getElementsByClassName("edit-associations-mode")[0].classList.remove("clicked");
     document.getElementsByClassName("drawing-mode")[0].classList.remove("clicked");
@@ -129,6 +135,7 @@ function viewingMode(specificDate="") {
 
     if (mode === "drawing mode") {
         $(document).ajaxStop(function() { location.reload(true); });
+        location.reload(true);
     }
 
     mode = "viewing mode";
@@ -161,6 +168,7 @@ function viewingMode(specificDate="") {
 }
 
 function editAssociationsMode(specificDate="") {
+    fadeColors();
     document.getElementsByClassName("edit-associations-mode")[0].classList.add("clicked");
     document.getElementsByClassName("drawing-mode")[0].classList.remove("clicked");
     document.getElementsByClassName("viewing-mode")[0].classList.remove("clicked");
@@ -233,11 +241,58 @@ function countClicks() {
 }
 
 function showAssociations(entry) {
+    let address = $("#canvas").attr("get-associations-url");
     let entryDate = $(entry).attr("date");
     viewingMode(entryDate);
     $("#input-date").val(entryDate);
     $("#association-shower").css("visibility", "visible");
-    $("#association-top h3").html(entryDate);
+    $("#association-shower h3").text(entryDate);
+    let username = document.getElementById("logo").getAttribute("username");
+    $.ajax({
+        method: 'POST',
+        url: address,
+        data: {user: username, day: entryDate},
+        datatype: "text",
+        headers: {
+            "X-CSRFToken": csrftoken,
+        },
+        success: function (response) {
+            if (response["text"].length > 0) { 
+                $("#text").text(response["text"]);
+            } else {
+                $("#text").text("Nothing has been written about this day.");
+            }
+            if (response["imagesActual"].length > 0) {
+                $("#files").html(`<a href=${response["imagesActual"][0]} target="_blank"><img id="image" src=${response["imagesActual"][0]} /></a>`);
+                console.log("response[imagesActual].length > 0")
+                
+                for (let i=1; i<response["imagesActual"].length; i++) {
+                    $("#files").append(`<a href=${response["imagesActual"][i]} target="_blank"><img id="image" src=${response["imagesActual"][i]} /></a>`);
+                }
+            } else {
+                $("#files").html("<p>No images for this day.</p>");
+            }
+            if (response["videosActual"].length > 0) {
+                $("#videos").html(`<iframe id="video" src=${response["videosActual"][0]}></iframe>`)
+                
+                for (let i=1; i<response["videosActual"].length; i++) {
+                    $("#videos").append(`<iframe id="video" src=${response["videosActual"][i]}></iframe>`);
+                }
+            } else {
+                $("#videos").html("<p>No videos or music for this day.</p>"); 
+            }
+            currentModifiableDate = entryDate;
+            currentText = response["text"];
+            currentImageLinks = response["images"].join(" ");
+            currentVideoLinks = response["videos"].join(" ");
+            currentImageLinksActual = response["imagesActual"];
+            currentVideoLinksActual = response["videosActual"];
+            console.log("get_associations: ", response)
+        },
+        error: function (response) {
+            console.log("ERROR", response);
+        }
+    })
 }
 
 function sendAJAX(nextColor="") {
@@ -251,7 +306,7 @@ function sendAJAX(nextColor="") {
             "X-CSRFToken": csrftoken,
         },
         success: function (response) {
-            drawing = nextColor == 0 ? drawing : nextColor + " ";
+            console.log("get_associations(): ", response);
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -259,13 +314,6 @@ function sendAJAX(nextColor="") {
     })
 }
 
-let XBtn = document.getElementById("X-button");
-XBtn.style.top = String(document.getElementById("viewing-mode").getBoundingClientRect().top - 5) + "px";
-XBtn.style.left = String(document.getElementById("form").getBoundingClientRect().right + 10) + "px";
-XBtn.addEventListener("click", () => {
-    $("#input-date").val("");
-    viewingMode();
-})
 
 let saveBtn = document.getElementById("save-button");
 saveBtn.style.top = String(document.getElementById("viewing-mode").getBoundingClientRect().top - 5) + "px";
@@ -317,3 +365,82 @@ $("#color").change(function(event) {
 $("#color-picker").click(function(event) {
     $("#color").click();
 });
+
+function fadeColors() {
+    let colors = document.querySelectorAll(".clr");
+    for (color of colors) {
+        color.classList.add("clr-faded");
+    }
+}
+
+function unfadeColors() {
+    let colors = document.querySelectorAll(".clr");
+    for (color of colors) {
+        color.classList.remove("clr-faded");
+    }
+}
+
+function showInfo() {
+    document.getElementById("info-section").classList.remove("hidden");
+}
+
+function hideInfo() {
+    document.getElementById("info-section").classList.add("hidden");
+}
+
+function editAssociation() {
+    $("#association-shower").css("visibility", "hidden");
+    $("#edit-associations").css("visibility", "visible");
+    $("#edit-associations h3").text(currentModifiableDate);
+    $("#edit-textarea").text(currentText);
+    $("#edit-image").attr("value", currentImageLinks);
+    $("#edit-video").attr("value", currentVideoLinks);
+    if (currentImageLinksActual.length > 0) {
+        $("#add-files").html(`<a href=${currentImageLinksActual[0]} target="_blank"><img id="image" src=${currentImageLinksActual[0]} /></a>`);
+        
+        for (let i=1; i<currentImageLinksActual.length; i++) {
+            $("#add-files").append(`<a href=${currentImageLinksActual[i]} target="_blank"><img id="image" src=${currentImageLinksActual[i]} /></a>`);
+        }
+    } else {
+        $("#add-files").html("<p>No images for this day.</p>");
+    }
+    if (currentVideoLinksActual.length > 0) {
+        $("#add-videos").html(`<iframe id="video" src=${currentVideoLinksActual[0]}></iframe>`)
+        console.log("currentVideoLinksActual[0]: ", currentVideoLinksActual[0])
+        
+        for (let i=1; i<currentVideoLinksActual.length; i++) {
+            $("#add-videos").append(`<iframe id="video" src=${currentVideoLinksActual[i]}></iframe>`);
+        }
+    } else {
+        $("#add-videos").html("<p>No videos or music for this day.</p>"); 
+    }
+}
+
+function saveAssociations() {
+    let username = document.getElementById("logo").getAttribute("username");
+    let newText = document.getElementById("edit-textarea").value;
+    let newImages = document.getElementById("edit-image").value;
+    let newVideos = document.getElementById("edit-video").value;
+    console.log("newVideos: ", newVideos);
+    $.ajax({
+        method: 'POST',
+        url: '/save_associations/',
+        data: {username: username, new_text: newText, day: currentModifiableDate, new_images: newImages, new_links: newVideos},
+        datatype: "text",
+        headers: {
+            "X-CSRFToken": csrftoken,
+        },
+        success: function (response) {
+            console.log("save_associations(): ", response);
+        },
+        error: function (response) {
+            console.log("ERROR", response);
+        }
+    })
+}
+
+function hideEditAssociations() {
+    $("#input-date").val("");
+    $("#edit-associations").css("visibility", "hidden");
+    viewingMode();
+}

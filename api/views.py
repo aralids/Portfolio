@@ -8,11 +8,59 @@ from datetime import datetime, date
 import time
 import geopy.distance
 import django
-
+from django.core.exceptions import ObjectDoesNotExist
+from requests_html import HTMLSession
 
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render({}, request))
+
+def save_associations(request):
+  print("save_assoc request: ", request.POST)
+  user = User.objects.get(username=request.POST.get('username'))
+  day = request.POST.get('day')
+  entry = user.entry_set.get(day=day)
+  obj, created = entry.associations_set.get_or_create(entry=entry)
+  if created:
+    print("Created!")
+    obj.save()
+  print("object.text: ", obj.text)
+  obj.text = request.POST.get('new_text')
+  print("object.text: ", obj.text)
+  obj.images = request.POST.get('new_images')
+  obj.links = request.POST.get('new_links')
+  obj.save()
+  return HttpResponse("")
+
+def get_associations(request):
+  print("get_associations(): ", request.POST)
+  user = User.objects.get(username=request.POST.get('user'))
+  day = request.POST.get('day')
+  entry = user.entry_set.get(day=day)
+  print("entry: ", entry)
+  try:
+    associations = entry.associations_set.all()[0]
+    text = associations.text
+    images = associations.files.split()
+    images_actual_links = []
+    session = HTMLSession()
+    for image in images:
+      r = session.get(image)
+      actual_image = r.html.find('#image-viewer-container img')[0].search(' src={} ')[0]
+      images_actual_links.append(actual_image)
+
+    videos = associations.links.split()
+    videos_actual_links = []
+    for video in videos:
+      actual_video = video.replace("watch?v=", "embed/")
+      videos_actual_links.append(actual_video)
+
+    
+    associations = {"text":text, "images":images, "videos":videos, "imagesActual":images_actual_links, "videosActual":videos_actual_links}
+    print("associations: ", associations)
+  except IndexError:
+    associations = {"text":"", "images":[], "videos":[], "imagesActual":[], "videosActual":[]}
+  return JsonResponse(associations)
 
 def update(request):
   user = User.objects.get(username=request.POST.get('username'))
@@ -33,7 +81,6 @@ def update(request):
 
 def temple(request):
   a = django.middleware.csrf.get_token(request)
-  print("request.POST: ", request.POST)
   u = request.POST.get("username")
   password = request.POST.get("password")
   user = User.objects.get(username=u)

@@ -824,7 +824,7 @@ function onSubmitAction(event) {
 }
 
 function changeColorPalette(theme) {
-  document.documentElement.className = theme
+  document.documentElement.className = theme;
 }
 
 function submit(project) {

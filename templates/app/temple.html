@@ -35,38 +35,80 @@
                 <!-- We will be accessing the data-clr in JavaScript -->
                 <button id="viewing-mode" class="viewing-mode clicked">viewing mode</button>
                 <button class="drawing-mode">drawing mode</button>
-                <button class="edit-associations-mode">edit-associations mode</button>
                 <form id="form">
                     <input type="date" id="input-date" name="input-date" value="" onchange="countClicks()">
                 </form>
             </div>
-            <button id="X-button">X</button>
             <button id="save-button">Save</button>
             <button id="date-shower">"2022-11-20"</button>
             <div id="association-shower">
-                <div id="association-top">
-                    <h3>"2022-11-21"</h3>
-                    <button id="association-X-button">X</button>
+                <h3>2022-11-21</h3>
+                <div id="association-content">
+                    <div id="association-text">
+                        <div id="text"></div>
+                    </div>
+                    <div id="association-media">
+                        <div id="association-files">
+                            <div id="files"></div>
+                        </div>
+                        <div id="association-videos">
+                            <div id="videos"></div>
+                        </div>
+                    </div>
                 </div>
-                <div id="association-files"><p>Files (images, audio, etc.)</p></div>
-                <div id="association-videos"><p>Videos</p></div>
-                <div id="association-text">
-                    <p>Text</p>
-                    <div></div>
+                <div class="two-buttons">
+                    <button class="edit-associations-mode" onClick="">Edit associations</button>
+                    <button id="association-X-button">Close</button>
                 </div>
             </div>
-            <section id="toolkit">
-                <div id="info" class="clr"><p>i</p></div>
-                <div class="clr" data-clr="#000"></div>
-                <div class="clr" data-clr="#EF626C"></div>
-                <div class="clr" data-clr="#fdec03"></div>
-                <div class="clr" data-clr="#24d102"></div>
-                <div class="clr" data-clr="#fff"></div>
-                <span id="color-picker"></span>
-                <input type='color' value='#fefefe' class='bar' id='color'>
-                
+            <div id="edit-associations">
+                <h3>2022-11-21</h3>
+                <div id="edit-content">
+                    <div id="edit-text">
+                        <textarea id="edit-textarea"></textarea>
+                    </div>
+                    <div id="edit-media">
+                        <div id="edit-files">
+                            <input type="text" id="edit-image">
+                            <div id="add-files"></div>
+                        </div>
+                        <div id="edit-videos">
+                            <input type="text" id="edit-video">
+                            <div id="add-videos"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="two-buttons">
+                    <button id="edit-save-button" onclick="saveAssociations()">Save</button>
+                    <button id="edit-X-button" onclick="hideEditAssociations()">Close</button>
+                </div>
+            </div>
+            <section id="toolkit" class="toolkit-frozen">
+                <div id="info" onclick="showInfo()"><p>?</p></div>
+                <div class="clr clr-faded" data-clr="#000"></div>
+                <div class="clr clr-faded" data-clr="#EF626C"></div>
+                <div class="clr clr-faded" data-clr="#fdec03"></div>
+                <div class="clr clr-faded" data-clr="#24d102"></div>
+                <div class="clr clr-faded" data-clr="#fff"></div>
+                <span id="color-picker" class="clr clr-faded"></span>
+                <input type='color' value='#fefefe' class='bar' id='color'> 
             </section>
-            <canvas id="canvas"  data-url="/update/" data-url-temple="/temple/"></canvas>
+            <section id="info-section" class="hidden">
+                <p>
+                    How to use this app: <br> <br>
+
+                    To document a day, the very least you have to do is draw a symbol - even if it's a little baby dot in case you don't feel like drawing.
+                    For that, click the 'drawing mode' button, choose a color on the left and draw. (By default your drawing will be associated with today, 
+                    but you can choose any other day.) Don't forget to save! <br> <br>
+
+                    Then, switch to 'edit-associations mode' to add text, images or vids that you associate with the day you are documenting. Save! <br> <br>
+
+                    Switching to 'viewing mode', you have all your drawings from the beginning of time on display. You can hover your cursor over them to see
+                    when you created them, and click to dive into some memories from that day. <br> <br>
+                </p>
+                <button id="info-section-X-button" onclick="hideInfo()"><p>CLOSE</p></button>
+            </section>
+            <canvas id="canvas"  data-url="/update/" data-url-temple="/temple/" get-associations-url="/get_associations/"></canvas>
             <svg class="svg" height="210" width="400">
             {% for key,value in entries.items %}
                 {% for path in value %}

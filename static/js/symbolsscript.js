@@ -1,5 +1,5 @@
 let mode = "viewing mode";
-document.documentElement.className = "admin";
+document.documentElement.className = document.getElementById("logo").getAttribute("username");
 console.log(document.documentElement.className)
 
 console.log(document.getElementById("form").getBoundingClientRect());

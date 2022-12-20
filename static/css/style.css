@@ -535,14 +535,25 @@ input:focus {
   p {
     font-size: 13.5px;
   }
-  nav ul {
-    height: 100%;
+
+  nav > ul > li > a {
+    font-size: 16px;
+  }
+
+  #flip-card {
+    left: calc(95% - 322px);
+  }
+  #cell-grid-project-1 {
+    left: calc(85% - 322px);
+  }
+  #cell-grid-project-2 {
+    left: calc(75% - 322px);
   }
 }
 
-@media (width < 570px) {
+@media (width < 700px) {
   #information {
-    padding-right: 10%;
+    padding-right: 30%;
   }
   #cell-grid-main {
     display: none;
@@ -558,10 +569,10 @@ input:focus {
     opacity: 0;
   }
   h1 {
-    font-size: 60px;
+    font-size: 50px;
   }
   h2 {
-    font-size: 18px;
+    font-size: 15px;
   }
   p {
     font-size: 13.5px;
@@ -569,4 +580,9 @@ input:focus {
   .section {
     height: 100%;
   }
+
+  nav > ul {
+    display: none;
+  }
+  
 }

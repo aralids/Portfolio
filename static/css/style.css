@@ -260,7 +260,7 @@ div {
 #information {
   margin-left: 3%;
   margin-right: 3%;
-  padding-right: 39%;
+  padding-right: 38%;
   overflow: scroll;
 }
 
@@ -585,4 +585,10 @@ input:focus {
     display: none;
   }
   
+}
+
+.bold {
+  font-family: 'Abhaya Libre', serif !important;
+  font-size: 18px;
+  font-weight: bold;
 }

@@ -634,7 +634,7 @@ input:focus {
     left: calc(75% - 322px);
   }
 
-  #probability {
+  #probably {
     display: none;
   }
 }

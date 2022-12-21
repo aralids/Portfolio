@@ -524,7 +524,7 @@ input:focus {
   cursor: pointer;
 }
 
-@media (width < 700px) {
+@media (max-width: 700px) {
   * {
     all: unset;
     display: none;

@@ -633,6 +633,10 @@ input:focus {
   #cell-grid-project-2 {
     left: calc(75% - 322px);
   }
+
+  #probability {
+    display: none;
+  }
 }
 
 

@@ -524,39 +524,6 @@ input:focus {
   cursor: pointer;
 }
 
-
-@media (width < 1275px) {
-  #information {
-    padding-right: 55%;
-  }
-  .section {
-    height: 100%;
-  }
-  h1 {
-    font-size: 50px;
-  }
-  h2 {
-    font-size: 18px;
-  }
-  p {
-    font-size: 13.5px;
-  }
-
-  nav > ul > li > a {
-    font-size: 16px;
-  }
-
-  #flip-card {
-    left: calc(95% - 322px);
-  }
-  #cell-grid-project-1 {
-    left: calc(85% - 322px);
-  }
-  #cell-grid-project-2 {
-    left: calc(75% - 322px);
-  }
-}
-
 @media (width < 700px) {
   * {
     all: unset;
@@ -635,6 +602,40 @@ input:focus {
     display: block;
   }
 }
+
+@media (width < 1275px) {
+  #information {
+    padding-right: 55%;
+  }
+  .section {
+    height: 100%;
+  }
+  h1 {
+    font-size: 50px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 13.5px;
+  }
+
+  nav > ul > li > a {
+    font-size: 16px;
+  }
+
+  #flip-card {
+    left: calc(95% - 322px);
+  }
+  #cell-grid-project-1 {
+    left: calc(85% - 322px);
+  }
+  #cell-grid-project-2 {
+    left: calc(75% - 322px);
+  }
+}
+
+
 
 .bold {
   font-family: 'Abhaya Libre', serif !important;

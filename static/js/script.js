@@ -507,10 +507,10 @@ function updateCellGrid() {
   ) {
     changeRandomCells(1, 0, 'dead')
 
-    htmlFlipCard.style.left = 'calc(90% - 322px)'
-    htmlCellGridProject1.style.left = 'calc(66% - 322px)'
+    htmlFlipCard.style.left = 'calc(95% - 322px)'
+    htmlCellGridProject1.style.left = 'calc(75% - 322px)'
     htmlCellGridProject1.style.boxShadow = '0px 0px 20px 5px #A9A9A9'
-    htmlCellGridProject2.style.left = 'calc(78% - 322px)'
+    htmlCellGridProject2.style.left = 'calc(85% - 322px)'
     htmlCellGridProject2.style.boxShadow = '0px 0px 20px 5px #A9A9A9'
 
     htmlCellGridProject1.style.cursor = 'pointer'

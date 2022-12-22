@@ -408,6 +408,7 @@ input, .technology, #message {
   padding-right: 7%;
   margin-bottom: 4px;
   height: 20px;
+  width: 200px;
 }
 
 #contact-form input {
@@ -605,7 +606,7 @@ input:focus {
 
 @media (max-width: 1275px) {
   #information {
-    padding-right: 55%;
+    padding-right: 50%;
   }
   .section {
     height: 100%;
@@ -634,7 +635,31 @@ input:focus {
     left: calc(75% - 322px);
   }
 
-  #probably {
+  input {
+    width: 125px;
+  }
+
+  #contact-form input, #message {
+    width: 40vw;
+  }
+
+  #submit-button {
+    width: 62.5px;
+  }
+
+  .bold, u {
+    font-size: 14px !important;
+  }
+
+  u {
+    font-size: 12px !important;
+  }
+
+  .project-name {
+    height: 20px;
+  }
+
+  .hidden {
     display: none;
   }
 }

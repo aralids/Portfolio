@@ -20,6 +20,16 @@
   --cell-size: 12px;
 }
 
+:root.rewedigital {
+    --main-bg-color: #fffef4;
+    --main-color: #00196A; 
+    --main-accent-color: #FFFBDC;
+    --secondary-accent-color: #066437;
+    --font-color: #D2EB23;
+    --secondary-font-color: #ffffff;
+    --cell-size: 12px;
+  }
+
 * {
   margin: 0;
   padding: 0;

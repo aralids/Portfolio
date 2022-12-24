@@ -83,7 +83,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    width: 30%;
     margin-left: 3%;
     z-index: 25;
 }
@@ -143,12 +143,12 @@ p {
 
 .mapouter {
     position: fixed;
-    top: calc(50% - 250px);
-    left: 65%;
+    top: calc(50% - 35vh);
+    left: calc(75% - 35vh);
     z-index: 100;
     text-align: right;
-    height: 500px;
-    width: 500px;
+    height: 70vh;
+    width: 70vh;
 }
 
 .gmap_canvas {
@@ -157,19 +157,19 @@ p {
     box-shadow: 0px 0px 20px 5px #a9a9a9;
     overflow: hidden;
     background: none !important;
-    height: 500px;
-    width: 500px;
+    height: 70vh;
+    width: 70vh;
 }
 
 #gmap_canvas {
-    height: 500px;
-    width: 500px;
+    height: 70vh;
+    width: 70vh;
 }
 
 .place {
     position: fixed;
-    height: 100px;
-    width: 100px;
+    height: 14vh;
+    width: 14vh;
     border-radius: 100%;
     border: 5px solid #e1e1e1;
     box-shadow: 0px 0px 20px 5px #a9a9a9;
@@ -180,7 +180,7 @@ p {
 .gallery {
     display: flex;
     height: 50%;
-    margin-right: 50%;
+    margin-right: 60%;
     overflow: scroll;
     margin-top: 15px;
     margin-bottom: 15px;

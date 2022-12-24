@@ -679,14 +679,20 @@ input:focus {
   .hidden {
     display: none;
   }
-
-  #flip-card, #cell-grid-main, #flip-card-inner, #portrait {
+  #flip-card, #cell-grid-main, #flip-card-inner, #portrait, #cell-grid-project1, #cell-grid-project-2 {
     left: 'calc(95% - 322px)';
   }
 }
 
 .hidden {
   font-family: unset;
+  font-family: 'Abhaya Libre', serif !important;
+  font-size: 18px;
+}
+
+.visible {
+  font-family: 'Abhaya Libre', serif !important;
+  font-size: 13.5px;
 }
 
 .bold {
@@ -695,6 +701,6 @@ input:focus {
   font-weight: bold;
 }
 
-#flip-card, #cell-grid-main, #flip-card-inner, #portrait {
+#flip-card, #cell-grid-main, #flip-card-inner, #portrait, #cell-grid-project1, #cell-grid-project-2 {
   left: 'calc(95% - 322px)';
 }

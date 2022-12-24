@@ -932,8 +932,20 @@ addEventListener("resize", (event) => {
     }
     
   } else {
-    htmlFlipCard.style.left = 'calc(95% - 322px)';
+    
     rect = htmlCellGridMain.getBoundingClientRect()
+    htmlFlipCard.style.left = 'calc(95% - 322px)';
+    htmlCellGridProject1.style.left = 'calc(95% - 322px)';
+    htmlCellGridProject2.style.left = 'calc(95% - 322px)';
+    viewportHeight = window.innerHeight * (4 / 5)
+    viewportHeightFraction = viewportHeight / 7
+
+    welcome = 0
+    aboutMe = viewportHeight
+    projects = viewportHeight * 2
+    contact = viewportHeight * 3
+
+    console.log("resize! width: ", window.screen.availWidth);
 
     if (document.documentElement.className === "alnatura") {
       document.getElementById("logo_classic").style.display = "block";

@@ -3,7 +3,6 @@ let longitude;
 let address = $("main").attr("data-url");
 let places = {}
 let map;
-console.log("username: ", $("#logo").attr("username"));
 
 function getCookie(name) {
     let cookieValue = null;
@@ -24,15 +23,12 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(assignGeoValues);
   } else {
-    console.log("Geolocation is not supported by this browser.");
   }
 }
 
 function assignGeoValues(position) {
-    console.log("position: ", position);
     latitude = position.coords.latitude; 
     longitude = position.coords.longitude;
-    console.log(latitude, longitude)
     const csrftoken = getCookie('csrftoken');
     $.ajax({
         method: 'POST',
@@ -52,12 +48,9 @@ function assignGeoValues(position) {
                 const marker = new google.maps.Marker({ position: placeLocation, map: map });
             }
 
-            console.log("places: ", places);
             const domContainer = document.querySelector('#like_button_container');
             const root = ReactDOM.createRoot(domContainer);
             root.render(e(PlaceSet));
-            console.log("circle1: ", document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + 250)
-            console.log("longitude: ", longitude)
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -78,7 +71,6 @@ getLocation();
 const e = React.createElement;
 
 function Clipping(props) {
-    console.log("props: ", props)
     return ( 
         <div id={props.id} className="place-info" style={{"clipPath": props.clippingShape, "background": props.color}}>
             {props.title}
@@ -91,9 +83,8 @@ function Clipping(props) {
 }
 
 function Place(props) {
-    console.log("props: ", props)
     return ( 
-        <img id={props.id} className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="100px" onClick={props.onClick}/>
+        <img id={props.id} className="place" style={{"top": String(props.top) + "px", "left": String(props.left) + "px"}} src={props.frontImageLink} width="14vh" onClick={props.onClick}/>
     );
 }
 
@@ -108,16 +99,12 @@ class PlaceSet extends React.Component {
             placesColor: ["#E5E4E2", "#D3D3D3", "#C0C0C0", "#A9A9A9", "#808080"],
             clicked: Array(5).fill(0)
         };
-        console.log("this.state.places: ", this.state.places)
         this.getPlacesData();
-        console.log('placesTop: ', this.state.placesTop)
     }
 
     getPlacesData() {
-        let cx = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + 250;
-        let cy = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().top + 250;
-
-        console.log('cx, cy: ', cx, cy)
+        let cx = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + document.documentElement.clientHeight * 0.35;
+        let cy = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().top + document.documentElement.clientHeight * 0.35;
 
         let numOfPlaces = Object.keys(this.state.places).length;
         let placesDegrees;
@@ -131,29 +118,28 @@ class PlaceSet extends React.Component {
             placesDegrees.unshift(placesDegrees[0] + 30)
         }
 
+        let rPx = document.documentElement.clientHeight * 0.45;
 
-        let placesCentres = placesDegrees.map(item => [cx + 350*Math.cos(inRadians(item)), cy + 350*Math.sin(inRadians(item))]);
+        let placesCentres = placesDegrees.map(item => [cx + rPx*Math.cos(inRadians(item)), cy + rPx*Math.sin(inRadians(item))]);
 
-        
+        let cPx = document.documentElement.clientHeight * 0.07;
 
-        this.state.placesLeft = placesCentres.map(item => item[0] - 50);
-        this.state.placesTop = placesCentres.map(item => item[1] - 50);
+        this.state.placesLeft = placesCentres.map(item => item[0] - cPx);
+        this.state.placesTop = placesCentres.map(item => item[1] - cPx);
 
         for (let i=0; i<Object.keys(this.state.places).length; i++) {
-            console.log("this.state.places[i][image_links]: ", this.state.places[i]["image_links"][0])
             let a = this.state.places[i]["image_links"][0];
-            console.log('this.placesFrontImageLink: ', this.placesFrontImageLink)
             this.state.placesFrontImageLink.push(a);
         }
         
     }
 
     handleClick(i) {
-        let clippingTop = String(this.state.placesTop[i] + 50) + "px";
-        let clippingLeft = String(this.state.placesLeft[i] + 50) + "px";
+        let cPx = document.documentElement.clientHeight * 0.07;
+        let clippingTop = String(this.state.placesTop[i] + cPx) + "px";
+        let clippingLeft = String(this.state.placesLeft[i] + cPx) + "px";
         document.documentElement.style.setProperty('--clipping-left', clippingLeft);
         document.documentElement.style.setProperty('--clipping-top', clippingTop);
-        console.log("Clicked: ", map)
         map.setCenter({lng: this.state.places[i]["longitude"], lat: this.state.places[i]["latitude"]});
         map.setZoom(10);
 
@@ -161,33 +147,28 @@ class PlaceSet extends React.Component {
             document.getElementById(`place-${i}-info`).style.animation = "peek 5s forwards"
             document.getElementById(`place-${i}-info`).style.clipPath = `circle(200% at ${clippingLeft} ${clippingTop})`
             this.state.clicked[i] = 1;
-            console.log("case 1")
         } else if (this.state.clicked.some(item => item === 1)) {
             if (this.state.clicked[i] === 1) {
                 document.getElementById(`place-${i}-info`).style.animation = "close 1s forwards";
-                document.getElementById(`place-${i}-info`).style.clipPath = `circle(50px at ${clippingLeft} ${clippingTop})`
+                document.getElementById(`place-${i}-info`).style.clipPath = `circle(7vh at ${clippingLeft} ${clippingTop})`
                 this.state.clicked[i] = 0;
-                console.log("case 2")
             } else {
                 document.getElementById(`place-${i}-info`).style.animation = "peek 5s forwards"
 
                 let j = this.state.clicked.indexOf(1);
-                console.log("j: ", j)
-                let clippingTopJ = String(this.state.placesTop[j] + 50) + "px";
-                let clippingLeftJ = String(this.state.placesLeft[j] + 50) + "px";
+                let clippingTopJ = String(this.state.placesTop[j] + cPx) + "px";
+                let clippingLeftJ = String(this.state.placesLeft[j] + cPx) + "px";
                 document.getElementById(`place-${j}-info`).style.animation = ""; 
-                document.getElementById(`place-${j}-info`).style.clipPath = `circle(50px at ${clippingLeftJ} ${clippingTopJ})`;               
+                document.getElementById(`place-${j}-info`).style.clipPath = `circle(7vh at ${clippingLeftJ} ${clippingTopJ})`;               
                 this.state.clicked[j] = 0;
 
                 
                 this.state.clicked[i] = 1;
-                console.log("case 3")
             }
         }
     }
 
     renderPlace(i) {
-        console.log('i: ', i, this.state.placesTop[i])
         return (
             <Place  
                 id={`place-${i}`}
@@ -200,8 +181,9 @@ class PlaceSet extends React.Component {
     }
 
     renderClipping(i) {
-        let clippingTop = String(this.state.placesTop[i] + 50) + "px";
-        let clippingLeft = String(this.state.placesLeft[i] + 50) + "px";
+        let cPx = document.documentElement.clientHeight * 0.07;
+        let clippingTop = String(this.state.placesTop[i] + cPx) + "px";
+        let clippingLeft = String(this.state.placesLeft[i] + cPx) + "px";
         let galleryImages = [];
         for (let k=0; k<this.state.places[i].image_links.length; k++) {
             galleryImages.push(<img className="gallery-image" src={this.state.places[i].image_links[k]}/>)
@@ -213,7 +195,7 @@ class PlaceSet extends React.Component {
                 address={this.state.places[i]["address"].join(" | ")}
                 id={`place-${i}-info`}
                 color={`radial-gradient(circle at ${clippingLeft} ${clippingTop}, #C0C0C0 0%, white 15%)`}
-                clippingShape={`circle(50px at ${clippingLeft} ${clippingTop})`}
+                clippingShape={`circle(7vh at ${clippingLeft} ${clippingTop})`}
             />
         );
     }
@@ -225,11 +207,44 @@ class PlaceSet extends React.Component {
             htmlElements.push(this.renderPlace(item));
             htmlElements.push(this.renderClipping(item));
         }
-        console.log(htmlElements)
         return htmlElements;
     }
   }
 
+addEventListener("resize", (event) => {
+    console.log("Resize!!");
+    let cx = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + document.documentElement.clientHeight * 0.35;
+    let cy = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().top + document.documentElement.clientHeight * 0.35;
 
+    let numOfPlaces = Object.keys(places).length;
+    let placesDegrees;
+    if (numOfPlaces % 2 === 1) {
+        placesDegrees = [180];
+    } else {
+        placesDegrees = [163, 133];
+    }
+    for (let i=0; i<(numOfPlaces-1)/2; i++) {
+        placesDegrees.push(placesDegrees[placesDegrees.length-1] - 30)
+        placesDegrees.unshift(placesDegrees[0] + 30)
+    }
+
+    let rPx = document.documentElement.clientHeight * 0.45;
+
+    let placesCentres = placesDegrees.map(item => [cx + rPx*Math.cos(inRadians(item)), cy + rPx*Math.sin(inRadians(item))]);
+
+    let cPx = document.documentElement.clientHeight * 0.07;
+
+    let newPlacesLefts = placesCentres.map(item => item[0] - cPx);
+    let newPlacesTops = placesCentres.map(item => item[1] - cPx);
+
+    console.log("newPlacesLefts: ", newPlacesLefts);
+
+    for (let i=0; i<Object.keys(places).length; i++) {
+        $(`#place-${i}`).attr("style", `top: ${newPlacesTops[i]}px; left: ${newPlacesLefts[i]}px;`);
+        let newClippingTop = String(newPlacesTops[i] + cPx) + "px";
+        let newClippingLeft = String(newPlacesLefts[i] + cPx) + "px";
+        $(`#place-${i}-info`).attr("style", `clip-path: circle(7vh at ${newClippingLeft} ${newClippingTop}); background: radial-gradient(circle at ${newClippingLeft} ${newClippingTop}, rgb(192, 192, 192) 0%, white 15%);`);
+    }
+});
 
 

@@ -178,17 +178,22 @@ button{
   padding-right: 10px;
   margin: 5px;
   height: 40px;
+  width: 20vw;
+  font-size: 13.5px;
   cursor: pointer;
 }
 
 form {
   margin: 5px;
+  height: 100%;
   width: 20%;
 }
 
 #input-date {
   margin: 5px;
   width: 100%;
+  height: 80%;
+  font-size: 13.5px;
 }
 
 canvas {
@@ -344,6 +349,7 @@ svg {
 
 #text {
   padding-top: 30px;
+  font-size: 13.5px;
 }
 
 #files, #videos {
@@ -352,13 +358,13 @@ svg {
 }
 
 #image {
-  max-width: 150px;
+  max-width: 13.5vw;
   border-radius: 5px;
   margin-right: 5px;
 }
 
 #video {
-  max-width: 150px;
+  max-width: 13.5vw;
   border-radius: 5px;
 }
 
@@ -374,4 +380,12 @@ svg {
 
 .two-buttons {
   display: flex;
+}
+
+#association-text {
+  padding-right: 2vw;
+}
+
+input, textarea {
+  font-size: 13.5px;
 }

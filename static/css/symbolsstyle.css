@@ -358,7 +358,7 @@ svg {
 }
 
 #image {
-  max-width: 13.5vw;
+  max-height: 13.5vh;
   border-radius: 5px;
   margin-right: 5px;
 }
@@ -394,6 +394,23 @@ input, textarea {
   display: none;
   height: 100%;
   width: 100%;
+}
+
+.bolder-p {
+  font-family: 'Abhaya Libre', serif !important;
+  font-size: 13.5px;
+  text-align: justify;
+  box-sizing: border-box;
+  color: #454541;
+}
+
+.bold {
+  font-family: 'Abhaya Libre', serif !important;
+  font-size: 13.5px;
+  text-align: justify;
+  box-sizing: border-box;
+  color: #454541;
+  font-weight: bold;
 }
 
 @media (max-width: 700px) or (max-height: 450px) {

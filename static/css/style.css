@@ -536,6 +536,7 @@ input:focus {
   cursor: pointer;
 }
 
+
 @media (max-width: 700px) or (max-height: 450px) {
   * {
     all: unset;
@@ -685,6 +686,11 @@ input:focus {
   #flip-card, #cell-grid-main, #flip-card-inner, #portrait, #cell-grid-project1, #cell-grid-project-2 {
     left: 'calc(95% - 322px)';
   }
+
+  .visible {
+    font-family: 'Abhaya Libre', serif !important;
+    font-size: 13.5px;
+  }
 }
 
 .hidden {
@@ -694,9 +700,9 @@ input:focus {
 }
 
 .visible {
-  font-family: 'Abhaya Libre', serif !important;
-  font-size: 13.5px;
+  display: none;
 }
+
 
 .bold {
   font-family: 'Abhaya Libre', serif !important;

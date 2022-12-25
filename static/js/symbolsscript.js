@@ -88,12 +88,13 @@ function drawingMode() {
     let todayOfficial = new Date(); 
     let dateOfficial =  todayOfficial.getFullYear() + '-' + (todayOfficial.getMonth() + 1) + '-' + todayOfficial.getDate();
     date = $("#input-date").val() == 0 ? dateOfficial : $("#input-date").val();
+    $("#input-date").val(date);
     $(".svg-path").removeAttr("onmouseover");
     $(".svg-path").removeAttr("onmouseout");
     $(".svg-path").removeAttr("onclick");
 
-    window.addEventListener("mousedown", (e) => draw = true)
-    window.addEventListener("mouseup", (e) => draw = false)
+    window.addEventListener("mousedown", function(e) {draw = true; saveBtn.innerHTML = "Save";});
+    window.addEventListener("mouseup", (e) => draw = false);
 
     window.addEventListener("mousemove", (e) => {
         if (prevX == null || prevY == null || !draw) {
@@ -153,11 +154,8 @@ function viewingMode(specificDate="") {
         if (entryInstance === null) {
             unhighlightAll();
         } else {
-            unhighlightAllButEntry(entryInstance, 1);
-            for (path of entryInstances) {
-                path.setAttribute("onmouseover", "showDate(this)");
-                path.setAttribute("onmouseout", "hideDate(this)");
-            }
+            console.log(entryInstance);
+            showAssociations(entryInstance);
         }
         let nonEntryInstances = document.querySelectorAll(`path:not([date="${specificDate}"])`);
         for (path of nonEntryInstances) {
@@ -243,7 +241,8 @@ function countClicks() {
 function showAssociations(entry) {
     let address = $("#canvas").attr("get-associations-url");
     let entryDate = $(entry).attr("date");
-    viewingMode(entryDate);
+    
+    console.log("entryDate: ", entryDate);
     $("#input-date").val(entryDate);
     $("#association-shower").css("visibility", "visible");
     $("#association-shower h3").text(entryDate);
@@ -258,7 +257,8 @@ function showAssociations(entry) {
         },
         success: function (response) {
             if (response["text"].length > 0) { 
-                $("#text").text(response["text"]);
+                $("#association-text").html(`<p>${response["text"]}</p>`);
+                console.log("$(#text).text(response[text]): ", $("#text").html())
             } else {
                 $("#text").text("Nothing has been written about this day.");
             }
@@ -288,6 +288,7 @@ function showAssociations(entry) {
             currentImageLinksActual = response["imagesActual"];
             currentVideoLinksActual = response["videosActual"];
             console.log("get_associations: ", response)
+            console.log("$(#text).text(response[text])222: ", $("#text").text())
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -297,7 +298,7 @@ function showAssociations(entry) {
 
 function sendAJAX(nextColor="") {
     let username = document.getElementById("logo").getAttribute("username");
-    if (document.getElementById("logo").getAttribute("username") != "admin") {
+    if (true) {
         $.ajax({
             method: 'POST',
             url: address,
@@ -322,13 +323,15 @@ saveBtn.style.top = String(document.getElementById("viewing-mode").getBoundingCl
 saveBtn.style.left = String(document.getElementById("form").getBoundingClientRect().right + 10) + "px";
 saveBtn.addEventListener("click", () => {
     sendAJAX();
+    saveBtn.innerHTML = "Saved!";
 })
 
 let associationXBtn = document.getElementById("association-X-button");
 associationXBtn.addEventListener("click", () => {
     $("#input-date").val("");
     $("#association-shower").css("visibility", "hidden");
-    viewingMode();
+    location.reload();
+    $("#edit-save-button").html("Save");
 })
 
 let cursorX = 0;
@@ -423,8 +426,8 @@ function saveAssociations() {
     let newText = document.getElementById("edit-textarea").value;
     let newImages = document.getElementById("edit-image").value;
     let newVideos = document.getElementById("edit-video").value;
-    console.log("newVideos: ", newVideos);
-    if (document.getElementById("logo").getAttribute("username") != "admin") {
+    console.log("newImages: ", newImages);
+    if (true) {
         $.ajax({
             method: 'POST',
             url: '/save_associations/',
@@ -435,6 +438,8 @@ function saveAssociations() {
             },
             success: function (response) {
                 console.log("save_associations(): ", response);
+                $("#edit-save-button").html("Saved!");
+                console.log($("#edit-save-button").html());
             },
             error: function (response) {
                 console.log("ERROR", response);
@@ -447,4 +452,5 @@ function hideEditAssociations() {
     $("#input-date").val("");
     $("#edit-associations").css("visibility", "hidden");
     viewingMode();
+    $("#edit-save-button").html("Save");
 }

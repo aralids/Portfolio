@@ -867,7 +867,6 @@ function onSubmitAction(event) {
     document.getElementById('submit-button').setAttribute('value', 'Submit')
     document.getElementById('probably').innerHTML = "you are probably here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "Use the username & password from my CV to log in for a personalized experience - or just keep scrolling."
-
   }
 }
 

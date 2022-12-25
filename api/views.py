@@ -42,7 +42,7 @@ def save_associations(request):
   print("object.text: ", obj.text)
   obj.text = request.POST.get('new_text')
   print("object.text: ", obj.text)
-  obj.images = request.POST.get('new_images')
+  obj.files = request.POST.get('new_images')
   obj.links = request.POST.get('new_links')
   obj.save()
   return HttpResponse("")

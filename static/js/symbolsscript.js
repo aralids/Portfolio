@@ -257,10 +257,10 @@ function showAssociations(entry) {
         },
         success: function (response) {
             if (response["text"].length > 0) { 
-                $("#association-text").html(`<p>${response["text"]}</p>`);
-                console.log("$(#text).text(response[text]): ", $("#text").html())
+                $("#association-text").html(`<p>${response["text"].replaceAll(/\n\n/g, "<br> <br>")}</p>`);
+                console.log("$(#text).text(response[text]): ", $("#association-text").html());
             } else {
-                $("#text").text("Nothing has been written about this day.");
+                $("#association-text").html("<p>Nothing has been written about this day.</p>");
             }
             if (response["imagesActual"].length > 0) {
                 $("#files").html(`<a href=${response["imagesActual"][0]} target="_blank"><img id="image" src=${response["imagesActual"][0]} /></a>`);
@@ -424,7 +424,7 @@ function editAssociation() {
 function saveAssociations() {
     let username = document.getElementById("logo").getAttribute("username");
     let newText = document.getElementById("edit-textarea").value;
-    console.log("newText: ", newText);
+
     let newImages = document.getElementById("edit-image").value;
     let newVideos = document.getElementById("edit-video").value;
     console.log("newImages: ", newImages);

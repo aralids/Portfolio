@@ -270,3 +270,22 @@ a {
     }
 
   }
+
+@media (max-width: 900px) {
+    .gallery {
+        width: 30%;
+    }
+
+    a > h1 {
+        font-size: 20px;
+    }
+
+    .main-background {
+        width: 25vw;
+    }
+
+    .place-info > p {
+        max-width: 25%;
+        font-size: 15px;
+    }
+}

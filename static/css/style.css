@@ -497,13 +497,6 @@ input:focus {
   padding-right: 7px;
 }
 
-.project:hover > .project-description {
-  visibility: visible;
-  opacity: 1;
-  max-height: 1000px;
-  padding-top: 30px;
-}
-
 .project {
   cursor: pointer;
 }

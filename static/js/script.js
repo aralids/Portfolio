@@ -885,15 +885,85 @@ function submit(project) {
   console.log("username value: ", document.getElementById('username'))
   console.log("password value: ", document.getElementById('password'))
   document.getElementById('hidden-button').click();
-  let projectDescriptions = document.querySelectorAll(".project-description");
-  for (projectDescription of projectDescriptions) {
-    projectDescription.style.visibility = "hidden";
-    projectDescription.style.opacity = "0";
-    projectDescription.style.maxHeight = "0";
-    projectDescription.style.paddingTop = "unset";
-  }
-  
 }
+
+$("#project-1").hover(function() {
+  $("#cell-grid-project-1").css("transform", "scale(1.1)");
+  $("#project-1").children(".project-description").css("visibility", "visible");
+  $("#project-1").children(".project-description").css("opacity", "1");
+  $("#project-1").children(".project-description").css("max-height", "1000px");
+  $("#project-1").children(".project-description").css("padding-top", "30px");
+}, function() {
+  $("#cell-grid-project-1").css("transform", "scale(1)");
+  $("#project-1").children(".project-description").css("visibility", "hidden");
+  $("#project-1").children(".project-description").css("opacity", "0");
+  $("#project-1").children(".project-description").css("max-height", "0");
+  $("#project-1").children(".project-description").css("padding-top", "unset");
+});
+
+$("#project-2").hover(function() {
+  $("#cell-grid-project-2").css("transform", "scale(1.1)");
+  $("#project-2").children(".project-description").css("visibility", "visible");
+  $("#project-2").children(".project-description").css("opacity", "1");
+  $("#project-2").children(".project-description").css("max-height", "1000px");
+  $("#project-2").children(".project-description").css("padding-top", "30px");
+}, function() {
+  $("#cell-grid-project-2").css("transform", "scale(1)");
+  $("#project-2").children(".project-description").css("visibility", "hidden");
+  $("#project-2").children(".project-description").css("opacity", "0");
+  $("#project-2").children(".project-description").css("max-height", "0");
+  $("#project-2").children(".project-description").css("padding-top", "unset");
+});
+
+$("#project-3").hover(function() {
+  $("#cell-grid-main").css("transform", "scale(1.1)");
+  $("#project-3").children(".project-description").css("visibility", "visible");
+  $("#project-3").children(".project-description").css("opacity", "1");
+  $("#project-3").children(".project-description").css("max-height", "1000px");
+  $("#project-3").children(".project-description").css("padding-top", "30px");
+}, function() {
+  $("#cell-grid-main").css("transform", "scale(1)");
+  $("#project-3").children(".project-description").css("visibility", "hidden");
+  $("#project-3").children(".project-description").css("opacity", "0");
+  $("#project-3").children(".project-description").css("max-height", "0");
+  $("#project-3").children(".project-description").css("padding-top", "unset");
+});
+
+$("#cell-grid-project-1").hover(function() {
+  $("#project-1").children(".project-description").css("visibility", "visible");
+  $("#project-1").children(".project-description").css("opacity", "1");
+  $("#project-1").children(".project-description").css("max-height", "1000px");
+  $("#project-1").children(".project-description").css("padding-top", "30px");
+}, function() {
+  $("#project-1").children(".project-description").css("visibility", "hidden");
+  $("#project-1").children(".project-description").css("opacity", "0");
+  $("#project-1").children(".project-description").css("max-height", "0");
+  $("#project-1").children(".project-description").css("padding-top", "unset");
+});
+
+$("#cell-grid-project-2").hover(function() {
+  $("#project-2").children(".project-description").css("visibility", "visible");
+  $("#project-2").children(".project-description").css("opacity", "1");
+  $("#project-2").children(".project-description").css("max-height", "1000px");
+  $("#project-2").children(".project-description").css("padding-top", "30px");
+}, function() {
+  $("#project-2").children(".project-description").css("visibility", "hidden");
+  $("#project-2").children(".project-description").css("opacity", "0");
+  $("#project-2").children(".project-description").css("max-height", "0");
+  $("#project-2").children(".project-description").css("padding-top", "unset");
+});
+
+$("#cell-grid-main").hover(function() {
+  $("#project-3").children(".project-description").css("visibility", "visible");
+  $("#project-3").children(".project-description").css("opacity", "1");
+  $("#project-3").children(".project-description").css("max-height", "1000px");
+  $("#project-3").children(".project-description").css("padding-top", "30px");
+}, function() {
+  $("#project-3").children(".project-description").css("visibility", "hidden");
+  $("#project-3").children(".project-description").css("opacity", "0");
+  $("#project-3").children(".project-description").css("max-height", "0");
+  $("#project-3").children(".project-description").css("padding-top", "unset");
+});
 
 
 function submitted() {

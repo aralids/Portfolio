@@ -823,6 +823,9 @@ function onSubmitAction(event) {
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
     
+    document.getElementById("name").setAttribute("placeholder", "name, company: Anna Mustermann, Alnatura")
+    document.getElementById("email").setAttribute("placeholder", "email address: anna.mustermann@alnatura.de")
+    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at Alnatura")
   } else if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'lex' && document.getElementById('password').value === 'love&AI') {
       document.getElementById('logo_lex').style.opacity = '1'
       document.getElementById('logo_classic').style.opacity = '0'
@@ -847,6 +850,10 @@ function onSubmitAction(event) {
     document.getElementById('submit-button').setAttribute('value', 'Log out')
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
+  
+    document.getElementById("name").setAttribute("placeholder", "name, company: Anna Mustermann, REWE Digital")
+    document.getElementById("email").setAttribute("placeholder", "email address: anna.mustermann@rewe-digital.com")
+    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at REWE Digital")
   } else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_classic').style.opacity = '1'
     document.getElementById('logo_alnatura2').style.opacity = '0'
@@ -879,6 +886,14 @@ function submit(project) {
   console.log("username value: ", document.getElementById('username'))
   console.log("password value: ", document.getElementById('password'))
   document.getElementById('hidden-button').click();
+  let projectDescriptions = document.querySelectorAll(".project-description");
+  for (projectDescription of projectDescriptions) {
+    projectDescription.style.visibility = "hidden";
+    projectDescription.style.opacity = "0";
+    projectDescription.style.maxHeight = "0";
+    projectDescription.style.paddingTop = "unset";
+  }
+  
 }
 
 
@@ -889,7 +904,7 @@ function submitted() {
 }
 
 addEventListener("resize", (event) => {
-  if (window.screen.availWidth < 700) {
+  if (window.screen.availWidth < 700 || window.screen.availHeight < 450) {
     if (document.documentElement.className === "alnatura") {
       console.log("Screen width < 700!")
       document.getElementById("logo_alnatura2").style.position = "unset";
@@ -899,6 +914,7 @@ addEventListener("resize", (event) => {
       document.getElementById("logo_classic").style.display = "none";
       document.getElementById("logo_lex").style.display = "none";
       document.getElementById("logo_rewedigital").style.display = "none";
+      document.getElementById("mobile-greeting").innerText = "Hello Alnatura!";
     }
     else if (document.documentElement.className === "lex") {
       console.log("Screen width < 700!")
@@ -909,6 +925,7 @@ addEventListener("resize", (event) => {
       document.getElementById("logo_classic").style.display = "none";
       document.getElementById("logo_alnatura2").style.display = "none";
       document.getElementById("logo_rewedigital").style.display = "none";
+      document.getElementById("mobile-greeting").innerText = "Hello Lex!";
     }
     else if (document.documentElement.className === "rewedigital") {
       console.log("Screen width < 700!")
@@ -919,6 +936,7 @@ addEventListener("resize", (event) => {
       document.getElementById("logo_classic").style.display = "none";
       document.getElementById("logo_alnatura2").style.display = "none";
       document.getElementById("logo_lex").style.display = "none";
+      document.getElementById("mobile-greeting").innerText = "Hello REWE Digital!";
     }
     else {
       console.log("Screen width < 700!")
@@ -929,6 +947,7 @@ addEventListener("resize", (event) => {
       document.getElementById("logo_rewedigital").style.display = "none";
       document.getElementById("logo_alnatura2").style.display = "none";
       document.getElementById("logo_lex").style.display = "none";
+      document.getElementById("mobile-greeting").innerText = "Hello world!";
     }
     
   } else {

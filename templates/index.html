@@ -59,7 +59,7 @@
           style="user-drag: none;"
         />
         <img
-          src="{% static 'img/logo_rewedigital.svg' %}"
+          src="{% static 'img/logo_rewedigital2.svg' %}"
           alt="Logo"
           id="logo_rewedigital"
           class="transparent"
@@ -79,14 +79,13 @@
     </header>
     <section class="mobile-version">
       <section id="text" class="mobile-version">
-        <p class="mobile-version centered bold">Hello world!</p>
+        <p id="mobile-greeting" class="mobile-version centered bold">Hello world!</p>
         <p class="mobile-version">
           The mobile version of my website is getting built as you're reading this!
           I want to give it its own design and interesting features, and not simply make it a mini-replica of the main version.
-          For now, enjoy this page on screens with width > 700px. </p>
-
+          For now, enjoy this page on screens with width > 700px and height > 450px. </p>
         <p class="mobile-version centered">Last update was on: 21.12.2022</p>
-    </section>
+      </section>
     </section>
     <main id="main">
       <section id="flip-card">
@@ -112,7 +111,7 @@
           </p>
           <form id="login-form" action="temple/" method="post">
             {% csrf_token %}
-            <input type="text" id="username" name="username" value="admin" placeholder="username from CV">
+            <input type="text" id="username" name="username" value="" placeholder="username from CV">
             <input type="password" id="password" name="password" value="" placeholder="password from CV">
             <input id="hidden-button" type="submit" value="Submit" formtarget="_blank">
           </form>

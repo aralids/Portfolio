@@ -97,6 +97,8 @@ def update(request):
 def temple(request):
   a = django.middleware.csrf.get_token(request)
   u = request.POST.get("username")
+  if u == "":
+    u = "admin"
   password = request.POST.get("password")
   user = User.objects.get(username=u)
   entries = user.entry_set.all()
@@ -182,12 +184,16 @@ def get_geolocation(request):
 def gastroobscura(request):
   print("GO request: ", request.POST)
   u = request.POST.get("username")
+  if u == "":
+    u = "admin"
   p = request.POST.get("password")
   return render(request, 'app/gastroobscura.html', {'username': u,
                                                     'password': p})
 
 def vitamins(request):
   u = request.POST.get("username")
+  if u == "":
+    u = "admin"
   p = request.POST.get("password")
   return render(request, 'app/vitamins.html', {'username': u,
                                                'password': p})

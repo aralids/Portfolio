@@ -867,6 +867,13 @@ function onSubmitAction(event) {
     document.getElementById('submit-button').setAttribute('value', 'Submit')
     document.getElementById('probably').innerHTML = "you are probably here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "Use the username & password from my CV to log in for a personalized experience - or just keep scrolling."
+    
+    document.getElementById("name").setAttribute("placeholder", "name, company: John Doe, Company Inc.")
+    document.getElementById("email").setAttribute("placeholder", "email address: john.doe@gmail.com")
+    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at Company Inc.")
+
+    document.getElementById("username").value = "admin";
+    console.log(document.getElementById("username").value)
   }
 }
 
@@ -876,6 +883,7 @@ function changeColorPalette(theme) {
 
 function submit(project) {
   if (project === 'temple') {
+    htmlLoginForm.setAttribute('action', 'temple/')
   } else if (project === 'gastroobscura') {
     htmlLoginForm.setAttribute('action', 'gastroobscura/')
   } else if (project === 'vitamins') {

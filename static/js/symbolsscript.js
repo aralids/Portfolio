@@ -424,6 +424,7 @@ function editAssociation() {
 function saveAssociations() {
     let username = document.getElementById("logo").getAttribute("username");
     let newText = document.getElementById("edit-textarea").value;
+    console.log("newText: ", newText);
     let newImages = document.getElementById("edit-image").value;
     let newVideos = document.getElementById("edit-video").value;
     console.log("newImages: ", newImages);

@@ -298,7 +298,7 @@ function showAssociations(entry) {
 
 function sendAJAX(nextColor="") {
     let username = document.getElementById("logo").getAttribute("username");
-    if (true) {
+    if (username != "admin") {
         $.ajax({
             method: 'POST',
             url: address,
@@ -428,7 +428,7 @@ function saveAssociations() {
     let newImages = document.getElementById("edit-image").value;
     let newVideos = document.getElementById("edit-video").value;
     console.log("newImages: ", newImages);
-    if (true) {
+    if (username != "admin") {
         $.ajax({
             method: 'POST',
             url: '/save_associations/',

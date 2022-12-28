@@ -1,5 +1,5 @@
 :root,
-:root.classic {
+:root.admin {
   --main-bg-color: #454541;
   --main-color: #b80000;
   --main-accent-color: #00d455;
@@ -26,6 +26,19 @@
   --font-color: #D2EB23;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+}
+
+:root.klarna {
+  --main-bg-color: #fffef4;
+  --main-color: black; 
+  --main-accent-color: #FFFBDC;
+  --secondary-accent-color: #FFE6CC;
+  --font-color: #FFB3C7;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: white;
+  --first-welcome-color: black;
+  --second-welcome-color: #FFB3C7;
 }
 
 * {
@@ -87,7 +100,7 @@ footer {
     height: 70px;
 }
 
-#logo_classic, #logo_alnatura2 {
+#logo_admin, #logo_alnatura {
     position: absolute;
 }
 
@@ -98,7 +111,7 @@ footer {
     width: 80%;
 }
 
-#logo_alnatura2 {
+#logo_alnatura {
     opacity: 0;
 }
 
@@ -210,7 +223,7 @@ footer {
       box-sizing: border-box;
   }
 
-  #logo_classic {
+  #logo_admin {
       position: unset;
       display: block;
   }

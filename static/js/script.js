@@ -27,6 +27,9 @@ var myInterval
 let currentScrollSection = 0
 let cardFlipped = 0
 
+let credentialsNames = ["alnatura", "admin", "rewedigital", "lex", "klarna"];
+let credentialsPasswords = ["sinnvoll", "", "homeofIT", "love&AI", "smoooth"];
+
 /* FREQUENTLY UTILIZED VARIABLES */
 
 /* CLASSES */
@@ -93,20 +96,20 @@ let cgmInitialSchemeNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-  0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 2, 2, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 0, 1, 1, 0, 1, 2, 2, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
-  0, 0, 0, 1, 0, 0, 1, 0, 1, 2, 2, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 2, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 2, 2, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
-  1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5,
+  0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 5, 6, 6, 5, 0, 0, 0, 0,
+  0, 0, 0, 0, 5, 5, 0, 5, 0, 5, 0, 5, 0, 5, 6, 6, 5, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 5, 5, 0, 5, 5, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0,
+  0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 5, 5, 0, 0, 0, 0, 0,
+  0, 0, 0, 5, 0, 5, 5, 0, 5, 6, 6, 5, 0, 5, 0, 0, 5, 0, 0, 0, 0,
+  0, 0, 0, 5, 0, 0, 5, 0, 5, 6, 6, 5, 0, 5, 5, 0, 5, 0, 0, 0, 0,
+  0, 0, 0, 0, 5, 5, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 0,
+  0, 0, 0, 5, 5, 5, 5, 0, 0, 5, 5, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 5, 6, 6, 5, 0, 5, 0, 5, 0, 5, 0, 5, 5, 0, 0, 0, 0, 0,
+  0, 0, 0, 5, 6, 6, 5, 0, 5, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0,
+  5, 5, 5, 5, 5, 5, 5, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -651,6 +654,10 @@ function stringifyScheme(schemeNum) {
       stringifiedScheme.push('secondary-accent-color-cell')
     } else if (schemeNum[i] === 4) {
       stringifiedScheme.push('secondary-accent-color-cell')
+    } else if (schemeNum[i] === 5) {
+      stringifiedScheme.push('first-welcome-color')
+    } else if (schemeNum[i] === 6) {
+      stringifiedScheme.push('second-welcome-color')
     }
   }
   return stringifiedScheme
@@ -810,56 +817,34 @@ function hideProjects() {
 
 function onSubmitAction(event) {
   event.preventDefault()
-  if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'alnatura') {
-    document.getElementById('logo_alnatura2').style.opacity = '1'
-    document.getElementById('logo_classic').style.opacity = '0'
-    document.getElementById('logo_lex').style.opacity = '0'
-    document.getElementById('logo_rewedigital').style.opacity = '0'
-    changeColorPalette('alnatura')
+  let theme = document.getElementById('username').value != false ? document.getElementById('username').value : "admin";
+  let password = document.getElementById('password').value;
+  console.log("credentials check: ", credentialsNames.indexOf(theme))
+  if (document.getElementById("submit-button").value === "Submit" && credentialsNames.indexOf(theme) > -1 && credentialsPasswords[credentialsNames.indexOf(theme)] === password) {
+    let logos = document.querySelectorAll(".logo-alternative");
+    for (logo of logos) {
+      logo.style.opacity = "0";
+    }
+    console.log("theme: ", theme);
+    document.getElementById(`logo_${theme}`).style.opacity = "1";
+    changeColorPalette(theme);
     htmlLoginForm.style.visibility = 'hidden'
     htmlLoginForm.style.opacity = '0'
     htmlLoginForm.style.maxHeight = '0'
     document.getElementById('submit-button').setAttribute('value', 'Log out')
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
-    
-    document.getElementById("name").setAttribute("placeholder", "name, company: Anna Mustermann, Alnatura")
-    document.getElementById("email").setAttribute("placeholder", "email address: anna.mustermann@alnatura.de")
-    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at Alnatura")
-  } else if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'lex' && document.getElementById('password').value === 'love&AI') {
-      document.getElementById('logo_lex').style.opacity = '1'
-      document.getElementById('logo_classic').style.opacity = '0'
-      document.getElementById('logo_alnatura2').style.opacity = '0'
-      document.getElementById('logo_rewedigital').style.opacity = '0'
-      changeColorPalette('lex')
-      htmlLoginForm.style.visibility = 'hidden'
-      htmlLoginForm.style.opacity = '0'
-      htmlLoginForm.style.maxHeight = '0'
-      document.getElementById('submit-button').setAttribute('value', 'Log out')
-      document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
-      document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
-  } else if (document.getElementById('submit-button').value === 'Submit' && document.getElementById('username').value === 'rewedigital' && document.getElementById('password').value === 'homeofIT') {
-    document.getElementById('logo_rewedigital').style.opacity = '1'
-    document.getElementById('logo_classic').style.opacity = '0'
-    document.getElementById('logo_alnatura2').style.opacity = '0'
-    document.getElementById('logo_lex').style.opacity = '0'
-    changeColorPalette('rewedigital')
-    htmlLoginForm.style.visibility = 'hidden'
-    htmlLoginForm.style.opacity = '0'
-    htmlLoginForm.style.maxHeight = '0'
-    document.getElementById('submit-button').setAttribute('value', 'Log out')
-    document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
-    document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
-  
-    document.getElementById("name").setAttribute("placeholder", "name, company: Anna Mustermann, REWE Digital")
-    document.getElementById("email").setAttribute("placeholder", "email address: anna.mustermann@rewe-digital.com")
-    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at REWE Digital")
-  } else if (document.getElementById('submit-button').value === 'Log out') {
-    document.getElementById('logo_classic').style.opacity = '1'
-    document.getElementById('logo_alnatura2').style.opacity = '0'
+    document.getElementById("name").setAttribute("placeholder", `name, company: Anna Mustermann, ${theme}`);
+    document.getElementById("email").setAttribute("placeholder", `email address: anna.mustermann@${theme}.de`);
+    document.getElementById("subject").setAttribute("placeholder", `subject: Your Application at ${theme}`);
+  } 
+  else if (document.getElementById('submit-button').value === 'Log out') {
+    document.getElementById('logo_admin').style.opacity = '1'
+    document.getElementById('logo_alnatura').style.opacity = '0'
     document.getElementById('logo_lex').style.opacity = '0'
     document.getElementById('logo_rewedigital').style.opacity = '0'
-    changeColorPalette('classic')
+    document.getElementById('logo_klarna').style.opacity = '0'
+    changeColorPalette('admin')
     
     htmlLoginForm.style.opacity = '1'
     htmlLoginForm.style.visibility = 'visible'
@@ -981,51 +966,17 @@ function submitted() {
 }
 
 addEventListener("resize", (event) => {
+  let theme = document.getElementById('username').value != false ? document.getElementById('username').value : "admin";
   if (window.screen.availWidth < 700 || window.screen.availHeight < 450) {
-    if (document.documentElement.className === "alnatura") {
-      console.log("Screen width < 700!")
-      document.getElementById("logo_alnatura2").style.position = "unset";
-      document.getElementById("logo_alnatura2").style.width = "unset";
-      document.getElementById("logo_alnatura2").style.display = "block";
-      document.getElementById("logo_alnatura2").style.height = "100%";
-      document.getElementById("logo_classic").style.display = "none";
-      document.getElementById("logo_lex").style.display = "none";
-      document.getElementById("logo_rewedigital").style.display = "none";
-      document.getElementById("mobile-greeting").innerText = "Hello Alnatura!";
+    let logos = document.querySelectorAll(".logo-alternative");
+    for (logo of logos) {
+      logo.style.display = "none";
     }
-    else if (document.documentElement.className === "lex") {
-      console.log("Screen width < 700!")
-      document.getElementById("logo_lex").style.position = "unset";
-      document.getElementById("logo_lex").style.width = "unset";
-      document.getElementById("logo_lex").style.display = "block";
-      document.getElementById("logo_lex").style.height = "100%";
-      document.getElementById("logo_classic").style.display = "none";
-      document.getElementById("logo_alnatura2").style.display = "none";
-      document.getElementById("logo_rewedigital").style.display = "none";
-      document.getElementById("mobile-greeting").innerText = "Hello Lex!";
-    }
-    else if (document.documentElement.className === "rewedigital") {
-      console.log("Screen width < 700!")
-      document.getElementById("logo_rewedigital").style.position = "unset";
-      document.getElementById("logo_rewedigital").style.width = "unset";
-      document.getElementById("logo_rewedigital").style.display = "block";
-      document.getElementById("logo_rewedigital").style.height = "100%";
-      document.getElementById("logo_classic").style.display = "none";
-      document.getElementById("logo_alnatura2").style.display = "none";
-      document.getElementById("logo_lex").style.display = "none";
-      document.getElementById("mobile-greeting").innerText = "Hello REWE Digital!";
-    }
-    else {
-      console.log("Screen width < 700!")
-      document.getElementById("logo_classic").style.position = "unset";
-      document.getElementById("logo_classic").style.width = "unset";
-      document.getElementById("logo_classic").style.display = "block";
-      document.getElementById("logo_classic").style.height = "100%";
-      document.getElementById("logo_rewedigital").style.display = "none";
-      document.getElementById("logo_alnatura2").style.display = "none";
-      document.getElementById("logo_lex").style.display = "none";
-      document.getElementById("mobile-greeting").innerText = "Hello world!";
-    }
+    document.getElementById(`logo_${theme}`).style.position = "unset";
+    document.getElementById(`logo_${theme}`).style.width = "unset";
+    document.getElementById(`logo_${theme}`).style.display = "block";
+    document.getElementById(`logo_${theme}`).style.height = "100%";
+    document.getElementById("mobile-greeting").innerText = `Hello ${theme}!`;
     
   } else {
     
@@ -1042,36 +993,12 @@ addEventListener("resize", (event) => {
     contact = viewportHeight * 3
 
     console.log("resize! width: ", window.screen.availWidth);
-
-    if (document.documentElement.className === "alnatura") {
-      document.getElementById("logo_classic").style.display = "block";
-      document.getElementById("logo_lex").style.display = "block";
-      document.getElementById("logo_rewedigital").style.display = "block";
-      document.getElementById("logo_alnatura2").style.position = "absolute";
-      document.getElementById("logo_alnatura2").style.width = "70px";
-    } 
-    else if (document.documentElement.className === "lex") {
-      document.getElementById("logo_classic").style.display = "block";
-      document.getElementById("logo_alnatura2").style.display = "block";
-      document.getElementById("logo_rewedigital").style.display = "block";
-      document.getElementById("logo_lex").style.position = "absolute";
-      document.getElementById("logo_lex").style.width = "70px";
+    let logos = document.querySelectorAll(".logo-alternative");
+    for (logo of logos) {
+      logo.style.display = "block";
     }
-    else if (document.documentElement.className === "rewedigital") {
-      console.log("> 700 px rewedigital")
-      document.getElementById("logo_classic").style.display = "block";
-      document.getElementById("logo_lex").style.display = "block";
-      document.getElementById("logo_alnatura2").style.display = "block";
-      document.getElementById("logo_rewedigital").style.position = "absolute";
-      document.getElementById("logo_rewedigital").style.width = "70px";
-    }
-    else {
-      document.getElementById("logo_alnatura2").style.display = "block";
-      document.getElementById("logo_lex").style.display = "block";
-      document.getElementById("logo_rewedigital").style.display = "block";
-      document.getElementById("logo_classic").style.position = "absolute";
-      document.getElementById("logo_classic").style.width = "70px";
-    }
+    document.getElementById(`logo_${theme}`).style.position = "absolute";
+    document.getElementById(`logo_${theme}`).style.width = "70px";
   }
 });
 

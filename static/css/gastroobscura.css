@@ -1,5 +1,5 @@
 :root,
-:root.classic {
+:root.admin {
   --main-bg-color: #454541;
   --main-color: #b80000;
   --main-accent-color: #00d455;
@@ -28,7 +28,20 @@
     --font-color: #D2EB23;
     --secondary-font-color: #ffffff;
     --cell-size: 12px;
-  }
+}
+
+:root.klarna {
+    --main-bg-color: #fffef4;
+    --main-color: black; 
+    --main-accent-color: #FFFBDC;
+    --secondary-accent-color: #FFE6CC;
+    --font-color: #FFB3C7;
+    --secondary-font-color: #ffffff;
+    --cell-size: 12px;
+    --dead-cell-color: white;
+    --first-welcome-color: black;
+    --second-welcome-color: #FFB3C7;
+}
 
 * {
   margin: 0;
@@ -234,7 +247,7 @@ a {
         box-sizing: border-box;
     }
 
-    #logo_classic {
+    #logo_admin {
         position: unset;
         display: block;
     }

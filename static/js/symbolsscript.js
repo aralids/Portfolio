@@ -407,7 +407,7 @@ function editAssociation() {
             $("#add-files").append(`<a href=${currentImageLinksActual[i]} target="_blank"><img id="image" src=${currentImageLinksActual[i]} /></a>`);
         }
     } else {
-        $("#add-files").html("<p>No images for this day.</p>");
+        $("#add-files").html("<p>No images for this day. Host them on imgbb.com!!! The link should look like this: https://ibb.co/YN0cJs1</p>");
     }
     if (currentVideoLinksActual.length > 0) {
         $("#add-videos").html(`<iframe id="video" src=${currentVideoLinksActual[0]}></iframe>`)

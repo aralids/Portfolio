@@ -1,5 +1,5 @@
 :root,
-:root.classic {
+:root.admin {
   --main-bg-color: #454541;
   --main-color: #b80000;
   --main-accent-color: #00d455;
@@ -7,6 +7,7 @@
   --font-color: #ffe680;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --last-color: #454541;
 }
 :root.alnatura {
   --main-bg-color: #fffef4;
@@ -16,6 +17,7 @@
   --font-color: #ef7c00;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --last-color: #454541;
 }
 
 :root.lex {
@@ -26,6 +28,7 @@
   --font-color: #2EF332;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --last-color: #454541;
 }
 
 :root.rewedigital {
@@ -36,6 +39,21 @@
   --font-color: #D2EB23;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --last-color: #454541;
+}
+
+:root.klarna {
+  --main-bg-color: #fffef4;
+  --main-color: black; 
+  --main-accent-color: #FFE6CC;
+  --secondary-accent-color: #E8D6FE;
+  --font-color: #FFB3C7;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: white;
+  --first-welcome-color: black;
+  --second-welcome-color: #FFB3C7;
+  --last-color: #C1D5FB;
 }
 
 * {
@@ -90,11 +108,11 @@ main {
     height: 70px;
 }
 
-#logo_classic, #logo_alnatura2 {
+#logo_classic, #logo_alnatura {
     position: absolute;
 }
 
-#logo_alnatura2 {
+#logo_alnatura {
     opacity: 0;
 }
 
@@ -151,7 +169,7 @@ footer {
   background-color: var(--secondary-accent-color);
 }
 .clr:nth-child(6){
-  background-color: #454541;
+  background-color: var(--last-color);
 }
 
 #info {
@@ -445,7 +463,7 @@ input, textarea {
       box-sizing: border-box;
   }
 
-  #logo_classic {
+  #logo_admin {
       position: unset;
       display: block;
   }

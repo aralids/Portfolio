@@ -12,7 +12,7 @@
 /* max-height: ; */
 
 :root,
-:root.classic {
+:root.admin {
   --main-bg-color: #454541;
   --main-color: red;
   --main-accent-color: #00d455;
@@ -20,6 +20,10 @@
   --font-color: #ffe680;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --first-grid-color: red;
+  --dead-cell-color: #454541;
+  --first-welcome-color: red;
+  --second-welcome-color: #ffe680;
 }
 :root.alnatura {
   --main-bg-color: #fffef4;
@@ -29,6 +33,9 @@
   --font-color: #76344d;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --first-welcome-color: #ef7c00;
+  --second-welcome-color: #76344d;
 }
 
 :root.lex {
@@ -39,6 +46,9 @@
   --font-color: #2EF332;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --first-welcome-color: #1a95cd;
+  --second-welcome-color: #2EF332;
 }
 
 :root.rewedigital {
@@ -49,6 +59,22 @@
   --font-color: #D2EB23;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --first-welcome-color: #00196A;
+  --second-welcome-color: #D2EB23;
+}
+
+:root.klarna {
+  --main-bg-color: #fffef4;
+  --main-color: black; 
+  --main-accent-color: #FFE6CC;
+  --secondary-accent-color: #C1D5FB;
+  --font-color: #FFB3C7;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --first-welcome-color: black;
+  --second-welcome-color: #FFB3C7;
 }
 
 * {
@@ -101,14 +127,14 @@ header {
   /* max-height: ; */
 }
 
-#logo_classic {
+#logo_admin {
   width: 70px;
   position: absolute;
   transition: opacity 1s ease-in-out;
   opacity: 1;
 }
 
-#logo_alnatura2, #logo_lex, #logo_rewedigital {
+.logo-alternative {
   width: 70px;
   position: absolute;
   transition: opacity 1s ease-in-out;
@@ -363,8 +389,16 @@ footer {
   background-color: var(--secondary-accent-color);
 }
 
+.first-welcome-color {
+  background-color: var(--first-welcome-color);
+}
+
+.second-welcome-color {
+  background-color: var(--second-welcome-color);
+}
+
 .dead {
-  background-color: #454541;
+  background-color: var(--dead-cell-color);
   transition: 0.5s ease-in background-color;
 }
 
@@ -564,7 +598,7 @@ input:focus {
     border: 2px solid black;
   }
 
-  #logo_classic {
+  #logo_admin {
     position: unset;
     width: unset;
     display: block;

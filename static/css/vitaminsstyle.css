@@ -41,6 +41,19 @@
   --second-welcome-color: #FFB3C7;
 }
 
+:root.scoop {
+  --main-bg-color: #fffef4;
+  --main-color: black; 
+  --main-accent-color: #FFFBDC;
+  --secondary-accent-color: #FFE6CC;
+  --font-color: #FFB3C7;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --first-welcome-color: #005894;
+  --second-welcome-color: #005894;
+}
+
 * {
   margin: 0;
   padding: 0;

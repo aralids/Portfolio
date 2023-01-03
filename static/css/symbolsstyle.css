@@ -56,6 +56,27 @@
   --last-color: #C1D5FB;
 }
 
+:root.scoop {
+  --main-bg-color: #fffef4;
+  --main-color: #005894; 
+  --main-accent-color: #37c871;
+  --secondary-accent-color: #FA7921;
+  --font-color: #FFDD6B;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --welcome-first-color: #005894;
+  --welcome-second-color: #FFDD6B;
+  --about-me-first-color: #FFDD6B;
+  --about-me-second-color: #005894;
+  --projects-first-color: #005894;
+  --projects-second-color: #FFDD6B;
+  --projects-third-color: #454541;
+  --projects-fourth-color: #454541;
+  --contact-first-color: #005894;
+  --negative-space-color: white;
+}
+
 * {
   margin: 0;
   padding: 0;

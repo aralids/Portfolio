@@ -27,8 +27,8 @@ var myInterval
 let currentScrollSection = 0
 let cardFlipped = 0
 
-let credentialsNames = ["alnatura", "admin", "rewedigital", "lex", "klarna"];
-let credentialsPasswords = ["sinnvoll", "", "homeofIT", "love&AI", "smoooth"];
+let credentialsNames = ["alnatura", "admin", "rewedigital", "lex", "klarna", "scoop"];
+let credentialsPasswords = ["sinnvoll", "", "homeofIT", "love&AI", "smoooth", "pragmatic"];
 
 /* FREQUENTLY UTILIZED VARIABLES */
 
@@ -122,17 +122,17 @@ let cgmQuestionMarkNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 1, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 7, 7, 8, 8, 8, 7, 7, 8, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 7, 7, 8, 0, 0, 7, 7, 8, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 7, 7, 8, 0, 0, 7, 7, 8, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 0, 7, 7, 7, 8, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 8, 8, 8, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
@@ -168,31 +168,6 @@ let project1Num = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 let project1 = stringifyScheme(project1Num);
 
-let project2Num = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-  0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-]
-
-let project2 = stringifyScheme(project2Num);
-
 let project2AltNum = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
   1, 1, 2, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -218,27 +193,27 @@ let project2AltNum = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0
 
 let project2Alt = stringifyScheme(project2AltNum);
 
-let cgmQrCodeNum = [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-  1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1,
-  1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1,
-  1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1,
-  1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1,
-  1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-  1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1,
-  0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1,
-  0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-  0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0,
-  1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1,
-  1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1,
-  1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1,
-  1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0,
-  1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1,
-  1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0,
-  1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1];
+let cgmQrCodeNum = [9, 9, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 9, 9,
+  9, 0, 0, 0, 0, 0, 9, 0, 9, 9, 0, 9, 9, 0, 9, 0, 0, 0, 0, 0, 9,
+  9, 0, 9, 9, 9, 0, 9, 0, 0, 9, 9, 9, 0, 0, 9, 0, 9, 9, 9, 0, 9,
+  9, 0, 9, 9, 9, 0, 9, 0, 0, 9, 0, 9, 9, 0, 9, 0, 9, 9, 9, 0, 9,
+  9, 0, 9, 9, 9, 0, 9, 0, 9, 0, 0, 9, 9, 0, 9, 0, 9, 9, 9, 0, 9,
+  9, 0, 0, 0, 0, 0, 9, 0, 9, 0, 9, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9,
+  9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9, 9,
+  0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  9, 9, 9, 0, 0, 9, 9, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 9, 9,
+  0, 9, 0, 9, 0, 0, 0, 0, 9, 0, 9, 0, 0, 9, 0, 9, 9, 9, 0, 0, 9,
+  0, 9, 9, 9, 9, 0, 9, 9, 9, 0, 9, 0, 0, 0, 9, 9, 9, 0, 9, 0, 9,
+  0, 9, 0, 0, 9, 9, 0, 0, 9, 0, 9, 0, 0, 9, 9, 0, 0, 9, 0, 0, 0,
+  9, 0, 9, 9, 9, 0, 9, 0, 9, 0, 9, 0, 9, 9, 0, 9, 9, 9, 0, 0, 9,
+  0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 9, 9, 0, 9, 9, 0, 9, 9, 9, 9,
+  9, 9, 9, 9, 9, 9, 9, 0, 0, 9, 0, 0, 9, 0, 0, 9, 9, 9, 9, 0, 9,
+  9, 0, 0, 0, 0, 0, 9, 0, 9, 0, 9, 0, 0, 0, 9, 0, 0, 0, 0, 9, 9,
+  9, 0, 9, 9, 9, 0, 9, 0, 0, 9, 0, 0, 9, 0, 0, 0, 9, 9, 0, 9, 9,
+  9, 0, 9, 9, 9, 0, 9, 0, 0, 9, 9, 9, 0, 9, 9, 0, 9, 0, 0, 0, 0,
+  9, 0, 9, 9, 9, 0, 9, 0, 9, 9, 0, 9, 9, 0, 0, 0, 0, 9, 9, 9, 9,
+  9, 0, 0, 0, 0, 0, 9, 0, 9, 9, 0, 9, 0, 9, 0, 9, 9, 0, 0, 0, 0,
+  9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 0, 9, 9, 9, 0, 0, 9, 0, 9, 0, 9];
 
 let cgmQrCode = stringifyScheme(cgmQrCodeNum)
 
@@ -645,19 +620,25 @@ function stringifyScheme(schemeNum) {
   let stringifiedScheme = []
   for (let i = 0; i < schemeNum.length; i++) {
     if (schemeNum[i] === 0) {
-      stringifiedScheme.push('light-color-cell')
+      stringifiedScheme.push('negative-space-color')
     } else if (schemeNum[i] === 1) {
-      stringifiedScheme.push('main-color-cell')
+      stringifiedScheme.push('projects-first-color')
     } else if (schemeNum[i] === 2) {
-      stringifiedScheme.push('dark-color-cell')
+      stringifiedScheme.push('projects-second-color')
     } else if (schemeNum[i] === 3) {
-      stringifiedScheme.push('secondary-accent-color-cell')
+      stringifiedScheme.push('projects-third-color')
     } else if (schemeNum[i] === 4) {
-      stringifiedScheme.push('secondary-accent-color-cell')
+      stringifiedScheme.push('projects-fourth-color')
     } else if (schemeNum[i] === 5) {
-      stringifiedScheme.push('first-welcome-color')
+      stringifiedScheme.push('welcome-first-color')
     } else if (schemeNum[i] === 6) {
-      stringifiedScheme.push('second-welcome-color')
+      stringifiedScheme.push('welcome-second-color')
+    } else if (schemeNum[i] === 7) {
+      stringifiedScheme.push('about-me-first-color')
+    } else if (schemeNum[i] === 8) {
+      stringifiedScheme.push('about-me-second-color')
+    } else if (schemeNum[i] === 9) {
+      stringifiedScheme.push('contact-first-color')
     }
   }
   return stringifiedScheme
@@ -834,9 +815,9 @@ function onSubmitAction(event) {
     document.getElementById('submit-button').setAttribute('value', 'Log out')
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
-    document.getElementById("name").setAttribute("placeholder", `name, company: Anna Mustermann, ${theme}`);
+    document.getElementById("name").setAttribute("placeholder", `name, company: Anna Mustermann, ${theme.toUpperCase()}`);
     document.getElementById("email").setAttribute("placeholder", `email address: anna.mustermann@${theme}.de`);
-    document.getElementById("subject").setAttribute("placeholder", `subject: Your Application at ${theme}`);
+    document.getElementById("subject").setAttribute("placeholder", `subject: Your Application at ${theme.toUpperCase()}`);
   } 
   else if (document.getElementById('submit-button').value === 'Log out') {
     document.getElementById('logo_admin').style.opacity = '1'
@@ -844,6 +825,7 @@ function onSubmitAction(event) {
     document.getElementById('logo_lex').style.opacity = '0'
     document.getElementById('logo_rewedigital').style.opacity = '0'
     document.getElementById('logo_klarna').style.opacity = '0'
+    document.getElementById('logo_scoop').style.opacity = '0'
     changeColorPalette('admin')
     
     htmlLoginForm.style.opacity = '1'
@@ -853,8 +835,8 @@ function onSubmitAction(event) {
     document.getElementById('probably').innerHTML = "you are probably here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "Use the username & password from my CV to log in for a personalized experience - or just keep scrolling."
     
-    document.getElementById("name").setAttribute("placeholder", "name, company: John Doe, Company Inc.")
-    document.getElementById("email").setAttribute("placeholder", "email address: john.doe@gmail.com")
+    document.getElementById("name").setAttribute("placeholder", "name, company: John Smith, Company Inc.")
+    document.getElementById("email").setAttribute("placeholder", "email address: john.smith@gmail.com")
     document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at Company Inc.")
 
     document.getElementById("username").value = "admin";

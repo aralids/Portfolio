@@ -28,7 +28,6 @@
   </head>
   
   <body>
-    
     <header id="header">
       <section id="logo">
         <img
@@ -71,6 +70,15 @@
           src="{% static 'img/logo_klarna.svg' %}"
           alt="Logo"
           id="logo_klarna"
+          class="transparent logo-alternative"
+          draggable="false"
+          onmousedown="return false"
+          style="user-drag: none;"
+        />
+        <img
+          src="{% static 'img/logo_scoop.svg' %}"
+          alt="Logo"
+          id="logo_scoop"
           class="transparent logo-alternative"
           draggable="false"
           onmousedown="return false"
@@ -129,6 +137,9 @@
           </form>
         </section>
         <section id="about-me" class="section">
+          <div id="click-arrow-div">
+            <img id="click-arrow" src="{% static 'img/click-arrow.svg' %}">
+          </div>
           <h1>Dilara Sarach</h1>
           <h2>
             A blossoming web developer based in Frankfurt am Main, Germany.
@@ -139,7 +150,7 @@
             University taught me a lot: Python, C++, SQL, Haskell - but most of all, how to go about learning in general. <br> <br> </span>
 
             Broadly skilled in the client side of it all (and currently laser-focused on <span class="bold">React & TypeScript</span>), as well as more than marginally familiar with back-end technologies (Django & Flask), 
-            I am eager to show you what I've got. So please: have fun discovering all hidden features on this page; take a look at my way-too-elaborate projects;
+            I am eager to show you what I've got. So please: have fun discovering all interactive features on this page; take a look at my way-too-elaborate projects;
             <u>and ask me to show you something extra</u> in a personal conversation - I might have something special for you!
           </p>
         </section>
@@ -210,13 +221,13 @@
               type="text"
               name="employer-name"
               id="name"
-              placeholder="name, company: John Doe, Company Inc."
+              placeholder="name, company: John Smith, Company Inc."
             />
             <input
               type="email"
               name="employer-email"
               id="email"
-              placeholder="email address: john.doe@gmail.com"
+              placeholder="email address: john.smith@gmail.com"
             />
             <input
               type="text"

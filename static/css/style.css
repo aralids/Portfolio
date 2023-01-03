@@ -22,9 +22,18 @@
   --cell-size: 12px;
   --first-grid-color: red;
   --dead-cell-color: #454541;
-  --first-welcome-color: red;
-  --second-welcome-color: #ffe680;
+  --welcome-first-color: red;
+  --welcome-second-color: #ffe680;
+  --about-me-first-color: #ffe680;
+  --about-me-second-color: red;
+  --projects-first-color: red;
+  --projects-second-color: #ffe680;
+  --projects-third-color: #b80000;
+  --projects-fourth-color: #b80000;
+  --contact-first-color: red;
+  --negative-space-color: white;
 }
+
 :root.alnatura {
   --main-bg-color: #fffef4;
   --main-color: #ef7c00; 
@@ -34,8 +43,16 @@
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
-  --first-welcome-color: #ef7c00;
-  --second-welcome-color: #76344d;
+  --welcome-first-color: #ef7c00;
+  --welcome-second-color: #76344d;
+  --about-me-first-color: #ef7c00;
+  --about-me-second-color: #76344d;
+  --projects-first-color: #ef7c00;
+  --projects-second-color: #76344d;
+  --projects-third-color: #b5ce34;
+  --projects-fourth-color: #b5ce34;
+  --contact-first-color: #ef7c00;
+  --negative-space-color: white;
 }
 
 :root.lex {
@@ -47,8 +64,16 @@
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
-  --first-welcome-color: #1a95cd;
-  --second-welcome-color: #2EF332;
+  --welcome-first-color: #1a95cd;
+  --welcome-second-color: #2EF332;
+  --about-me-first-color: #7cd3e6;
+  --about-me-second-color: #1a95cd;
+  --projects-first-color: #1a95cd;
+  --projects-second-color: #7cd3e6;
+  --projects-third-color: #2EF332;
+  --projects-fourth-color: #2EF332;
+  --contact-first-color: #1a95cd;
+  --negative-space-color: white;
 }
 
 :root.rewedigital {
@@ -60,8 +85,16 @@
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
-  --first-welcome-color: #00196A;
-  --second-welcome-color: #D2EB23;
+  --welcome-first-color: #00196A;
+  --welcome-second-color: #D2EB23;
+  --about-me-first-color: #D2EB23;
+  --about-me-second-color: #00196A;
+  --projects-first-color: #00196A;
+  --projects-second-color: #D2EB23;
+  --projects-third-color: #066437;
+  --projects-fourth-color: #066437;
+  --contact-first-color: #00196A;
+  --negative-space-color: white;
 }
 
 :root.klarna {
@@ -73,8 +106,37 @@
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
-  --first-welcome-color: black;
-  --second-welcome-color: #FFB3C7;
+  --welcome-first-color: black;
+  --welcome-second-color: #FFB3C7;
+  --about-me-first-color: #FFB3C7;
+  --about-me-second-color: black;
+  --projects-first-color: #FFB3C7;
+  --projects-second-color: black;
+  --projects-third-color: #C1D5FB;
+  --projects-fourth-color: #C1D5FB;
+  --contact-first-color: black;
+  --negative-space-color: white;
+}
+
+:root.scoop {
+  --main-bg-color: #fffef4;
+  --main-color: #005894; 
+  --main-accent-color: #FFFBDC;
+  --secondary-accent-color: #454541;
+  --font-color: #FFDD6B;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --welcome-first-color: #005894;
+  --welcome-second-color: #FFDD6B;
+  --about-me-first-color: #FFDD6B;
+  --about-me-second-color: #005894;
+  --projects-first-color: #005894;
+  --projects-second-color: #FFDD6B;
+  --projects-third-color: #454541;
+  --projects-fourth-color: #454541;
+  --contact-first-color: #005894;
+  --negative-space-color: white;
 }
 
 * {
@@ -373,28 +435,44 @@ footer {
   padding-right: 45%;
 }
 
-.light-color-cell {
-  background-color: var(--secondary-font-color);
+.negative-space-color {
+  background-color: var(--negative-space-color);
 }
 
-.main-color-cell {
-  background-color: var(--main-color);
+.welcome-first-color {
+  background-color: var(--welcome-first-color);
 }
 
-.dark-color-cell {
-  background-color: var(--font-color);
+.welcome-second-color {
+  background-color: var(--welcome-second-color);
 }
 
-.secondary-accent-color-cell {
-  background-color: var(--secondary-accent-color);
+.about-me-first-color {
+  background-color: var(--about-me-first-color);
 }
 
-.first-welcome-color {
-  background-color: var(--first-welcome-color);
+.about-me-second-color {
+  background-color: var(--about-me-second-color);
 }
 
-.second-welcome-color {
-  background-color: var(--second-welcome-color);
+.projects-first-color {
+  background-color: var(--projects-first-color);
+}
+
+.projects-second-color {
+  background-color: var(--projects-second-color);
+}
+
+.projects-third-color {
+  background-color: var(--projects-third-color);
+}
+
+.projects-fourth-color {
+  background-color: var(--projects-fourth-color);
+}
+
+.contact-first-color {
+  background-color: var(--contact-first-color);
 }
 
 .dead {
@@ -563,6 +641,19 @@ input:focus {
   cursor: pointer;
 }
 
+#click-arrow {
+  all: unset;
+  position: absolute;
+  top: 33000%;
+  left: 100%;
+  height: 10000%;
+}
+
+#click-arrow-div {
+  position: relative;
+  height: 1px;
+  width: 100%;
+}
 
 @media (max-width: 700px) or (max-height: 450px) {
   * {
@@ -643,6 +734,12 @@ input:focus {
     display: block;
   }
 }
+
+@media (max-height: 673px) {
+  #click-arrow {
+    display: none;
+  }
+} 
 
 @media (max-width: 1275px) {
   #conway { 
@@ -740,3 +837,4 @@ input:focus {
 #flip-card, #cell-grid-main, #flip-card-inner, #portrait, #cell-grid-project1, #cell-grid-project-2 {
   left: 'calc(95% - 322px)';
 }
+

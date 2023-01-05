@@ -979,7 +979,7 @@ addEventListener("resize", (event) => {
     for (logo of logos) {
       logo.style.display = "block";
     }
-    document.getElementById(`logo_${theme}`).style.position = "absolute";
+    document.getElementById(`logo_${theme}`).style.position = "unset";
     document.getElementById(`logo_${theme}`).style.width = "70px";
   }
 });

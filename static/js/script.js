@@ -405,6 +405,7 @@ function updateCellGrid() {
       htmlFlipCard.removeAttribute('onclick')
       changeRandomCells(6, 0, 'alive')
     } else if (currentScrollSection > 1.32) {
+      htmlCellGridMain.removeAttribute("onclick");
       changeRandomCells(2, 0, 'dead')
     }
     currentScrollSection = 1.32
@@ -966,8 +967,8 @@ addEventListener("resize", (event) => {
     htmlFlipCard.style.left = 'calc(95% - 322px)';
     htmlCellGridProject1.style.left = 'calc(95% - 322px)';
     htmlCellGridProject2.style.left = 'calc(95% - 322px)';
-    viewportHeight = window.innerHeight * (4 / 5)
-    viewportHeightFraction = viewportHeight / 7
+    viewportHeight = window.innerHeight * (4 / 5);
+    viewportHeightFraction = viewportHeight / 7;
 
     welcome = 0
     aboutMe = viewportHeight
@@ -979,7 +980,7 @@ addEventListener("resize", (event) => {
     for (logo of logos) {
       logo.style.display = "block";
     }
-    document.getElementById(`logo_${theme}`).style.position = "unset";
+    document.getElementById(`logo_${theme}`).style.position = "absolute";
     document.getElementById(`logo_${theme}`).style.width = "70px";
   }
 });

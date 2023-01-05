@@ -128,8 +128,8 @@
           </p>
           <form id="login-form" action="temple/" method="post">
             {% csrf_token %}
-            <input type="text" id="username" name="username" value="" placeholder="username from CV">
-            <input type="password" id="password" name="password" value="" placeholder="password from CV">
+            <input type="text" id="username" name="username" value="" placeholder="username from CV" onkeypress="if (event.key === 'Enter') {event.preventDefault(); document.getElementById('submit-button').click();}">
+            <input type="password" id="password" name="password" value="" placeholder="password from CV" onkeypress="if (event.key === 'Enter') {event.preventDefault(); document.getElementById('submit-button').click();}">
             <input id="hidden-button" type="submit" value="Submit" formtarget="_blank">
           </form>
           <form action="" id="mock-form" method="post" onsubmit="onSubmitAction(event);">

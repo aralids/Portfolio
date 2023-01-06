@@ -54,6 +54,27 @@
   --second-welcome-color: #005894;
 }
 
+:root.bekalabs {
+  --main-bg-color: white;
+  --main-color: #00aeff; 
+  --main-accent-color: white;
+  --secondary-accent-color: #454541;
+  --font-color: black;
+  --secondary-font-color: #ffffff;
+  --cell-size: 12px;
+  --dead-cell-color: #454541;
+  --welcome-first-color: #00aeff;
+  --welcome-second-color: black;
+  --about-me-first-color: black;
+  --about-me-second-color: #00aeff;
+  --projects-first-color: #00aeff;
+  --projects-second-color: black;
+  --projects-third-color: #e6e6e6;
+  --projects-fourth-color: #e6e6e6;
+  --contact-first-color: black;
+  --negative-space-color: white;
+}
+
 * {
   margin: 0;
   padding: 0;

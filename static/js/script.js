@@ -1,42 +1,42 @@
 /* FREQUENTLY UTILIZED VARIABLES */
 
-let gridHeight = 21
-let gridWidth = 21
+let gridHeight = 21;
+let gridWidth = 21;
 
-let htmlLoginForm = document.getElementById('login-form')
-let htmlFlipCard = document.getElementById('flip-card')
-let htmlFlipCardInner = document.getElementById('flip-card-inner')
-let htmlCellGridMain = document.getElementById('cell-grid-main')
-let htmlCellGridProject1 = document.getElementById('cell-grid-project-1')
-let htmlCellGridProject2 = document.getElementById('cell-grid-project-2')
+let htmlLoginForm = document.getElementById('login-form');
+let htmlFlipCard = document.getElementById('flip-card');
+let htmlFlipCardInner = document.getElementById('flip-card-inner');
+let htmlCellGridMain = document.getElementById('cell-grid-main');
+let htmlCellGridProject1 = document.getElementById('cell-grid-project-1');
+let htmlCellGridProject2 = document.getElementById('cell-grid-project-2');
 
-livingStates = ['dead', 'alive']
-cellGrids = ['cell-grid-main', 'cell-grid-project-1', 'cell-grid-project-2']
+livingStates = ['dead', 'alive'];
+cellGrids = ['cell-grid-main', 'cell-grid-project-1', 'cell-grid-project-2'];
 
-let viewportHeight = window.innerHeight * (4 / 5)
-let viewportHeightFraction = viewportHeight / 7
+let viewportHeight = window.innerHeight * (4 / 5);
+let viewportHeightFraction = viewportHeight / 7;
 
-let welcome = 0
-let aboutMe = viewportHeight
-let projects = viewportHeight * 2
-let contact = viewportHeight * 3
+let welcome = 0;
+let aboutMe = viewportHeight;
+let projects = viewportHeight * 2;
+let contact = viewportHeight * 3;
 
-var rect = htmlCellGridMain.getBoundingClientRect()
-var myInterval
+var rect = htmlCellGridMain.getBoundingClientRect();
+var myInterval;
 
-let currentScrollSection = 0
-let cardFlipped = 0
+let currentScrollSection = 0;
+let cardFlipped = 0;
 
-let credentialsNames = ["alnatura", "admin", "rewedigital", "lex", "klarna", "scoop"];
-let credentialsPasswords = ["sinnvoll", "", "homeofIT", "love&AI", "smoooth", "pragmatic"];
+let credentialsNames = ["alnatura", "admin", "rewedigital", "lex", "klarna", "scoop", "bekalabs"];
+let credentialsPasswords = ["sinnvoll", "", "homeofIT", "love&AI", "smoooth", "pragmatic", "100%leidenschaftlich"];
 
 /* FREQUENTLY UTILIZED VARIABLES */
 
 /* CLASSES */
 
 function Grid(gridId) {
-  this.gridId = gridId
-  this.scheme = []
+  this.gridId = gridId;
+  this.scheme = [];
   this.initialize = function (schemeNext, livingState) {
     let gridHTML = document.getElementById(this.gridId)
     for (let i = 0; i < gridHeight; i++) {
@@ -784,24 +784,24 @@ function flipCard() {
     htmlFlipCardInner.style.transform = 'rotateY(180deg)'
     cardFlipped = 1
   } else {
-    htmlFlipCardInner.style.transform = ''
-    cardFlipped = 0
+    htmlFlipCardInner.style.transform = '';
+    cardFlipped = 0;
   }
 }
 
 function hideProjects() {
-  htmlFlipCard.style.left = rect.left + 'px'
-  htmlCellGridProject1.style.left = rect.left + 'px'
-  htmlCellGridProject1.style.boxShadow = 'none'
-  htmlCellGridProject2.style.left = rect.left + 'px'
-  htmlCellGridProject2.style.boxShadow = 'none'
+  htmlFlipCard.style.left = rect.left + 'px';
+  htmlCellGridProject1.style.left = rect.left + 'px';
+  htmlCellGridProject1.style.boxShadow = 'none';
+  htmlCellGridProject2.style.left = rect.left + 'px';
+  htmlCellGridProject2.style.boxShadow = 'none';
 }
 
 function onSubmitAction(event) {
   event.preventDefault()
   let theme = document.getElementById('username').value != false ? document.getElementById('username').value : "admin";
   let password = document.getElementById('password').value;
-  console.log("credentials check: ", credentialsNames.indexOf(theme))
+  console.log("credentials check: ", credentialsNames.indexOf(theme));
   if (document.getElementById("submit-button").value === "Submit" && credentialsNames.indexOf(theme) > -1 && credentialsPasswords[credentialsNames.indexOf(theme)] === password) {
     let logos = document.querySelectorAll(".logo-alternative");
     for (logo of logos) {
@@ -810,10 +810,10 @@ function onSubmitAction(event) {
     console.log("theme: ", theme);
     document.getElementById(`logo_${theme}`).style.opacity = "1";
     changeColorPalette(theme);
-    htmlLoginForm.style.visibility = 'hidden'
-    htmlLoginForm.style.opacity = '0'
-    htmlLoginForm.style.maxHeight = '0'
-    document.getElementById('submit-button').setAttribute('value', 'Log out')
+    htmlLoginForm.style.visibility = 'hidden';
+    htmlLoginForm.style.opacity = '0';
+    htmlLoginForm.style.maxHeight = '0';
+    document.getElementById('submit-button').setAttribute('value', 'Log out');
     document.getElementById('probably').innerHTML = "you are definitely here because you received my application - welcome!";
     document.getElementById("do").innerHTML = "On the right, behold an implementation of <a id='conway' href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target='_blank'>Conway's Game of Life</a> - a simulation of living cells interacting with each other. <u>Move your mouse over the grid</u> to bring dead cells back to life (and reveal the image beneath)!"
     document.getElementById("name").setAttribute("placeholder", `name, company: Anna Mustermann, ${theme.toUpperCase()}`);
@@ -821,27 +821,28 @@ function onSubmitAction(event) {
     document.getElementById("subject").setAttribute("placeholder", `subject: Your Application at ${theme.toUpperCase()}`);
   } 
   else if (document.getElementById('submit-button').value === 'Log out') {
-    document.getElementById('logo_admin').style.opacity = '1'
-    document.getElementById('logo_alnatura').style.opacity = '0'
-    document.getElementById('logo_lex').style.opacity = '0'
-    document.getElementById('logo_rewedigital').style.opacity = '0'
-    document.getElementById('logo_klarna').style.opacity = '0'
-    document.getElementById('logo_scoop').style.opacity = '0'
-    changeColorPalette('admin')
+    document.getElementById('logo_admin').style.opacity = '1';
+    document.getElementById('logo_alnatura').style.opacity = '0';
+    document.getElementById('logo_lex').style.opacity = '0';
+    document.getElementById('logo_rewedigital').style.opacity = '0';
+    document.getElementById('logo_klarna').style.opacity = '0';
+    document.getElementById('logo_scoop').style.opacity = '0';
+    document.getElementById('logo_bekalabs').style.opacity = '0';
+    changeColorPalette('admin');
     
-    htmlLoginForm.style.opacity = '1'
-    htmlLoginForm.style.visibility = 'visible'
-    htmlLoginForm.style.maxHeight = '50px'
-    document.getElementById('submit-button').setAttribute('value', 'Submit')
+    htmlLoginForm.style.opacity = '1';
+    htmlLoginForm.style.visibility = 'visible';
+    htmlLoginForm.style.maxHeight = '50px';
+    document.getElementById('submit-button').setAttribute('value', 'Submit');
     document.getElementById('probably').innerHTML = "you are probably here because you received my application - welcome!";
-    document.getElementById("do").innerHTML = "Use the username & password from my CV to log in for a personalized experience - or just keep scrolling."
+    document.getElementById("do").innerHTML = "Use the username & password from my CV to log in for a personalized experience - or just keep scrolling.";
     
-    document.getElementById("name").setAttribute("placeholder", "name, company: John Smith, Company Inc.")
-    document.getElementById("email").setAttribute("placeholder", "email address: john.smith@gmail.com")
-    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at Company Inc.")
+    document.getElementById("name").setAttribute("placeholder", "name, company: John Smith, Company Inc.");
+    document.getElementById("email").setAttribute("placeholder", "email address: john.smith@gmail.com");
+    document.getElementById("subject").setAttribute("placeholder", "subject: Your Application at Company Inc.");
 
     document.getElementById("username").value = "admin";
-    console.log(document.getElementById("username").value)
+    console.log(document.getElementById("username").value);
   }
 }
 

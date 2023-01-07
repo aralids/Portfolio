@@ -1,24 +1,7 @@
-/* resize responsiveness!!! 
-   replace h2 with p!!!
-   use em instead of px for font-size to allow users to change the size in the browser menu - or rather a combo of em and % - or vw!!!
-   */
-
-/* display: ;*/
-/* flex-direction: ;*/
-/* height: ;*/
-/* width: ;*/
-/* justify-content: ; */
-/* align-items: ; */
-/* max-height: ; */
-
+/* use em instead of px for font-size to allow users to change the size in the browser menu - or rather a combo of em and % - or vw!!!*/
+   
 :root,
 :root.admin {
-  --main-bg-color: #454541;
-  --main-color: red;
-  --main-accent-color: #00d455;
-  --secondary-accent-color: #b80000;
-  --font-color: #ffe680;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --first-grid-color: red;
   --dead-cell-color: #454541;
@@ -35,12 +18,6 @@
 }
 
 :root.alnatura {
-  --main-bg-color: #fffef4;
-  --main-color: #ef7c00; 
-  --main-accent-color: #454541;
-  --secondary-accent-color: #b5ce34;
-  --font-color: #76344d;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
   --welcome-first-color: #ef7c00;
@@ -56,12 +33,6 @@
 }
 
 :root.lex {
-  --main-bg-color: #fffef4;
-  --main-color: #1a95cd; 
-  --main-accent-color: #FFDB00;
-  --secondary-accent-color: #7cd3e6;
-  --font-color: #2EF332;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
   --welcome-first-color: #1a95cd;
@@ -77,12 +48,6 @@
 }
 
 :root.rewedigital {
-  --main-bg-color: #fffef4;
-  --main-color: #00196A; 
-  --main-accent-color: #FFFBDC;
-  --secondary-accent-color: #066437;
-  --font-color: #D2EB23;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
   --welcome-first-color: #00196A;
@@ -98,12 +63,6 @@
 }
 
 :root.klarna {
-  --main-bg-color: #fffef4;
-  --main-color: black; 
-  --main-accent-color: #FFE6CC;
-  --secondary-accent-color: #C1D5FB;
-  --font-color: #FFB3C7;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
   --welcome-first-color: black;
@@ -119,12 +78,6 @@
 }
 
 :root.scoop {
-  --main-bg-color: #fffef4;
-  --main-color: #005894; 
-  --main-accent-color: #FFFBDC;
-  --secondary-accent-color: #454541;
-  --font-color: #FFDD6B;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
   --welcome-first-color: #005894;
@@ -140,12 +93,6 @@
 }
 
 :root.bekalabs {
-  --main-bg-color: white;
-  --main-color: #00aeff; 
-  --main-accent-color: white;
-  --secondary-accent-color: #454541;
-  --font-color: black;
-  --secondary-font-color: #ffffff;
   --cell-size: 12px;
   --dead-cell-color: #454541;
   --welcome-first-color: #00aeff;
@@ -185,13 +132,7 @@ body {
 
 header {
   display: flex;
-  /* flex-direction: ;*/
   height: 10%;
-  /* width: ;*/
-  /* justify-content: ; */
-  /* align-items: ; */
-  /* max-height: ; */
-
   background-color: #fff;
   border-bottom: 0.1px solid whitesmoke;
 }
@@ -199,15 +140,10 @@ header {
 #logo {
   position: relative;
   display: inline;
-  /* flex-direction: ;*/
-  /* height: ;*/
   height: 100%;
   margin-left: 3%;
   width: fit-content;
   margin-right: 7%;
-  /* justify-content: ; */
-  /* align-items: ; */
-  /* max-height: ; */
 }
 
 #logo_admin {
@@ -858,4 +794,3 @@ input:focus {
 #flip-card, #cell-grid-main, #flip-card-inner, #portrait, #cell-grid-project1, #cell-grid-project-2 {
   left: 'calc(95% - 322px)';
 }
-

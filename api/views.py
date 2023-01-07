@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.template import loader
 from django.urls import reverse
 from django.shortcuts import render
@@ -19,6 +19,17 @@ def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render({}, request))
 
+def verify_credentials(request):
+  username = request.POST.get('username')
+  password = request.POST.get('password')
+  username_list = User.objects.values_list("username", flat=True)
+  print(username, username in username_list, password, User.objects.get(username=username).password)
+  if username in username_list and User.objects.get(username=username).password == password:
+    logo = User.objects.get(username=username).logo
+    print("logo: ", logo)
+    return HttpResponse(logo)
+  else:
+    return HttpResponseBadRequest("User not found.")
 
 def send_mail(request):
   print("send_mail request: ", request.POST)
@@ -111,7 +122,6 @@ def temple(request):
     drawing_list = drawing.split()
 
     i = 0
-    print("log[(color, entry.day)]: ", log[(color, entry.day)])
     while i < len(drawing_list):
       if drawing_list[i].startswith("#"):
         if paths != []:
@@ -133,10 +143,11 @@ def temple(request):
     except KeyError:
       log[(color, entry.day)] = paths
     paths = []
-  print(log)
+  logo = user.logo
   return render(request, 'app/temple.html', {'entries': log,
                                              'username': u,
-                                             'password': password})
+                                             'password': password,
+                                             "logo": logo})
 
 def get_geolocation(request):
   geoloc = request.POST.get("geoloc").split()
@@ -187,13 +198,17 @@ def gastroobscura(request):
   if u == "":
     u = "admin"
   p = request.POST.get("password")
+  logo = User.objects.get(username = u).logo
   return render(request, 'app/gastroobscura.html', {'username': u,
-                                                    'password': p})
+                                                    'password': p,
+                                                    "logo": logo})
 
 def vitamins(request):
   u = request.POST.get("username")
   if u == "":
     u = "admin"
   p = request.POST.get("password")
+  logo = User.objects.get(username = u).logo
   return render(request, 'app/vitamins.html', {'username': u,
-                                               'password': p})
+                                               'password': p,
+                                               "logo": logo})

@@ -12,23 +12,9 @@
     </head>
     <body>
         <header>
-            <section id="logo">
+            <section id="logo" username={{ username }}>
                 <img
-                {% if username == 'alnatura' %}
-                    src="{% static 'img/logo_alnatura2.svg' %}"
-                {% elif username == 'lex' and password == 'love&AI' %}
-                    src="{% static 'img/logo_lex.svg' %}"
-                {% elif username == 'rewedigital' and password == 'homeofIT' %}
-                    src="{% static 'img/logo_rewedigital2.svg' %}"
-                {% elif username == 'klarna' and password == 'smoooth' %}
-                    src="{% static 'img/logo_klarna.svg' %}"
-                {% elif username == 'scoop' and password == 'pragmatic' %}
-                    src="{% static 'img/logo_scoop.svg' %}"
-                {% elif username == 'bekalabs' and password == '100%leidenschaftlich' %}
-                    src="{% static 'img/logo_bekalabs.svg' %}"
-                {% else  %}
-                    src="{% static 'img/logo.svg' %}"
-                {% endif %}
+                src="/static/img/{{ logo }}"
                 alt="Logo"
                 id="logo_admin"
                 class="opaque"
@@ -43,22 +29,19 @@
         </header>
         <section class="mobile-version">
             <section id="text">
-              <p id="mobile-greeting" class="centered bold">Hello
-                {% if username == 'alnatura' %}
-                    Alnatura!
-                {% elif username == 'lex' and password == 'love&AI' %}
-                    Lex!
-                {% elif username == 'rewedigital' and password == 'homeofIT' %}
-                    REWE Digital!
-                {% else  %}
-                    world!
+              <p id="mobile-greeting" class="centered bold">Hello 
+                {% if username == "admin" %}
+                        world!
+                {% else %}
+                        {{ username }}!
                 {% endif %}
+                !
               </p>
               <p>
                 The mobile version of my website is getting built as you're reading this!
                 I want to give it its own design and interesting features, and not simply make it a mini-replica of the main version.
                 For now, enjoy this page on screens with width > 700px and height > 450px. </p>
-              <p class="centered">Last update was on: 28.12.2022</p>
+              <p class="centered">Last update was on: 05.01.2022</p>
             </section>
         </section>
         <main>

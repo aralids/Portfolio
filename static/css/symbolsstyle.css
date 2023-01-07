@@ -50,9 +50,6 @@
   --font-color: #FFB3C7;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
-  --dead-cell-color: white;
-  --first-welcome-color: black;
-  --second-welcome-color: #FFB3C7;
   --last-color: #C1D5FB;
 }
 
@@ -64,17 +61,7 @@
   --font-color: #FFDD6B;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
-  --dead-cell-color: #454541;
-  --welcome-first-color: #005894;
-  --welcome-second-color: #FFDD6B;
-  --about-me-first-color: #FFDD6B;
-  --about-me-second-color: #005894;
-  --projects-first-color: #005894;
-  --projects-second-color: #FFDD6B;
-  --projects-third-color: #454541;
-  --projects-fourth-color: #454541;
-  --contact-first-color: #005894;
-  --negative-space-color: white;
+  --last-color: #454541;
 }
 
 :root.bekalabs {
@@ -85,17 +72,7 @@
   --font-color: black;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
-  --dead-cell-color: #454541;
-  --welcome-first-color: #00aeff;
-  --welcome-second-color: black;
-  --about-me-first-color: black;
-  --about-me-second-color: #00aeff;
-  --projects-first-color: #00aeff;
-  --projects-second-color: black;
-  --projects-third-color: #e6e6e6;
-  --projects-fourth-color: #e6e6e6;
-  --contact-first-color: black;
-  --negative-space-color: white;
+  --last-color: #454541;
 }
 
 * {

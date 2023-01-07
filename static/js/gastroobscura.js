@@ -212,7 +212,6 @@ class PlaceSet extends React.Component {
   }
 
 addEventListener("resize", (event) => {
-    console.log("Resize!!");
     let cx = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().left + document.documentElement.clientHeight * 0.35;
     let cy = document.getElementsByClassName("mapouter")[0].getBoundingClientRect().top + document.documentElement.clientHeight * 0.35;
 
@@ -236,8 +235,6 @@ addEventListener("resize", (event) => {
 
     let newPlacesLefts = placesCentres.map(item => item[0] - cPx);
     let newPlacesTops = placesCentres.map(item => item[1] - cPx);
-
-    console.log("newPlacesLefts: ", newPlacesLefts);
 
     for (let i=0; i<Object.keys(places).length; i++) {
         $(`#place-${i}`).attr("style", `top: ${newPlacesTops[i]}px; left: ${newPlacesLefts[i]}px;`);

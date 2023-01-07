@@ -850,7 +850,6 @@ function submit(project) {
 }
 
 function submitted() {
-  console.log("Submitted")
   document.getElementById("contact-submit-button").setAttribute("value", "Successfully submitted! Thank you!");
   document.getElementById("contact-submit-button").cursor = "auto";
 }
@@ -882,7 +881,6 @@ addEventListener("resize", (event) => {
     projects = viewportHeight * 2;
     contact = viewportHeight * 3;
 
-    console.log("resize! width: ", window.screen.availWidth);
     let logos = document.querySelectorAll(".logo-alternative");
     for (logo of logos) {
       logo.style.display = "block";

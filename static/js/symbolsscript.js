@@ -1,8 +1,5 @@
 let mode = "viewing mode";
 document.documentElement.className = document.getElementById("logo").getAttribute("username");
-console.log(document.documentElement.className)
-
-console.log(document.getElementById("form").getBoundingClientRect());
 
 const canvas = document.getElementById("canvas");
 const main = document.getElementById("main");
@@ -29,13 +26,11 @@ let clrs = document.querySelectorAll(".clr")
 clrs = Array.from(clrs)
 clrs.forEach(clr => {
     clr.addEventListener("click", () => {
-        console.log("clr backgroundColor", $(clr).css("backgroundColor"));
         ctx.strokeStyle = $(clr).css("backgroundColor");
         if (drawing.split().length !== 1) {
             sendAJAX(ctx.strokeStyle);
         }
         drawing = ctx.strokeStyle + " ";
-        console.log("drawing: ", drawing);
     })
 })
 
@@ -154,7 +149,6 @@ function viewingMode(specificDate="") {
         if (entryInstance === null) {
             unhighlightAll();
         } else {
-            console.log(entryInstance);
             showAssociations(entryInstance);
         }
         let nonEntryInstances = document.querySelectorAll(`path:not([date="${specificDate}"])`);
@@ -242,7 +236,6 @@ function showAssociations(entry) {
     let address = $("#canvas").attr("get-associations-url");
     let entryDate = $(entry).attr("date");
     
-    console.log("entryDate: ", entryDate);
     $("#input-date").val(entryDate);
     $("#association-shower").css("visibility", "visible");
     $("#association-shower h3").text(entryDate);
@@ -257,14 +250,12 @@ function showAssociations(entry) {
         },
         success: function (response) {
             if (response["text"].length > 0) { 
-                $("#association-text").html(`<p>${response["text"].replaceAll(/\n\n/g, "<br> <br>")}</p>`);
-                console.log("$(#text).text(response[text]): ", $("#association-text").html());
+                $("#association-text").html(`<p>${response["text"].replaceAll(/\n/g, "<br> ")}</p>`);
             } else {
                 $("#association-text").html("<p>Nothing has been written about this day.</p>");
             }
             if (response["imagesActual"].length > 0) {
                 $("#files").html(`<a href=${response["imagesActual"][0]} target="_blank"><img id="image" src=${response["imagesActual"][0]} /></a>`);
-                console.log("response[imagesActual].length > 0")
                 
                 for (let i=1; i<response["imagesActual"].length; i++) {
                     $("#files").append(`<a href=${response["imagesActual"][i]} target="_blank"><img id="image" src=${response["imagesActual"][i]} /></a>`);
@@ -287,8 +278,6 @@ function showAssociations(entry) {
             currentVideoLinks = response["videos"].join(" ");
             currentImageLinksActual = response["imagesActual"];
             currentVideoLinksActual = response["videosActual"];
-            console.log("get_associations: ", response)
-            console.log("$(#text).text(response[text])222: ", $("#text").text())
         },
         error: function (response) {
             console.log("ERROR", response);
@@ -308,7 +297,6 @@ function sendAJAX(nextColor="") {
                 "X-CSRFToken": csrftoken,
             },
             success: function (response) {
-                console.log("get_associations(): ", response);
             },
             error: function (response) {
                 console.log("ERROR", response);
@@ -363,7 +351,6 @@ function sleep (time) {
 }
 
 $("#color").change(function(event) {
-    console.log($(this).val());
     $("#color-picker").css('background-color',$(this).val());
 });
 
@@ -410,8 +397,7 @@ function editAssociation() {
         $("#add-files").html("<p>No images for this day. Host them on imgbb.com!!! The link should look like this: https://ibb.co/YN0cJs1</p>");
     }
     if (currentVideoLinksActual.length > 0) {
-        $("#add-videos").html(`<iframe id="video" src=${currentVideoLinksActual[0]}></iframe>`)
-        console.log("currentVideoLinksActual[0]: ", currentVideoLinksActual[0])
+        $("#add-videos").html(`<iframe id="video" src=${currentVideoLinksActual[0]}></iframe>`);
         
         for (let i=1; i<currentVideoLinksActual.length; i++) {
             $("#add-videos").append(`<iframe id="video" src=${currentVideoLinksActual[i]}></iframe>`);
@@ -424,10 +410,8 @@ function editAssociation() {
 function saveAssociations() {
     let username = document.getElementById("logo").getAttribute("username");
     let newText = document.getElementById("edit-textarea").value;
-
     let newImages = document.getElementById("edit-image").value;
     let newVideos = document.getElementById("edit-video").value;
-    console.log("newImages: ", newImages);
     if (username != "admin") {
         $.ajax({
             method: 'POST',
@@ -438,9 +422,7 @@ function saveAssociations() {
                 "X-CSRFToken": csrftoken,
             },
             success: function (response) {
-                console.log("save_associations(): ", response);
                 $("#edit-save-button").html("Saved!");
-                console.log($("#edit-save-button").html());
             },
             error: function (response) {
                 console.log("ERROR", response);

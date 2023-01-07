@@ -68,11 +68,11 @@
   --main-bg-color: white;
   --main-color: #00aeff; 
   --main-accent-color: white;
-  --secondary-accent-color: #454541;
+  --secondary-accent-color: #00d455;
   --font-color: black;
   --secondary-font-color: #ffffff;
   --cell-size: 12px;
-  --last-color: #454541;
+  --last-color: red;
 }
 
 * {

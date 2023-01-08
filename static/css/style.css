@@ -143,6 +143,7 @@ header {
   height: 100%;
   margin-left: 3%;
   width: fit-content;
+  max-width: -moz-max-content;
   margin-right: 7%;
 }
 
@@ -260,6 +261,8 @@ main {
   flex-direction: column;
   height: fit-content;
   width: fit-content;
+  max-height: -moz-max-content;
+  max-width: -moz-max-content;
   justify-content: center;
   /* align-items: ; */
   /* max-height: ; */
@@ -278,6 +281,8 @@ main {
   flex-direction: column;
   height: fit-content;
   width: fit-content;
+  max-height: -moz-max-content;
+  max-width: -moz-max-content;
   justify-content: center;
   border: 35px solid #e1e1e1;
   z-index: 300;
@@ -348,6 +353,7 @@ h1 {
   font-size: 80px;
   font-weight: 800;
   height: fit-content;
+  max-height: -moz-max-content;
 }
 
 h2 {
@@ -355,12 +361,14 @@ h2 {
   font-size: 24px;
   font-weight: 800;
   height: fit-content;
+  max-height: -moz-max-content;
 }
 
 p {
   /* display: ;*/
   /* flex-direction: ;*/
   height: fit-content;
+  max-height: -moz-max-content;
   /* width: ;*/
   /* justify-content: ; */
   /* align-items: ; */
@@ -456,6 +464,7 @@ footer {
   width: 24%;
   margin-top: 15px;
   height: fit-content;
+  max-height: -moz-max-content;
   
   visibility: visible;
   opacity: 1;
@@ -513,6 +522,7 @@ input:focus {
   background-color: #454541;
   color: #fff;
   width: fit-content;
+  max-width: -moz-max-content;
 }
 
 #hidden-button {
@@ -535,6 +545,7 @@ input:focus {
   color: #fff;
   font-family: 'Source Code Pro', monospace;
   font-size: 1vw;
+  max-height: -moz-max-content;
 }
 
 #contact-submit-button {
@@ -555,12 +566,14 @@ input:focus {
 
 .project {
   height: fit-content;
+  max-height: -moz-max-content;
   padding-bottom: 20px;
 }
 
 .technology {
   display: inline;
   width: fit-content;
+  max-width: -moz-max-content;
   margin: 5px;
   padding-left: 7px;
   padding-right: 7px;

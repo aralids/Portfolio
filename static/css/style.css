@@ -264,8 +264,6 @@ main {
   height: -moz-max-content;
   width: -moz-max-content;
   justify-content: center;
-  /* align-items: ; */
-  /* max-height: ; */
 
   top: calc(50% - 161px);
 

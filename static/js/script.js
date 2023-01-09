@@ -856,15 +856,16 @@ function submitted() {
 
 addEventListener("resize", (event) => {
   let theme = document.getElementById("username").value != false ? document.getElementById("username").value : "admin";
+  let currentLogo = theme === "admin" ? "logo_admin" : "logo_alternative";
   if (window.screen.availWidth < 700 || window.screen.availHeight < 450) {
     let logos = document.querySelectorAll(".logo-alternative");
     for (logo of logos) {
       logo.style.display = "none";
     }
-    document.getElementById("logo_alternative").style.position = "unset";
-    document.getElementById("logo_alternative").style.width = "unset";
-    document.getElementById("logo_alternative").style.display = "block";
-    document.getElementById("logo_alternative").style.height = "100%";
+    document.getElementById(currentLogo).style.position = "unset";
+    document.getElementById(currentLogo).style.width = "unset";
+    document.getElementById(currentLogo).style.display = "block";
+    document.getElementById(currentLogo).style.height = "100%";
     document.getElementById("mobile-greeting").innerText = `Hello ${theme}!`;
     
   } else {
@@ -885,8 +886,8 @@ addEventListener("resize", (event) => {
     for (logo of logos) {
       logo.style.display = "block";
     }
-    document.getElementById("logo_alternative").style.position = "absolute";
-    document.getElementById("logo_alternative").style.width = "70px";
+    document.getElementById(currentLogo).style.position = "absolute";
+    document.getElementById(currentLogo).style.width = "70px";
   }
 });
 

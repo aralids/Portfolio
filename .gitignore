@@ -4,3 +4,4 @@ Scripts/
 pyvenv.cfg
 portfolio/
 api/settings.py
+db.sqlite3
